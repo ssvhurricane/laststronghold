@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125cfd330d1bace4e89b39c65d52b096, type: 3}
+  m_Name: AbilitySettingsRegistry
+  m_EditorClassIdentifier: 
+  RegistryItems:
+  - Id: PlayerIdleAbility
+    Name: PlayerIdleAbility
+    AbilityDescription: PlayerIdleAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerMoveAbility
+    Name: PlayerMoveAbility
+    AbilityDescription: PlayerMoveAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerRotateAbility
+    Name: PlayerRotateAbility
+    AbilityDescription: PlayerRotateAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerHeadRotateAbility
+    Name: PlayerHeadRotateAbility
+    AbilityDescription: PlayerHeadRotateAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerJumpAbility
+    Name: PlayerJumpAbility
+    AbilityDescription: PlayerJumpAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerBaseAttackAbility
+    Name: PlayerBaseAttackAbility
+    AbilityDescription: PlayerBaseAttackAbility
+    AbilityType: 1
+    WeaponType: 5
+    Icon: {fileID: 21300000, guid: 9540d0014f0ae4c24b1ba577df2a66ad, type: 3}
+    ActionModifier: 
+  - Id: PlayerAdvancedAttackAbility
+    Name: PlayerAdvancedAttackAbility
+    AbilityDescription: PlayerAdvancedAttackAbility
+    AbilityType: 1
+    WeaponType: 3
+    Icon: {fileID: 21300000, guid: e4c1ce7cde13b437abf82407b099080e, type: 3}
+    ActionModifier: 
+  - Id: PlayerNoneAbility
+    Name: PlayerNoneAbility
+    AbilityDescription: PlayerNoneAbility
+    AbilityType: 4
+    WeaponType: 0
+    Icon: {fileID: 21300000, guid: 6b66cb31cdb16460d8c80b4508392029, type: 3}
+    ActionModifier: 
+  - Id: PlayerDeathAbility
+    Name: PlayerDeathAbility
+    AbilityDescription: PlayerDeathAbility
+    AbilityType: 4
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerDetectionAbility
+    Name: PlayerDetectionAbility
+    AbilityDescription: PlayerDetectionAbility
+    AbilityType: 4
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerHealthAbility
+    Name: PlayerHealthAbility
+    AbilityDescription: PlayerHealthAbility
+    AbilityType: 4
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerStaminaAbility
+    Name: PlayerStaminaAbility
+    AbilityDescription: PlayerStaminaAbility
+    AbilityType: 4
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerSpeakAbility
+    Name: PlayerSpeakAbility
+    AbilityDescription: PlayerSpeakAbility
+    AbilityType: 4
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: CameraRotateAbility
+    Name: CameraRotateAbility
+    AbilityDescription: CameraRotateAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: CameraFollowAbility
+    Name: CameraFollowAbility
+    AbilityDescription: CameraFollowAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: CameraParentAbility
+    Name: CameraParentAbility
+    AbilityDescription: CameraParentAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
