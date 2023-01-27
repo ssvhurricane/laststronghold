@@ -51,7 +51,6 @@ namespace Services.Input
                                 _playerIdleAbility,
                                      _playerMoveAbility,
                                          _playerRotateAbility,
-                                            _playerHeadRotateAbility,
                                                               _cameraRotateAbility,
                                                                        _playerJumpAbility;
                                                             
@@ -252,9 +251,6 @@ namespace Services.Input
                 _abilityService.UseAbility((IAbilityWithAffectedPresenterParam)_cameraRotateAbility
                     , _cameraPresenter, _playerPresenter, ActionModifier.None);
 
-                // Set Player Head Follow Camera.
-                _abilityService.UseAbility((IAbilityWithAffectedPresenterParam)_playerHeadRotateAbility
-                    , _cameraPresenter, _playerPresenter, ActionModifier.None);
             }  
         }
 
@@ -317,9 +313,6 @@ namespace Services.Input
             // Caching Player Rotate Ability.
             _playerRotateAbility = _abilityService.GetAbilityById(_playerPresenter, 
                 AbilityServiceConstants.PlayerRotateAbility);
-
-            _playerHeadRotateAbility = _abilityService.GetAbilityById(_playerPresenter,
-                AbilityServiceConstants.PlayerHeadRotateAbility);
 
             // Caching Camera Rotate Ability.
             _cameraRotateAbility = _abilityService.GetAbilityById(_cameraPresenter,

@@ -67,7 +67,6 @@ namespace Bootstrap
             Container.InstallElementAsSingle<PlayerIdleAbility>();
             Container.InstallElementAsSingle<PlayerMoveAbility>();
             Container.InstallElementAsSingle<PlayerRotateAbility>();
-            Container.InstallElementAsSingle<PlayerHeadRotateAbility>();
             Container.InstallElementAsSingle<PlayerJumpAbility>();
            
             Container.InstallElementAsSingle<PlayerBaseAttackAbility>();

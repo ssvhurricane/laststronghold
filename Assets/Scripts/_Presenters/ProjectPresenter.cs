@@ -68,19 +68,6 @@ namespace Presenters
                     _mainMenuPresenter.ShowView(_projectService.GetProjectType());
                 }
 
-                // Offline Levels.
-                if (data.Data == SceneServiceConstants.Level_1_Room)
-                {
-                    //_logService.ShowLog(GetType().Name,
-                    //    Services.Log.LogType.Message,
-                    //    $"Subscribe SceneServiceSignals.SceneLoadingCompleted, Data ={data.Data}",
-                    //    LogOutputLocationType.Console);
-
-                    CreateGame();
-
-                    _projectService.CursorLocked(false, CursorLockMode.Locked);
-                }
-
                 if (data.Data == SceneServiceConstants.OfflineLevel1)
                 {
                     //_logService.ShowLog(GetType().Name,
