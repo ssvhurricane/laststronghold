@@ -5,19 +5,18 @@ using UnityEngine;
 
 namespace Services.Item
 {
-    public class BowItem : IWeapon //, IAbilityWithOutParam, can ability too
+    public class SniperRifleItem : IWeapon
     {
         private ItemServiceSettings _itemSettings;
         public string Id { get; set; }
-
-        public string Name { get; set; } 
+        public string Name { get; set; }
         public string Description { get; set; }
         public ItemType ItemType { get; set; }
         public GameObject Owner { get; set; }
         public WeaponType WeaponType { get; set; }
         public GameObject Prefab { get; set; }
 
-        public BowItem(ItemServiceSettings[] itemServiceSettings)
+        public SniperRifleItem(ItemServiceSettings[] itemServiceSettings)
         {
             InitItem(itemServiceSettings);
         }
@@ -33,7 +32,7 @@ namespace Services.Item
             Description = _itemSettings.Description;
             ItemType = _itemSettings.ItemType;
             Prefab = _itemSettings.Prefab;
-            WeaponType = WeaponType.Bow;
+            WeaponType = WeaponType.Axe;
         }
     }
 }

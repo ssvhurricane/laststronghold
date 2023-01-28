@@ -8,11 +8,13 @@ using Services.VFX;
 using Services.Item.Weapon;
 using System.Linq;
 using UnityEngine;
+using View;
 using Zenject;
+using Constants;
 
 namespace Services.Ability
 {
-    public class PlayerHealthAbility : IAbilityWithOutParam
+    public class PlayerLookAtAbility : IAbilityWithOutParam
     {
         private SignalBus _signalBus;
 
@@ -27,15 +29,22 @@ namespace Services.Ability
         public AbilityType AbilityType { get; set; }
         public WeaponType WeaponType { get; set; }
         public ActionModifier ActionModifier { get; set; }
-        public bool ActivateAbility { get; set; }
+        public bool ActivateAbility { get; set; } = true;
         public Sprite Icon { get; set; }
 
-        public PlayerHealthAbility(SignalBus signalBus,
-            MovementService movementService,
+        private int _xVelHash;
+        private int _yVelHash;
+        private int _zVelHash;
+
+        private PlayerView _view;
+        private MovementServiceSettings _movementServiceSettings;
+
+        public PlayerLookAtAbility(SignalBus signalBus,
+             MovementService movementService,
              AnimationService animationService,
              SFXService sFXService,
-              VFXService vFXService,
-               AbilitySettings[] abilitiesSettings) 
+             VFXService vFXService,
+              AbilitySettings[] abilitiesSettings)
         {
             _signalBus = signalBus;
 
@@ -45,6 +54,8 @@ namespace Services.Ability
             _vFXService = vFXService;
 
             InitAbility(abilitiesSettings);
+
+            _movementServiceSettings = _movementService.InitService(MovementServiceConstants.BasePlayerMovement);
         }
         public void InitAbility(AbilitySettings[] abilitiesSettings)
         {
@@ -57,11 +68,16 @@ namespace Services.Ability
             WeaponType = _abilitySettings.WeaponType;
 
             Icon = _abilitySettings.Icon;
-        }
 
+        }
         public void StartAbility(IPresenter ownerPresenter, ActionModifier actionModifier)
         {
-           //ToDo...
+            if (ownerPresenter != null)
+            {
+                if (_view == null) _view = (PlayerView)ownerPresenter.GetView();
+
+                // TODO:
+            }
         }
     }
 }

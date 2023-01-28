@@ -66,29 +66,18 @@ namespace Bootstrap
             // Player Abilities.
             Container.InstallElementAsSingle<PlayerIdleAbility>();
             Container.InstallElementAsSingle<PlayerMoveAbility>();
-            Container.InstallElementAsSingle<PlayerRotateAbility>();
-            Container.InstallElementAsSingle<PlayerJumpAbility>();
-           
+            Container.InstallElementAsSingle<PlayerLookAtAbility>();
             Container.InstallElementAsSingle<PlayerBaseAttackAbility>();
-            Container.InstallElementAsSingle<PlayerAdvancedAttackAbility>();
-
+            
             Container.InstallElementAsSingle<PlayerNoneAbility>();
-            Container.InstallElementAsSingle<PlayerDeathAbility>();
-            Container.InstallElementAsSingle<PlayerDetectionAbility>();
-            Container.InstallElementAsSingle<PlayerHealthAbility>(); 
-            Container.InstallElementAsSingle<PlayerStaminaAbility>(); 
-            Container.InstallElementAsSingle<PlayerSpeakAbility>();
 
             // Camera Abilities.
             Container.InstallElementAsSingle<CameraRotateAbility>();
-            Container.InstallElementAsSingle<CameraFollowAbility>();
-            Container.InstallElementAsSingle<CameraParentAbility>();
         }
 
         public void InstallItems() 
         {
-            Container.InstallElementAsSingle<AxeItem>();
-            Container.InstallElementAsSingle<BowItem>();
+            Container.InstallElementAsSingle<SniperRifleItem>();
         }
 
         private void InstallModels() 

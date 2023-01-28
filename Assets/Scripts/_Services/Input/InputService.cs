@@ -13,7 +13,6 @@ using Services.Window;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem.Interactions;
 using UnityEngine.UI;
 using View;
 using View.Camera;
@@ -30,12 +29,9 @@ namespace Services.Input
         private InputServiceSettings _settings;
        
         private readonly AbilityService _abilityService;
-        private readonly AnimationService _animationService;
         private PoolService _poolService;
-        private ResourcesService _resourcesService;
         private LogService _logService;
         private readonly ProjectService _projectService;
-
         private readonly IWindowService _windowService;
 
         private readonly PauseMenuPresenter _pauseMenuPresenter;
@@ -49,12 +45,10 @@ namespace Services.Input
 
         private IAbility _playerNoneAbility,
                                 _playerIdleAbility,
-                                     _playerMoveAbility,
-                                         _playerRotateAbility,
-                                                              _cameraRotateAbility,
-                                                                       _playerJumpAbility;
-                                                            
-                                                                   
+                                    _playerLookAtAbility,
+                                         _playerMoveAbility,
+                                              _cameraRotateAbility;
+        
         private IEnumerable<IAbility> _playerAttackAbilities;
     
         private MainHUDView _mainHudView;
@@ -81,7 +75,6 @@ namespace Services.Input
             _inputServiceSettings = inputServiceSettings;
 
             _abilityService = abilityService;
-            _animationService = animationService;
             _windowService = windowService;
 
             _pauseMenuPresenter = pauseMenuPresenter;
@@ -89,44 +82,13 @@ namespace Services.Input
             _cameraPresenter = cameraPresenter;
 
             _poolService = poolService;
-            _resourcesService = resourcesService;
             _logService = logService;
             _projectService = projectService;
             
             _settings = _inputServiceSettings?.FirstOrDefault(s => s.Id == InputServiceConstants.TopDownGameId);
 
             _topDownGameInput = new TopDownGameInput();
-
-            // Crouch Ability.
-            _topDownGameInput.Player.Crouch.performed += value =>
-            {
-                if (_projectService.GetProjectState() == ProjectState.Start)
-                {
-                    _logService.ShowLog(GetType().Name,
-                        Services.Log.LogType.Message,
-                        "Press C(B).",
-                        LogOutputLocationType.Console);
-
-                    _abilityService.UseAbility((IAbilityWithBoolParam)_playerMoveAbility
-                                  , _playerPresenter,
-                                  value.performed, ActionModifier.Crouch);
-                }
-            };
-
-            _topDownGameInput.Player.Crouch.canceled += value =>
-            {
-                if (_projectService.GetProjectState() == ProjectState.Start)
-                {
-                    _logService.ShowLog(GetType().Name,
-                        Services.Log.LogType.Message,
-                        "Press C_canceled(B).",
-                        LogOutputLocationType.Console);
-
-                    _abilityService.UseAbility((IAbilityWithBoolParam)_playerMoveAbility
-                                  , _playerPresenter,
-                                  !value.canceled, ActionModifier.Crouch);
-                }
-            };
+       
 
             // Bind Player Base Attack Ability.
             _topDownGameInput.Player.Attack1.performed += value =>
@@ -148,36 +110,6 @@ namespace Services.Input
                 }
             };
 
-            // Bind Player Jump Ability.
-            _topDownGameInput.Player.Jump.performed += value =>
-            {
-                if (_projectService.GetProjectState() == ProjectState.Start)
-                {
-                    _logService.ShowLog(GetType().Name,
-                            Services.Log.LogType.Message,
-                            "Press Space(A)." + value.ReadValueAsButton(),
-                            LogOutputLocationType.Console);
-                  
-                        if(!_topDownGameInput.Player.Crouch.IsPressed())
-                                        _abilityService.UseAbility((IAbilityWithBoolParam)_playerJumpAbility,
-                                            _playerPresenter, !value.performed, ActionModifier.None);
-                }
-            };
-            
-            //_topDownGameInput.Player.Jump.canceled += value =>
-            //{
-            //    if (_projectService.GetProjectState() == ProjectState.Start)
-            //    {
-            //        _logService.ShowLog(GetType().Name,
-            //                Services.Log.LogType.Message,
-            //                "Press Space(A)." + value.ReadValueAsButton(),
-            //                LogOutputLocationType.Console);
-                    
-            //        if (!_topDownGameInput.Player.Crouch.IsPressed())
-            //            _abilityService.UseAbility((IAbilityWithBoolParam)_playerJumpAbility,
-            //                _playerPresenter, !value.canceled, ActionModifier.None);
-            //    }
-            //};
 
             // Back Menu.
             _topDownGameInput.Player.Pause.performed += value =>
@@ -202,33 +134,14 @@ namespace Services.Input
             {
                 if (_topDownGameInput.Player.Move.IsPressed() && _topDownGameInput.Player.Move.ReadValue<Vector2>() != Vector2.zero)
                 {
-                    if (!_topDownGameInput.Player.Crouch.IsPressed())
-                    {
-                        if (!_topDownGameInput.Player.Run.IsPressed())
-                        {
-                            _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
+                   
+                   _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
                              , _playerPresenter,
                              _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.None);
-                        }
-                        else
-                            _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
-                             , _playerPresenter,
-                             _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.Run);
-
-                    }
-                    else
-                        _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
-                               , _playerPresenter,
-                               _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.Crouch);
                 }
                 else
-                {/*
-                    _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
-                             , _playerPresenter,
-                             Vector2.zero, ActionModifier.None);
-                    */
                     _abilityService.UseAbility((IAbilityWithOutParam)_playerIdleAbility, _playerPresenter, ActionModifier.None);
-                }
+               
             }
         }
 
@@ -238,10 +151,6 @@ namespace Services.Input
             {
                 if (_topDownGameInput.Player.Look.IsPressed())
                 {
-                    _abilityService.UseAbility((IAbilityWithVector2Param)_playerRotateAbility
-                   , _playerPresenter,
-                   _topDownGameInput.Player.Look.ReadValue<Vector2>(), ActionModifier.None);
-
                     _abilityService.UseAbility((IAbilityWithVector2Param)_cameraRotateAbility
                          , _cameraPresenter,
                     _topDownGameInput.Player.Look.ReadValue<Vector2>(), ActionModifier.None);
@@ -301,33 +210,29 @@ namespace Services.Input
         }
 
         private void CachingAbilities()
-        {  
-            // Caching Player None Ability.
-            _playerNoneAbility = _abilityService.GetAbilityById(_playerPresenter,
-                AbilityServiceConstants.PlayerNoneAbility);
+        {
+            // Caching Player Idle Ability.
+            _playerIdleAbility = _abilityService.GetAbilityById(_playerPresenter,
+                AbilityServiceConstants.PlayerIdleAbility);
 
             // Caching Player Move Ability.
             _playerMoveAbility = _abilityService.GetAbilityById(_playerPresenter,
                 AbilityServiceConstants.PlayerMoveAbility);
 
-            // Caching Player Rotate Ability.
-            _playerRotateAbility = _abilityService.GetAbilityById(_playerPresenter, 
-                AbilityServiceConstants.PlayerRotateAbility);
+            _playerLookAtAbility = _abilityService.GetAbilityById(_playerPresenter,
+                AbilityServiceConstants.PlayerLookAtAbility);
 
-            // Caching Camera Rotate Ability.
-            _cameraRotateAbility = _abilityService.GetAbilityById(_cameraPresenter,
-                AbilityServiceConstants.CameraRotateAbility);
-
-            // Caching Player Jump Ability.
-            _playerJumpAbility = _abilityService.GetAbilityById(_playerPresenter,
-                AbilityServiceConstants.PlayerJumpAbility);
-
-            // Caching Player Idle Ability.
-            _playerIdleAbility = _abilityService.GetAbilityById(_playerPresenter,
-                AbilityServiceConstants.PlayerIdleAbility);
+            // Caching Player None Ability.
+            _playerNoneAbility = _abilityService.GetAbilityById(_playerPresenter,
+                AbilityServiceConstants.PlayerNoneAbility);
 
             _playerAttackAbilities = _abilityService.GetAbilitiesyByAbilityType(_playerPresenter,
                 AbilityType.AttackAbility);
+
+         
+            // Caching Camera Rotate Ability.
+            _cameraRotateAbility = _abilityService.GetAbilityById(_cameraPresenter,
+                AbilityServiceConstants.CameraRotateAbility);
         }
     }
 }

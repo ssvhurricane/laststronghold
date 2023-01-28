@@ -1,4 +1,3 @@
-using Constants;
 using Data.Settings;
 using Model.Inventory;
 using Services.Ability;
@@ -18,87 +17,51 @@ namespace Model
 
         private PlayerIdleAbility _playerIdleAbility;
         private PlayerMoveAbility _playerMoveAbility;
-        private PlayerRotateAbility _playerRotateAbility;
-        private PlayerJumpAbility _playerJumpAbility;
-        
+        private PlayerLookAtAbility _playerLookAtAbility;
         private PlayerBaseAttackAbility _playerAttackAbility;
-        private PlayerAdvancedAttackAbility _playerRangeAttackAbility;
         
         private PlayerNoneAbility _playerNoneCurrentAbility;
-        private PlayerDeathAbility _playerDeathAbility;
-        private PlayerDetectionAbility _playerDetectionAbility;
-        private PlayerHealthAbility _playerHealthAbility;
-        private PlayerStaminaAbility _playerStaminaAbility;
-        private PlayerSpeakAbility _playerSpeakAbility;
 
         private IAbility _currentAbility;
+      
+        private SniperRifleItem _sniperRifleItem;
 
-        private AxeItem _axeItem;
-        private BowItem _bowItem;
         public PlayerModel(PlayerSettings settings,
                 PlayerIdleAbility playerIdleAbility,
                 PlayerMoveAbility playerMoveAbility,
-                PlayerRotateAbility playerRotateAbility,
-                PlayerJumpAbility playerJumpAbility,
-               
+                PlayerLookAtAbility playerLookAtAbility,
                 PlayerBaseAttackAbility playerAttackAbility,
-                PlayerAdvancedAttackAbility playerRangeAttackAbility,
-                
                 PlayerNoneAbility playerNoneCurrentAbility,
-                PlayerDeathAbility playerDeathAbility,
-                PlayerDetectionAbility playerDetectionAbility,
-                PlayerHealthAbility playerHealthAbility,
-                PlayerStaminaAbility playerStaminaAbility,
-                PlayerSpeakAbility playerSpeakAbility,
-
-                AxeItem axeItem,
-                BowItem bowItem
-
+                SniperRifleItem sniperRifleItem
             )
         {
             _settings = settings;
 
             _playerIdleAbility = playerIdleAbility;
             _playerMoveAbility = playerMoveAbility;
-            _playerRotateAbility = playerRotateAbility;
-            _playerJumpAbility = playerJumpAbility;
-           
+            _playerLookAtAbility = playerLookAtAbility;
+
             _playerAttackAbility = playerAttackAbility;
-            _playerRangeAttackAbility = playerRangeAttackAbility;
-
+            
             _playerNoneCurrentAbility = playerNoneCurrentAbility;
-            _playerDeathAbility = playerDeathAbility;
-            _playerDetectionAbility = playerDetectionAbility;
-            _playerHealthAbility = playerHealthAbility;
-            _playerStaminaAbility = playerStaminaAbility;
-            _playerSpeakAbility = playerSpeakAbility;
 
-            _axeItem = axeItem;
-            _bowItem = bowItem;
+            _sniperRifleItem = sniperRifleItem;
 
-            //Init Base Ability.
-            _playerAbilityContainer= new PlayerAbilityContainer();
+           //Init Base Ability.
+            _playerAbilityContainer = new PlayerAbilityContainer();
             
             _playerAbilityContainer.abilities.Add(_playerIdleAbility);
             _playerAbilityContainer.abilities.Add(_playerMoveAbility);
-            _playerAbilityContainer.abilities.Add(_playerRotateAbility);
-            _playerAbilityContainer.abilities.Add(_playerJumpAbility);
-            
+            _playerAbilityContainer.abilities.Add(_playerLookAtAbility);
+
             _playerAbilityContainer.abilities.Add(_playerAttackAbility);
-            _playerAbilityContainer.abilities.Add(_playerRangeAttackAbility);
             
             _playerAbilityContainer.abilities.Add(_playerNoneCurrentAbility);
-            _playerAbilityContainer.abilities.Add(_playerDeathAbility);
-            _playerAbilityContainer.abilities.Add(_playerDetectionAbility);
-            _playerAbilityContainer.abilities.Add(_playerHealthAbility);
-            _playerAbilityContainer.abilities.Add(_playerStaminaAbility);
-            _playerAbilityContainer.abilities.Add(_playerSpeakAbility); 
-            
+          
             // Init Inventory.
             _playerInventoryContainer = new PlayerInventoryContainer();
            
-            _playerInventoryContainer.Items.Add(_axeItem);
-            _playerInventoryContainer.Items.Add(_bowItem);
+            _playerInventoryContainer.Items.Add(_sniperRifleItem);
         }
 
         public IAbilityContainer GetAbilityContainer()

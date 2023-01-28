@@ -13,15 +13,9 @@ MonoBehaviour:
   m_Name: ItemServiceSettingsRegistry
   m_EditorClassIdentifier: 
   RegistryItems:
-  - Id: AxeItem
-    Name: AxeItem
-    Description: AxeItem
-    Icon: {fileID: 0}
-    Prefab: {fileID: 3374229895721973127, guid: 87156e10ce2aba149bd593f5ae895a9e, type: 3}
-    ItemType: 0
-  - Id: BowItem
-    Name: BowItem
-    Description: BowItem
+  - Id: SniperRifleItem
+    Name: SniperRifleItem
+    Description: SniperRifleItem
     Icon: {fileID: 0}
     Prefab: {fileID: 919132149155446097, guid: bf2abb5c09af5e042b9100787a416b0d, type: 3}
     ItemType: 0
