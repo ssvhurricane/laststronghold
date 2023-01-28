@@ -24,6 +24,8 @@ namespace Data.Settings
         public float Speed;
         public float UpperLimit;
         public float BottomLimit;
+        public float LeftLimit;
+        public float RightLimit;
         public float Sensitivity;
     }
 

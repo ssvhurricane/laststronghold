@@ -7,6 +7,7 @@ namespace Services.Anchor
         NPC,
         Enemy,
         CheckPoint,
-        interactable
+        interactable,
+        Pivot
     }
 }

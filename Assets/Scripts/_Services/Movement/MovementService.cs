@@ -15,7 +15,7 @@ namespace Services.Movement
         private readonly MovementServiceSettings[] _movementServiceSettings;
         private MovementServiceSettings _settings;
 
-        private float _xRotation;
+        private float _xRotation, _yRotation;
 
         public MovementService(SignalBus signalBus,
                                LogService logService,  
@@ -68,10 +68,14 @@ namespace Services.Movement
         public void RotateWithClamp(IView view, Vector2 direction)
         {
              _xRotation -= direction.y * _settings.Rotate.Sensitivity * Time.smoothDeltaTime;
-            
-             _xRotation = Mathf.Clamp(_xRotation, _settings.Rotate.UpperLimit, _settings.Rotate.BottomLimit);
-           
-             view.GetGameObject().transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
+
+            _yRotation += direction.x * _settings.Rotate.Sensitivity * Time.smoothDeltaTime;
+
+            _xRotation = Mathf.Clamp(_xRotation, _settings.Rotate.UpperLimit, _settings.Rotate.BottomLimit);
+
+            _yRotation = Mathf.Clamp(_yRotation, _settings.Rotate.LeftLimit, _settings.Rotate.RightLimit);
+
+            view.GetGameObject().transform.localRotation = Quaternion.Euler(_xRotation, _yRotation, 0);
         }
 
         public void Follow(IView baseView, IView targetView, Vector3 followOffset, Vector3 position, float followSpeed) 
@@ -97,6 +101,19 @@ namespace Services.Movement
                 baseView.GetGameObject().transform.parent = targetView.transform;
             else
                 baseView.GetGameObject().transform.parent = null;
+        }
+
+        public void LookAt(IView baseView, Vector3 targetView, Vector3 dir)
+        {
+            baseView.GetGameObject().transform.LookAt(targetView, dir);
+        }
+
+        public void OrbitalMove(IView baseView, Vector3 targetView, Quaternion angle)
+        {
+            // angle * ( point - pivot) + pivot
+            baseView.GetGameObject().transform.position
+                = angle * (baseView.GetGameObject().transform.position - targetView)
+                + targetView;
         }
 
         public bool IsGrounded(IView view, Rigidbody viewRigidbody) 

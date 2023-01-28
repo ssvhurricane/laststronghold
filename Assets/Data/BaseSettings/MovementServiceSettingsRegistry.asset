@@ -29,8 +29,10 @@ MonoBehaviour:
       Dis2Ground: 2
     Rotate:
       Speed: 5
-      UpperLimit: -40
-      BottomLimit: 70
+      UpperLimit: -50
+      BottomLimit: 50
+      LeftLimit: -40
+      RightLimit: 40
       Sensitivity: 8
     Crouch:
       Speed: 1

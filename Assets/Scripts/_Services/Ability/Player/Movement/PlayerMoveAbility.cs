@@ -34,14 +34,6 @@ namespace Services.Ability
         public Sprite Icon { get; set; }
 
         private PlayerView _view;
-        private int _xVelHash;
-        private int _yVelHash;
-        private int _zVelHash;
-        private int _groundHash;
-        private int _fallingHash;
-        private int _crouchHash;
-        Vector2 _currentVelocity;
-        private Rigidbody _rigidbody;
 
         public PlayerMoveAbility(SignalBus signalBus,
             MovementService movementService,
@@ -72,13 +64,6 @@ namespace Services.Ability
             WeaponType = _abilitySettings.WeaponType;
 
             Icon = _abilitySettings.Icon;
-
-            _xVelHash = Animator.StringToHash("X_Velocity");
-            _yVelHash = Animator.StringToHash("Y_Velocity");
-            _zVelHash = Animator.StringToHash("Z_Velocity");
-            _groundHash = Animator.StringToHash("Grounded");
-            _fallingHash = Animator.StringToHash("Falling");
-            _crouchHash = Animator.StringToHash("Crouch");
         }
        
         public void StartAbility(IPresenter ownerPresenter, Vector2 param, ActionModifier actionModifier)
@@ -87,57 +72,7 @@ namespace Services.Ability
             {
                 if (_view == null) _view = (PlayerView) ownerPresenter.GetView();
 
-                if (_rigidbody == null) _rigidbody = _view.GetComponent<Rigidbody>();
-
-                switch (actionModifier)
-                {
-                    case ActionModifier.None:
-                        {  
-                            _currentVelocity.x = Mathf.Lerp(_currentVelocity.x, param.x * _movementServiceSettings.Move.Speed, _movementServiceSettings.Move.BlendSpeed * Time.fixedDeltaTime);
-                            _currentVelocity.y = Mathf.Lerp(_currentVelocity.y, param.y * _movementServiceSettings.Move.Speed, _movementServiceSettings.Move.BlendSpeed * Time.fixedDeltaTime);
-                            
-                            _movementService.Move(_view, _currentVelocity, _rigidbody);
-
-                            _animationService.SetFloat(_view.GetAnimator(),
-                               _xVelHash,  _currentVelocity.x);
-                               
-                            _animationService.SetFloat(_view.GetAnimator(),
-                                _yVelHash, _currentVelocity.y);
-                        }
-                            break;
-                        
-                    case ActionModifier.Run:
-                        {
-                            _currentVelocity.x = Mathf.Lerp(_currentVelocity.x, param.x * _movementServiceSettings.Run.Speed, _movementServiceSettings.Move.BlendSpeed * Time.fixedDeltaTime);
-                            _currentVelocity.y = Mathf.Lerp(_currentVelocity.y, param.y * _movementServiceSettings.Run.Speed, _movementServiceSettings.Move.BlendSpeed * Time.fixedDeltaTime);
-                          
-                            _movementService.Move(_view, _currentVelocity, _rigidbody);
-
-                            _animationService.SetFloat(_view.GetAnimator(), _xVelHash, _currentVelocity.x);
-                            _animationService.SetFloat(_view.GetAnimator(), _yVelHash, _currentVelocity.y);
-                          
-                            break;
-                        }
-                    case ActionModifier.Crouch:
-                        { 
-                            _currentVelocity.x = Mathf.Lerp(_currentVelocity.x, param.x * _movementServiceSettings.Crouch.Speed, _movementServiceSettings.Move.BlendSpeed * Time.fixedDeltaTime);
-                            _currentVelocity.y = Mathf.Lerp(_currentVelocity.y, param.y * _movementServiceSettings.Crouch.Speed, _movementServiceSettings.Move.BlendSpeed * Time.fixedDeltaTime);
-                            
-                            _movementService.Move(_view, _currentVelocity, _rigidbody);
-                           
-                            _animationService.SetFloat(_view.GetAnimator(), _xVelHash, _currentVelocity.x);
-                            _animationService.SetFloat(_view.GetAnimator(), _yVelHash, _currentVelocity.y);
-                         
-                            break;
-                        }
-                      
-                }
-                
-                if(!_movementService.IsGrounded(_view, _rigidbody)) // TODO: ref
-                            _animationService.SetFloat(_view.GetAnimator(), _zVelHash, _rigidbody.velocity.y);
-
-                _animationService.SetBool(_view.GetAnimator(), _fallingHash, !_movementService.IsGrounded(_view, _rigidbody));
-                _animationService.SetBool(_view.GetAnimator(), _groundHash, _movementService.IsGrounded(_view, _rigidbody));
+                //_movementService.OrbitalMove();
             }
         }
 
@@ -147,8 +82,7 @@ namespace Services.Ability
             {
                 _view = (PlayerView)ownerPresenter.GetView();
 
-                if(_movementService.IsGrounded(_view, _rigidbody))
-                   _animationService.SetBool(_view.GetAnimator(), _crouchHash, param);
+                //_movementService.OrbitalMove();
             }
         }
     }

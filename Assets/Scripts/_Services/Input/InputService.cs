@@ -149,6 +149,9 @@ namespace Services.Input
         {
             if (_projectService.GetProjectState() == ProjectState.Start)
             {
+                _abilityService.UseAbility((IAbilityWithOutParam)_playerLookAtAbility, _playerPresenter
+                      , ActionModifier.None);
+
                 if (_topDownGameInput.Player.Look.IsPressed())
                 {
                     _abilityService.UseAbility((IAbilityWithVector2Param)_cameraRotateAbility

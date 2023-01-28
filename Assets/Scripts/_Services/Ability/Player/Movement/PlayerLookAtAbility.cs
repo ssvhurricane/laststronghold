@@ -11,6 +11,7 @@ using UnityEngine;
 using View;
 using Zenject;
 using Constants;
+using Services.Anchor;
 
 namespace Services.Ability
 {
@@ -20,6 +21,7 @@ namespace Services.Ability
 
         private readonly MovementService _movementService;
         private readonly AnimationService _animationService;
+        private readonly AnchorService _anchorService;
         private readonly SFXService _sFXService;
         private readonly VFXService _vFXService;
 
@@ -32,16 +34,15 @@ namespace Services.Ability
         public bool ActivateAbility { get; set; } = true;
         public Sprite Icon { get; set; }
 
-        private int _xVelHash;
-        private int _yVelHash;
-        private int _zVelHash;
-
         private PlayerView _view;
         private MovementServiceSettings _movementServiceSettings;
+
+        private Vector3 _pivotPosition;
 
         public PlayerLookAtAbility(SignalBus signalBus,
              MovementService movementService,
              AnimationService animationService,
+             AnchorService anchorService,
              SFXService sFXService,
              VFXService vFXService,
               AbilitySettings[] abilitiesSettings)
@@ -50,12 +51,15 @@ namespace Services.Ability
 
             _movementService = movementService;
             _animationService = animationService;
+            _anchorService = anchorService;
             _sFXService = sFXService;
             _vFXService = vFXService;
 
             InitAbility(abilitiesSettings);
 
             _movementServiceSettings = _movementService.InitService(MovementServiceConstants.BasePlayerMovement);
+
+            //_pivotPosition = _anchorService._anchors.FirstOrDefault(anhorItem=>anhorItem.AnchorType == AnchorType.Pivot).Transform.position;
         }
         public void InitAbility(AbilitySettings[] abilitiesSettings)
         {
@@ -76,7 +80,10 @@ namespace Services.Ability
             {
                 if (_view == null) _view = (PlayerView)ownerPresenter.GetView();
 
-                // TODO:
+                //TODO:
+               //_movementService.LookAt(_view, Vector3.zero, Vector3.forward);
+
+               //_movementService.OrbitalMove(_view, Vector3.zero, Quaternion.EulerAngles(0.0f, 5.0f, 0.0f));
             }
         }
     }
