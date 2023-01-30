@@ -59,6 +59,7 @@ namespace Services.Ability
 
             _movementServiceSettings = _movementService.InitService(MovementServiceConstants.BasePlayerMovement);
 
+            // Move this to input service.
             //_pivotPosition = _anchorService._anchors.FirstOrDefault(anhorItem=>anhorItem.AnchorType == AnchorType.Pivot).Transform.position;
         }
         public void InitAbility(AbilitySettings[] abilitiesSettings)
@@ -80,7 +81,7 @@ namespace Services.Ability
             {
                 if (_view == null) _view = (PlayerView)ownerPresenter.GetView();
 
-               //_movementService.LookAt(_view, Vector3.zero, Vector3.forward);
+               _movementService.LookAt(_view, Vector3.zero, Vector3.up);
             }
         }
     }

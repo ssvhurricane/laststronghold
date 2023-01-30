@@ -28,7 +28,7 @@ MonoBehaviour:
         m_Bits: 64
       Dis2Ground: 2
     Rotate:
-      Speed: 5
+      Speed: 1
       UpperLimit: -50
       BottomLimit: 50
       LeftLimit: -40

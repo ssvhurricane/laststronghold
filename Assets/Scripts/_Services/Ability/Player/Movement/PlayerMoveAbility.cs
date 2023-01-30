@@ -78,12 +78,12 @@ namespace Services.Ability
                     {
                         case ActionModifier.Left:
                             {
-                                //_movementService.OrbitalMove(_view, Vector3.zero, Quaternion.EulerAngles(0.0f, 5.0f, 0.0f));
+                                _movementService.OrbitalMove(_view, Vector3.zero, Quaternion.Euler(.0f, _movementServiceSettings.Rotate.Speed, .0f));
                                 break;
                             }
                         case ActionModifier.Right:
                             {
-                                //_movementService.OrbitalMove(_view, Vector3.zero, Quaternion.EulerAngles(0.0f, 5.0f, 0.0f));
+                                _movementService.OrbitalMove(_view, Vector3.zero, Quaternion.Euler(.0f, -_movementServiceSettings.Rotate.Speed, .0f));
                                 break;
                             }
                     }
