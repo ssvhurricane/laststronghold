@@ -88,10 +88,9 @@ namespace Services.Input
             _settings = _inputServiceSettings?.FirstOrDefault(s => s.Id == InputServiceConstants.TopDownGameId);
 
             _topDownGameInput = new TopDownGameInput();
-       
-
-            // Bind Player Base Attack Ability.
-            _topDownGameInput.Player.Attack1.performed += value =>
+          
+           // Bind Player Base Attack Ability.
+           _topDownGameInput.Player.Attack1.performed += value =>
             {
                 if (_projectService.GetProjectState() == ProjectState.Start)
                 {
@@ -132,16 +131,37 @@ namespace Services.Input
         {
             if (_projectService.GetProjectState() == ProjectState.Start)
             {
-                if (_topDownGameInput.Player.Move.IsPressed() && _topDownGameInput.Player.Move.ReadValue<Vector2>() != Vector2.zero)
-                {
-                   
-                   _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
-                             , _playerPresenter,
-                             _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.None);
-                }
-                else
+                if (!_topDownGameInput.Player.Move.IsPressed())
                     _abilityService.UseAbility((IAbilityWithOutParam)_playerIdleAbility, _playerPresenter, ActionModifier.None);
-               
+                else
+                {
+                    if (_topDownGameInput.Player.Move.activeControl.name == "a")
+                    {
+                        _logService.ShowLog(GetType().Name,
+                                    Services.Log.LogType.Message,
+                                    "Press A.",
+                                    LogOutputLocationType.Console);
+
+                        _abilityService.UseAbility((IAbilityWithBoolParam)_playerMoveAbility,
+                            _playerPresenter,
+                            _topDownGameInput.Player.Move.IsPressed(),
+                            ActionModifier.Left);
+                    }
+
+
+                    if (_topDownGameInput.Player.Move.activeControl.name == "d")
+                    {
+                        _logService.ShowLog(GetType().Name,
+                                    Services.Log.LogType.Message,
+                                    "Press D.",
+                                    LogOutputLocationType.Console);
+
+                        _abilityService.UseAbility((IAbilityWithBoolParam)_playerMoveAbility,
+                            _playerPresenter,
+                            _topDownGameInput.Player.Move.IsPressed(),
+                            ActionModifier.Right);
+                    }
+                }
             }
         }
 

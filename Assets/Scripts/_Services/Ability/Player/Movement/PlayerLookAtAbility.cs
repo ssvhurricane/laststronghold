@@ -80,10 +80,7 @@ namespace Services.Ability
             {
                 if (_view == null) _view = (PlayerView)ownerPresenter.GetView();
 
-                //TODO:
                //_movementService.LookAt(_view, Vector3.zero, Vector3.forward);
-
-               //_movementService.OrbitalMove(_view, Vector3.zero, Quaternion.EulerAngles(0.0f, 5.0f, 0.0f));
             }
         }
     }

@@ -14,7 +14,7 @@ using Zenject;
 
 namespace Services.Ability
 {
-    public class PlayerMoveAbility : IAbilityWithVector2Param, IAbilityWithBoolParam
+    public class PlayerMoveAbility : IAbilityWithBoolParam
     {
         private SignalBus _signalBus;
        
@@ -65,16 +65,6 @@ namespace Services.Ability
 
             Icon = _abilitySettings.Icon;
         }
-       
-        public void StartAbility(IPresenter ownerPresenter, Vector2 param, ActionModifier actionModifier)
-        {
-            if (ownerPresenter != null)
-            {
-                if (_view == null) _view = (PlayerView) ownerPresenter.GetView();
-
-                //_movementService.OrbitalMove();
-            }
-        }
 
         public void StartAbility(IPresenter ownerPresenter, bool param, ActionModifier actionModifier)
         {
@@ -82,7 +72,22 @@ namespace Services.Ability
             {
                 _view = (PlayerView)ownerPresenter.GetView();
 
-                //_movementService.OrbitalMove();
+                if (param)
+                {
+                    switch (actionModifier)
+                    {
+                        case ActionModifier.Left:
+                            {
+                                //_movementService.OrbitalMove(_view, Vector3.zero, Quaternion.EulerAngles(0.0f, 5.0f, 0.0f));
+                                break;
+                            }
+                        case ActionModifier.Right:
+                            {
+                                //_movementService.OrbitalMove(_view, Vector3.zero, Quaternion.EulerAngles(0.0f, 5.0f, 0.0f));
+                                break;
+                            }
+                    }
+                }
             }
         }
     }
