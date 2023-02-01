@@ -5,6 +5,7 @@ namespace Constants
         // Player Abilities.
         public static string PlayerIdleAbility = "PlayerIdleAbility";
         public static string PlayerMoveAbility = "PlayerMoveAbility";
+        public static string PlayerFocusMoveAbility = "PlayerFocusMoveAbility";
         public static string PlayerLookAtAbility = "PlayerLookAtAbility";
 
         public static string PlayerBaseAttackAbility = "PlayerBaseAttackAbility";

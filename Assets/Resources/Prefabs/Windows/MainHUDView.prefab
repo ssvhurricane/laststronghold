@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <Keyboard>/a
+  m_ControlPath: <Keyboard>/f
 --- !u!1 &1492217077514981424
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,7 +821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <Keyboard>/a
+  m_ControlPath: <Keyboard>/r
 --- !u!1 &8006884713380427022
 GameObject:
   m_ObjectHideFlags: 0

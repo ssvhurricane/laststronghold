@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1300214213393988079}
   - component: {fileID: 4854385270196347425}
+  - component: {fileID: 4413870758926866318}
+  - component: {fileID: 5545854598700863632}
+  - component: {fileID: 2543697820233048303}
   m_Layer: 8
   m_Name: FPSCameraView
   m_TagString: Untagged
@@ -47,6 +50,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Layer: 5
   Camera: {fileID: 8881107686480854882}
+--- !u!114 &4413870758926866318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6415491583722096974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87796e0b0fbd945628ca8b776a8f459b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EmitObject: {fileID: 8801670364263030228}
+  TransmitterType: 0
+--- !u!114 &5545854598700863632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6415491583722096974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87796e0b0fbd945628ca8b776a8f459b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EmitObject: {fileID: 8801670364263030228}
+  TransmitterType: 1
+--- !u!114 &2543697820233048303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6415491583722096974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87796e0b0fbd945628ca8b776a8f459b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EmitObject: {fileID: 8801670364263030228}
+  TransmitterType: 2
 --- !u!1 &8801670364263030228
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,6 +27,13 @@ MonoBehaviour:
     WeaponType: 0
     Icon: {fileID: 0}
     ActionModifier: 
+  - Id: PlayerFocusMoveAbility
+    Name: PlayerFocusMoveAbility
+    AbilityDescription: PlayerFocusMoveAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
   - Id: PlayerBaseAttackAbility
     Name: PlayerBaseAttackAbility
     AbilityDescription: PlayerBaseAttackAbility

@@ -13,6 +13,7 @@ using Services.Item;
 using Services.Input;
 using Services.Camera;
 using Services.Tutorial;
+using Services.RayCast;
 
 namespace Bootstrap
 {
@@ -59,6 +60,8 @@ namespace Bootstrap
             Container.InstallElementAsSingle<InputService>(); 
 
             Container.InstallElementAsSingle<TutorialService>();
+
+            Container.InstallElementAsSingle<RayCastService>();
         }
 
         private void InstallAbilities() 
@@ -66,6 +69,7 @@ namespace Bootstrap
             // Player Abilities.
             Container.InstallElementAsSingle<PlayerIdleAbility>();
             Container.InstallElementAsSingle<PlayerMoveAbility>();
+            Container.InstallElementAsSingle<PlayerFocusMoveAbility>();
             Container.InstallElementAsSingle<PlayerLookAtAbility>();
             Container.InstallElementAsSingle<PlayerBaseAttackAbility>();
             

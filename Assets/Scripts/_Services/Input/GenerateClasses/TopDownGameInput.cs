@@ -62,6 +62,24 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Focus"",
+                    ""type"": ""Button"",
+                    ""id"": ""31182c28-3f68-402c-b42d-54eeeaeeac6b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8ae12b7-e119-42de-a076-fccc6eda0db9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -185,6 +203,28 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a3c4350-d78f-4006-bee3-4e974c2b675f"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""Focus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7982f02b-3b50-4e22-9196-33e23cb02eb0"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -225,6 +265,8 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Attack1 = m_Player.FindAction("Attack1", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_Focus = m_Player.FindAction("Focus", throwIfNotFound: true);
+        m_Player_Reset = m_Player.FindAction("Reset", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -288,6 +330,8 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Attack1;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_Focus;
+    private readonly InputAction m_Player_Reset;
     public struct PlayerActions
     {
         private @TopDownGameInput m_Wrapper;
@@ -296,6 +340,8 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Attack1 => m_Wrapper.m_Player_Attack1;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @Focus => m_Wrapper.m_Player_Focus;
+        public InputAction @Reset => m_Wrapper.m_Player_Reset;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -317,6 +363,12 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Focus.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocus;
+                @Focus.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocus;
+                @Focus.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocus;
+                @Reset.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReset;
+                @Reset.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReset;
+                @Reset.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReset;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -333,6 +385,12 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Focus.started += instance.OnFocus;
+                @Focus.performed += instance.OnFocus;
+                @Focus.canceled += instance.OnFocus;
+                @Reset.started += instance.OnReset;
+                @Reset.performed += instance.OnReset;
+                @Reset.canceled += instance.OnReset;
             }
         }
     }
@@ -361,5 +419,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnAttack1(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnFocus(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
     }
 }

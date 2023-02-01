@@ -17,6 +17,7 @@ namespace Model
 
         private PlayerIdleAbility _playerIdleAbility;
         private PlayerMoveAbility _playerMoveAbility;
+        private PlayerFocusMoveAbility _playerFocusMoveAbility;
         private PlayerLookAtAbility _playerLookAtAbility;
         private PlayerBaseAttackAbility _playerAttackAbility;
         
@@ -29,6 +30,7 @@ namespace Model
         public PlayerModel(PlayerSettings settings,
                 PlayerIdleAbility playerIdleAbility,
                 PlayerMoveAbility playerMoveAbility,
+                PlayerFocusMoveAbility playerFocusMoveAbility,
                 PlayerLookAtAbility playerLookAtAbility,
                 PlayerBaseAttackAbility playerAttackAbility,
                 PlayerNoneAbility playerNoneCurrentAbility,
@@ -39,6 +41,7 @@ namespace Model
 
             _playerIdleAbility = playerIdleAbility;
             _playerMoveAbility = playerMoveAbility;
+            _playerFocusMoveAbility = playerFocusMoveAbility;
             _playerLookAtAbility = playerLookAtAbility;
 
             _playerAttackAbility = playerAttackAbility;
@@ -52,6 +55,7 @@ namespace Model
             
             _playerAbilityContainer.abilities.Add(_playerIdleAbility);
             _playerAbilityContainer.abilities.Add(_playerMoveAbility);
+            _playerAbilityContainer.abilities.Add(_playerFocusMoveAbility);
             _playerAbilityContainer.abilities.Add(_playerLookAtAbility);
 
             _playerAbilityContainer.abilities.Add(_playerAttackAbility);

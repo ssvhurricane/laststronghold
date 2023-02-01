@@ -4,10 +4,12 @@ using Model;
 using Presenters;
 using Presenters.Window;
 using Services.Ability;
+using Services.Anchor;
 using Services.Animation;
 using Services.Log;
 using Services.Pool;
 using Services.Project;
+using Services.RayCast;
 using Services.Resources;
 using Services.Window;
 using System.Collections.Generic;
@@ -29,15 +31,16 @@ namespace Services.Input
         private InputServiceSettings _settings;
        
         private readonly AbilityService _abilityService;
-        private PoolService _poolService;
-        private LogService _logService;
+        private readonly PoolService _poolService;
+        private readonly LogService _logService;
         private readonly ProjectService _projectService;
+        private readonly RayCastService _rayCastService;
+        private readonly AnchorService _anchorService;
         private readonly IWindowService _windowService;
 
         private readonly PauseMenuPresenter _pauseMenuPresenter;
         private readonly MainHUDPresenter _mainHUDPresenter;
         private readonly CameraPresenter _cameraPresenter;
-       
 
         private IPresenter _playerPresenter;
        
@@ -68,7 +71,9 @@ namespace Services.Input
             PoolService poolService,
             ResourcesService resourcesService,
             LogService logService,
-            ProjectService projectService
+            ProjectService projectService,
+            RayCastService rayCastService,
+            AnchorService anchorService
             )
         {
             _signalBus = signalBus;
@@ -84,7 +89,9 @@ namespace Services.Input
             _poolService = poolService;
             _logService = logService;
             _projectService = projectService;
-            
+            _rayCastService = rayCastService;
+            _anchorService = anchorService;
+
             _settings = _inputServiceSettings?.FirstOrDefault(s => s.Id == InputServiceConstants.TopDownGameId);
 
             _topDownGameInput = new TopDownGameInput();
@@ -118,6 +125,27 @@ namespace Services.Input
                 if (_windowService.IsWindowShowing<GameSettingsView>()) return;
 
                 _pauseMenuPresenter.ShowView();
+            };
+
+            _topDownGameInput.Player.Focus.performed += value =>
+            {
+                // TODO:
+                _logService.ShowLog(GetType().Name,
+                                Services.Log.LogType.Message,
+                                "Press Focus Button(F).",
+                                LogOutputLocationType.Console);
+
+                _rayCastService.Emit(_cameraPresenter.GetView().GetGameObject().transform);
+                //1.
+                //_anchorService.GetActorByName();
+                //2.
+               // _rayCastService.Emit();
+            };
+
+            _topDownGameInput.Player.Reset.performed += value =>
+            {
+                // TODO:
+                //_anchorService.GetActorByName();
             };
         }
 
