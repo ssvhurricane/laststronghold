@@ -68,6 +68,8 @@ namespace Services.Ability
 
         public void StartAbility(IPresenter ownerPresenter, bool param, ActionModifier actionModifier)
         {
+            if (!ActivateAbility) return;
+
             if (ownerPresenter != null)
             {
                 _view = (PlayerView)ownerPresenter.GetView();

@@ -181,8 +181,9 @@ GameObject:
   - component: {fileID: 81147398}
   - component: {fileID: 81147397}
   - component: {fileID: 81147396}
-  m_Layer: 0
-  m_Name: DsiplayFloor
+  - component: {fileID: 81147399}
+  m_Layer: 3
+  m_Name: AnchorArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,8 +226,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81147394}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -267,6 +268,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81147394}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &81147399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81147394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c464498e2eab4fc681a0bd4509626c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 1060235746}
+  ReceiverObject: {fileID: 81147394}
+  ReceiverType: 0
+  ObjectId: 7
+  ObjectName: Name7
 --- !u!1001 &97101812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -411,8 +429,8 @@ GameObject:
   - component: {fileID: 393897306}
   - component: {fileID: 393897305}
   - component: {fileID: 393897308}
-  m_Layer: 0
-  m_Name: DsiplayFloor
+  m_Layer: 3
+  m_Name: AnchorArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -455,8 +473,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393897303}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -512,6 +530,8 @@ MonoBehaviour:
   Parent: {fileID: 18286619}
   ReceiverObject: {fileID: 393897303}
   ReceiverType: 0
+  ObjectId: 1
+  ObjectName: Name1
 --- !u!1 &475451257
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,8 +544,9 @@ GameObject:
   - component: {fileID: 475451261}
   - component: {fileID: 475451260}
   - component: {fileID: 475451259}
-  m_Layer: 0
-  m_Name: DsiplayFloor
+  - component: {fileID: 475451262}
+  m_Layer: 3
+  m_Name: AnchorArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -568,8 +589,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475451257}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -610,6 +631,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475451257}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &475451262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475451257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c464498e2eab4fc681a0bd4509626c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 1273106298}
+  ReceiverObject: {fileID: 475451257}
+  ReceiverType: 0
+  ObjectId: 2
+  ObjectName: Name2
 --- !u!1001 &508262324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -727,8 +765,9 @@ GameObject:
   - component: {fileID: 906425546}
   - component: {fileID: 906425545}
   - component: {fileID: 906425544}
-  m_Layer: 0
-  m_Name: DsiplayFloor
+  - component: {fileID: 906425547}
+  m_Layer: 3
+  m_Name: AnchorArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -771,8 +810,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906425542}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -813,6 +852,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906425542}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &906425547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906425542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c464498e2eab4fc681a0bd4509626c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 2071234070}
+  ReceiverObject: {fileID: 906425542}
+  ReceiverType: 0
+  ObjectId: 8
+  ObjectName: Name8
 --- !u!1 &977355893
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,8 +881,9 @@ GameObject:
   - component: {fileID: 977355897}
   - component: {fileID: 977355896}
   - component: {fileID: 977355895}
-  m_Layer: 0
-  m_Name: DsiplayFloor
+  - component: {fileID: 977355898}
+  m_Layer: 3
+  m_Name: AnchorArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -869,8 +926,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 977355893}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -911,6 +968,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 977355893}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &977355898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977355893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c464498e2eab4fc681a0bd4509626c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 1650879312}
+  ReceiverObject: {fileID: 977355893}
+  ReceiverType: 0
+  ObjectId: 9
+  ObjectName: Name9
 --- !u!1 &1041271302
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,8 +997,9 @@ GameObject:
   - component: {fileID: 1041271306}
   - component: {fileID: 1041271305}
   - component: {fileID: 1041271304}
-  m_Layer: 0
-  m_Name: DsiplayFloor
+  - component: {fileID: 1041271307}
+  m_Layer: 3
+  m_Name: AnchorArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -967,8 +1042,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041271302}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -1009,6 +1084,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041271302}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1041271307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041271302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c464498e2eab4fc681a0bd4509626c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 1636560868}
+  ReceiverObject: {fileID: 1041271302}
+  ReceiverType: 0
+  ObjectId: 6
+  ObjectName: Name6
 --- !u!1 &1049074379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,8 +1355,9 @@ GameObject:
   - component: {fileID: 1415095285}
   - component: {fileID: 1415095284}
   - component: {fileID: 1415095283}
-  m_Layer: 0
-  m_Name: DsiplayFloor
+  - component: {fileID: 1415095286}
+  m_Layer: 3
+  m_Name: AnchorArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1307,8 +1400,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415095281}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -1349,6 +1442,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415095281}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1415095286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415095281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c464498e2eab4fc681a0bd4509626c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 1687567969}
+  ReceiverObject: {fileID: 1415095281}
+  ReceiverType: 0
+  ObjectId: 5
+  ObjectName: Name5
 --- !u!1001 &1466854683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1589,8 +1699,9 @@ GameObject:
   - component: {fileID: 1592576083}
   - component: {fileID: 1592576082}
   - component: {fileID: 1592576081}
-  m_Layer: 0
-  m_Name: DsiplayFloor
+  - component: {fileID: 1592576084}
+  m_Layer: 3
+  m_Name: AnchorArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1633,8 +1744,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592576079}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -1675,6 +1786,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592576079}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1592576084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592576079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c464498e2eab4fc681a0bd4509626c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 1613166777}
+  ReceiverObject: {fileID: 1592576079}
+  ReceiverType: 0
+  ObjectId: 4
+  ObjectName: Name4
 --- !u!1 &1613166777
 GameObject:
   m_ObjectHideFlags: 0
@@ -2349,8 +2477,9 @@ GameObject:
   - component: {fileID: 1903204459}
   - component: {fileID: 1903204458}
   - component: {fileID: 1903204457}
-  m_Layer: 0
-  m_Name: DsiplayFloor
+  - component: {fileID: 1903204460}
+  m_Layer: 3
+  m_Name: AnchorArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2393,8 +2522,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903204455}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -2435,6 +2564,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903204455}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1903204460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903204455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c464498e2eab4fc681a0bd4509626c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 616613150}
+  ReceiverObject: {fileID: 1903204455}
+  ReceiverType: 0
+  ObjectId: 3
+  ObjectName: Name3
 --- !u!1 &1975406733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2804,8 +2950,9 @@ GameObject:
   - component: {fileID: 2143722660}
   - component: {fileID: 2143722659}
   - component: {fileID: 2143722658}
-  m_Layer: 0
-  m_Name: DsiplayFloor
+  - component: {fileID: 2143722661}
+  m_Layer: 3
+  m_Name: AnchorArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2848,8 +2995,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143722656}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -2890,6 +3037,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143722656}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2143722661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143722656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c464498e2eab4fc681a0bd4509626c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 1975406733}
+  ReceiverObject: {fileID: 2143722656}
+  ReceiverType: 0
+  ObjectId: 10
+  ObjectName: Name10
 --- !u!1001 &4874148508380880167
 PrefabInstance:
   m_ObjectHideFlags: 0

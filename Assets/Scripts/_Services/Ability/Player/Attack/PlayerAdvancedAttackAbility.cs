@@ -107,7 +107,7 @@ namespace Services.Ability
                                "Advanced Attack!.",
                                LogOutputLocationType.Console);
 
-                }
+                }/*
                 else if (actionModifier == ActionModifier.Power)
                 {
                     // ToDo...
@@ -115,7 +115,7 @@ namespace Services.Ability
                              Services.Log.LogType.Message,
                              "Power Advanced Attack!.",
                              LogOutputLocationType.Console);
-                }
+                }*/
             }
         }
     }

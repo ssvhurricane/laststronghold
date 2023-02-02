@@ -73,7 +73,17 @@ namespace Services.Ability
             {
                 _view = (PlayerView)ownerPresenter.GetView();
 
-                // TODO: need move and smooth rotate.
+                switch (actionModifier)
+                {
+                    case ActionModifier.FocusMove:
+                        {
+                            break;
+                        }
+                    case ActionModifier.FocusRotate:
+                        {
+                            break;
+                        }
+                }
             }
         }
     }

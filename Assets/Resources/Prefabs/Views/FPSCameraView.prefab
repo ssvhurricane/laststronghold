@@ -64,6 +64,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EmitObject: {fileID: 8801670364263030228}
   TransmitterType: 0
+  ObjectId: 1
+  ObjectName: MainCamera
 --- !u!114 &5545854598700863632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +80,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EmitObject: {fileID: 8801670364263030228}
   TransmitterType: 1
+  ObjectId: 1
+  ObjectName: MainCamera
 --- !u!114 &2543697820233048303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +96,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EmitObject: {fileID: 8801670364263030228}
   TransmitterType: 2
+  ObjectId: 1
+  ObjectName: MainCamera
 --- !u!1 &8801670364263030228
 GameObject:
   m_ObjectHideFlags: 0

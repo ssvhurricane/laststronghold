@@ -1,20 +1,61 @@
+using Services.Building;
 using UnityEngine;
+using View;
+using Zenject;
 
 namespace Services.RayCast
 {
-    public class ReceiverHolder : MonoBehaviour
+    public class ReceiverHolder : MonoBehaviour, IBuildingHolder
     {
         [SerializeField] protected GameObject Parent, ReceiverObject;
         [SerializeField] protected ReceiverType ReceiverType;
 
-        private int _objectId;
+        [SerializeField] protected int ObjectId;
 
-        private string _objectName;
+        [SerializeField] protected string ObjectName;
 
-        public void Construct()
+        private SignalBus _signalBus;
+
+        private IView _placedObject;
+
+        public void Construct(SignalBus signalBus)
         {
-            // TODO:need reg holder
+            _signalBus = signalBus;
+        }
 
+        public GameObject GetReceiveObject()
+        {
+            return ReceiverObject;
+        }
+
+        public GameObject GetParentObject()
+        {
+            return Parent;
+        }
+
+        public int GetId()
+        {
+            return ObjectId;
+        }
+
+        public string GetObjectName()
+        {
+            return ObjectName;
+        }
+
+        public void SetPlacedObject(IView viewObject)
+        {
+            _placedObject = viewObject;
+        }
+
+        public IView GetPlacedObject()
+        {
+           return _placedObject;
+        }
+
+        public bool IsPlacedObjectEmpty()
+        {
+            return _placedObject is IView;
         }
     }
 }

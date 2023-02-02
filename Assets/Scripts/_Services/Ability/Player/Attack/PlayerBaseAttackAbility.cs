@@ -112,6 +112,7 @@ namespace Services.Ability
                             LogOutputLocationType.Console);
 
                 }
+                /*
                 else if (actionModifier == ActionModifier.Power)
                 {
                     //ToDo...
@@ -119,7 +120,7 @@ namespace Services.Ability
                             Services.Log.LogType.Message,
                             "Base Power Attack!.",
                             LogOutputLocationType.Console);
-                }
+                }*/
             }
         }
     }

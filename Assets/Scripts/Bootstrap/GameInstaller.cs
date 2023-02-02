@@ -14,6 +14,8 @@ using Services.Input;
 using Services.Camera;
 using Services.Tutorial;
 using Services.RayCast;
+using Services.Building;
+using Services.BackLight;
 
 namespace Bootstrap
 {
@@ -62,6 +64,10 @@ namespace Bootstrap
             Container.InstallElementAsSingle<TutorialService>();
 
             Container.InstallElementAsSingle<RayCastService>();
+
+            Container.InstallElementAsSingle<BuildingService>();
+
+            Container.InstallElementAsSingle<BackLightService>();
         }
 
         private void InstallAbilities() 

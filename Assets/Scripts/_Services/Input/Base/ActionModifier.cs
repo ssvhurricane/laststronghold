@@ -5,6 +5,7 @@ namespace Services.Input
         None,
         Left,
         Right,
-        Power
+        FocusMove,
+        FocusRotate
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Services.Log;
 using UnityEngine;
 using Zenject;
@@ -16,37 +17,33 @@ namespace Services.RayCast
             _logService = logService;
         }
 
-        public void Emit(Transform transform)
+        public ReceiverHolder Emit(TransmitterHolder transmitterHolder, LayerMask layerMask)
         {
-            // TODO:
+            var transform = transmitterHolder.GetEmitObject().transform;
 
-            // Bit shift the index of the layer (8) to get a bit mask
-            int layerMask = 1 << 8;
-
-            // This would cast rays only against colliders in layer 8.
-            // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
-            layerMask = ~layerMask;
+            ReceiverHolder receiver = null;
 
             RaycastHit hit;
-            // Does the ray intersect any objects excluding the player layer
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+         
+            if (Physics.Raycast(transform.position,
+                transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, 1 << layerMask))
             {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-
-                _logService.ShowLog(GetType().Name,
-                              Services.Log.LogType.Message,
-                              "Did Hit",
-                              LogOutputLocationType.Console);
+                receiver = hit.collider.gameObject.GetComponent<ReceiverHolder>();
+                if (receiver) return receiver;
             }
-            else
-            {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
 
-                _logService.ShowLog(GetType().Name,
-                              Services.Log.LogType.Message,
-                              "Did not Hit",
-                              LogOutputLocationType.Console);
-            }
+            return receiver;
+        }
+
+        public RaycastHit Emit(Transform transform, LayerMask layerMask)
+        {
+            RaycastHit hit;
+         
+            if (Physics.Raycast(transform.position,
+                transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, 1 << layerMask))
+                return hit;
+         
+            return hit;
         }
     }
 }

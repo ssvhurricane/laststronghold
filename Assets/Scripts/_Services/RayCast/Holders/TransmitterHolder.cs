@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace Services.RayCast
 {
@@ -7,14 +8,35 @@ namespace Services.RayCast
         [SerializeField] protected GameObject EmitObject;
         [SerializeField] protected TransmitterType TransmitterType;
 
-        private int _objectId;
+        [SerializeField] protected int ObjectId;
 
-        private string _objectName;
+        [SerializeField] protected string ObjectName;
 
-        public void Construct()
+        private SignalBus _signalBus;
+
+        public void Construct(SignalBus signalBus)
         {
-            // TODO:need reg holder
+            _signalBus = signalBus;
+        }
 
+        public GameObject GetEmitObject()
+        {
+            return EmitObject;
+        }
+
+        public TransmitterType GetTransmitterType()
+        {
+            return TransmitterType;
+        }
+
+        public int GetId()
+        {
+            return ObjectId;
+        }
+
+        public string GetObjectName()
+        {
+            return ObjectName;
         }
     }
 }
