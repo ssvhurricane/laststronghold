@@ -14,6 +14,8 @@ namespace Services.Anchor
 
         public AnchorGroup AnchorGroup { get; set; }
 
+        public Anchor() { }
+
         public Anchor(string name, bool isActive, Transform transform, AnchorType anchorType, AnchorGroup anchorGroup) 
         {
             Name = name;

@@ -15,7 +15,7 @@ using Services.Anchor;
 
 namespace Services.Ability
 {
-    public class PlayerLookAtAbility : IAbilityWithOutParam
+    public class PlayerLookAtAbility : IAbilityWithVector3Param
     {
         private SignalBus _signalBus;
 
@@ -30,7 +30,7 @@ namespace Services.Ability
         public AbilityType AbilityType { get; set; }
         public WeaponType WeaponType { get; set; }
         public ActionModifier ActionModifier { get; set; }
-        public bool ActivateAbility { get; set; } = true;
+        public bool ActivateAbility { get; set; } = false;
         public Sprite Icon { get; set; }
 
         private PlayerView _view;
@@ -67,13 +67,16 @@ namespace Services.Ability
             Icon = _abilitySettings.Icon;
 
         }
-        public void StartAbility(IPresenter ownerPresenter, ActionModifier actionModifier)
+
+        public void StartAbility(IPresenter ownerPresenter, Vector3 param, ActionModifier actionModifier)
         {
+            if (!ActivateAbility) return;
+
             if (ownerPresenter != null)
             {
                 if (_view == null) _view = (PlayerView)ownerPresenter.GetView();
 
-               _movementService.LookAt(_view, Vector3.zero, Vector3.up);
+                _movementService.LookAt(_view, param, Vector3.up);
             }
         }
     }

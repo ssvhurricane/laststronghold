@@ -32,6 +32,23 @@ namespace Services.Ability
                 ability.StartAbility(presenter, param, actionModifier);
             }
         }
+
+        public void UseAbility(IAbilityWithVector3Param ability, IPresenter presenter, Vector3 param, ActionModifier actionModifier)
+        {
+            if (ability.ActivateAbility)
+            {
+                ability.StartAbility(presenter, param, actionModifier);
+            }
+        }
+
+        public void UseAbility(IAbilityWithTransformParam ability, IPresenter presenter, Transform param, ActionModifier actionModifier)
+        {
+            if (ability.ActivateAbility)
+            {
+                ability.StartAbility(presenter, param, actionModifier);
+            }
+        }
+
         public void UseAbility(IAbilityWithBoolParam ability, IPresenter presenter, bool param, ActionModifier actionModifier)
         {
             if (ability.ActivateAbility)

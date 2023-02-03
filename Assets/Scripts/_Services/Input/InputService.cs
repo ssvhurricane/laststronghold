@@ -62,9 +62,7 @@ namespace Services.Input
 
         private TransmitterHolder _transmitterCamera;
         private ReceiverHolder _receiverAnchorArea;
-        private bool _focusMove = false;
         private Services.Anchor.Anchor _anchorCenter;
-
 
         private Dictionary<int, PlayerAbilityItemView> _playerAbilityItems = new Dictionary<int, PlayerAbilityItemView>();
         KeyValuePair<int, PlayerAbilityItemView> _playerAbility;
@@ -105,6 +103,8 @@ namespace Services.Input
 
             _settings = _inputServiceSettings?.FirstOrDefault(s => s.Id == InputServiceConstants.TopDownGameId);
 
+            _anchorCenter = new Services.Anchor.Anchor();
+
             _topDownGameInput = new TopDownGameInput();
            
             _topDownGameInput.Player.Attack1.performed += value =>
@@ -116,13 +116,6 @@ namespace Services.Input
                                 Services.Log.LogType.Message,
                                 "Press LeftMouseButton(LT).",
                                 LogOutputLocationType.Console);
-                    /*
-                    if (_mainHudView.GetVerticalAbilityPanel().gameObject.activeSelf)
-                        _mainHudView.GetVerticalAbilityPanel().gameObject.SetActive(false);
-
-                    if (((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Id != AbilityServiceConstants.PlayerNoneAbility)
-                        _abilityService.UseAbility((IAbilityWithOutParam)((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility(), _playerPresenter, ActionModifier.None);
-                    */
                 }
             };
 
@@ -146,32 +139,44 @@ namespace Services.Input
 
                 if (_transmitterCamera)
                 {
-                    var receiverAnchorArea = _rayCastService.Emit(_transmitterCamera, LayerMask.NameToLayer("AnchorArea"));
+                    var hitReceiver = _rayCastService.Emit(_transmitterCamera.transform, LayerMask.NameToLayer("AnchorArea"));
+
+                    _receiverAnchorArea = hitReceiver.collider?.gameObject.GetComponent<ReceiverHolder>();
 
                     if (_receiverAnchorArea)
+                    {
+                        _anchorCenter = _anchorService.GetActorByName(_receiverAnchorArea.GetParentObject().name).FirstOrDefault();
+
                         _logService.ShowLog(GetType().Name,
                                     Services.Log.LogType.Message, "Receiver Id: " + _receiverAnchorArea.GetId() + " | " +
                                     "Receiver Name: " + _receiverAnchorArea.GetObjectName(),
                                     LogOutputLocationType.Console);
+                    }
 
-                    _focusMove = true;
+                    _playerFocusMoveAbility.ActivateAbility = true;
+
+                    _playerLookAtAbility.ActivateAbility = false;
+
+                    _playerMoveAbility.ActivateAbility = false;
                 }
             };
 
             _topDownGameInput.Player.Reset.performed += value =>
             {
-                var anchors = _anchorService.GetActorByName("ScenePivotAnchor1");
+                /*
+                _receiverAnchorArea = 
+                _anchorCenter = _anchorService.GetActorByName("ScenePivotAnchor1").FirstOrDefault();
 
-                if (anchors.Count() != 0)
-                {
-                    _anchorCenter = anchors.FirstOrDefault();
+                _playerFocusMoveAbility.ActivateAbility = true;
 
-                    _logService.ShowLog(GetType().Name,
-                                Services.Log.LogType.Message, "Anchor Center: " + _anchorCenter.Name,
-                                LogOutputLocationType.Console);
+                _playerLookAtAbility.ActivateAbility = false;
 
-                    _focusMove = true;
-                }
+                _playerMoveAbility.ActivateAbility = false;
+                */
+
+                _logService.ShowLog(GetType().Name,
+                            Services.Log.LogType.Message, "Anchor Center: " + _anchorCenter.Name,
+                            LogOutputLocationType.Console);
             };
         }
 
@@ -193,17 +198,17 @@ namespace Services.Input
                 {
                     if (_topDownGameInput.Player.Move.activeControl.name == "a")
                     {
-                        _abilityService.UseAbility((IAbilityWithBoolParam)_playerMoveAbility,
+                        _abilityService.UseAbility((IAbilityWithVector3Param)_playerMoveAbility,
                             _playerPresenter,
-                            _topDownGameInput.Player.Move.IsPressed(),
+                            _anchorCenter.Transform?.position ?? Vector3.zero,
                             ActionModifier.Left);
                     }
 
                     if (_topDownGameInput.Player.Move.activeControl.name == "d")
                     {
-                        _abilityService.UseAbility((IAbilityWithBoolParam)_playerMoveAbility,
+                        _abilityService.UseAbility((IAbilityWithVector3Param)_playerMoveAbility,
                             _playerPresenter,
-                            _topDownGameInput.Player.Move.IsPressed(),
+                            _anchorCenter.Transform?.position ?? Vector3.zero,
                             ActionModifier.Right);
                     }
                 }
@@ -216,23 +221,28 @@ namespace Services.Input
                 else  _backLightService.Light(anchorArea, false);
 
                 // Move object.
-                if (_focusMove)
-                {
-                // _playerMoveAbility as PlayerFocusMoveAbility().ActivateAbility = false;
-
-                    _abilityService.UseAbility((IAbilityWithVector2Param)_playerFocusMoveAbility,
+                if (_receiverAnchorArea != null)
+                    _abilityService.UseAbility((IAbilityWithVector3Param)_playerFocusMoveAbility,
                             _playerPresenter,
-                            new Vector2(),
+                            _receiverAnchorArea.gameObject.transform.position,
                             ActionModifier.FocusMove);
-                }
-                else
-                {
-                    //(PlayerFocusMoveAbility)(_playerMoveAbility).ActivateAbility = false;
-                }
+              
+                if (!_playerFocusMoveAbility.ActivateAbility) _playerMoveAbility.ActivateAbility = true;
 
                 // Stop focus move.
-                //if (vec1 == vec2) _focusMove = false;
+                if (_receiverAnchorArea != null)
+                {
+                    if (_playerPresenter.GetView().GetGameObject().transform.position
+                         == _receiverAnchorArea.gameObject.transform.position)
+                    {
+                        _logService.ShowLog(GetType().Name,
+                           Services.Log.LogType.Message, "Stop Moving: " + _receiverAnchorArea.GetObjectName(),
+                           LogOutputLocationType.Console); 
 
+                        _playerFocusMoveAbility.ActivateAbility = false;
+                    }
+                }
+                   
             }
         }
 
@@ -241,8 +251,10 @@ namespace Services.Input
             if (_projectService.GetProjectState() == ProjectState.Start)
             {
                 // Look At.
-                _abilityService.UseAbility((IAbilityWithOutParam)_playerLookAtAbility, _playerPresenter
-                      , ActionModifier.None);
+                _abilityService.UseAbility((IAbilityWithVector3Param)_playerLookAtAbility,
+                    _playerPresenter,
+                    _anchorCenter.Transform?.position ?? Vector3.zero
+                    , ActionModifier.None);
 
                 // Camera Rotate.
                 if (_topDownGameInput.Player.Look.IsPressed())
@@ -256,14 +268,14 @@ namespace Services.Input
                 _abilityService.UseAbility((IAbilityWithAffectedPresenterParam)_cameraRotateAbility
                     , _cameraPresenter, _playerPresenter, ActionModifier.None);
 
-                // Rotate direct. 
-                if (_focusMove)
-                {
-                    _abilityService.UseAbility((IAbilityWithVector2Param)_playerFocusMoveAbility,
+                // Rotate direct.
+                if(_receiverAnchorArea != null)
+                    _abilityService.UseAbility((IAbilityWithTransformParam)_playerFocusMoveAbility,
                           _playerPresenter,
-                          new Vector2(),
+                          _receiverAnchorArea.gameObject.transform,
                           ActionModifier.FocusRotate);
-                }
+
+                if (!_playerFocusMoveAbility.ActivateAbility) _playerLookAtAbility.ActivateAbility = true;
             }  
         }
 
@@ -318,30 +330,33 @@ namespace Services.Input
             // Caching Player Idle Ability.
             _playerIdleAbility = _abilityService.GetAbilityById(_playerPresenter,
                 AbilityServiceConstants.PlayerIdleAbility);
+            _playerIdleAbility.ActivateAbility = true;
 
             // Caching Player Move Ability.
             _playerMoveAbility = _abilityService.GetAbilityById(_playerPresenter,
                 AbilityServiceConstants.PlayerMoveAbility);
+            _playerMoveAbility.ActivateAbility = true;
 
-            _playerFocusMoveAbility = _abilityService.GetAbilityById(_playerPresenter,
+           _playerFocusMoveAbility = _abilityService.GetAbilityById(_playerPresenter,
                AbilityServiceConstants.PlayerFocusMoveAbility);
+            _playerFocusMoveAbility.ActivateAbility = true;
 
             _playerLookAtAbility = _abilityService.GetAbilityById(_playerPresenter,
                 AbilityServiceConstants.PlayerLookAtAbility);
+            _playerLookAtAbility.ActivateAbility = true;
 
             // Caching Player None Ability.
             _playerNoneAbility = _abilityService.GetAbilityById(_playerPresenter,
                 AbilityServiceConstants.PlayerNoneAbility);
+            _playerNoneAbility.ActivateAbility = true;
 
             _playerAttackAbilities = _abilityService.GetAbilitiesyByAbilityType(_playerPresenter,
                 AbilityType.AttackAbility);
-
          
             // Caching Camera Rotate Ability.
             _cameraRotateAbility = _abilityService.GetAbilityById(_cameraPresenter,
                 AbilityServiceConstants.CameraRotateAbility);
+            _cameraRotateAbility.ActivateAbility = true;
         }
-
-      
     }
 }

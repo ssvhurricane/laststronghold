@@ -14,7 +14,7 @@ using Zenject;
 
 namespace Services.Ability
 {
-    public class PlayerMoveAbility : IAbilityWithBoolParam
+    public class PlayerMoveAbility : IAbilityWithVector3Param
     {
         private SignalBus _signalBus;
        
@@ -29,7 +29,7 @@ namespace Services.Ability
         public string Id { get; set; }
         public AbilityType AbilityType { get; set; }
         public WeaponType WeaponType { get; set; }
-        public bool ActivateAbility { get; set; } = true;
+        public bool ActivateAbility { get; set; } = false;
         public ActionModifier ActionModifier { get; set; }
         public Sprite Icon { get; set; }
 
@@ -66,7 +66,7 @@ namespace Services.Ability
             Icon = _abilitySettings.Icon;
         }
 
-        public void StartAbility(IPresenter ownerPresenter, bool param, ActionModifier actionModifier)
+        public void StartAbility(IPresenter ownerPresenter, Vector3 param, ActionModifier actionModifier)
         {
             if (!ActivateAbility) return;
 
@@ -74,21 +74,18 @@ namespace Services.Ability
             {
                 _view = (PlayerView)ownerPresenter.GetView();
 
-                if (param)
+                switch (actionModifier)
                 {
-                    switch (actionModifier)
-                    {
-                        case ActionModifier.Left:
-                            {
-                                _movementService.OrbitalMove(_view, Vector3.zero, Quaternion.Euler(.0f, _movementServiceSettings.Rotate.Speed, .0f));
-                                break;
-                            }
-                        case ActionModifier.Right:
-                            {
-                                _movementService.OrbitalMove(_view, Vector3.zero, Quaternion.Euler(.0f, -_movementServiceSettings.Rotate.Speed, .0f));
-                                break;
-                            }
-                    }
+                    case ActionModifier.Left:
+                        {
+                            _movementService.OrbitalMove(_view, param, Quaternion.Euler(.0f, _movementServiceSettings.Rotate.Speed, .0f));
+                            break;
+                        }
+                    case ActionModifier.Right:
+                        {
+                            _movementService.OrbitalMove(_view, param, Quaternion.Euler(.0f, -_movementServiceSettings.Rotate.Speed, .0f));
+                            break;
+                        }
                 }
             }
         }

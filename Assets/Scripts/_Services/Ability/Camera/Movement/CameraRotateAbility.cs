@@ -32,7 +32,7 @@ namespace Services.Ability
         public string Id { get; set; }
         public AbilityType AbilityType { get; set; }
         public WeaponType WeaponType { get; set; }
-        public bool ActivateAbility { get; set; } = true;
+        public bool ActivateAbility { get; set; } = false;
         public ActionModifier ActionModifier { get; set; }
         public Sprite Icon { get; set; }
 
@@ -69,6 +69,8 @@ namespace Services.Ability
 
         public void StartAbility(IPresenter ownerPresenter, IPresenter affectedPresenter, ActionModifier actionModifier)
         {
+            if (!ActivateAbility) return;
+
             if (_cameraPresenter == null)
                 _cameraPresenter = ownerPresenter as CameraPresenter;
             if (_playerPresenter == null)
@@ -85,7 +87,9 @@ namespace Services.Ability
 
         public void StartAbility(IPresenter ownerPresenter, Vector2 param, ActionModifier actionModifier)
         {
-            _movementService.RotateWithClamp(ownerPresenter.GetView(), param);
+            if (!ActivateAbility) return;
+
+            _movementService.RotateWithClampDirection(ownerPresenter.GetView(), param);
         }
     }
 }

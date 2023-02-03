@@ -14,7 +14,7 @@ using Zenject;
 
 namespace Services.Ability
 {
-    public class PlayerFocusMoveAbility : IAbilityWithVector2Param
+    public class PlayerFocusMoveAbility : IAbilityWithVector3Param, IAbilityWithTransformParam
     {
         private SignalBus _signalBus;
 
@@ -29,7 +29,7 @@ namespace Services.Ability
         public string Id { get; set; }
         public AbilityType AbilityType { get; set; }
         public WeaponType WeaponType { get; set; }
-        public bool ActivateAbility { get; set; } = true;
+        public bool ActivateAbility { get; set; } = false;
         public ActionModifier ActionModifier { get; set; }
         public Sprite Icon { get; set; }
 
@@ -67,8 +67,10 @@ namespace Services.Ability
             Icon = _abilitySettings.Icon;
         }
 
-        public void StartAbility(IPresenter ownerPresenter, Vector2 param, ActionModifier actionModifier)
+        public void StartAbility(IPresenter ownerPresenter, Vector3 param, ActionModifier actionModifier)
         {
+            if (!ActivateAbility) return;
+
             if (ownerPresenter != null)
             {
                 _view = (PlayerView)ownerPresenter.GetView();
@@ -77,10 +79,41 @@ namespace Services.Ability
                 {
                     case ActionModifier.FocusMove:
                         {
+                            // TODO:
+                            var result = -_view.transform.forward *
+                                Vector3.Distance(param,_view.transform.position)
+                                + new Vector3(_movementServiceSettings.OrbitAnchor.Radius,
+                                _movementServiceSettings.OrbitAnchor.Anchor.transform.position.y,
+                                _movementServiceSettings.OrbitAnchor.Radius);
+
+                            _movementService.MoveToWardsWithRadius(_view, result);
+
                             break;
                         }
+                }
+            }
+        }
+
+        public void StartAbility(IPresenter ownerPresenter, Transform param, ActionModifier actionModifier)
+        {
+            if (!ActivateAbility) return;
+
+            if (ownerPresenter != null)
+            {
+                _view = (PlayerView)ownerPresenter.GetView();
+
+                switch (actionModifier)
+                {
+                    
                     case ActionModifier.FocusRotate:
                         {
+                            // TODO: stop ability then..
+
+                           // if (_view.GetGameObject().transform.forward != (_view.GetGameObject().transform.position - param.position))
+                                _movementService.RotateToWardsWithDirection(_view, param);
+                          //  else
+                         //       ActivateAbility = false;
+
                             break;
                         }
                 }

@@ -36,3 +36,6 @@ MonoBehaviour:
       Sensitivity: 8
     Crouch:
       Speed: 1
+    OrbitAnchor:
+      Radius: 5
+      Anchor: {fileID: 4440375523111095258, guid: b83fa2258543d4f269a2a83f8f20de82, type: 3}

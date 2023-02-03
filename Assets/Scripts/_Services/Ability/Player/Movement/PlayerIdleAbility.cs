@@ -29,7 +29,7 @@ namespace Services.Ability
         public AbilityType AbilityType { get; set; }
         public WeaponType WeaponType { get; set; } 
         public ActionModifier ActionModifier { get; set; }
-        public bool ActivateAbility { get; set; } = true;
+        public bool ActivateAbility { get; set; } = false;
         public Sprite Icon { get; set; }
 
         private int _xVelHash;
@@ -76,6 +76,8 @@ namespace Services.Ability
         }
         public void StartAbility(IPresenter ownerPresenter, ActionModifier actionModifier)
         {
+            if (!ActivateAbility) return;
+
             if (ownerPresenter != null)
             {
                 if (_view == null) _view = (PlayerView) ownerPresenter.GetView();

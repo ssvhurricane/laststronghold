@@ -43,6 +43,12 @@ namespace Data.Settings
     {
         public float Speed;
     }
+    [Serializable]
+    public class Orbit
+    {
+        public float Radius;
+        public GameObject Anchor;
+    }
 
     [Serializable]
     public class MovementServiceSettings : IRegistryData
@@ -54,6 +60,7 @@ namespace Data.Settings
         public Jump Jump;
         public Rotate Rotate;
         public Crouch Crouch;
+        public Orbit OrbitAnchor;
 
         string IRegistryData.Id => Id;
     }

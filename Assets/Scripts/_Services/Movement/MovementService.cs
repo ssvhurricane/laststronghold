@@ -31,7 +31,7 @@ namespace Services.Movement
            return _settings = _movementServiceSettings?.FirstOrDefault(_=>_.Id == settingsID);
         }
 
-        public void Move(IView view, Vector2 direction, Rigidbody viewRigidbody)
+        public void MoveWithDirection(IView view, Vector2 direction, Rigidbody viewRigidbody)
         {
             if (viewRigidbody != null)
             {
@@ -45,27 +45,27 @@ namespace Services.Movement
             }
         }
 
-        /// <summary>
-        /// Jump With Physics.
-        /// </summary>
-        /// <param name="view"></param>
-        public void Jump(IView view, Rigidbody viewRigidbody)
+        public void OrbitalMove(IView baseView, Vector3 targetView, Quaternion angle)
         {
-            if (viewRigidbody != null)
-                if (IsGrounded(view, viewRigidbody))
-                    viewRigidbody.AddForce(view.GetGameObject().transform.up * _settings.Jump.Speed, _settings.Jump.ForceMode);
+            baseView.GetGameObject().transform.position
+                = angle * (baseView.GetGameObject().transform.position - targetView)
+                + targetView;
         }
 
-        /// <summary>
-		/// Rotate towards the direction the character is moving.
-		/// </summary>
-        public void Rotate(IView view, Vector2 direction, Rigidbody viewRigidbody)
+        public void MoveToWardsWithRadius(IView baseView, Vector3 targetView, float radius =.0f)
+        {
+            // TODO: radius
+             baseView.GetGameObject().transform.position = Vector3.MoveTowards(baseView.GetGameObject().transform.position,
+                                                                            targetView,10 * Time.deltaTime);
+        }
+       
+        public void RotateWithDirection(IView view, Vector2 direction, Rigidbody viewRigidbody)
         {
             if (viewRigidbody != null)
                     viewRigidbody.MoveRotation(viewRigidbody.rotation * Quaternion.Euler(0f, direction.x * _settings.Rotate.Sensitivity * Time.smoothDeltaTime, 0f));
         }
 
-        public void RotateWithClamp(IView view, Vector2 direction)
+        public void RotateWithClampDirection(IView view, Vector2 direction)
         {
              _xRotation -= direction.y * _settings.Rotate.Sensitivity * Time.smoothDeltaTime;
 
@@ -78,6 +78,32 @@ namespace Services.Movement
             view.GetGameObject().transform.localRotation = Quaternion.Euler(_xRotation, _yRotation, 0);
         }
 
+        public void RotateToWardsWithDirection(IView view, Transform direction)
+        {
+            // TODO:
+            // Determine which direction to rotate towards
+            Vector3 targetDirection = view.GetGameObject().transform.position - direction.position;
+
+            // The step size is equal to speed times frame time.
+            float singleStep = 1.0f * Time.deltaTime;
+
+            // Rotate the forward vector towards the target direction by one step
+            Vector3 newDirection = Vector3.RotateTowards(view.GetGameObject().transform.forward, targetDirection, singleStep, 0.0f);
+
+            // Draw a ray pointing at our target in
+            Debug.DrawRay(view.GetGameObject().transform.position, newDirection, Color.red);
+
+            // Calculate a rotation a step closer to the target and applies rotation to this object
+            view.GetGameObject().transform.rotation = Quaternion.LookRotation(newDirection);
+        }
+
+        public void Jump(IView view, Rigidbody viewRigidbody)
+        {
+            if (viewRigidbody != null)
+                if (IsGrounded(view, viewRigidbody))
+                    viewRigidbody.AddForce(view.GetGameObject().transform.up * _settings.Jump.Speed, _settings.Jump.ForceMode);
+        }
+      
         public void Follow(IView baseView, IView targetView, Vector3 followOffset, Vector3 position, float followSpeed) 
         {
             var smoothedPosition = Vector3.Lerp(baseView.GetGameObject().transform.position,
@@ -106,14 +132,6 @@ namespace Services.Movement
         public void LookAt(IView baseView, Vector3 targetView, Vector3 dir)
         {
             baseView.GetGameObject().transform.LookAt(targetView, dir);
-        }
-
-        public void OrbitalMove(IView baseView, Vector3 targetView, Quaternion angle)
-        {
-            // angle * ( point - pivot) + pivot
-            baseView.GetGameObject().transform.position
-                = angle * (baseView.GetGameObject().transform.position - targetView)
-                + targetView;
         }
 
         public bool IsGrounded(IView view, Rigidbody viewRigidbody) 
