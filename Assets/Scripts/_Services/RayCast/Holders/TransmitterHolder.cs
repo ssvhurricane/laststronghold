@@ -1,3 +1,4 @@
+using Signals;
 using UnityEngine;
 using Zenject;
 
@@ -14,9 +15,12 @@ namespace Services.RayCast
 
         private SignalBus _signalBus;
 
+        [Inject]
         public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
+
+            _signalBus.Fire(new RayCastServiceSignals.AddTransmitter(this));
         }
 
         public GameObject GetEmitObject()

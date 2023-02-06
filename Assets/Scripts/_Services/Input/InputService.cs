@@ -163,20 +163,23 @@ namespace Services.Input
 
             _topDownGameInput.Player.Reset.performed += value =>
             {
-                /*
-                _receiverAnchorArea = 
-                _anchorCenter = _anchorService.GetActorByName("ScenePivotAnchor1").FirstOrDefault();
+                 _receiverAnchorArea = _rayCastService._receiverHolders.FirstOrDefault(item => item.GetId() == 1);
+
+                if (_receiverAnchorArea)
+                {
+                     _anchorCenter = _anchorService.GetActorByName(_receiverAnchorArea.GetParentObject().name).FirstOrDefault();
+
+                    _logService.ShowLog(GetType().Name,
+                                Services.Log.LogType.Message, "Receiver(reset) Id: " + _receiverAnchorArea.GetId() + " | " +
+                                "Receiver Name: " + _receiverAnchorArea.GetObjectName(),
+                                LogOutputLocationType.Console);
+                }
 
                 _playerFocusMoveAbility.ActivateAbility = true;
 
                 _playerLookAtAbility.ActivateAbility = false;
 
                 _playerMoveAbility.ActivateAbility = false;
-                */
-
-                _logService.ShowLog(GetType().Name,
-                            Services.Log.LogType.Message, "Anchor Center: " + _anchorCenter.Name,
-                            LogOutputLocationType.Console);
             };
         }
 
@@ -222,10 +225,13 @@ namespace Services.Input
 
                 // Move object.
                 if (_receiverAnchorArea != null)
+                {
+
                     _abilityService.UseAbility((IAbilityWithVector3Param)_playerFocusMoveAbility,
                             _playerPresenter,
                             _receiverAnchorArea.gameObject.transform.position,
-                            ActionModifier.FocusMove);
+                         ActionModifier.FocusMove);
+                }
               
                 if (!_playerFocusMoveAbility.ActivateAbility) _playerMoveAbility.ActivateAbility = true;
             }

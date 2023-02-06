@@ -105,6 +105,10 @@ namespace Bootstrap
             Container.DeclareSignal<AnchorServiceSignals.Add>();
             Container.DeclareSignal<AnchorServiceSignals.Activate>();
             Container.DeclareSignal<AnchorServiceSignals.Deactivate>();
+
+            // RayCast Service Signals.
+            Container.DeclareSignal<RayCastServiceSignals.AddReceiver>();
+            Container.DeclareSignal<RayCastServiceSignals.AddTransmitter>();
         }
 
        public void InstallModels()

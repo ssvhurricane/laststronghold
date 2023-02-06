@@ -1,4 +1,5 @@
 using Services.Building;
+using Signals;
 using UnityEngine;
 using View;
 using Zenject;
@@ -18,9 +19,12 @@ namespace Services.RayCast
 
         private IView _placedObject;
 
+        [Inject]
         public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
+
+            _signalBus.Fire(new RayCastServiceSignals.AddReceiver(this));
         }
 
         public GameObject GetReceiveObject()

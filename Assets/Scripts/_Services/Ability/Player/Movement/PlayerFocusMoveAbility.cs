@@ -79,7 +79,7 @@ namespace Services.Ability
             {
                 _view = (PlayerView)ownerPresenter.GetView();
             
-                _view.GetHeliCopter().transform.localRotation = Quaternion.Euler(.0f, -90f, _view.transform.rotation.eulerAngles.x);// TODO: ref
+                _view.GetHeliCopter().transform.localRotation = Quaternion.Euler(.0f, -90f, _view.transform.rotation.eulerAngles.x - 8f);// TODO: ref
                                                                                                     
                 switch (actionModifier)
                 {
