@@ -11,7 +11,6 @@ using UnityEngine;
 using View;
 using Zenject;
 using Constants;
-using Services.Anchor;
 
 namespace Services.Ability
 {
@@ -77,6 +76,10 @@ namespace Services.Ability
                 if (_view == null) _view = (PlayerView)ownerPresenter.GetView();
 
                 _movementService.LookAt(_view, param, Vector3.up);
+                
+                _view.GetHeliCopter().transform.localRotation
+                    = Quaternion.Euler(.0f, -90f, _view.transform.rotation.eulerAngles.x);//TODO: ref
+                                     
             }
         }
     }

@@ -11,6 +11,7 @@ using System.Linq;
 using UnityEngine;
 using View;
 using Zenject;
+using Services.Log;
 
 namespace Services.Ability
 {
@@ -22,6 +23,7 @@ namespace Services.Ability
         private readonly AnimationService _animationService;
         private readonly SFXService _sFXService;
         private readonly VFXService _vFXService;
+        private readonly LogService _logService;
 
         private AbilitySettings _abilitySettings;
 
@@ -40,6 +42,7 @@ namespace Services.Ability
              AnimationService animationService,
              SFXService sFXService,
              VFXService vFXService,
+             LogService logService,
              AbilitySettings[] abilitiesSettings)
         {
             _signalBus = signalBus;
@@ -50,6 +53,7 @@ namespace Services.Ability
             _animationService = animationService;
             _sFXService = sFXService;
             _vFXService = vFXService;
+            _logService = logService;
 
             InitAbility(abilitiesSettings);
         }
@@ -74,19 +78,33 @@ namespace Services.Ability
             if (ownerPresenter != null)
             {
                 _view = (PlayerView)ownerPresenter.GetView();
-
+            
+                _view.GetHeliCopter().transform.localRotation = Quaternion.Euler(.0f, -90f, _view.transform.rotation.eulerAngles.x);// TODO: ref
+                                                                                                    
                 switch (actionModifier)
                 {
                     case ActionModifier.FocusMove:
                         {
                             // TODO:
-                            var result = -_view.transform.forward *
-                                Vector3.Distance(param,_view.transform.position)
-                                + new Vector3(_movementServiceSettings.OrbitAnchor.Radius,
+                            var innerVector = new Vector3(_movementServiceSettings.OrbitAnchor.Radius,
                                 _movementServiceSettings.OrbitAnchor.Anchor.transform.position.y,
                                 _movementServiceSettings.OrbitAnchor.Radius);
 
-                            _movementService.MoveToWardsWithRadius(_view, result);
+                            var resultPosition = _view.transform.forward * Vector3.Distance(param, _view.transform.position) + innerVector;
+
+                            resultPosition += new Vector3(.0f, innerVector.y, .0f);
+
+                            _movementService.MoveToWardsWithRadius(_view, resultPosition);
+
+                            if (_view.GetGameObject().transform.position == resultPosition)
+                            {
+                                // TODO: dont work log
+                                _logService.ShowLog(GetType().Name,
+                                   Services.Log.LogType.Message, "Stop Moving: " + _view.name,
+                                   LogOutputLocationType.Console);
+                              
+                                ActivateAbility = false;
+                            }
 
                             break;
                         }
@@ -107,12 +125,7 @@ namespace Services.Ability
                     
                     case ActionModifier.FocusRotate:
                         {
-                            // TODO: stop ability then..
-
-                           // if (_view.GetGameObject().transform.forward != (_view.GetGameObject().transform.position - param.position))
-                                _movementService.RotateToWardsWithDirection(_view, param);
-                          //  else
-                         //       ActivateAbility = false;
+                            _movementService.RotateToWardsWithDirection(_view, param);
 
                             break;
                         }

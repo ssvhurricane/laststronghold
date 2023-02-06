@@ -80,20 +80,7 @@ namespace Services.Movement
 
         public void RotateToWardsWithDirection(IView view, Transform direction)
         {
-            // TODO:
-            // Determine which direction to rotate towards
-            Vector3 targetDirection = view.GetGameObject().transform.position - direction.position;
-
-            // The step size is equal to speed times frame time.
-            float singleStep = 1.0f * Time.deltaTime;
-
-            // Rotate the forward vector towards the target direction by one step
-            Vector3 newDirection = Vector3.RotateTowards(view.GetGameObject().transform.forward, targetDirection, singleStep, 0.0f);
-
-            // Draw a ray pointing at our target in
-            Debug.DrawRay(view.GetGameObject().transform.position, newDirection, Color.red);
-
-            // Calculate a rotation a step closer to the target and applies rotation to this object
+            Vector3 newDirection = Vector3.RotateTowards(view.GetGameObject().transform.forward, direction.position-view.GetGameObject().transform.position, .01f, 10);
             view.GetGameObject().transform.rotation = Quaternion.LookRotation(newDirection);
         }
 

@@ -228,21 +228,6 @@ namespace Services.Input
                             ActionModifier.FocusMove);
               
                 if (!_playerFocusMoveAbility.ActivateAbility) _playerMoveAbility.ActivateAbility = true;
-
-                // Stop focus move.
-                if (_receiverAnchorArea != null)
-                {
-                    if (_playerPresenter.GetView().GetGameObject().transform.position
-                         == _receiverAnchorArea.gameObject.transform.position)
-                    {
-                        _logService.ShowLog(GetType().Name,
-                           Services.Log.LogType.Message, "Stop Moving: " + _receiverAnchorArea.GetObjectName(),
-                           LogOutputLocationType.Console); 
-
-                        _playerFocusMoveAbility.ActivateAbility = false;
-                    }
-                }
-                   
             }
         }
 
@@ -251,7 +236,7 @@ namespace Services.Input
             if (_projectService.GetProjectState() == ProjectState.Start)
             {
                 // Look At.
-                _abilityService.UseAbility((IAbilityWithVector3Param)_playerLookAtAbility,
+                 _abilityService.UseAbility((IAbilityWithVector3Param)_playerLookAtAbility,
                     _playerPresenter,
                     _anchorCenter.Transform?.position ?? Vector3.zero
                     , ActionModifier.None);
@@ -268,14 +253,16 @@ namespace Services.Input
                 _abilityService.UseAbility((IAbilityWithAffectedPresenterParam)_cameraRotateAbility
                     , _cameraPresenter, _playerPresenter, ActionModifier.None);
 
+                
                 // Rotate direct.
                 if(_receiverAnchorArea != null)
                     _abilityService.UseAbility((IAbilityWithTransformParam)_playerFocusMoveAbility,
                           _playerPresenter,
                           _receiverAnchorArea.gameObject.transform,
                           ActionModifier.FocusRotate);
-
-                if (!_playerFocusMoveAbility.ActivateAbility) _playerLookAtAbility.ActivateAbility = true;
+                
+                if (!_playerFocusMoveAbility.ActivateAbility)
+                    _playerLookAtAbility.ActivateAbility = true;
             }  
         }
 
