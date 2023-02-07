@@ -6,7 +6,7 @@ using Zenject;
 
 namespace View
 {
-    public class NPCView : NetworkEssence
+    public class NPCView : NetworkEssence, IInteractable
     {
         [SerializeField] protected EssenceType Layer;
 

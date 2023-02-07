@@ -1,7 +1,7 @@
-namespace Services.Item
+namespace View
 {
     public interface IPickable 
     {
-      
+        // TODO:
     }
 }

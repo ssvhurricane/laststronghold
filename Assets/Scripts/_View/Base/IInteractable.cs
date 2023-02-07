@@ -1,4 +1,4 @@
-namespace Services.Item
+namespace View
 {
     public interface IInteractable 
     {

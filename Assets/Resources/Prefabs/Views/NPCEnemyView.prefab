@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 2119304981485642051}
   - component: {fileID: 2119304981485642052}
   - component: {fileID: 2119304981485642053}
-  - component: {fileID: 2119304981485642049}
+  - component: {fileID: 2365876906482196900}
+  - component: {fileID: 7076563316885324606}
   m_Layer: 0
   m_Name: NPCEnemyView
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2119304981485642051
 MeshFilter:
@@ -99,7 +100,7 @@ CapsuleCollider:
   m_Height: 1.78
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2119304981485642049
+--- !u!114 &2365876906482196900
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,10 +109,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 2119304981485642054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 213a339c5f2e540c7ab0c0964a8ee490, type: 3}
+  m_Script: {fileID: 11500000, guid: 26a1b4da48ef1400bbb548e849a2c8eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Layer: 1
   NPCType: 0
   NPCMode: 0
   Animator: {fileID: 0}
+--- !u!114 &7076563316885324606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119304981485642054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c464498e2eab4fc681a0bd4509626c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 2119304981485642054}
+  ReceiverObject: {fileID: 2119304981485642054}
+  ReceiverType: 1
+  ObjectId: 1
+  ObjectName: NPCEnemyView
