@@ -17,11 +17,4 @@ namespace Presenters
 
         public IModel GetModel();
     }
-
-    public interface IDamage 
-    { 
-        public void ToDamage();
-        public void TakeDamage(float damageValue, IPresenter ownedPresenter);
-
-    }
 }

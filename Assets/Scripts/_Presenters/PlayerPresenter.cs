@@ -8,13 +8,10 @@ using System.Linq;
 using System;
 using Services.Factory;
 using Services.Log;
-using System.Threading;
-using Cysharp.Threading.Tasks;
-using System.Threading.Tasks;
 
 namespace Presenters
 {
-    public class PlayerPresenter : IPresenter, IDamage 
+    public class PlayerPresenter : IPresenter
     {
         private readonly SignalBus _signalBus;
         private readonly LogService _logService;
@@ -126,16 +123,6 @@ namespace Presenters
         public void HideView()
         {
            
-        }
-
-        public void ToDamage()
-        {
-            //ToDo...
-        }
-
-        public void TakeDamage(float damageValue, IPresenter ownedPresenter)
-        {
-            //ToDo...
         }
     }
 }

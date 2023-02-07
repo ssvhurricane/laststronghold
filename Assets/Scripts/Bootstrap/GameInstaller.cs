@@ -16,6 +16,7 @@ using Services.Tutorial;
 using Services.RayCast;
 using Services.Building;
 using Services.BackLight;
+using Services.NPC;
 
 namespace Bootstrap
 {
@@ -44,6 +45,8 @@ namespace Bootstrap
             Container.InstallElementAsSingle<PlayerPresenter>();
            
             Container.InstallElementAsSingle<CameraPresenter>();
+
+            Container.InstallElementAsSingle<NPCPresenter>();
         }
 
         private void InstallServices() 
@@ -68,6 +71,8 @@ namespace Bootstrap
             Container.InstallElementAsSingle<BuildingService>();
 
             Container.InstallElementAsSingle<BackLightService>();
+
+            Container.InstallElementAsSingle<NPCService>();
         }
 
         private void InstallAbilities() 

@@ -5,7 +5,6 @@ namespace Services.Anchor
         None,
         Player,
         NPC,
-        Enemy,
         CheckPoint,
         interactable,
         Pivot

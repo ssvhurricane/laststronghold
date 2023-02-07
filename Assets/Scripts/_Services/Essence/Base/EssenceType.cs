@@ -4,7 +4,6 @@ namespace Services.Essence
     {
         PlayerGameObject,
         NPCGameObject, 
-        EnemyGameObject,
         ItemGameObject,
         InteractionGameObject,
         CameraGameObject,
