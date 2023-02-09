@@ -4,6 +4,6 @@ namespace Services.RayCast
     {
         InteractionObject,
         NPCObject,
-        FocusPoint
+        BuildInteractionObject
     }
 }

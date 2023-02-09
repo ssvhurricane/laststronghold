@@ -18,13 +18,15 @@ namespace Presenters.Window
         private readonly FactoryService _factoryService;
         private readonly HolderService _holderService;
 
+        private readonly PlayerPresenter _playerPresenter;
         private MainHUDView _mainHUDView;
 
         public MainHUDPresenter(SignalBus signalBus,
             LogService logService,
             IWindowService windowService,
             FactoryService factoryService, 
-            HolderService holderService
+            HolderService holderService,
+            PlayerPresenter playerPresenter
             ) 
         {
             _signalBus = signalBus;
@@ -33,6 +35,8 @@ namespace Presenters.Window
 
             _factoryService = factoryService;
             _holderService = holderService;
+
+            _playerPresenter = playerPresenter;
 
             _logService.ShowLog(GetType().Name,
                 Services.Log.LogType.Message,

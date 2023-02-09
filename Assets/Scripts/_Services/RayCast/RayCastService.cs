@@ -41,7 +41,7 @@ namespace Services.RayCast
             RaycastHit hit;
          
             if (Physics.Raycast(transform.position,
-                transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, 1 << layerMask))
+                transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
                 return hit;
          
             return hit;

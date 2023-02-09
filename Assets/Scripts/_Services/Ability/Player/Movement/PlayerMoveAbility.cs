@@ -76,12 +76,12 @@ namespace Services.Ability
 
                 switch (actionModifier)
                 {
-                    case ActionModifier.Left:
+                    case ActionModifier.LeftMove:
                         {
                             _movementService.OrbitalMove(_view, param, Quaternion.Euler(.0f, _movementServiceSettings.Rotate.Speed, .0f));
                             break;
                         }
-                    case ActionModifier.Right:
+                    case ActionModifier.RightMove:
                         {
                             _movementService.OrbitalMove(_view, param, Quaternion.Euler(.0f, -_movementServiceSettings.Rotate.Speed, .0f));
                             break;

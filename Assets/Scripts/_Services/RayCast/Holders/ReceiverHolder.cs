@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Services.RayCast
 {
-    public class ReceiverHolder : MonoBehaviour, IBuildingHolder
+    public class ReceiverHolder : MonoBehaviour
     {
         [SerializeField] protected GameObject Parent, ReceiverObject;
         [SerializeField] protected ReceiverType ReceiverType;
@@ -16,9 +16,6 @@ namespace Services.RayCast
         [SerializeField] protected string ObjectName;
 
         private SignalBus _signalBus;
-
-        private IView _placedObject;
-
         [Inject]
         public void Construct(SignalBus signalBus)
         {
@@ -36,7 +33,11 @@ namespace Services.RayCast
         {
             return Parent;
         }
-
+        public ReceiverType GetReceiverType()
+        {
+            return ReceiverType;
+        }
+        
         public int GetId()
         {
             return ObjectId;
@@ -45,21 +46,6 @@ namespace Services.RayCast
         public string GetObjectName()
         {
             return ObjectName;
-        }
-
-        public void SetPlacedObject(IView viewObject)
-        {
-            _placedObject = viewObject;
-        }
-
-        public IView GetPlacedObject()
-        {
-           return _placedObject;
-        }
-
-        public bool IsPlacedObjectEmpty()
-        {
-            return _placedObject is IView;
         }
     }
 }

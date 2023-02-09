@@ -78,13 +78,18 @@ namespace Bootstrap
         private void InstallAbilities() 
         {
             // Player Abilities.
+            // Move.
             Container.InstallElementAsSingle<PlayerIdleAbility>();
             Container.InstallElementAsSingle<PlayerMoveAbility>();
             Container.InstallElementAsSingle<PlayerFocusMoveAbility>();
             Container.InstallElementAsSingle<PlayerLookAtAbility>();
+
+            // Attack.
             Container.InstallElementAsSingle<PlayerBaseAttackAbility>();
             
+            // Specific.
             Container.InstallElementAsSingle<PlayerNoneAbility>();
+            Container.InstallElementAsSingle<PlayerInteractAbility>();
 
             // Camera Abilities.
             Container.InstallElementAsSingle<CameraRotateAbility>();

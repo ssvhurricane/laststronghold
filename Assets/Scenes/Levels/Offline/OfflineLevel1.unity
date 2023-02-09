@@ -282,7 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 1060235746}
   ReceiverObject: {fileID: 81147394}
-  ReceiverType: 0
+  ReceiverType: 2
   ObjectId: 7
   ObjectName: Name7
 --- !u!1001 &358755836
@@ -461,7 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 18286619}
   ReceiverObject: {fileID: 393897303}
-  ReceiverType: 0
+  ReceiverType: 2
   ObjectId: 1
   ObjectName: Name1
 --- !u!1 &475451257
@@ -577,7 +577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 1273106298}
   ReceiverObject: {fileID: 475451257}
-  ReceiverType: 0
+  ReceiverType: 2
   ObjectId: 2
   ObjectName: Name2
 --- !u!1001 &508262324
@@ -798,7 +798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 2071234070}
   ReceiverObject: {fileID: 906425542}
-  ReceiverType: 0
+  ReceiverType: 2
   ObjectId: 8
   ObjectName: Name8
 --- !u!1 &977355893
@@ -914,7 +914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 1650879312}
   ReceiverObject: {fileID: 977355893}
-  ReceiverType: 0
+  ReceiverType: 2
   ObjectId: 9
   ObjectName: Name9
 --- !u!1 &1041271302
@@ -1030,7 +1030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 1636560868}
   ReceiverObject: {fileID: 1041271302}
-  ReceiverType: 0
+  ReceiverType: 2
   ObjectId: 6
   ObjectName: Name6
 --- !u!1 &1049074379
@@ -1434,7 +1434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 1687567969}
   ReceiverObject: {fileID: 1415095281}
-  ReceiverType: 0
+  ReceiverType: 2
   ObjectId: 5
   ObjectName: Name5
 --- !u!1001 &1466854683
@@ -1778,7 +1778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 1613166777}
   ReceiverObject: {fileID: 1592576079}
-  ReceiverType: 0
+  ReceiverType: 2
   ObjectId: 4
   ObjectName: Name4
 --- !u!1 &1613166777
@@ -2556,7 +2556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 616613150}
   ReceiverObject: {fileID: 1903204455}
-  ReceiverType: 0
+  ReceiverType: 2
   ObjectId: 3
   ObjectName: Name3
 --- !u!1 &1975406733
@@ -3029,7 +3029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 1975406733}
   ReceiverObject: {fileID: 2143722656}
-  ReceiverType: 0
+  ReceiverType: 2
   ObjectId: 10
   ObjectName: Name10
 --- !u!1001 &2300337415192386390

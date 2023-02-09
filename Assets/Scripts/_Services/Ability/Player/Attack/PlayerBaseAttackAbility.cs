@@ -70,57 +70,35 @@ namespace Services.Ability
 
         public void StartAbility(IPresenter ownerPresenter, ActionModifier actionModifier)
         {
+            if (!ActivateAbility) return;
+
             var presenter =  ownerPresenter;
 
             if (presenter != null)
             {
                 var view = (PlayerView) presenter.GetView();
 
-//                _animationService.SetBool(view.Animator, "IsIdleCombat", true);
-//                _animationService.SetBool(view.Animator, "IsIdleResting", false);
-
-//                BaseEssence axeView = _itemService
-//                    .GetAllItemViews()
-//                    .FirstOrDefault(item => item.Id == ItemServiceConstants.AxeItem);
-
-////axeView.gameObject.transform.SetParent(view.FirstJointHand.transform);
-//                axeView.gameObject.transform.localPosition = Vector3.zero;
-//                axeView.gameObject.transform.localRotation = Quaternion.identity;
-//                axeView.gameObject.transform.localScale = Vector3.one;
-
-                // ToDo...
-                //BaseView bowView = _itemService
-                //  .GetAllItemViews()
-                //  .FirstOrDefault(item => item.Id == ItemServiceConstants.BowItem);
-
-                //bowView.gameObject.transform.SetParent(view.SecondJointBack.transform);
-                //bowView.gameObject.transform.localPosition = Vector3.zero;
-                //bowView.gameObject.transform.localRotation = Quaternion.identity;
-                //bowView.gameObject.transform.localScale = Vector3.one;
-
-                if (actionModifier == ActionModifier.None) 
-                { 
-                    //if (_animationService.GetBool(view.Animator, "IsIdleCombat"))
-                    //{ 
-                    //    _animationService.PlayAnimation(view.Animator, "Attack");
-                    //    _animationService.SetFloat(view.Animator, "AttackingValue", _animationService.GetRandomAnimation(1,3));
-                    //}
-                  
-                    _logService.ShowLog(GetType().Name,
-                            Services.Log.LogType.Message,
-                            "Base Attack!.",
-                            LogOutputLocationType.Console);
-
-                }
-                /*
-                else if (actionModifier == ActionModifier.Power)
+                // TODO:
+                switch(actionModifier)
                 {
-                    //ToDo...
-                    _logService.ShowLog(GetType().Name,
-                            Services.Log.LogType.Message,
-                            "Base Power Attack!.",
-                            LogOutputLocationType.Console);
-                }*/
+                    case ActionModifier.SingleFire:
+                    {
+                        // TODO:
+                        break;
+                    }
+
+                    case ActionModifier.BurstFire:
+                    {
+                        // TODO:
+                        break;
+                    }
+
+                    case ActionModifier.UltaFire:
+                    {
+                        // TODO:
+                        break;
+                    }
+                }
             }
         }
     }

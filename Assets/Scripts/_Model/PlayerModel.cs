@@ -15,13 +15,19 @@ namespace Model
         private PlayerAbilityContainer _playerAbilityContainer;
         private PlayerInventoryContainer _playerInventoryContainer;
 
+        // Move section.
         private PlayerIdleAbility _playerIdleAbility;
         private PlayerMoveAbility _playerMoveAbility;
         private PlayerFocusMoveAbility _playerFocusMoveAbility;
         private PlayerLookAtAbility _playerLookAtAbility;
+
+        // Attack section.
         private PlayerBaseAttackAbility _playerAttackAbility;
         
-        private PlayerNoneAbility _playerNoneCurrentAbility;
+        // Specific section.
+        private PlayerNoneAbility _playerNoneAbility;
+
+        private PlayerInteractAbility _playerInteractAbility;
 
         private IAbility _currentAbility;
       
@@ -33,7 +39,8 @@ namespace Model
                 PlayerFocusMoveAbility playerFocusMoveAbility,
                 PlayerLookAtAbility playerLookAtAbility,
                 PlayerBaseAttackAbility playerAttackAbility,
-                PlayerNoneAbility playerNoneCurrentAbility,
+                PlayerNoneAbility playerNoneAbility,
+                PlayerInteractAbility playerInteractAbility,
                 SniperRifleItem sniperRifleItem
             )
         {
@@ -46,11 +53,13 @@ namespace Model
 
             _playerAttackAbility = playerAttackAbility;
             
-            _playerNoneCurrentAbility = playerNoneCurrentAbility;
+            _playerNoneAbility = playerNoneAbility;
+
+            _playerInteractAbility = playerInteractAbility;
 
             _sniperRifleItem = sniperRifleItem;
 
-           //Init Base Ability.
+            // Init Base Ability.
             _playerAbilityContainer = new PlayerAbilityContainer();
             
             _playerAbilityContainer.abilities.Add(_playerIdleAbility);
@@ -60,8 +69,10 @@ namespace Model
 
             _playerAbilityContainer.abilities.Add(_playerAttackAbility);
             
-            _playerAbilityContainer.abilities.Add(_playerNoneCurrentAbility);
-          
+            _playerAbilityContainer.abilities.Add(_playerNoneAbility);
+            
+            _playerAbilityContainer.abilities.Add(_playerInteractAbility);
+
             // Init Inventory.
             _playerInventoryContainer = new PlayerInventoryContainer();
            

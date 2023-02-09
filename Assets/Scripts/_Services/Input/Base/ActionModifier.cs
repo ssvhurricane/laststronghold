@@ -3,9 +3,22 @@ namespace Services.Input
     public enum ActionModifier 
     {
         None,
-        Left,
-        Right,
+
+        // Move section.
+        LeftMove,
+        RightMove,
         FocusMove,
-        FocusRotate
+        FocusRotate,
+
+        // Fire section.
+        SingleFire,
+        BurstFire,
+        UltaFire,
+
+        // Interact section.
+        BaseInteract,
+        BuildingInteract,
+        PickUpInteract,
+        RepairInteract
     }
 }

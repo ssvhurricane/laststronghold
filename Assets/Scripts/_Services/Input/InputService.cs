@@ -7,6 +7,7 @@ using Services.Ability;
 using Services.Anchor;
 using Services.Animation;
 using Services.BackLight;
+using Services.Building;
 using Services.Log;
 using Services.Pool;
 using Services.Project;
@@ -24,7 +25,7 @@ using Zenject;
 
 namespace Services.Input
 {
-    public class InputService : IFixedTickable, ILateTickable
+    public class InputService :ITickable, IFixedTickable, ILateTickable
     {
         private readonly SignalBus _signalBus;
 
@@ -49,13 +50,15 @@ namespace Services.Input
         private TopDownGameInput _topDownGameInput;
 
         private IAbility _playerNoneAbility,
-                                _playerIdleAbility,
-                                    _playerLookAtAbility,
-                                         _playerMoveAbility,
-                                            _playerFocusMoveAbility,
-                                                  _cameraRotateAbility;
+                         _playerIdleAbility,
+                         _playerLookAtAbility,
+                         _playerMoveAbility,
+                         _playerFocusMoveAbility,
+                         _playerBaseAttackAbility,
+                         _playerInteractAbility,
+                        _cameraRotateAbility;
        
-        private IEnumerable<IAbility> _playerAttackAbilities;
+        private IEnumerable<IAbility> _playerAbilities;
     
         private MainHUDView _mainHudView;
         private PlayerView _playerView;
@@ -111,11 +114,31 @@ namespace Services.Input
             {
                 if (_projectService.GetProjectState() == ProjectState.Start)
                 {
-                    
-                    _logService.ShowLog(GetType().Name,
+                    // TODO:
+                   if(_playerBaseAttackAbility.ActivateAbility)
+                   {
+                        _logService.ShowLog(GetType().Name,
                                 Services.Log.LogType.Message,
-                                "Press LeftMouseButton(LT).",
+                                "AttackAbility Active.",
                                 LogOutputLocationType.Console);
+
+                        _abilityService.UseAbility((IAbilityWithOutParam)_playerBaseAttackAbility,
+                            _playerPresenter,
+                            ActionModifier.SingleFire);
+
+                   }
+
+                   if(_playerInteractAbility.ActivateAbility)
+                   {
+                        _logService.ShowLog(GetType().Name,
+                                Services.Log.LogType.Message,
+                                "InteractAbility Active.",
+                                LogOutputLocationType.Console);
+
+                        _abilityService.UseAbility((IAbilityWithOutParam)_playerInteractAbility,
+                            _playerPresenter,
+                            ActionModifier.BaseInteract);
+                   }
                 }
             };
 
@@ -139,7 +162,7 @@ namespace Services.Input
 
                 if (_transmitterCamera)
                 {
-                    var hitReceiver = _rayCastService.Emit(_transmitterCamera.transform, LayerMask.NameToLayer("AnchorArea"));
+                    var hitReceiver = _rayCastService.Emit(_transmitterCamera.transform,1 << LayerMask.NameToLayer("AnchorArea"));
 
                     _receiverAnchorArea = hitReceiver.collider?.gameObject.GetComponent<ReceiverHolder>();
 
@@ -194,7 +217,7 @@ namespace Services.Input
         {
             if (_projectService.GetProjectState() == ProjectState.Start)
             {
-                // Move helicopter.
+                //---- Move helicopter ----//
                 if (!_topDownGameInput.Player.Move.IsPressed())
                     _abilityService.UseAbility((IAbilityWithOutParam)_playerIdleAbility, _playerPresenter, ActionModifier.None);
                 else
@@ -204,7 +227,7 @@ namespace Services.Input
                         _abilityService.UseAbility((IAbilityWithVector3Param)_playerMoveAbility,
                             _playerPresenter,
                             _anchorCenter.Transform?.position ?? Vector3.zero,
-                            ActionModifier.Left);
+                            ActionModifier.LeftMove);
                     }
 
                     if (_topDownGameInput.Player.Move.activeControl.name == "d")
@@ -212,18 +235,53 @@ namespace Services.Input
                         _abilityService.UseAbility((IAbilityWithVector3Param)_playerMoveAbility,
                             _playerPresenter,
                             _anchorCenter.Transform?.position ?? Vector3.zero,
-                            ActionModifier.Right);
+                            ActionModifier.RightMove);
                     }
                 }
 
-                // Select anchor Area.
-                var anchorArea = _rayCastService.Emit(_cameraPresenter.GetView().GetGameObject().transform, LayerMask.NameToLayer("AnchorArea")).collider?.gameObject;
+                //---- Select anchor Area, Enemy, NPC ----//
+                var anchorArea = _rayCastService.Emit(_cameraPresenter.GetView().GetGameObject().transform,(1 << LayerMask.NameToLayer("AnchorArea"))|
+                                                                                                           (1 << LayerMask.NameToLayer("Enemy"))|
+                                                                                                           (1 << LayerMask.NameToLayer("NPC"))).collider?.gameObject;
 
-                if (anchorArea) _backLightService.Light(anchorArea, true);
-                    
-                else  _backLightService.Light(anchorArea, false);
+                if (anchorArea)
+                { 
+                    var receiverHolder = anchorArea.GetComponent<ReceiverHolder>();
 
-                // Move object.
+                    switch(receiverHolder.GetReceiverType())
+                    {
+                        case ReceiverType.BuildInteractionObject:
+                        {
+                            _backLightService.Light(anchorArea, true);
+                        
+                            _playerBaseAttackAbility.ActivateAbility = false;
+                            _playerInteractAbility.ActivateAbility = true;
+
+                            break;
+                        }
+
+                        case ReceiverType.NPCObject:
+                        {
+                            // TODO:
+                            break;
+                        }
+
+                        case ReceiverType.InteractionObject:
+                        {
+                            // TODO:
+                            break;
+                        }
+                    }
+                } 
+                else
+                { 
+                    _playerBaseAttackAbility.ActivateAbility = true;
+                    _playerInteractAbility.ActivateAbility = false;
+
+                    _backLightService.Light(anchorArea, false);
+                }
+
+                //---- Focus Move helicopter ----//
                 if (_receiverAnchorArea != null)
                 {
 
@@ -234,6 +292,30 @@ namespace Services.Input
                 }
               
                 if (!_playerFocusMoveAbility.ActivateAbility) _playerMoveAbility.ActivateAbility = true;
+ 
+            }
+        }
+
+        public void Tick()
+        {
+          if (_projectService.GetProjectState() == ProjectState.Start)
+            {
+                // Then button pressed(building, burstfire, repair)
+                 if (_topDownGameInput.Player.Attack1.IsPressed())
+                 {
+                       if(_playerBaseAttackAbility.ActivateAbility)
+                       { /*
+                         _logService.ShowLog(GetType().Name,
+                                Services.Log.LogType.Message,
+                                "Press Attack1.",
+                                LogOutputLocationType.Console);
+
+                          if(_playerBaseAttackAbility.ActivateAbility)
+                                        _abilityService.UseAbility((IAbilityWithOutParam)_playerBaseAttackAbility,
+                                                _playerPresenter,
+                                                ActionModifier.BurstFire);*/
+                       }
+                 }
             }
         }
 
@@ -305,14 +387,14 @@ namespace Services.Input
 
             _poolService.InitPool(PoolServiceConstants.PlayerAbilityItemViewPool);
 
-            for (var item = 0; item < _playerAttackAbilities.Count(); item++) 
+            for (var item = 0; item < _playerAbilities.Count(); item++) 
             {
                  playerAbilityItemView
                     = (PlayerAbilityItemView)_poolService.Spawn<PlayerAbilityItemView>(_mainHudView.GetVerticalAbilityPanel().transform);
 
-                 playerAbilityItemView._image.sprite = _playerAttackAbilities.ToList()[item].Icon;
+                 playerAbilityItemView._image.sprite = _playerAbilities.ToList()[item].Icon;
 
-                 playerAbilityItemView.Id =_playerAttackAbilities.ToList()[item].Id;
+                 playerAbilityItemView.Id =_playerAbilities.ToList()[item].Id;
 
                  _playerAbilityItems.Add(item, playerAbilityItemView);
             }
@@ -343,9 +425,26 @@ namespace Services.Input
                 AbilityServiceConstants.PlayerNoneAbility);
             _playerNoneAbility.ActivateAbility = true;
 
-            _playerAttackAbilities = _abilityService.GetAbilitiesyByAbilityType(_playerPresenter,
+/*
+            _playerAbilities = _abilityService.GetAbilitiesyByAbilityType(_playerPresenter,
                 AbilityType.AttackAbility);
-         
+            
+            // Add specific abilities or build abilities
+            _playerAbilities.Concat(_abilityService.GetAbilitiesyByAbilityType(_playerPresenter,
+                AbilityType.SpecificAbility));
+
+            foreach(var playerAbility in _playerAbilities)
+                playerAbility.ActivateAbility = false;
+            */
+
+            _playerBaseAttackAbility = _abilityService.GetAbilityById(_playerPresenter,
+               AbilityServiceConstants.PlayerBaseAttackAbility);
+            _playerBaseAttackAbility.ActivateAbility = true;
+
+            _playerInteractAbility = _abilityService.GetAbilityById(_playerPresenter,
+               AbilityServiceConstants.PlayerInteractAbility);
+            _playerInteractAbility.ActivateAbility = true;
+
             // Caching Camera Rotate Ability.
             _cameraRotateAbility = _abilityService.GetAbilityById(_cameraPresenter,
                 AbilityServiceConstants.CameraRotateAbility);
