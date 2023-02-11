@@ -14,7 +14,7 @@ using Services.Input;
 using Services.Camera;
 using Services.Tutorial;
 using Services.RayCast;
-using Services.Building;
+using Services.Area;
 using Services.BackLight;
 using Services.NPC;
 
@@ -68,7 +68,7 @@ namespace Bootstrap
 
             Container.InstallElementAsSingle<RayCastService>();
 
-            Container.InstallElementAsSingle<BuildingService>();
+            Container.InstallElementAsSingle<AreaService>();
 
             Container.InstallElementAsSingle<BackLightService>();
 

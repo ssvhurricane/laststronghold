@@ -1,12 +1,12 @@
 using Zenject;
 
-namespace Services.Building
+namespace Services.Area
 {
-    public class BuildingService
+    public class AreaService
     {
         private readonly SignalBus _signalBus;
 
-        public BuildingService(SignalBus signalBus)
+        public AreaService(SignalBus signalBus)
         {
             // TODO:
             _signalBus = signalBus;
