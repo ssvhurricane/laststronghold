@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Services.Item;
+using View;
 
 namespace Services.Area
 {
@@ -16,5 +17,7 @@ namespace Services.Area
         AreaType AreaType { get; set; }
 
         List<IItem> Items { get; set; }
+
+        List<IView> ViewWorkers { get; set; }
     }
 }

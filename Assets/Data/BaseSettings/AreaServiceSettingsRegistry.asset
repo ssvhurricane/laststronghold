@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4b8126af44e4da6a39d62a42c2aec2, type: 3}
+  m_Name: AreaServiceSettingsRegistry
+  m_EditorClassIdentifier: 
+  RegistryItems:
+  - Id: 0
+    MinLevel: 1
+    MaxLevel: 5
+    StatusType: 3
+    StageType: 0
+    Name: PoliceStation
+    Description: PoliceStation
+    IsInteractive: 1
+    AreaType: 1
+    StagePrefabs:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Id: 1
+    MinLevel: 1
+    MaxLevel: 1
+    StatusType: 0
+    StageType: 0
+    Name: House1Station
+    Description: House1Station
+    IsInteractive: 0
+    AreaType: 1
+    StagePrefabs:
+    - {fileID: 0}
+  - Id: 16
+    MinLevel: 1
+    MaxLevel: 20
+    StatusType: 3
+    StageType: 0
+    Name: SuperMarket
+    Description: SuperMarket
+    IsInteractive: 1
+    AreaType: 0
+    StagePrefabs:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - Id: 17
+    MinLevel: 1
+    MaxLevel: 20
+    StatusType: 3
+    StageType: 0
+    Name: POI1View
+    Description: Road to house1
+    IsInteractive: 1
+    AreaType: 2
+    StagePrefabs:
+    - {fileID: 0}

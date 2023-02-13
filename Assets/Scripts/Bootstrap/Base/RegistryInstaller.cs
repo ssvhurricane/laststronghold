@@ -23,6 +23,8 @@ namespace Bootstrap
         [SerializeField] protected ItemServiceSettingsRegistry ItemServiceSettingsRegistry;
         [SerializeField] protected LogServiceSettingsRegistry LogServiceSettingsRegistry;
 
+        [SerializeField] protected AreaServiceSettingsRegistry AreaServiceSettingsRegistry;
+
         //[Header("GameplaySettings")] TODO:
 
         protected new DiContainer Container
@@ -56,6 +58,8 @@ namespace Bootstrap
             InstallRegistry(ItemServiceSettingsRegistry);
 
             InstallRegistry(LogServiceSettingsRegistry);
+
+            InstallRegistry(AreaServiceSettingsRegistry);
         }
         private void InstallListSettings()
         {
@@ -84,6 +88,9 @@ namespace Bootstrap
               .FromInstance(MovementServiceSettingsRegistry.GetItems().ToArray())
               .AsSingle();
 
+            Container.Bind<AreaServiceSettings[]>()
+              .FromInstance(AreaServiceSettingsRegistry.GetItems().ToArray())
+              .AsSingle();
 
             Container.Bind<AbilitySettings[]>()
             .FromInstance(AbilitySettingsRegistry.GetItems().ToArray())

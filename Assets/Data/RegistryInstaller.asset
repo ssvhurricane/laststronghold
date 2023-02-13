@@ -22,7 +22,6 @@ MonoBehaviour:
   MovementServiceSettingsRegistry: {fileID: 11400000, guid: 824defa5e255baa4ea906653f7289418, type: 2}
   AbilitySettingsRegistry: {fileID: 11400000, guid: 13e8b5e56151046448eb4d8f61e62585, type: 2}
   PoolServiceSettingsRegistry: {fileID: 11400000, guid: 982c44394447afb49808a5408f466fee, type: 2}
-  WolfSettingsRegistry: {fileID: 11400000, guid: 9824ec411fa0a874085d13b83dc5af12, type: 2}
   ItemServiceSettingsRegistry: {fileID: 11400000, guid: dd1398c2ade4c5b41853de89ed782e8b, type: 2}
-  NetworkServiceSettingsRegistry: {fileID: 11400000, guid: 774b27f2dbb1d4734a7c49ea206d1d99, type: 2}
   LogServiceSettingsRegistry: {fileID: 11400000, guid: c359b8d105152d84b870ccc965627404, type: 2}
+  AreaServiceSettingsRegistry: {fileID: 11400000, guid: 169b49b010968448ea43e6461f7e34c8, type: 2}
