@@ -17,6 +17,7 @@ using Services.RayCast;
 using Services.Area;
 using Services.BackLight;
 using Services.NPC;
+using Services.Quest;
 
 namespace Bootstrap
 {
@@ -73,6 +74,8 @@ namespace Bootstrap
             Container.InstallElementAsSingle<BackLightService>();
 
             Container.InstallElementAsSingle<NPCService>();
+
+             Container.InstallElementAsSingle<QuestService>();
         }
 
         private void InstallAbilities() 

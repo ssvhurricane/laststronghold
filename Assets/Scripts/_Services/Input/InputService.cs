@@ -7,7 +7,6 @@ using Services.Ability;
 using Services.Anchor;
 using Services.Animation;
 using Services.BackLight;
-using Services.Building;
 using Services.Log;
 using Services.Pool;
 using Services.Project;
@@ -50,13 +49,13 @@ namespace Services.Input
         private TopDownGameInput _topDownGameInput;
 
         private IAbility _playerNoneAbility,
-                         _playerIdleAbility,
-                         _playerLookAtAbility,
-                         _playerMoveAbility,
-                         _playerFocusMoveAbility,
-                         _playerBaseAttackAbility,
-                         _playerInteractAbility,
-                        _cameraRotateAbility;
+                            _playerIdleAbility,
+                                _playerLookAtAbility,
+                                    _playerMoveAbility,
+                                        _playerFocusMoveAbility,
+                                            _playerBaseAttackAbility,
+                                                _playerInteractAbility,
+                                                     _cameraRotateAbility;
        
         private IEnumerable<IAbility> _playerAbilities;
     
@@ -249,7 +248,8 @@ namespace Services.Input
                     var receiverHolder = anchorArea.GetComponent<ReceiverHolder>();
 
                     switch(receiverHolder.GetReceiverType())
-                    {
+                    { 
+                        case ReceiverType.InteractionObject:
                         case ReceiverType.BuildInteractionObject:
                         {
                             _backLightService.Light(anchorArea, true);
@@ -261,12 +261,6 @@ namespace Services.Input
                         }
 
                         case ReceiverType.NPCObject:
-                        {
-                            // TODO:
-                            break;
-                        }
-
-                        case ReceiverType.InteractionObject:
                         {
                             // TODO:
                             break;
