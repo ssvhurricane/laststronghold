@@ -1,18 +1,19 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class QuestData : MonoBehaviour
+namespace Services.Quest
 {
-    // Start is called before the first frame update
-    void Start()
+    public class QuestData 
     {
-        
-    }
+        public int Id { get; set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public QuestConditionType QuestConditionType { get; set; }
+
+        public List<string> DroptItems { get; set; } // TODO: Drop Items
+
+        public string Description { get; set; }
+
+        public int CurProgress { get; set; }
+
+        public int NeedProgress { get; set; }
     }
 }

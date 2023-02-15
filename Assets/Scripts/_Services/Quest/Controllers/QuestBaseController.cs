@@ -1,18 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class QuestBaseController : MonoBehaviour
+namespace Services.Quest
 {
-    // Start is called before the first frame update
-    void Start()
+    public class QuestBaseController : QuestBase
     {
-        
-    }
+        public override void Activate(Action<QuestBase> action = null)
+        {
+            throw new NotImplementedException();
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void Deactivate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string GetDescription(string hexColor = "", string localizationId = "")
+        {
+            throw new NotImplementedException();
+        }
+
+        public override QuestSaveDataBase GetSaveData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Load(QuestSaveDataBase questSaveData)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

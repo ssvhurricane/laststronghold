@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class QuestConditionType : MonoBehaviour
+namespace Services.Quest
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum QuestConditionType
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Activate,
+        Get,
+        Collect,
+        Build,
+        Destroy,
+        Kill,
+        Assign,
+        Upgrade
     }
 }
