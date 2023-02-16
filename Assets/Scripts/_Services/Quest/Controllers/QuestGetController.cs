@@ -1,18 +1,26 @@
 using System;
+using Signals;
+using Zenject;
 
 namespace Services.Quest
 {
     public class QuestGetController : QuestBaseController
     {
-        public QuestGetController()
+        private readonly SignalBus _signalBus;
+        public QuestGetController(SignalBus signalBus)
         {
-            // TODO:
+            _signalBus = signalBus;
         }
 
         public override void Activate(Action<QuestBase> action = null)
         {
             base.Activate(action);
 
+            _signalBus.Subscribe<QuestServiceSignals.OnQuestGetEvent>(signal => OnQuestGet());
+        }
+
+        private void OnQuestGet()
+        {
             // TODO:
         }
 

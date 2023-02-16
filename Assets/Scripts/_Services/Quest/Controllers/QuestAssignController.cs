@@ -1,18 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
+using Zenject;
+using Signals;
 
-public class QuestAssignController : MonoBehaviour
+namespace Services.Quest
 {
-    // Start is called before the first frame update
-    void Start()
+    public class QuestAssignController : QuestBaseController
     {
-        
-    }
+        private readonly SignalBus _signalBus;
+        public QuestAssignController(SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void Activate(Action<QuestBase> action = null)
+        {
+            base.Activate(action);
+
+            _signalBus.Subscribe<QuestServiceSignals.OnQuestAssignEvent>(signal => OnQuestAssign());
+        }
+
+        private void OnQuestAssign()
+        {
+            // TODO:
+        }
+
+        public override string GetDescription(string hexColor = "", string localizationId = "")
+        {
+            return base.GetDescription(hexColor, "[quest_assign_object]");
+        }
     }
 }

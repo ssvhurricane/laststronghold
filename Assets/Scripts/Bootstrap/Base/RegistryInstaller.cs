@@ -25,6 +25,9 @@ namespace Bootstrap
 
         [SerializeField] protected AreaServiceSettingsRegistry AreaServiceSettingsRegistry;
 
+        [SerializeField] protected QuestServiceSettingsRegistry QuestServiceSettingsRegistry;
+        [SerializeField] protected QuestsSettingsRegistry QuestsSettingsRegistry;
+
         //[Header("GameplaySettings")] TODO:
 
         protected new DiContainer Container
@@ -60,6 +63,9 @@ namespace Bootstrap
             InstallRegistry(LogServiceSettingsRegistry);
 
             InstallRegistry(AreaServiceSettingsRegistry);
+
+            InstallRegistry(QuestServiceSettingsRegistry);
+            InstallRegistry(QuestsSettingsRegistry);
         }
         private void InstallListSettings()
         {
@@ -69,42 +75,47 @@ namespace Bootstrap
             InstallRegistryData<ResourcesServiceSettings>(ResourcesServiceSettingsRegistry);
 
             Container.Bind<SceneServiceSettings[]>()
-               .FromInstance(SceneSettingsRegistry.GetItems().ToArray())
-               .AsSingle();
+                .FromInstance(SceneSettingsRegistry.GetItems().ToArray())
+                .AsSingle();
 
             Container.Bind<WindowServiceSettings[]>()
-            .FromInstance(WindowServiceSettingsRegistry.GetItems().ToArray())
-            .AsSingle();
+                .FromInstance(WindowServiceSettingsRegistry.GetItems().ToArray())
+                .AsSingle();
 
             Container.Bind<CameraServiceSettings[]>()
-              .FromInstance(CameraServiceSettingsRegistry.GetItems().ToArray())
-              .AsSingle();
+                .FromInstance(CameraServiceSettingsRegistry.GetItems().ToArray())
+                .AsSingle();
 
             Container.Bind<InputServiceSettings[]>()
-              .FromInstance(InputServiceSettingsRegistry.GetItems().ToArray())
-              .AsSingle();
+                .FromInstance(InputServiceSettingsRegistry.GetItems().ToArray())
+                .AsSingle();
             
             Container.Bind<MovementServiceSettings[]>()
-              .FromInstance(MovementServiceSettingsRegistry.GetItems().ToArray())
-              .AsSingle();
+                .FromInstance(MovementServiceSettingsRegistry.GetItems().ToArray())
+                .AsSingle();
 
             Container.Bind<AreaServiceSettings[]>()
-              .FromInstance(AreaServiceSettingsRegistry.GetItems().ToArray())
-              .AsSingle();
+                .FromInstance(AreaServiceSettingsRegistry.GetItems().ToArray())
+                .AsSingle();
 
             Container.Bind<AbilitySettings[]>()
-            .FromInstance(AbilitySettingsRegistry.GetItems().ToArray())
-            .AsSingle();
+                .FromInstance(AbilitySettingsRegistry.GetItems().ToArray())
+                .AsSingle();
 
             Container.Bind<PoolServiceSettings[]>()
-          .FromInstance(PoolServiceSettingsRegistry.GetItems().ToArray())
-          .AsSingle();
+                .FromInstance(PoolServiceSettingsRegistry.GetItems().ToArray())
+                .AsSingle();
 
             InstallRegistryData<LogServiceSettings>(LogServiceSettingsRegistry);
 
             Container.Bind<ItemServiceSettings[]>()
-        .FromInstance(ItemServiceSettingsRegistry.GetItems().ToArray())
-        .AsSingle();
+                .FromInstance(ItemServiceSettingsRegistry.GetItems().ToArray())
+                .AsSingle();
+
+            InstallRegistryData<QuestServiceSettings>(QuestServiceSettingsRegistry);
+            Container.Bind<QuestsSettings[]>()
+                .FromInstance(QuestsSettingsRegistry.GetItems().ToArray())
+                .AsSingle();
         }
 
         private void InstallRegistry<TRegistry>(TRegistry registry)

@@ -109,6 +109,17 @@ namespace Bootstrap
             // RayCast Service Signals.
             Container.DeclareSignal<RayCastServiceSignals.AddReceiver>();
             Container.DeclareSignal<RayCastServiceSignals.AddTransmitter>();
+
+            // Quest Service Signals.
+            Container.DeclareSignal<QuestServiceSignals.OnQuestActivateEvent>();
+            Container.DeclareSignal<QuestServiceSignals.OnQuestAssignEvent>();
+            Container.DeclareSignal<QuestServiceSignals.OnQuestBaseEvent>();
+            Container.DeclareSignal<QuestServiceSignals.OnQuestBuildEvent>();
+            Container.DeclareSignal<QuestServiceSignals.OnQuestCollectEvent>();
+            Container.DeclareSignal<QuestServiceSignals.OnQuestDestroyEvent>();
+            Container.DeclareSignal<QuestServiceSignals.OnQuestGetEvent>();
+            Container.DeclareSignal<QuestServiceSignals.OnQuestKillEvent>();
+            Container.DeclareSignal<QuestServiceSignals.OnQuestUpgradeEvent>();
         }
 
        public void InstallModels()

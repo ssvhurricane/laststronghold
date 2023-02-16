@@ -1,18 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
+using Zenject;
+using Signals;
 
-public class QuestDestroyController : MonoBehaviour
+namespace Services.Quest
 {
-    // Start is called before the first frame update
-    void Start()
+    public class QuestDestroyController : QuestBaseController
     {
-        
-    }
+        private readonly SignalBus _signalBus;
+        public QuestDestroyController(SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void Activate(Action<QuestBase> action = null)
+        {
+            base.Activate(action);
+
+            _signalBus.Subscribe<QuestServiceSignals.OnQuestDestroyEvent>(signal => OnQuestDestroy());
+        }
+
+        private void OnQuestDestroy()
+        {
+            // TODO:
+        }
+
+        public override string GetDescription(string hexColor = "", string localizationId = "")
+        {
+            return base.GetDescription(hexColor, "[quest_destroy_object]");
+        }
     }
 }

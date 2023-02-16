@@ -1,18 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
+using Zenject;
+using Signals;
 
-public class QuestKillController : MonoBehaviour
+namespace Services.Quest
 {
-    // Start is called before the first frame update
-    void Start()
+    public class QuestKillController : QuestBaseController
     {
-        
-    }
+        private readonly SignalBus _signalBus;
+        public QuestKillController(SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void Activate(Action<QuestBase> action = null)
+        {
+            base.Activate(action);
+
+            _signalBus.Subscribe<QuestServiceSignals.OnQuestKillEvent>(signal => OnQuestKill());
+        }
+
+        private void OnQuestKill()
+        {
+            // TODO:
+        }
+
+        public override string GetDescription(string hexColor = "", string localizationId = "")
+        {
+            return base.GetDescription(hexColor, "[quest_kill_object]");
+        }
     }
 }
