@@ -1,20 +1,38 @@
 using System;
+using System.Collections.Generic;
+using Data.Settings;
+using Services.Scene;
 using Zenject;
 
 namespace Services.Quest
 {
     public class QuestService
     {
+        private List<QuestBase> _quests;
+        private Flow _flow;
         private readonly SignalBus _signalBus;
+        private readonly QuestServiceSettings _questServiceSettings;
+        private readonly ISceneService _sceneService;
 
-        public QuestService(SignalBus signalBus)
+        public QuestService(SignalBus signalBus, 
+                            QuestServiceSettings questServiceSettings,
+                            ISceneService sceneService)
         {
             _signalBus = signalBus;
+
+            _questServiceSettings = questServiceSettings;
+
+            _sceneService = sceneService;
+
+            _quests = new List<QuestBase>();
         }
 
-        public void InitializeFlow(FlowQuestsConfig flowQuestsConfig)
+        public void InitializeFlow(Flow flow)
         {
-            // TODO:
+            _flow = flow;
+
+           // var savedQuests = _sceneService.GetLevelsModel().GetLevelData(GameLevelManager.CurLevelID)?.QuestStorage?.QuestSaves;
+              
         }
 
         public void ClearActiveQuests()

@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class QuestSaveDataBase : MonoBehaviour
+namespace Services.Quest
 {
-    // Start is called before the first frame update
-    void Start()
+    [Serializable]
+    public abstract class QuestSaveDataBase
     {
-        
+        public int QuestId;
+        public QuestState QuestState;
     }
 
-    // Update is called once per frame
-    void Update()
+    [Serializable]
+    public class QuestCountSaveData : QuestSaveDataBase
     {
-        
+        public int Count;
+    }
+
+    [Serializable]
+    public class QuestTimeSaveData : QuestSaveDataBase
+    {
+        public float TimeLeft;
     }
 }

@@ -12,3 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ed8b142ef254554b2e6eed1c8781da, type: 3}
   m_Name: QuestServiceSettingsRegistry
   m_EditorClassIdentifier: 
+  RegistryData:
+    Id: 
+    Flows:
+    - Id: 0
+      Description: 
+      Threads: 
+      FlowExecutionMode: 0
+      FlowRewardMode: 0
