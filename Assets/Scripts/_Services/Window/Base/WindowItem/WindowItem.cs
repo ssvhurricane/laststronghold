@@ -2,7 +2,7 @@ using Services.Window;
 
 namespace View.Window
 {
-    public class AbilityItem : BaseWindow
+    public class WindowItem : BaseWindow
     {
         // TODO: specific logic...
     }

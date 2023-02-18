@@ -1,5 +1,6 @@
 using Config;
 using System;
+using System.Collections.Generic;
 
 namespace Data.Settings
 {
@@ -11,6 +12,7 @@ namespace Data.Settings
         public string Threads;
         public int FlowExecutionMode;
         public int FlowRewardMode;
+        public IReadOnlyCollection<int> ParseThreads { get; private set; }
     }
 
     [Serializable]

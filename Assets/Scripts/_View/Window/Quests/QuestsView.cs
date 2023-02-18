@@ -1,26 +1,26 @@
-
 using Services.Window;
+using Signals;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace View.Window
 {
-    public class QuestItemView : WindowItem
+    public class QuestsView : BaseWindow
     {
         [SerializeField] protected WindowType Type;
-        private SignalBus _signalBus;
 
-        private Image _image;
+        // TODO:
+
+        private SignalBus _signalBus;
 
         [Inject]
         public void Constrcut(SignalBus signalBus)
         {
             _signalBus = signalBus;
 
-            _image = GetComponent<Image>();
-
             WindowType = Type;
+
+            _signalBus.Fire(new WindowServiceSignals.Register(this));
         }
     }
 }

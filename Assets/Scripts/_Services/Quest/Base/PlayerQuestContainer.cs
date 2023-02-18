@@ -1,17 +1,17 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace Services.Quest
 {
-    [Serializable]
-    public class QuestStorage
-    {
-        public List<QuestSaveDataBase> QuestSaves => _questSaves;
-
+    public class PlayerQuestContainer : IQuestContainer
+    { 
         [SerializeReference] private List<QuestSaveDataBase> _questSaves = new List<QuestSaveDataBase>();
-
+        public List<QuestSaveDataBase> QuestSaves {get; set; }
+        public void Initialize()
+        {
+            QuestSaves = _questSaves;
+        }
         public void SaveQuest(QuestBase quest) 
         {
             _questSaves.Add(quest.GetSaveData());
@@ -70,4 +70,4 @@ namespace Services.Quest
             _questSaves.Clear();
         }
     }
-    }
+}

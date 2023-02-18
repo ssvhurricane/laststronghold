@@ -1,6 +1,6 @@
 namespace Services.Window
 {
-    public class AbilityItemArgs : IWindowArgs
+    public class WindowItemArgs : IWindowArgs
     {
        // TODO:
     }

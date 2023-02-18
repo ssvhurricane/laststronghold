@@ -2,9 +2,11 @@ using Data.Settings;
 using Model.Inventory;
 using Services.Ability;
 using Services.Item;
+using Services.Quest;
 
 namespace Model
 {
+    // TODO: save and serialize model.
     public class PlayerModel : ILiveModel
     {
         public string Id => _settings.Id;
@@ -14,6 +16,8 @@ namespace Model
         private readonly PlayerSettings _settings;
         private PlayerAbilityContainer _playerAbilityContainer;
         private PlayerInventoryContainer _playerInventoryContainer;
+
+        private PlayerQuestContainer _playerQuestContainer;
 
         // Move section.
         private PlayerIdleAbility _playerIdleAbility;
@@ -77,6 +81,10 @@ namespace Model
             _playerInventoryContainer = new PlayerInventoryContainer();
            
             _playerInventoryContainer.Items.Add(_sniperRifleItem);
+
+            // Init quest Inventory.
+            _playerQuestContainer = new PlayerQuestContainer();
+            _playerQuestContainer.Initialize();
         }
 
         public IAbilityContainer GetAbilityContainer()
@@ -87,6 +95,11 @@ namespace Model
         public IInventoryContainer GetInventoryContainer()
         {
             return _playerInventoryContainer;
+        }
+
+        public IQuestContainer GetPlayerQuestContainer()
+        {
+            return _playerQuestContainer;
         }
 
         public void SetCurrentAbility(IAbility ability) 

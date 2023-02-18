@@ -13,9 +13,10 @@ namespace Services.Quest
 
         public string _objectType;
 
-        public virtual void Configurate()
+        public virtual void Configurate(Data.Settings.Quest quest)
         {
-            // TODO:   
+           Data = new QuestData();
+           // TODO::
         }
 
         public abstract void Activate(Action<QuestBase> action = null);

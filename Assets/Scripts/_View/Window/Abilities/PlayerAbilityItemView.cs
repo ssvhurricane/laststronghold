@@ -5,7 +5,7 @@ using Zenject;
 
 namespace View.Window
 {
-    public class PlayerAbilityItemView : AbilityItem
+    public class PlayerAbilityItemView : WindowItem
     {
         [SerializeField] protected WindowType Type;
         private SignalBus _signalBus;

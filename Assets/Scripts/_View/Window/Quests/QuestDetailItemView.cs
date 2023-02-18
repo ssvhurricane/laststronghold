@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+using Services.Window;
+using Signals;
 using UnityEngine;
+using Zenject;
 
-public class QuestDetailItemView : MonoBehaviour
+namespace View.Window
 {
-    // Start is called before the first frame update
-    void Start()
+    public class QuestDetailItemView : PopUpWindow
     {
-        
-    }
+        [SerializeField] protected WindowType Type;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // TODO:
+
+        private SignalBus _signalBus;
+
+        [Inject]
+        public void Constrcut(SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+
+            WindowType = Type;
+
+            _signalBus.Fire(new WindowServiceSignals.Register(this));
+        }
     }
 }

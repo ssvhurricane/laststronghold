@@ -8,7 +8,9 @@ namespace Services.Window
        GlobalWindow,
        ScreenWindow,
        DialogWindow,
+       QuestWindow,
        TutorialItem,
-       AbilityItem
+       AbilityItem,
+       QuestItem
     }
 }
