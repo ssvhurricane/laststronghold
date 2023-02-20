@@ -23,6 +23,7 @@ namespace Presenters
         private readonly ProjectService _projectService;
 
         private MainHUDPresenter _mainHUDPresenter;
+        private QuestsPresenter _questsPresenter;
         private PlayerPresenter _playerPresenter;
 
         private  InputService _inputService;
@@ -31,6 +32,7 @@ namespace Presenters
             LogService logService,
             MainMenuPresenter mainMenuPresenter,
             MainHUDPresenter mainHUDPresenter,
+            QuestsPresenter questsPresenter,
             PlayerPresenter playerPresenter,
             ProjectModel projectModel,
             ProjectService projectService,
@@ -41,6 +43,7 @@ namespace Presenters
             _logService = logService;
             _mainMenuPresenter = mainMenuPresenter;
             _mainHUDPresenter = mainHUDPresenter;
+            _questsPresenter = questsPresenter;
             _playerPresenter = playerPresenter;
           
             _projectModel = projectModel;
@@ -120,6 +123,7 @@ namespace Presenters
             
                 await InputSystemAsync();
 
+                await QuestSystemAsync();
                 //5. Get Game Flow
 
                 //6. Start Game
@@ -144,6 +148,12 @@ namespace Presenters
         {
             _inputService.TakePossessionOfObject(_playerPresenter);
 
+            await UniTask.Yield();
+        }
+
+        public async UniTask QuestSystemAsync()
+        {
+            _questsPresenter.ShowView(); // TODO:
             await UniTask.Yield();
         }
 

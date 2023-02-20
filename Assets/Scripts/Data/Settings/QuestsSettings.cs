@@ -15,6 +15,7 @@ namespace Data.Settings
         public string Description;
         public string Tag;
         public string Value;
+        public int Amount;
         public Sprite Icon;
         public QuestConditionType QuestConditionType;
     }

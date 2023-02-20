@@ -6,6 +6,8 @@ namespace Model
     {
         public List<IModel> _projectModels { get; private set; }
 
+        public List<ILiveModel> _projectLiveModels { get; private set; }
+
         public List<object> _projectRules { get; private set; }
 
         public List<object> _projectFlows { get; private set; }
@@ -74,5 +76,16 @@ namespace Model
             // TODO:
             return default(object);
         }
+
+        public void SerializeProject()
+        {
+            // TODO:
+        }
+
+        public void DesirializeProject()
+        {
+            // TODO:
+        }
+
     }
 }

@@ -17,8 +17,6 @@ namespace Model
         private PlayerAbilityContainer _playerAbilityContainer;
         private PlayerInventoryContainer _playerInventoryContainer;
 
-        private PlayerQuestContainer _playerQuestContainer;
-
         // Move section.
         private PlayerIdleAbility _playerIdleAbility;
         private PlayerMoveAbility _playerMoveAbility;
@@ -81,10 +79,6 @@ namespace Model
             _playerInventoryContainer = new PlayerInventoryContainer();
            
             _playerInventoryContainer.Items.Add(_sniperRifleItem);
-
-            // Init quest Inventory.
-            _playerQuestContainer = new PlayerQuestContainer();
-            _playerQuestContainer.Initialize();
         }
 
         public IAbilityContainer GetAbilityContainer()
@@ -95,11 +89,6 @@ namespace Model
         public IInventoryContainer GetInventoryContainer()
         {
             return _playerInventoryContainer;
-        }
-
-        public IQuestContainer GetPlayerQuestContainer()
-        {
-            return _playerQuestContainer;
         }
 
         public void SetCurrentAbility(IAbility ability) 

@@ -12,7 +12,7 @@ namespace Services.Quest
 {
     public class QuestService
     {
-        private List<QuestBase> _quests;
+        public List<QuestBase> _quests { get; private set; }
         private Flow _flow;
         private readonly SignalBus _signalBus;
         private readonly QuestServiceSettings _questServiceSettings;
@@ -50,7 +50,7 @@ namespace Services.Quest
         {
             _flow = flow;
 
-            var playerModel = (PlayerModel)(_playerPresenter.GetModel());
+            var playerModel = (QuestModel)(_playerPresenter.GetModel());
 
             var savedQuests = playerModel.GetPlayerQuestContainer().QuestSaves;
 
@@ -81,7 +81,7 @@ namespace Services.Quest
         {
             if(_quests != null) _quests.Clear();
 
-            var playerModel = (PlayerModel)(_playerPresenter.GetModel());
+            var playerModel = (QuestModel)(_playerPresenter.GetModel());
 
             if (playerModel.GetPlayerQuestContainer().QuestSaves.Count() > 0)
                 playerModel.GetPlayerQuestContainer().QuestSaves.Clear();
@@ -95,7 +95,7 @@ namespace Services.Quest
             {
                 var newQuest = AddQuestToList(GetQuestById(questId));
 
-                var playerModel = (PlayerModel)(_playerPresenter.GetModel());
+                var playerModel = (QuestModel)(_playerPresenter.GetModel());
 
                 if (newQuest != null) 
                 { 
@@ -111,7 +111,7 @@ namespace Services.Quest
 
             _quests.RemoveAll(x => x.Data.Id == questId);
 
-            var playerModel = (PlayerModel)(_playerPresenter.GetModel());
+            var playerModel = (QuestModel)(_playerPresenter.GetModel());
 
             var savedData = playerModel.GetPlayerQuestContainer().QuestSaves.FirstOrDefault(questData => questData.QuestId == questId);
 
@@ -133,7 +133,7 @@ namespace Services.Quest
         {
             QuestBase nextQuest = null;
 
-            var playerModel = (PlayerModel)(_playerPresenter.GetModel());
+            var playerModel = (QuestModel)(_playerPresenter.GetModel());
 
             Data.Settings.Quest curQuestConfig = GetQuestById(questToRemove.Data.Id);
 
@@ -207,7 +207,7 @@ namespace Services.Quest
        
         private void AddQuestProgress(QuestBase questBase)
         {
-            var playerModel = (PlayerModel)(_playerPresenter.GetModel());
+            var playerModel = (QuestModel)(_playerPresenter.GetModel());
 
             playerModel.GetPlayerQuestContainer().UpdateQuest(questBase);
 

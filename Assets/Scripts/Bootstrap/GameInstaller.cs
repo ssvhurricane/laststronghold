@@ -41,6 +41,7 @@ namespace Bootstrap
             // Window Presenters.
             Container.InstallElementAsSingle<MainHUDPresenter>();
             Container.InstallElementAsSingle<PauseMenuPresenter>();
+            Container.InstallElementAsSingle<QuestsPresenter>();
 
             // View Presenters.
             Container.InstallElementAsSingle<PlayerPresenter>();
@@ -107,6 +108,7 @@ namespace Bootstrap
         {
             Container.InstallModel<PlayerModel>();
             Container.InstallModel<CameraModel>();
+            Container.InstallModel<QuestModel>();
         }
 
         private void InstallSignals() 
