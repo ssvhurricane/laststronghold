@@ -150,6 +150,12 @@ namespace Services.Input
                 _pauseMenuPresenter.ShowView();
             };
 
+            _topDownGameInput.Player.QuestMenu.performed += value =>
+            {
+                // TODO: QuestsView.
+            };
+
+
             _topDownGameInput.Player.Focus.performed += value =>
             {
                 _logService.ShowLog(GetType().Name,

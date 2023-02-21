@@ -30,9 +30,9 @@ namespace Services.Quest
             return "";
         }
 
-        public abstract QuestSaveDataBase GetSaveData();
+        public abstract QuestSaveData GetSaveData();
 
-        public abstract void Load(QuestSaveDataBase questSaveData);
+        public abstract void Load(QuestSaveData questSaveData);
 
         public void Dispose()
         {

@@ -13,13 +13,75 @@ MonoBehaviour:
   m_Name: QuestsSettingsRegistry
   m_EditorClassIdentifier: 
   RegistryItems:
+  - Id: 1
+    Quest:
+      Id: 1
+      ParentQuestId: 0
+      ThreadId: 1
+      Param: 
+      Description: '[Quest1]'
+      Tag: '[Quest1]'
+      Value: 
+      Amount: 0
+      Icon: {fileID: 0}
+      QuestConditionType: 1
   - Id: 
+    Quest:
+      Id: 0
+      ParentQuestId: 0
+      ThreadId: 0
+      Param: 
+      Description: 
+      Tag: 
+      Value: 
+      Amount: 0
+      Icon: {fileID: 0}
+      QuestConditionType: 0
   - Id: 
+    Quest:
+      Id: 0
+      ParentQuestId: 0
+      ThreadId: 0
+      Param: 
+      Description: 
+      Tag: 
+      Value: 
+      Amount: 0
+      Icon: {fileID: 0}
+      QuestConditionType: 0
   - Id: 
+    Quest:
+      Id: 0
+      ParentQuestId: 0
+      ThreadId: 0
+      Param: 
+      Description: 
+      Tag: 
+      Value: 
+      Amount: 0
+      Icon: {fileID: 0}
+      QuestConditionType: 0
   - Id: 
+    Quest:
+      Id: 0
+      ParentQuestId: 0
+      ThreadId: 0
+      Param: 
+      Description: 
+      Tag: 
+      Value: 
+      Amount: 0
+      Icon: {fileID: 0}
+      QuestConditionType: 0
   - Id: 
-  - Id: 
-  - Id: 
-  - Id: 
-  - Id: 
-  - Id: 
+    Quest:
+      Id: 0
+      ParentQuestId: 0
+      ThreadId: 0
+      Param: 
+      Description: 
+      Tag: 
+      Value: 
+      Amount: 0
+      Icon: {fileID: 0}
+      QuestConditionType: 0

@@ -122,11 +122,10 @@ namespace Presenters
                 await PlayerPresenterAsync();
             
                 await InputSystemAsync();
-
+                
+                // Init quests or flows.
                 await QuestSystemAsync();
-                //5. Get Game Flow
-
-                //6. Start Game
+              
                 await StartGameAsync();
             } 
         }
@@ -153,7 +152,9 @@ namespace Presenters
 
         public async UniTask QuestSystemAsync()
         {
-            _questsPresenter.ShowView(); // TODO:
+            _questsPresenter.ShowView();
+            _questsPresenter.InitializeQuests();
+
             await UniTask.Yield();
         }
 

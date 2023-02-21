@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Services.Quest
 {
     public interface IQuestContainer 
     {  
-          public List<QuestSaveDataBase> QuestSaves{ get; set; }
+          public ObservableCollection<QuestSaveData> QuestSaves{ get; set; }
           public void Initialize();
           public void SaveQuest(QuestBase quest);
           public void RemoveQuest(QuestBase quest);

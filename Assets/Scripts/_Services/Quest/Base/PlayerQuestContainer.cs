@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
 
@@ -6,8 +7,8 @@ namespace Services.Quest
 {
     public class PlayerQuestContainer : IQuestContainer
     { 
-        [SerializeReference] private List<QuestSaveDataBase> _questSaves = new List<QuestSaveDataBase>();
-        public List<QuestSaveDataBase> QuestSaves {get; set; }
+        [SerializeReference] private ObservableCollection<QuestSaveData> _questSaves = new ObservableCollection<QuestSaveData>();
+        public ObservableCollection<QuestSaveData> QuestSaves { get; set; }
         public void Initialize()
         {
             QuestSaves = _questSaves;
@@ -19,14 +20,14 @@ namespace Services.Quest
 
         public void RemoveQuest(QuestBase quest) 
         {
-            var questBaseData =_questSaves.FirstOrDefault(data => data.QuestId == quest.Data.Id);
+            var questBaseData =_questSaves.FirstOrDefault(data => data.Id == quest.Data.Id);
 
             if (questBaseData != null)  _questSaves.Remove(questBaseData);
         }
 
         public void UpdateQuest(QuestBase quest)
         {
-            var questBaseData = _questSaves.FirstOrDefault(saveQuest => saveQuest.QuestId == quest.Data.Id);
+            var questBaseData = _questSaves.FirstOrDefault(saveQuest => saveQuest.Id == quest.Data.Id);
 
             if (questBaseData != null)
             {
@@ -40,7 +41,7 @@ namespace Services.Quest
 
         public void SaveQuests(List<QuestBase> quests)
         {
-            _questSaves = new List<QuestSaveDataBase>();
+            _questSaves = new ObservableCollection<QuestSaveData>();
 
             foreach (var quest in quests)
             {

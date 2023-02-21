@@ -64,6 +64,15 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""QuestMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""bda8aaf0-a090-4ca0-925d-41f76d5c6332"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Focus"",
                     ""type"": ""Button"",
                     ""id"": ""31182c28-3f68-402c-b42d-54eeeaeeac6b"",
@@ -225,6 +234,17 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""action"": ""Reset"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9eb13b01-eb72-482d-b528-25f4fe47a76f"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""QuestMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -265,6 +285,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Attack1 = m_Player.FindAction("Attack1", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_QuestMenu = m_Player.FindAction("QuestMenu", throwIfNotFound: true);
         m_Player_Focus = m_Player.FindAction("Focus", throwIfNotFound: true);
         m_Player_Reset = m_Player.FindAction("Reset", throwIfNotFound: true);
     }
@@ -330,6 +351,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Attack1;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_QuestMenu;
     private readonly InputAction m_Player_Focus;
     private readonly InputAction m_Player_Reset;
     public struct PlayerActions
@@ -340,6 +362,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Attack1 => m_Wrapper.m_Player_Attack1;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @QuestMenu => m_Wrapper.m_Player_QuestMenu;
         public InputAction @Focus => m_Wrapper.m_Player_Focus;
         public InputAction @Reset => m_Wrapper.m_Player_Reset;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -363,6 +386,9 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @QuestMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuestMenu;
+                @QuestMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuestMenu;
+                @QuestMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuestMenu;
                 @Focus.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocus;
                 @Focus.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocus;
                 @Focus.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocus;
@@ -385,6 +411,9 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @QuestMenu.started += instance.OnQuestMenu;
+                @QuestMenu.performed += instance.OnQuestMenu;
+                @QuestMenu.canceled += instance.OnQuestMenu;
                 @Focus.started += instance.OnFocus;
                 @Focus.performed += instance.OnFocus;
                 @Focus.canceled += instance.OnFocus;
@@ -419,6 +448,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnAttack1(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnQuestMenu(InputAction.CallbackContext context);
         void OnFocus(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);
     }

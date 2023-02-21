@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Data.Settings;
 using Services.Scene;
 using Zenject;
-using Presenters;
 using Model;
 using System.Linq;
 using Services.Log;
@@ -12,21 +11,21 @@ namespace Services.Quest
 {
     public class QuestService
     {
-        public List<QuestBase> _quests { get; private set; }
+        private List<QuestBase> _quests;
         private Flow _flow;
         private readonly SignalBus _signalBus;
         private readonly QuestServiceSettings _questServiceSettings;
         private readonly QuestsSettings[] _questsSettings;
         private readonly ISceneService _sceneService;
         private readonly LogService _logService; 
-        private readonly PlayerPresenter _playerPresenter;
+        private readonly QuestModel _questModel;
         private readonly DiContainer _diContainer; //TODO:ref
         public QuestService(SignalBus signalBus, 
                             QuestServiceSettings questServiceSettings,
                             QuestsSettings[] questsSettings,
                             ISceneService sceneService, 
                             LogService logService,
-                            PlayerPresenter playerPresenter,
+                            QuestModel questModel,
                             DiContainer diContainer)
         {
             _signalBus = signalBus;
@@ -39,7 +38,7 @@ namespace Services.Quest
 
             _logService = logService;
 
-            _playerPresenter = playerPresenter;
+            _questModel = questModel;
 
             _diContainer = diContainer;
 
@@ -50,41 +49,38 @@ namespace Services.Quest
         {
             _flow = flow;
 
-            var playerModel = (QuestModel)(_playerPresenter.GetModel());
-
-            var savedQuests = playerModel.GetPlayerQuestContainer().QuestSaves;
+            var savedQuests = _questModel.GetPlayerQuestContainer().QuestSaves;
 
             // Load saved quests.
             if(savedQuests != null && savedQuests.Count > 0)
-            {
-                foreach(var savedQuest in savedQuests) AddQuestToList(GetQuestById(savedQuest.QuestId)).Load(savedQuest);
-            }
+                foreach(var savedQuest in savedQuests) AddQuestToList(GetQuestById(savedQuest.Id)).Load(savedQuest);
             else
             {
                 // Create new quests.
-                foreach(var thread in flow.ParseThreads)
+                if(flow.ParseThreads != null && flow.ParseThreads.Count != 0)
                 {
-                    var quest = GetThreadByKey(thread).Value?.FirstOrDefault();
+                    foreach(var thread in flow.ParseThreads)
+                    {
+                        var quest = GetThreadByKey(thread).Value?.FirstOrDefault();
 
-                    if (quest != null) 
-                    { 
-                        if(!string.IsNullOrEmpty(quest.Tag) || !string.IsNullOrEmpty(quest.Value))
-                               playerModel.GetPlayerQuestContainer().SaveQuest(AddQuestToList(quest));
+                        if (quest != null) 
+                        { 
+                            if(!string.IsNullOrEmpty(quest.Tag) || !string.IsNullOrEmpty(quest.Value))
+                                _questModel.GetPlayerQuestContainer().SaveQuest(AddQuestToList(quest));
+                        }
                     }
+
+                    //new OnQuestInitializeFlowEvent(_quests).Invoke();
                 }
             }
-
-           // if(flow.ParseThreads != null && flow.ParseThreads.Count != 0) new OnQuestInitializeFlowEvent(_quests).Invoke();
         }
 
         public void ClearActiveQuests()
         {
             if(_quests != null) _quests.Clear();
 
-            var playerModel = (QuestModel)(_playerPresenter.GetModel());
-
-            if (playerModel.GetPlayerQuestContainer().QuestSaves.Count() > 0)
-                playerModel.GetPlayerQuestContainer().QuestSaves.Clear();
+            if (_questModel.GetPlayerQuestContainer().QuestSaves.Count() > 0)
+                _questModel.GetPlayerQuestContainer().QuestSaves.Clear();
 
             // new OnAllQuestsInFlowCompleteEvent().Invoke();
         }
@@ -95,12 +91,10 @@ namespace Services.Quest
             {
                 var newQuest = AddQuestToList(GetQuestById(questId));
 
-                var playerModel = (QuestModel)(_playerPresenter.GetModel());
-
                 if (newQuest != null) 
                 { 
-                    if ( playerModel.GetPlayerQuestContainer().QuestSaves.Any(data => data.QuestId != questId))
-                             playerModel.GetPlayerQuestContainer().SaveQuest(newQuest);
+                    if (_questModel.GetPlayerQuestContainer().QuestSaves.Any(data => data.Id != questId))
+                             _questModel.GetPlayerQuestContainer().SaveQuest(newQuest);
                 }
             }
         }
@@ -110,13 +104,11 @@ namespace Services.Quest
             DeactivateQuest(questId);
 
             _quests.RemoveAll(x => x.Data.Id == questId);
-
-            var playerModel = (QuestModel)(_playerPresenter.GetModel());
-
-            var savedData = playerModel.GetPlayerQuestContainer().QuestSaves.FirstOrDefault(questData => questData.QuestId == questId);
+           
+            var savedData = _questModel.GetPlayerQuestContainer().QuestSaves.FirstOrDefault(questData => questData.Id == questId);
 
             if (savedData != null)
-                 playerModel.GetPlayerQuestContainer().QuestSaves.Remove(savedData);
+                 _questModel.GetPlayerQuestContainer().QuestSaves.Remove(savedData);
         }
 
         public void ActivateQuest(int questId, Action<QuestBase> action)
@@ -132,9 +124,7 @@ namespace Services.Quest
         public QuestBase ReplaceQuest(QuestBase questToRemove) 
         {
             QuestBase nextQuest = null;
-
-            var playerModel = (QuestModel)(_playerPresenter.GetModel());
-
+         
             Data.Settings.Quest curQuestConfig = GetQuestById(questToRemove.Data.Id);
 
             Data.Settings.Quest nextQuestConfig = GetNextQuestInThread(curQuestConfig.ThreadId, curQuestConfig);
@@ -149,7 +139,7 @@ namespace Services.Quest
 
                     RemoveQuestById(questToRemove.Data.Id);
 
-                    playerModel.GetPlayerQuestContainer().SaveQuest(nextQuest);
+                    _questModel.GetPlayerQuestContainer().SaveQuest(nextQuest);
 
                    _logService.ShowLog(GetType().Name,
                                     Services.Log.LogType.Message, $"Replacing quest with ID {questToRemove.Data.Id} by quest {nextQuest.Data.Id}.",
@@ -207,12 +197,9 @@ namespace Services.Quest
        
         private void AddQuestProgress(QuestBase questBase)
         {
-            var playerModel = (QuestModel)(_playerPresenter.GetModel());
-
-            playerModel.GetPlayerQuestContainer().UpdateQuest(questBase);
+            _questModel.GetPlayerQuestContainer().UpdateQuest(questBase);
 
             if(questBase.QuestState == QuestState.Complete) CompleteQuest(questBase);
-
         }
 
         private QuestBase CreateQuest(Type type, Data.Settings.Quest quest)

@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "QuestMenu",
+                    "type": "Button",
+                    "id": "bda8aaf0-a090-4ca0-925d-41f76d5c6332",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Focus",
                     "type": "Button",
                     "id": "31182c28-3f68-402c-b42d-54eeeaeeac6b",
@@ -201,6 +210,17 @@
                     "processors": "",
                     "groups": "Mouse and Keyboard",
                     "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9eb13b01-eb72-482d-b528-25f4fe47a76f",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "QuestMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

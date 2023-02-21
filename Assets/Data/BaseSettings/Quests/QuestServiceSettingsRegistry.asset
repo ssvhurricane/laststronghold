@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: QuestServiceSettingsRegistry
   m_EditorClassIdentifier: 
   RegistryData:
-    Id: 
+    Id: 0
     Flows:
-    - Id: 0
-      Description: 
-      Threads: 
-      FlowExecutionMode: 0
-      FlowRewardMode: 0
+    - Id: 1
+      Description: '[Flow1]'
+      Threads: 1
+    - Id: 2
+      Description: '[Flow2]'
+      Threads: 2
+    - Id: 3
+      Description: '[Flow3]'
+      Threads: 3,4,5

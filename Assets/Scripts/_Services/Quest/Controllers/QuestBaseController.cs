@@ -54,12 +54,12 @@ namespace Services.Quest
             return null;
         }
 
-        public override QuestSaveDataBase GetSaveData()
+        public override QuestSaveData GetSaveData()
         {
-             return new QuestCountSaveData { QuestId = Data.Id, QuestState = QuestState, Count = Data.CurProgress };
+             return new QuestCountSaveData { Id = Data.Id, QuestState = QuestState, Count = Data.CurProgress };
         }
 
-        public override void Load(QuestSaveDataBase questSaveData)
+        public override void Load(QuestSaveData questSaveData)
         {
            var saveData = (QuestCountSaveData)questSaveData;
 

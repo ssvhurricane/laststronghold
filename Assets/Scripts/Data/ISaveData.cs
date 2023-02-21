@@ -2,6 +2,6 @@ namespace Data
 {
     public interface ISaveData
     {
-        string Id { get; }
+        int Id { get; set; }
     }
 }

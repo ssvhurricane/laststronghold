@@ -12,7 +12,6 @@ namespace Model
 
         public QuestModel()
         {
-
              // Init quest Inventory.
             _playerQuestContainer = new PlayerQuestContainer();
             _playerQuestContainer.Initialize();

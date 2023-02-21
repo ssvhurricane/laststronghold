@@ -10,8 +10,6 @@ namespace Data.Settings
         public int Id;
         public string Description;
         public string Threads;
-        public int FlowExecutionMode;
-        public int FlowRewardMode;
         public IReadOnlyCollection<int> ParseThreads { get; private set; }
     }
 

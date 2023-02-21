@@ -14,7 +14,7 @@ using Services.Anchor;
 using Services.Pool;
 using Services.Log;
 using Services.Localization;
-using Services.SavePlayerData;
+using Services.SaveData;
 
 namespace Bootstrap
 {
@@ -71,7 +71,7 @@ namespace Bootstrap
 
             Container.InstallElementAsSingle<LocalizationService>(); 
             
-            Container.InstallElementAsSingle<SavePlayerDataService>();
+            Container.InstallElementAsSingle<SaveDataService>();
         }
       
         private void InstallAnimations()
