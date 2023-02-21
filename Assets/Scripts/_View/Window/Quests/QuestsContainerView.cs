@@ -11,8 +11,6 @@ namespace View.Window
     {
         [SerializeField] protected WindowType Type;
         [SerializeField] protected GameObject QuestContainer;
-        [SerializeField] protected QuestItemView QuestItemView;
-
         private SignalBus _signalBus;
 
         [Inject]
@@ -25,22 +23,11 @@ namespace View.Window
             _signalBus.Fire(new WindowServiceSignals.Register(this));
         }
 
-        public void UpdateView(List<QuestsContainerViewArgs> args)
+        public void AttachView(List<QuestItemView> QuestItemViews)
         {
-            // TODO:
+            if (QuestItemViews != null)
+                foreach(var questItemView in QuestItemViews)
+                    questItemView.gameObject.transform.parent = QuestContainer.transform;
         }
     } 
-
-    public class QuestsContainerViewArgs : IWindowArgs 
-    {
-        public int Id { get; set; }
-
-        public string Description {get; set; }
-
-        public QuestState QuestState { get; set; }
-
-        public int Value { get; set; }
-
-        public int MaxValue { get; set; } 
-    }
 }

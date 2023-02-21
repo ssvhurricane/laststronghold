@@ -1025,7 +1025,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Screenshot
+  m_Text: '[Screenshot]'
 --- !u!1 &2485624069981780249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,7 +1242,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: FramerateCounter
+  m_Text: '[FramerateCounter]'
 --- !u!1 &2848038811511751045
 GameObject:
   m_ObjectHideFlags: 0
@@ -1740,7 +1740,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Settings
+  m_Text: '[Settings]'
 --- !u!1 &3786024192689219932
 GameObject:
   m_ObjectHideFlags: 0
@@ -1820,7 +1820,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Language
+  m_Text: '[Language]'
 --- !u!1 &3852393825615461278
 GameObject:
   m_ObjectHideFlags: 0
@@ -2022,7 +2022,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Audio
+  m_Text: '[Audio]'
 --- !u!1 &4047092650119785733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2514,7 +2514,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shadows
+  m_Text: '[Shadows]'
 --- !u!1 &5280368731045158465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2594,7 +2594,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Back
+  m_Text: '[Back]'
 --- !u!1 &5376116586367522109
 GameObject:
   m_ObjectHideFlags: 0
@@ -2853,7 +2853,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Look Sensitivity
+  m_Text: '[LookSensitivity]'
 --- !u!1 &5896582645579182037
 GameObject:
   m_ObjectHideFlags: 0
@@ -3907,7 +3907,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Controls
+  m_Text: '[Controls]'
 --- !u!1 &8601430475966212819
 GameObject:
   m_ObjectHideFlags: 0

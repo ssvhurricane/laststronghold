@@ -31,6 +31,8 @@ namespace Presenters
         private IView _questView;
 
         private readonly QuestModel _questModel;
+
+        private List<QuestItemView> _questItemViews;
         public QuestsPresenter(SignalBus signalBus, 
                             LogService logService, 
                             IWindowService windowService,
@@ -80,19 +82,22 @@ namespace Presenters
                 if (holderTansform != null)
                     _questView = _factoryService.Spawn<QuestsContainerView>(holderTansform);
             }
-            List<QuestsContainerViewArgs> questsContainerViewArgs = null;
 
-           (_questView as QuestsContainerView).UpdateView(questsContainerViewArgs);
+            // TODO:
+           // List<QuestItemViewArgs> questItemViewArgs = null;
+
+           (_questView as QuestsContainerView).AttachView(_questItemViews);
         }
 
         public void InitializeQuests()
         {
+            // Then cur. flow complete, select next 1,2,3...
             _questService.InitializeFlow(_questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == 1));
         }
 
         private void QuestCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         { 
-            List<QuestsContainerViewArgs> questsContainerViewArgs = null;
+            //List<QuestItemViewArgs>questItemViewArgs = null; TODO:
 
             switch (e.Action)
            {
@@ -105,7 +110,7 @@ namespace Presenters
                                     Services.Log.LogType.Message, "Add",
                                     LogOutputLocationType.Console);
                    
-                        (_questView as QuestsContainerView).UpdateView(questsContainerViewArgs);
+                        (_questView as QuestsContainerView).AttachView(_questItemViews);
                     }
                     break;
                 }
@@ -119,7 +124,7 @@ namespace Presenters
                                     Services.Log.LogType.Message, "Remove",
                                     LogOutputLocationType.Console);
 
-                        (_questView as QuestsContainerView).UpdateView(questsContainerViewArgs);
+                        (_questView as QuestsContainerView).AttachView(_questItemViews);
                     }
                     break;
                 }
@@ -132,7 +137,7 @@ namespace Presenters
                                     Services.Log.LogType.Message, "Replace",
                                     LogOutputLocationType.Console);
                                     
-                        (_questView as QuestsContainerView).UpdateView(questsContainerViewArgs);
+                        (_questView as QuestsContainerView).AttachView(_questItemViews);
                     }
                     break;
                 }
