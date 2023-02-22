@@ -116,7 +116,9 @@ namespace Presenters
         private async void CreateGame()
         {
             if (_projectService.GetProjectType() == ProjectType.Offline)
-            {
+            { 
+                await QuestSystemAsync();
+
                 await HUDPresenterAsync();
 
                 await PlayerPresenterAsync();
@@ -124,7 +126,6 @@ namespace Presenters
                 await InputSystemAsync();
                 
                 // Init quests or flows.
-                await QuestSystemAsync();
               
                 await StartGameAsync();
             } 
@@ -152,9 +153,12 @@ namespace Presenters
 
         public async UniTask QuestSystemAsync()
         {
-            _questsPresenter.ShowView();
-            _questsPresenter.InitializeQuests();
+            var data =_projectModel.GetProjectSaveData();
+            
+            _questsPresenter.InitializeQuests(ref data);
 
+            _questsPresenter.ShowView();
+            
             await UniTask.Yield();
         }
 

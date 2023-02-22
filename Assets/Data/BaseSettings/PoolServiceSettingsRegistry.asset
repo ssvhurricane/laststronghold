@@ -17,11 +17,7 @@ MonoBehaviour:
     Name: PlayerAbilityItemViewPool
     InitialSize: 2
     MaxPoolSize: 2
-  - Id: WolfAbilityItemViewPool
-    Name: WolfAbilityItemViewPool
-    InitialSize: 2
-    MaxPoolSize: 2
-  - Id: PlayerWeaponItemViewPool
-    Name: PlayerWeaponItemViewPool
-    InitialSize: 2
-    MaxPoolSize: 2
+  - Id: QuestItemViewPool
+    Name: QuestItemViewPool
+    InitialSize: 4
+    MaxPoolSize: 6

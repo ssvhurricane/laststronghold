@@ -1,25 +1,36 @@
 using Data.Settings;
+using Model;
 using Services.Log;
 using UnityEngine;
 using Zenject;
 
 namespace Services.Project
 {
-    public class ProjectService
+    public class ProjectService : ITickable
     {
         private readonly SignalBus _signalBus;
         private readonly LogService _logService;
-
+        private readonly ProjectModel _projectModel;
+        private readonly QuestModel _questModel;
+        private readonly QuestServiceSettings _questServiceSettings;
         private readonly ProjectServiceSettings _projectServiceSettings;
 
         private ProjectState _projectState;
         public ProjectService(SignalBus signalBus,
             LogService logService,
+            QuestModel questModel,
+            ProjectModel projectModel,
+            QuestServiceSettings questServiceSettings,
             ProjectServiceSettings projectServiceSettings)
         {
             _signalBus = signalBus;
 
             _logService = logService;
+
+            _questModel = questModel;
+            _projectModel = projectModel;
+
+            _questServiceSettings = questServiceSettings;
 
             _projectServiceSettings = projectServiceSettings;
 
@@ -68,6 +79,19 @@ namespace Services.Project
         {
             Cursor.visible = isLocked;
             Cursor.lockState = cursorLockMode;
+        }
+
+        private void UpdateGameFlow()
+        {
+            // TODO: need increment quest flow
+        }
+
+        public void Tick()
+        {
+            if(GetProjectState() == ProjectState.Start)
+            {
+                UpdateGameFlow();
+            }
         }
     }
 }

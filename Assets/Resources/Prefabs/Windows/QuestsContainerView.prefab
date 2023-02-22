@@ -302,8 +302,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
-  QuestContainer: {fileID: 5921442023484355315}
-  QuestItemView: {fileID: 5111004836263511795, guid: 4b9903c5f689d44f6abf03ab796b9513, type: 3}
+  QuestContainer: {fileID: 7475186481511232367}
+  FlowText: {fileID: 582654933713040751}
 --- !u!1 &3202977383835200347
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,8 +505,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7144626611577267222}
   m_HandleRect: {fileID: 1171191472819977133}
   m_Direction: 2
-  m_Value: -0.000021341139
-  m_Size: 0.9352214
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -877,6 +877,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8008757765179798914}
   - component: {fileID: 4516128943033873020}
+  - component: {fileID: 8787283162400435128}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -901,8 +902,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: 40.040455}
-  m_SizeDelta: {x: 0, y: 618.1}
+  m_AnchoredPosition: {x: 0.00012207031, y: -0.00005722046}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &4516128943033873020
 MonoBehaviour:
@@ -922,14 +923,28 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 11.98
+  m_Spacing: 160
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &8787283162400435128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7475186481511232367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 1
 --- !u!1 &7825216598188852077
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using Config;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Data.Settings
 {
@@ -11,6 +12,12 @@ namespace Data.Settings
         public string Description;
         public string Threads;
         public IReadOnlyCollection<int> ParseThreads { get; private set; }
+
+        public void Parse()
+        {
+          ParseThreads =  Threads.Trim().ToCharArray().Where(item => item != ',')
+                                   .Select(c => Convert.ToInt32(c.ToString())).ToArray();
+        }
     }
 
     [Serializable]

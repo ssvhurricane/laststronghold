@@ -34,7 +34,7 @@ namespace View.Window
         {  
             _questId = questItemViewArgs.Id;
 
-            var countItem = questItemViewArgs.MaxValue != 0 ? " " + questItemViewArgs.Value.ToString() + "/" + questItemViewArgs.MaxValue:string.Empty; 
+            var countItem = questItemViewArgs.NeedValue != 0 ? " " + questItemViewArgs.CurrentValue.ToString() + "/" + questItemViewArgs.NeedValue:string.Empty; 
 
             QuestText.text = questItemViewArgs.Description + countItem;
 
@@ -64,8 +64,23 @@ namespace View.Window
 
         public QuestState QuestState { get; set; }
 
-        public int Value { get; set; }
+        public int CurrentValue { get; set; }
 
-        public int MaxValue { get; set; } 
+        public int NeedValue { get; set; } 
+
+        public QuestItemViewArgs(){}
+
+        public QuestItemViewArgs(int id, string description, QuestState questState, int currentValue, int needValue)
+        {
+            Id = id;
+
+            Description = description;
+
+            QuestState = questState;
+
+            CurrentValue = currentValue;
+
+            NeedValue = needValue;
+        }
     }
 }

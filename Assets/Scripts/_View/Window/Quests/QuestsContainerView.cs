@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Services.Quest;
 using Services.Window;
 using Signals;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace View.Window
@@ -11,6 +11,7 @@ namespace View.Window
     {
         [SerializeField] protected WindowType Type;
         [SerializeField] protected GameObject QuestContainer;
+        [SerializeField] protected Text FlowText;
         private SignalBus _signalBus;
 
         [Inject]
@@ -29,5 +30,26 @@ namespace View.Window
                 foreach(var questItemView in QuestItemViews)
                     questItemView.gameObject.transform.parent = QuestContainer.transform;
         }
+
+        public void UpdateView(QuestsContainerViewArgs questsContainerViewArgs)
+        {
+            FlowText.text = questsContainerViewArgs.FlowDescriptionText;
+        }
+
+        public GameObject GetQuestContainer()
+        {
+            return QuestContainer;
+        }
     } 
+
+    public class QuestsContainerViewArgs : IWindowArgs
+    {
+        public string FlowDescriptionText { get; set; }
+        public QuestsContainerViewArgs(){}
+
+         public QuestsContainerViewArgs(string flowDescriptionText)
+         {
+            FlowDescriptionText = flowDescriptionText;
+         }
+    }
 }

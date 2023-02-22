@@ -20,6 +20,8 @@ namespace Services.Quest
         private readonly LogService _logService; 
         private readonly QuestModel _questModel;
         private readonly DiContainer _diContainer; //TODO:ref
+
+        private Dictionary<int, List<Data.Settings.Quest>> _questsThreads;
         public QuestService(SignalBus signalBus, 
                             QuestServiceSettings questServiceSettings,
                             QuestsSettings[] questsSettings,
@@ -43,11 +45,16 @@ namespace Services.Quest
             _diContainer = diContainer;
 
             _quests = new List<QuestBase>();
+
+            _questsThreads = new Dictionary<int, List<Data.Settings.Quest>>();
+
+            LoadRegistryData();
         }
 
         public void InitializeFlow(Flow flow)
         {
             _flow = flow;
+            _flow.Parse();
 
             var savedQuests = _questModel.GetPlayerQuestContainer().QuestSaves;
 
@@ -65,7 +72,7 @@ namespace Services.Quest
 
                         if (quest != null) 
                         { 
-                            if(!string.IsNullOrEmpty(quest.Tag) || !string.IsNullOrEmpty(quest.Value))
+                          //  if(!string.IsNullOrEmpty(quest.Tag) || !string.IsNullOrEmpty(quest.Value))
                                 _questModel.GetPlayerQuestContainer().SaveQuest(AddQuestToList(quest));
                         }
                     }
@@ -216,22 +223,48 @@ namespace Services.Quest
             return _questsSettings.FirstOrDefault(quest => quest.Quest.Id == id).Quest;
         }
 
-        private Data.Settings.Quest[] GetAllQuests()
+        private Dictionary<int, List<Data.Settings.Quest>> GetAllQuests()
         {
-            // TODO:
-            return null;
+            return _questsThreads;
         }
 
          private Data.Settings.Quest GetNextQuestInThread(int threadId, Data.Settings.Quest currentQuest)
          {
-            // TODO:
-             return null;
+            var threadQuests = GetThreadByKey(threadId);
+
+            int index = 0;
+            foreach (var quest in threadQuests.Value) 
+            {
+                if (quest.Id == currentQuest.Id)
+                {
+                     index = threadQuests.Value.IndexOf(quest);
+
+                    ++index;
+
+                    break;
+                }
+            }
+
+            return index == threadQuests.Value.Count ? null : threadQuests.Value[index];
          }
 
          private KeyValuePair<int, List<Data.Settings.Quest>> GetThreadByKey(int key)
          {
-            // TODO:
-            return new KeyValuePair<int, List<Data.Settings.Quest>>();
+            return _questsThreads.FirstOrDefault(item => item.Key == key);
+         }
+
+         private void LoadRegistryData()
+         {
+            foreach(var data in _questsSettings)
+            {
+                if(data.Quest.ThreadId != 0)
+                {
+                    if(!_questsThreads.ContainsKey(data.Quest.ThreadId))
+                         _questsThreads[data.Quest.ThreadId] = new List<Data.Settings.Quest>();
+                    
+                    _questsThreads[data.Quest.ThreadId].Add(data.Quest);
+                }
+            }
          }
     }
 }

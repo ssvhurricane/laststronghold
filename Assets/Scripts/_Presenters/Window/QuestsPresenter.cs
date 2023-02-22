@@ -12,6 +12,9 @@ using Services.Quest;
 using Data.Settings;
 using System.Collections.Specialized;
 using System.Collections.Generic;
+using Services.Pool;
+using Constants;
+using Services.Project;
 
 namespace Presenters
 {
@@ -26,20 +29,26 @@ namespace Presenters
         private readonly HolderService _holderService;
 
         private readonly QuestService _questService;
+        private readonly PoolService _poolService;
 
         private readonly QuestServiceSettings _questServiceSettings;
+        private readonly QuestsSettings[] _questsSettings;
         private IView _questView;
 
         private readonly QuestModel _questModel;
 
         private List<QuestItemView> _questItemViews;
+
+        private int _currentFlow = 1;
         public QuestsPresenter(SignalBus signalBus, 
                             LogService logService, 
                             IWindowService windowService,
                             FactoryService factoryService,
                             HolderService holderService,
                             QuestService questService,
+                            PoolService poolService,
                             QuestServiceSettings questServiceSettings,
+                            QuestsSettings[] questsSettings,
                             QuestModel questModel)
         {
             _signalBus = signalBus;
@@ -48,10 +57,16 @@ namespace Presenters
             _factoryService = factoryService;
             _holderService = holderService;
             _questService = questService;
+            _poolService = poolService;
             _questServiceSettings = questServiceSettings;
+            _questsSettings = questsSettings;
             _questModel = questModel;
 
             _questModel.GetPlayerQuestContainer().QuestSaves.CollectionChanged += QuestCollectionChanged;
+
+            _questItemViews = new List<QuestItemView>();
+
+            _poolService.InitPool(PoolServiceConstants.QuestItemViewPool);
         }
 
         public IModel GetModel()
@@ -84,15 +99,41 @@ namespace Presenters
             }
 
             // TODO:
-           // List<QuestItemViewArgs> questItemViewArgs = null;
+            var questContainerView  = _questView as QuestsContainerView;
 
-           (_questView as QuestsContainerView).AttachView(_questItemViews);
+            if(questContainerView == null) return;
+
+            questContainerView.UpdateView(new QuestsContainerViewArgs()
+            {
+                FlowDescriptionText = _questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == _currentFlow).Description
+            });
+            
+            foreach(var questSaveData in _questModel.GetPlayerQuestContainer().QuestSaves)
+            {
+                var questItemView = (QuestItemView)_poolService.Spawn<QuestItemView>(questContainerView.GetQuestContainer().transform);
+
+                questItemView.UpdateView(new QuestItemViewArgs()
+                {
+                    Id = questSaveData.Id,
+
+                    Description = _questsSettings.FirstOrDefault(quest =>quest.Quest.Id == questSaveData.Id).Quest.Description,
+
+                    QuestState = questSaveData.QuestState,
+
+                    CurrentValue = questSaveData.CurrentValue,
+
+                    NeedValue = _questsSettings.FirstOrDefault(quest =>quest.Quest.Id == questSaveData.Id).Quest.NeedValue
+                });
+            }
+
+          // questContainerView.AttachView(_questItemViews);
         }
 
-        public void InitializeQuests()
+        public void InitializeQuests(ref ProjectSaveData projectSaveData)
         {
-            // Then cur. flow complete, select next 1,2,3...
-            _questService.InitializeFlow(_questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == 1));
+            _currentFlow = projectSaveData.QuestFlowId;
+            
+            _questService.InitializeFlow(_questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == _currentFlow));
         }
 
         private void QuestCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

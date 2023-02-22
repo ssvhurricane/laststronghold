@@ -1,80 +1,51 @@
 using System.Collections.Generic;
+using Services.Project;
+using Services.SaveData;
+using Zenject;
 
 namespace Model
 {
     public class ProjectModel 
     {
-        public List<IModel> _projectModels { get; private set; }
+        private readonly SignalBus _signalBus;
+        private readonly SaveDataService _saveDataService;
+        
+        private List<IModel> _projectModels;
+       
+        private ProjectSaveData _projectData;
 
-        public List<ILiveModel> _projectLiveModels { get; private set; }
-
-        public List<object> _projectRules { get; private set; }
-
-        public List<object> _projectFlows { get; private set; }
-
-        public List<object> _projectWorlStates { get; private set; }
-
-        public void AddModel(IModel model) 
+        public ProjectModel(SignalBus signalBus, SaveDataService saveDataService)
         {
-            // TODO:
-        }
-        public void AddModelById(string id)
-        {
-            // TODO:
-        }
+            _signalBus = signalBus;
 
-        public void RemoveModel(IModel model) 
-        {
+            _saveDataService = saveDataService;
+
+            _projectModels = new List<IModel>();
+
             // TODO:
-        }
-        public void RemoveModelById(string id)
-        {
-            // TODO:
+            _projectData = new ProjectSaveData();
+            _projectData.Id = 0;
+            _projectData.QuestFlowId = 1;
         }
 
-        public IModel GetModel(IModel model)
+        public ProjectSaveData GetProjectSaveData()
         {
-            // TODO:
-            return default(IModel);
+            return _projectData;
         }
 
-        public IModel GetModelById(string id)
-        {
-            // TODO:
-            return default(IModel);
-        }
-
-        public void ClearAll() 
+        public void AddModel(IModel model)
         {
             // TODO:
         }
 
-        public void SaveCurrentModel() 
-        { 
-            // TODO: 
-        }
-
-        public object LoadCurrentModel()
-        { 
-            // TODO: 
-            return default(object);
-        }
-
-        private object GetRules()
-        {   
-            // TODO: 
-            return default(object);
-        }
-        private object GetFlows()
+        public void RemoveModel(IModel model)
         {
             // TODO:
-            return default(object);
         }
 
-        private object GetWorldState() 
-        { 
+        public void RemoveAllModels()
+        {
             // TODO:
-            return default(object);
         }
 
         public void SerializeProject()

@@ -7,6 +7,7 @@ namespace Services.Quest
     public abstract class QuestSaveData : ISaveData
     {
         public int Id { get; set; }
+        public int CurrentValue { get; set; }
         public QuestState QuestState;
     }
 

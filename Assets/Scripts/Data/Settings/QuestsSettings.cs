@@ -9,15 +9,15 @@ namespace Data.Settings
     public class Quest 
     {
         public int Id;
-        public int ParentQuestId;
         public int ThreadId;
-        public string Param;
         public string Description;
-        public string Tag;
-        public string Value;
-        public int Amount;
+        public int NeedValue;
         public Sprite Icon;
         public QuestConditionType QuestConditionType;
+
+        public string Param;
+
+        public string Value;
     }
 
     [Serializable]

@@ -5,7 +5,7 @@ namespace Services.Quest
     public class QuestBaseController : QuestBase
     { 
         private Action<QuestBase> _actionQuestProgress;
-        protected string _param;
+        protected string _param; // TODO: ref
         public override void Configurate(Data.Settings.Quest quest)
         {
             base.Configurate(quest);
@@ -14,13 +14,13 @@ namespace Services.Quest
 
             Data.CurProgress = 0;
 
-            Data.NeedProgress = quest.Amount;
+            Data.NeedProgress = quest.NeedValue;
 
             Data.QuestConditionType = quest.QuestConditionType;
             
             _param = quest.Param;
 
-            _value = quest.Value;
+            _value = quest.Value;// TODO:REf
 
             _objectType = _value;
         }

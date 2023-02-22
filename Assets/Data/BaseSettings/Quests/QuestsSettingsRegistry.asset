@@ -16,72 +16,60 @@ MonoBehaviour:
   - Id: 1
     Quest:
       Id: 1
-      ParentQuestId: 0
       ThreadId: 1
-      Param: 
       Description: '[Quest1]'
-      Tag: '[Quest1]'
-      Value: 
-      Amount: 0
+      NeedValue: 1
       Icon: {fileID: 0}
       QuestConditionType: 1
+      Param: 
+      Value: 
   - Id: 
     Quest:
       Id: 0
-      ParentQuestId: 0
       ThreadId: 0
-      Param: 
       Description: 
-      Tag: 
-      Value: 
-      Amount: 0
+      NeedValue: 0
       Icon: {fileID: 0}
       QuestConditionType: 0
+      Param: 
+      Value: 
   - Id: 
     Quest:
       Id: 0
-      ParentQuestId: 0
       ThreadId: 0
-      Param: 
       Description: 
-      Tag: 
-      Value: 
-      Amount: 0
+      NeedValue: 0
       Icon: {fileID: 0}
       QuestConditionType: 0
+      Param: 
+      Value: 
   - Id: 
     Quest:
       Id: 0
-      ParentQuestId: 0
       ThreadId: 0
-      Param: 
       Description: 
-      Tag: 
-      Value: 
-      Amount: 0
+      NeedValue: 0
       Icon: {fileID: 0}
       QuestConditionType: 0
+      Param: 
+      Value: 
   - Id: 
     Quest:
       Id: 0
-      ParentQuestId: 0
       ThreadId: 0
-      Param: 
       Description: 
-      Tag: 
-      Value: 
-      Amount: 0
+      NeedValue: 0
       Icon: {fileID: 0}
       QuestConditionType: 0
+      Param: 
+      Value: 
   - Id: 
     Quest:
       Id: 0
-      ParentQuestId: 0
       ThreadId: 0
-      Param: 
       Description: 
-      Tag: 
-      Value: 
-      Amount: 0
+      NeedValue: 0
       Icon: {fileID: 0}
       QuestConditionType: 0
+      Param: 
+      Value: 
