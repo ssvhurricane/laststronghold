@@ -10,7 +10,7 @@ namespace Bootstrap
     public class RegistryInstaller : ScriptableObjectInstaller
     {
         [Header("BaseSettings")]
-        [SerializeField]  protected ProjectServiceSettingsRegistry ProjectServiceSettingsRegistry;
+        [SerializeField] protected ProjectServiceSettingsRegistry ProjectServiceSettingsRegistry;
         [SerializeField] protected SceneServiceSettingsRegistry SceneSettingsRegistry;
         [SerializeField] protected PlayerSettingsRegistry PlayerSettingsRegistry;
         [SerializeField] protected WindowServiceSettingsRegistry WindowServiceSettingsRegistry;
@@ -27,6 +27,8 @@ namespace Bootstrap
 
         [SerializeField] protected QuestServiceSettingsRegistry QuestServiceSettingsRegistry;
         [SerializeField] protected QuestsSettingsRegistry QuestsSettingsRegistry;
+
+        [SerializeField] protected LocalizationServiceSettingsRegistry LocalizationServiceSettingsRegistry;
 
         //[Header("GameplaySettings")] TODO:
 
@@ -66,6 +68,8 @@ namespace Bootstrap
 
             InstallRegistry(QuestServiceSettingsRegistry);
             InstallRegistry(QuestsSettingsRegistry);
+
+            InstallRegistry(LocalizationServiceSettingsRegistry);
         }
         private void InstallListSettings()
         {
@@ -115,6 +119,10 @@ namespace Bootstrap
             InstallRegistryData<QuestServiceSettings>(QuestServiceSettingsRegistry);
             Container.Bind<QuestsSettings[]>()
                 .FromInstance(QuestsSettingsRegistry.GetItems().ToArray())
+                .AsSingle();
+
+            Container.Bind<LocalizationServiceSettings[]>()
+                .FromInstance(LocalizationServiceSettingsRegistry.GetItems().ToArray())
                 .AsSingle();
         }
 

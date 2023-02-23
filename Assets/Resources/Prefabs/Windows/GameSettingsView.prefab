@@ -513,7 +513,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: -12.5
+  m_Spacing: -95.49
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -957,6 +957,7 @@ GameObject:
   - component: {fileID: 952829340989281331}
   - component: {fileID: 4705557914923150349}
   - component: {fileID: 5868576588568659073}
+  - component: {fileID: 4897889290501696486}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1025,7 +1026,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[Screenshot]'
+  m_Text: '[ScreenshotButton]'
+--- !u!114 &4897889290501696486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2333993431042375565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb479ef5015f2b449eb4af505e7a0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isUpdateOnStart: 1
+  _key: '[ScreenshotButton]'
 --- !u!1 &2485624069981780249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,6 +1189,7 @@ GameObject:
   - component: {fileID: 8014484517451355213}
   - component: {fileID: 4162566582406772681}
   - component: {fileID: 324971926048774367}
+  - component: {fileID: 696419031822877635}
   m_Layer: 5
   m_Name: FramerateCounterLabel
   m_TagString: Untagged
@@ -1242,7 +1258,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[FramerateCounter]'
+  m_Text: '[FramerateCounterLabel]'
+--- !u!114 &696419031822877635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2543213323504223010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb479ef5015f2b449eb4af505e7a0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isUpdateOnStart: 1
+  _key: '[FramerateCounterLabel]'
 --- !u!1 &2848038811511751045
 GameObject:
   m_ObjectHideFlags: 0
@@ -1672,6 +1702,7 @@ GameObject:
   - component: {fileID: 5676305238099077324}
   - component: {fileID: 2759839414012669315}
   - component: {fileID: 8903746150474293548}
+  - component: {fileID: 133339945602285752}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1740,7 +1771,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[Settings]'
+  m_Text: '[SettingsButton]'
+--- !u!114 &133339945602285752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3753601021998232844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb479ef5015f2b449eb4af505e7a0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isUpdateOnStart: 1
+  _key: '[SettingsButton]'
 --- !u!1 &3786024192689219932
 GameObject:
   m_ObjectHideFlags: 0
@@ -1752,6 +1797,7 @@ GameObject:
   - component: {fileID: 5444499756022244340}
   - component: {fileID: 8089832761504929557}
   - component: {fileID: 6276951691560208602}
+  - component: {fileID: 4697664206805911157}
   m_Layer: 5
   m_Name: LanguageLabel
   m_TagString: Untagged
@@ -1820,7 +1866,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[Language]'
+  m_Text: '[LanguageLabel]'
+--- !u!114 &4697664206805911157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3786024192689219932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb479ef5015f2b449eb4af505e7a0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isUpdateOnStart: 1
+  _key: '[LanguageLabel]'
 --- !u!1 &3852393825615461278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1954,6 +2014,7 @@ GameObject:
   - component: {fileID: 3043733640892796619}
   - component: {fileID: 936193185664197054}
   - component: {fileID: 5062243102653061458}
+  - component: {fileID: 3943012488533827905}
   m_Layer: 5
   m_Name: AudioLabel
   m_TagString: Untagged
@@ -2022,7 +2083,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[Audio]'
+  m_Text: '[AudioLebel]'
+--- !u!114 &3943012488533827905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4044662616735142700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb479ef5015f2b449eb4af505e7a0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isUpdateOnStart: 1
+  _key: '[AudioLebel]'
 --- !u!1 &4047092650119785733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2446,6 +2521,7 @@ GameObject:
   - component: {fileID: 812474666868852715}
   - component: {fileID: 8686762058979702452}
   - component: {fileID: 5604325307783090656}
+  - component: {fileID: 6080129577040242083}
   m_Layer: 5
   m_Name: ShadowsLabel
   m_TagString: Untagged
@@ -2514,7 +2590,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[Shadows]'
+  m_Text: '[ShadowsLabel]'
+--- !u!114 &6080129577040242083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4837721027694296730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb479ef5015f2b449eb4af505e7a0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isUpdateOnStart: 1
+  _key: '[ShadowsLabel]'
 --- !u!1 &5280368731045158465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2526,6 +2616,7 @@ GameObject:
   - component: {fileID: 7084877012714405552}
   - component: {fileID: 6954916703845739875}
   - component: {fileID: 7000982673620182292}
+  - component: {fileID: 599100967461941628}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2594,7 +2685,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[Back]'
+  m_Text: '[BackButton]'
+--- !u!114 &599100967461941628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5280368731045158465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb479ef5015f2b449eb4af505e7a0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isUpdateOnStart: 1
+  _key: '[BackButton]'
 --- !u!1 &5376116586367522109
 GameObject:
   m_ObjectHideFlags: 0
@@ -2785,6 +2890,7 @@ GameObject:
   - component: {fileID: 580548624564014170}
   - component: {fileID: 717046323348598129}
   - component: {fileID: 210823588139199220}
+  - component: {fileID: 5993590094901212295}
   m_Layer: 5
   m_Name: LockSenLabel
   m_TagString: Untagged
@@ -2810,7 +2916,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600.9178, y: 146.11}
+  m_SizeDelta: {x: 538.1353, y: 146.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &717046323348598129
 CanvasRenderer:
@@ -2853,7 +2959,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[LookSensitivity]'
+  m_Text: '[LookSensitivityLabel]'
+--- !u!114 &5993590094901212295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5811483519118218295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb479ef5015f2b449eb4af505e7a0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isUpdateOnStart: 1
+  _key: '[LookSensitivityLabel]'
 --- !u!1 &5896582645579182037
 GameObject:
   m_ObjectHideFlags: 0
@@ -3839,6 +3959,7 @@ GameObject:
   - component: {fileID: 3968767685364469068}
   - component: {fileID: 8903834053195891115}
   - component: {fileID: 4563902239972445923}
+  - component: {fileID: 2846635172434951541}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -3907,7 +4028,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[Controls]'
+  m_Text: '[ControlsButton]'
+--- !u!114 &2846635172434951541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8378847716228631503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb479ef5015f2b449eb4af505e7a0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isUpdateOnStart: 1
+  _key: '[ControlsButton]'
 --- !u!1 &8601430475966212819
 GameObject:
   m_ObjectHideFlags: 0

@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 5258344881760934253}
   - component: {fileID: 5801435727789780447}
   - component: {fileID: 189474061747956233}
+  - component: {fileID: 623505630477891797}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -201,7 +202,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[Exit]'
+  m_Text: '[QuitButton]'
+--- !u!114 &623505630477891797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532141459604465430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb479ef5015f2b449eb4af505e7a0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isUpdateOnStart: 1
+  _key: '[QuitButton]'
 --- !u!1 &2391663235871886522
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +350,7 @@ GameObject:
   - component: {fileID: 4835955896747519088}
   - component: {fileID: 3839268331559355274}
   - component: {fileID: 5914207686889006116}
+  - component: {fileID: 8093807487685573195}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -403,7 +419,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[Settings]'
+  m_Text: '[SettingsButton]'
+--- !u!114 &8093807487685573195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2594582877759934975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb479ef5015f2b449eb4af505e7a0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isUpdateOnStart: 1
+  _key: '[SettingsButton]'
 --- !u!1 &5847248086432437224
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,6 +445,7 @@ GameObject:
   - component: {fileID: 640299955334744117}
   - component: {fileID: 5115054391523255802}
   - component: {fileID: 896176076265191333}
+  - component: {fileID: 3744976273272968712}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -483,7 +514,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[Play]'
+  m_Text: '[PlayButton]'
+--- !u!114 &3744976273272968712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5847248086432437224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb479ef5015f2b449eb4af505e7a0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isUpdateOnStart: 1
+  _key: '[PlayButton]'
 --- !u!1 &8532496585289942224
 GameObject:
   m_ObjectHideFlags: 0

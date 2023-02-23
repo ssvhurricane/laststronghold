@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using Data.Settings;
+using Model;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Services.Localization
@@ -8,12 +12,11 @@ namespace Services.Localization
     {
         private readonly SignalBus _signalBus;
 
-        private Dictionary<string, string> _localization = new Dictionary<string, string>();
+        private readonly LocalizationServiceSettings[] _localizationServiceSettings;
 
-        public string CurrentSystemLocalization { private get; set; }
+        private readonly ProjectModel _projectModel;
 
-        // TODO: ref Settings
-        public string DefaultConfigFileName = "fac_localization";
+        private string _currentSystemLocalization  = CultureInfo.CurrentCulture.Name;
 
         public readonly IReadOnlyList<LanguageInfo> IngameLanguages = new List<LanguageInfo>()
         {
@@ -34,9 +37,21 @@ namespace Services.Localization
             new LanguageInfo(Language.TW, "台湾").AddLanguageCodeRegion("tw"),
         };
 
-        public LocalizationService(SignalBus signalBus)
+        private Dictionary<string, Text> _translatedTexts;
+
+        public LocalizationService(SignalBus signalBus, 
+                                LocalizationServiceSettings[] localizationServiceSettings,
+                                ProjectModel projectModel)
         {
             _signalBus = signalBus; 
+
+            _localizationServiceSettings = localizationServiceSettings;
+
+            _projectModel = projectModel;
+
+            _translatedTexts =  new Dictionary<string, Text>();
+
+            CurrentLanguage = _projectModel.GetProjectSaveData().GameSettingsSaveData.ChoosenLanguage;
             
             if (CurrentLanguage == Language.Undefined)
             {
@@ -44,45 +59,71 @@ namespace Services.Localization
             }
         }
 
-        public bool HaveId(string id) => _localization?.ContainsKey(id) ?? false;
+        public bool HaveKey(string key) => _localizationServiceSettings?.Any(item =>item.localizationItem.Key == key) ?? false;
 
-        public Language CurrentLanguage { get; private set; } = Language.EN;
+        public Language CurrentLanguage { get; private set; }
 
         public LanguageInfo GetLanguageInfo(Language language)
         {
             return IngameLanguages.FirstOrDefault(info => info.Language == language);
         }
 
-        public string TranslateByName(string name)
+        public string Translate(string key, Text text = null)
         {
-            // TODO:
+            string translateText = string.Empty;
 
-            return "";
+            //if(!_translatedTexts.ContainsKey(key)) _translatedTexts.Add(key, text);
+            
+            switch(CurrentLanguage)
+            {
+                case Language.RU:
+                {
+                    translateText = _localizationServiceSettings?.FirstOrDefault(item => item.localizationItem.Key == key).localizationItem.RU;
+                   
+                    break;
+                }
+                case Language.EN:
+                { 
+                    translateText = _localizationServiceSettings?.FirstOrDefault(item => item.localizationItem.Key == key).localizationItem.RU;
+
+                    break;
+                }
+            }
+
+            return translateText;
         }
 
-        public string TranslateById(string id)
+        public string Translate(string key, params string[] inputs)
         {
-            // TODO:
-            return "";
-        }
+            var formatString = Translate(key);
+            if (!string.IsNullOrEmpty(formatString) && inputs.Length > 0)
+            {
+                var _inputs = inputs
+                    .Select(item => Translate(item))
+                    .ToArray();
 
-        public string TranslateByIdWithParams(string id, params string[] inputs)
-        {
-            // TODO:
-
-            return "";
+                formatString = string.Format(formatString, _inputs);
+            }
+            return formatString;
         }
 
         public void ChangeLanguage(Language newLanguage) 
         {
-            // TODO: 
+           CurrentLanguage = newLanguage;
+
+           // TODO:_projectModel.UpdateGamesettings
         }
 
-        private Language GetSystemLanguage()
+        public Language GetSystemLanguage()
         {
-            return IngameLanguages.FirstOrDefault(info => info.IsCurrentLanguage(CurrentSystemLocalization))
+            return IngameLanguages.FirstOrDefault(info => info.IsCurrentLanguage(_currentSystemLocalization))
                        ?.Language ??
                    Language.EN;
+        }
+
+        public void UpdateLocalization()
+        {
+            // TODO: need update runtime, _translatedTexts
         }
     }
 }

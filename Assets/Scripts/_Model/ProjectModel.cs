@@ -26,6 +26,8 @@ namespace Model
             _projectData = new ProjectSaveData();
             _projectData.Id = 0;
             _projectData.QuestFlowId = 1;
+            _projectData.GameSettingsSaveData = new GameSettingsSaveData();
+            _projectData.GameSettingsSaveData.ChoosenLanguage = Services.Localization.Language.RU;
         }
 
         public ProjectSaveData GetProjectSaveData()

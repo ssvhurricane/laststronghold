@@ -26,24 +26,16 @@ namespace Services.Localization
         }
         public void UpdateLabel()
         {
-            if (_text != null && !TryAssignText(gameObject, out _text)) return;
-           
-            _text.text =_localizationService.TranslateById(_key);
-        }
+            _text = GetComponent<Text>();
 
-        public  bool TryAssignText(GameObject go, out Text text)
-        {
-            text = go.GetComponent<Text>();
-
-            if (text == null)
-            {
-                _logService.ShowLog(GetType().Name, 
+            if(_text != null)
+                 _text.text =_localizationService.Translate(_key);
+            else 
+            _logService.ShowLog(GetType().Name, 
                     Log.LogType.Error, 
-                    ($"Object have no text for translate"),
+                    ($"Object have no text for translate, need component Text!"),
                     LogOutputLocationType.Console);
-            }
 
-            return text != null;
         }
     }
 }
