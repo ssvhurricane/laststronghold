@@ -32,6 +32,8 @@ namespace Data.Settings
     {
          public string Id;
 
+         public bool Enable;
+
          public LocalizationItem localizationItem;
 
          string IRegistryData.Id => Id;

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using Data.Settings;
 using Model;
 using UnityEngine.UI;
@@ -84,7 +85,7 @@ namespace Services.Localization
                 }
                 case Language.EN:
                 { 
-                    translateText = _localizationServiceSettings?.FirstOrDefault(item => item.localizationItem.Key == key).localizationItem.RU;
+                    translateText = _localizationServiceSettings?.FirstOrDefault(item => item.localizationItem.Key == key).localizationItem.EN;
 
                     break;
                 }
