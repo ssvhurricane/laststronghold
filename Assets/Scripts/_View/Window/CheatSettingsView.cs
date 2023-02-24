@@ -12,6 +12,8 @@ namespace View.Window
         [SerializeField] protected WindowType Type;
 
         [SerializeField] protected CreationMethod Method;
+        [SerializeField] protected GameObject LeftContainer;
+        [SerializeField] protected GameObject RightContainer;
         [SerializeField] public Button _backToGameButton;
         
         private SignalBus _signalBus;
@@ -26,6 +28,16 @@ namespace View.Window
             CreationMethod = Method;
 
             _signalBus.Fire(new WindowServiceSignals.Register(this));
+        }
+
+        public GameObject GetLeftContainer()
+        {
+            return LeftContainer;
+        }
+
+        public GameObject GetRightcontainer()
+        {
+            return RightContainer;
         }
     }
 }

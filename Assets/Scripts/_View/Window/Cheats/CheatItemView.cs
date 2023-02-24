@@ -1,5 +1,6 @@
 using Services.Window;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace View.Window
@@ -7,6 +8,8 @@ namespace View.Window
     public class CheatItemView : WindowItem
     {
         [SerializeField] protected WindowType Type;
+
+        [SerializeField] protected Text CheatText;
         
         private SignalBus _signalBus;
 
@@ -18,5 +21,9 @@ namespace View.Window
             WindowType = Type;
         }
 
+        public Text GetCheatText()
+        {
+            return CheatText;
+        }
     }
 }

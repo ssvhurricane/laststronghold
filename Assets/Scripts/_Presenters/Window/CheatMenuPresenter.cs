@@ -1,3 +1,4 @@
+using Constants;
 using Services.Anchor;
 using Services.Camera;
 using Services.Cheat;
@@ -9,6 +10,7 @@ using Services.Pool;
 using Services.Project;
 using Services.Scene;
 using Services.Window;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,7 +39,8 @@ namespace Presenters.Window
         private readonly GameSettingsPresenter _gameSettingsPresenter;
 
         private CheatSettingsView _cheatSettingsView;
-      
+        private Dictionary<string, List<CheatItemControlData>> _cheatItems;
+        
         public CheatMenuPresenter(SignalBus signalBus,
             LogService logService,
             ISceneService sceneService,
@@ -74,8 +77,10 @@ namespace Presenters.Window
                 Services.Log.LogType.Message,
                 "Call Constructor Method.", 
                 LogOutputLocationType.Console);
-          
+                
+              _poolService.InitPool(PoolServiceConstants.CheatItemViewPool);
         }
+
         public void ShowView()
         {
             if (_windowService.IsWindowShowing<CheatSettingsView>())
@@ -110,8 +115,21 @@ namespace Presenters.Window
                  LogOutputLocationType.Console);
             }
 
-            // TODO:
-            _cheatService.CheatItemControlProcessing();
+             CreateCheatItems();
+        }
+
+        private void CreateCheatItems()
+        {
+             // TODO:
+            _cheatItems = _cheatService.CheatItemControlProcessing();
+
+            if (_cheatItems != null && _cheatItems.Count != 0)
+                foreach(var cheatItem in _cheatItems)
+                {
+                      var cheatItemView = (CheatItemView)_poolService.Spawn<CheatItemView>(_cheatSettingsView.GetLeftContainer().transform);
+                      
+                      cheatItemView.GetCheatText().text = cheatItem.Key;
+                }
         }
 
         public IWindow GetView() 

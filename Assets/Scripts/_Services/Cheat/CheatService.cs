@@ -17,14 +17,20 @@ namespace Services.Cheat
             _signalBus = signalBus;
 
             _cheatServiceSettings = cheatServiceSettings;
+
+            _cheatItems = new Dictionary<string, List<CheatItemControlData>>();
         }
 
         public Dictionary<string, List<CheatItemControlData>> CheatItemControlProcessing()
         {
             // TODO:
-            return null;
+            foreach(var cheatItemData in _cheatServiceSettings.CheatItems)
+            {
+                if(_cheatItems.ContainsKey(cheatItemData.Name)) continue;
+
+                _cheatItems.Add(cheatItemData.Name, new List<CheatItemControlData>(){});
+            }
+            return _cheatItems;
         }
     }
-
-
 }

@@ -7,5 +7,8 @@ namespace Constants
 
         // Quests.
         public static string QuestItemViewPool = "QuestItemViewPool";
+
+        // Cheats.
+         public static string CheatItemViewPool = "CheatItemViewPool";
     }
 }

@@ -21,3 +21,7 @@ MonoBehaviour:
     Name: QuestItemViewPool
     InitialSize: 4
     MaxPoolSize: 6
+  - Id: CheatItemViewPool
+    Name: CheatItemViewPool
+    InitialSize: 4
+    MaxPoolSize: 6

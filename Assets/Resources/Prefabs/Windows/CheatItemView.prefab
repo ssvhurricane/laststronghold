@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 10
+  CheatText: {fileID: 5571946100699103807}
 --- !u!1 &3585420301428031226
 GameObject:
   m_ObjectHideFlags: 0
