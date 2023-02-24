@@ -1,4 +1,5 @@
 using Config;
+using Data;
 using Data.Settings;
 using System.Linq;
 using UnityEngine;
@@ -29,6 +30,8 @@ namespace Bootstrap
         [SerializeField] protected QuestsSettingsRegistry QuestsSettingsRegistry;
 
         [SerializeField] protected LocalizationServiceSettingsRegistry LocalizationServiceSettingsRegistry;
+
+         [SerializeField] protected CheatServiceSettingsRegistry CheatServiceSettingsRegistry;
 
         //[Header("GameplaySettings")] TODO:
 
@@ -70,6 +73,8 @@ namespace Bootstrap
             InstallRegistry(QuestsSettingsRegistry);
 
             InstallRegistry(LocalizationServiceSettingsRegistry);
+
+            InstallRegistry(CheatServiceSettingsRegistry);
         }
         private void InstallListSettings()
         {
@@ -124,6 +129,8 @@ namespace Bootstrap
             Container.Bind<LocalizationServiceSettings[]>()
                 .FromInstance(LocalizationServiceSettingsRegistry.GetItems().ToArray())
                 .AsSingle();
+
+             InstallRegistryData<CheatServiceSettings>(CheatServiceSettingsRegistry);
         }
 
         private void InstallRegistry<TRegistry>(TRegistry registry)

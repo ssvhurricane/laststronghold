@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Cheat",
+                    "type": "Button",
+                    "id": "cfff7568-88f5-43a9-a98c-50b219204be5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "QuestMenu",
                     "type": "Button",
                     "id": "bda8aaf0-a090-4ca0-925d-41f76d5c6332",
@@ -221,6 +230,17 @@
                     "processors": "",
                     "groups": "Mouse and Keyboard",
                     "action": "QuestMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc2754a2-6182-47ea-933d-acebe9ba0738",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "Cheat",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

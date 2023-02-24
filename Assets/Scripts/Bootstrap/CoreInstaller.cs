@@ -15,6 +15,7 @@ using Services.Pool;
 using Services.Log;
 using Services.Localization;
 using Services.SaveData;
+using Services.Cheat;
 
 namespace Bootstrap
 {
@@ -72,6 +73,8 @@ namespace Bootstrap
             Container.InstallElementAsSingle<LocalizationService>(); 
             
             Container.InstallElementAsSingle<SaveDataService>();
+
+            Container.InstallElementAsSingle<CheatService>();
         }
       
         private void InstallAnimations()

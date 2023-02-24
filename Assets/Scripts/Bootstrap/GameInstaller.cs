@@ -41,6 +41,7 @@ namespace Bootstrap
             // Window Presenters.
             Container.InstallElementAsSingle<MainHUDPresenter>();
             Container.InstallElementAsSingle<PauseMenuPresenter>();
+            Container.InstallElementAsSingle<CheatMenuPresenter>();
             Container.InstallElementAsSingle<QuestsPresenter>();
 
             // View Presenters.

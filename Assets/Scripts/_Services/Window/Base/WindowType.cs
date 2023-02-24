@@ -11,6 +11,7 @@ namespace Services.Window
        QuestWindow,
        TutorialItem,
        AbilityItem,
-       QuestItem
+       QuestItem,
+       CheatItem
     }
 }

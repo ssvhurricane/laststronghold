@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace Config
+namespace Data
 {
     public interface IRegistry
     {
