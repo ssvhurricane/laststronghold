@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Data.Settings;
 using Zenject;
@@ -31,6 +32,16 @@ namespace Services.Cheat
                 _cheatItems.Add(cheatItemData.Name, new List<CheatItemControlData>(){});
             }
             return _cheatItems;
+        }
+
+        public void AddCheatItemControl<TParam>(Action<TParam> initer) where TParam : CheatItemControl
+        {
+
+        }
+
+        public void AddCheatItemPopUp<TParam>() where TParam : CheatItemControl
+        {
+            
         }
     }
 }

@@ -77,8 +77,7 @@ namespace Presenters.Window
                 Services.Log.LogType.Message,
                 "Call Constructor Method.", 
                 LogOutputLocationType.Console);
-                
-              _poolService.InitPool(PoolServiceConstants.CheatItemViewPool);
+            
         }
 
         public void ShowView()
@@ -126,9 +125,28 @@ namespace Presenters.Window
             if (_cheatItems != null && _cheatItems.Count != 0)
                 foreach(var cheatItem in _cheatItems)
                 {
+                    _poolService.InitPool(PoolServiceConstants.CheatItemViewPool);
+
+                    // Create Menu Items. 
                       var cheatItemView = (CheatItemView)_poolService.Spawn<CheatItemView>(_cheatSettingsView.GetLeftContainer().transform);
-                      
                       cheatItemView.GetCheatText().text = cheatItem.Key;
+
+                    _poolService.InitPool(PoolServiceConstants.CheatItemDetailViewPool);
+                    // Create details with inside items.
+                    var cheatDetailView = (CheatItemDetailView) _poolService.Spawn<CheatItemDetailView>(_cheatSettingsView.GetRightcontainer().transform);
+
+                     if(cheatItem.Key == "General")
+                     {
+                        cheatDetailView.gameObject.SetActive(true);
+
+                        cheatDetailView.ToggleActive(true);
+                     }
+                     else
+                     {
+                        cheatDetailView.gameObject.SetActive(false);
+
+                        cheatDetailView.ToggleActive(false);
+                     }
                 }
         }
 

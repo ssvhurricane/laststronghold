@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 2426399694822409333}
   - component: {fileID: 7063986131840042603}
   - component: {fileID: 3397561533496057772}
-  - component: {fileID: 3395612365164317318}
+  - component: {fileID: 1695972378155055449}
   m_Layer: 5
   m_Name: CheatItemDetailView
   m_TagString: Untagged
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &3395612365164317318
+--- !u!114 &1695972378155055449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8886311386002117529}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e8469f06c2a24f709cbca9872ba854f, type: 3}
+  m_Script: {fileID: 11500000, guid: da2d50e5921ce4d40ac4cfa7894c1298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 10

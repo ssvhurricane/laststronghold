@@ -1,10 +1,11 @@
 using Services.Window;
 using UnityEngine;
+using View.Window;
 using Zenject;
 
-namespace View.Window
+namespace Services.Cheat
 {
-    public class CheatDetailView : WindowItem
+    public abstract class CheatItemControl : WindowItem 
     {
         [SerializeField] protected WindowType Type;
             

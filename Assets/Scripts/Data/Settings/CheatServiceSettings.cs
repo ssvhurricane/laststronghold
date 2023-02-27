@@ -3,23 +3,12 @@ using System;
 namespace Data.Settings
 {
     [Serializable]
-    public class CheatItem
+    public class CheatMenuItem
     { 
         public int Id;
 
         public string Name;
-        public  CheatItemControl[] CheatItemControls;
     }
-
-    [Serializable]
-    public class CheatItemControl
-    {
-        // TODO:
-        public int Id;
-
-        public string Name;
-    }
-
     [Serializable]
     public class CheatServiceSettings : IRegistryData
     {
@@ -27,7 +16,7 @@ namespace Data.Settings
 
         public bool Enable;
 
-        public CheatItem[] CheatItems;
+        public CheatMenuItem[] CheatItems;
 
         string IRegistryData.Id => Id;
     }

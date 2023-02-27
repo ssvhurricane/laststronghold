@@ -6,6 +6,9 @@ using Zenject;
 using Model;
 using System.Linq;
 using Services.Log;
+using Services.Cheat;
+using static Signals.QuestServiceSignals;
+using Signals;
 
 namespace Services.Quest
 {
@@ -18,6 +21,7 @@ namespace Services.Quest
         private readonly QuestsSettings[] _questsSettings;
         private readonly ISceneService _sceneService;
         private readonly LogService _logService; 
+        private readonly CheatService _cheatService;
         private readonly QuestModel _questModel;
         private readonly DiContainer _diContainer; //TODO:ref
 
@@ -27,6 +31,7 @@ namespace Services.Quest
                             QuestsSettings[] questsSettings,
                             ISceneService sceneService, 
                             LogService logService,
+                            CheatService cheatService,
                             QuestModel questModel,
                             DiContainer diContainer)
         {
@@ -40,6 +45,8 @@ namespace Services.Quest
 
             _logService = logService;
 
+            _cheatService = cheatService;
+
             _questModel = questModel;
 
             _diContainer = diContainer;
@@ -49,6 +56,8 @@ namespace Services.Quest
             _questsThreads = new Dictionary<int, List<Data.Settings.Quest>>();
 
             LoadRegistryData();
+
+              AddCheats(_quests);
         }
 
         public void InitializeFlow(Flow flow)
@@ -266,5 +275,98 @@ namespace Services.Quest
                 }
             }
          }
+
+          private void AddCheats(List<QuestBase> quests)
+          {
+                _cheatService.AddCheatItemControl<CheatButtonDropdownControl>(button => button
+               .SetDropdownOptions(new List<string>() 
+               {
+                   "Activate",
+                   "Get",
+                   "Collect",
+                   "Build",
+                   "Destroy",
+                   "Kill",
+                   "Assign",
+                   "Upgrade"
+               })
+               .SetButtonName("Select Quest Event and press call:")
+               .SetButtonCallback(() =>
+               {
+                   switch (button.CurIndex) 
+                   {
+                       case 0: 
+                           {
+                            // TODO:
+                               _signalBus.Fire(new QuestServiceSignals.OnQuestActivateEvent(1));
+                             
+                               break;
+                           }
+                       case 1: 
+                           {
+                                _signalBus.Fire(new QuestServiceSignals.OnQuestGetEvent(1));
+                               break;
+                           }
+                       case 2:
+                           {
+                                _signalBus.Fire(new QuestServiceSignals.OnQuestCollectEvent(1));
+
+                               break;
+                           }
+                       case 3:
+                           {
+                               _signalBus.Fire(new QuestServiceSignals.OnQuestBuildEvent(1));
+
+                            break; 
+                           }
+                       case 4: 
+                           {
+                               _signalBus.Fire(new QuestServiceSignals.OnQuestDestroyEvent(1));
+                               break;
+                           }
+                       case 5: 
+                           {
+                               _signalBus.Fire(new QuestServiceSignals.OnQuestKillEvent(1));
+                               break; 
+                           }
+                       case 6: 
+                           {
+                               _signalBus.Fire(new QuestServiceSignals.OnQuestAssignEvent(1));
+
+                               break;
+                           }
+                       case 7:
+                           {
+                               _signalBus.Fire(new QuestServiceSignals.OnQuestUpgradeEvent(1));
+
+                               break;
+                           }
+                   }
+               }));
+
+            _cheatService.AddCheatItemControl<CheatButtonControl>(button => button
+                .SetButtonName("Win Cur Zone")
+                .SetButtonCallback(() =>
+                {
+                    try
+                    {
+                        ClearActiveQuests();
+
+                        //new OnAllQuestsInFlowCompleteEvent().Invoke();
+                    }
+                    catch {}
+                  
+                }));
+
+            _cheatService.AddCheatItemControl<CheatButtonControl>(button => button
+             .SetButtonName("Complete Quests")
+            .SetButtonCallback(() =>
+            {
+                foreach (var quest in _quests)
+                {
+                    ForceCompleteQuest(quest);
+                }
+            }));
+          }
     }
 }
