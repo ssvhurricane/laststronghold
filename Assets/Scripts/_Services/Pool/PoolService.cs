@@ -1,4 +1,5 @@
 using Data.Settings;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using View;
@@ -13,7 +14,8 @@ namespace Services.Pool
         private ViewPool _viewPool;
 
         private PoolServiceSettings[] _poolServiceSettings;
-        private PoolServiceSettings _settings;
+       
+       private List<PoolData> _poolDatas;
 
         public PoolService(SignalBus signalBus,
             ViewPool viewPool,
@@ -24,18 +26,46 @@ namespace Services.Pool
             _poolServiceSettings = poolServiceSettings;
 
             _viewPool = viewPool;
+
+            _poolDatas = new List<PoolData>();
         }
 
         public void InitPool(string settingsId)
         {
-            _settings = _poolServiceSettings.FirstOrDefault(item => item.Id == settingsId);
+            var settings = _poolServiceSettings.FirstOrDefault(item => item.Id == settingsId);
+
+            if (_poolDatas.Any(item  => item.Id == settings.Id || item.Name == settings.Name)) return;
+
+            _poolDatas.Add(new PoolData()
+            {
+                Id = settings.Id,
+                Name = settings.Name,
+                InitialSize = settings.InitialSize,
+                MaxSize = settings.MaxPoolSize
+             });
         }
 
-        public TView Spawn<TView>(Transform parentTransform) where TView : IView
+        public void InitPool(PoolData poolData)
         {
-            if (_settings != null)
+             if (_poolDatas.Any(item  => item.Id == poolData.Id || item.Name == poolData.Name)) return;
+
+             _poolDatas.Add(poolData);
+        }
+
+        public List<PoolData> GetPoolDatas()
+        {
+            return _poolDatas;
+        }
+
+        public TView Spawn<TView>(Transform parentTransform, string poolDataName) where TView : IView
+        {
+            if (_poolDatas != null && _poolDatas.Count() != 0)
             {
-                _viewPool.InitViewPool(_settings.InitialSize, _settings.MaxPoolSize);
+                var data =_poolDatas.FirstOrDefault(poolData => poolData.Name == poolDataName);
+
+                if(data == null) return default(TView);
+
+                _viewPool.InitViewPool(data.InitialSize, data.MaxSize);
                 _viewPool.SetParent(parentTransform);
 
                 return _viewPool.Spawn<TView>();
@@ -69,6 +99,32 @@ namespace Services.Pool
         public void ClearServiceValues() 
         {
             Despose(_viewPool);
+        }
+    }
+
+    public class PoolData
+    {
+        public string Id { get; set; }
+
+        public string Name { get; set; }
+
+        public int InitialSize { get; set; }
+
+        public int MaxSize { get; set; }
+
+        public PoolData (string id, string name, int initialSize, int maxSize)
+        {
+            Id = id;
+
+            Name = name;
+
+            InitialSize = initialSize;
+
+            MaxSize = maxSize;
+        }
+
+        public PoolData()
+        {
         }
     }
 }

@@ -16,6 +16,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using View.Window;
 using Zenject;
+using Signals;
 
 namespace Presenters.Window
 {
@@ -77,7 +78,39 @@ namespace Presenters.Window
                 Services.Log.LogType.Message,
                 "Call Constructor Method.", 
                 LogOutputLocationType.Console);
-            
+
+             _signalBus.Subscribe<CheatServiceSignals.ActivateCheatItemView>(signal =>
+              {
+                    var data = _poolService.GetPoolDatas();
+                    if (data == null && _poolService == null) return;
+
+                    if(_poolService.GetPoolDatas().Any(data => data.Name == PoolServiceConstants.CheatItemViewPool))
+                    {
+                        var poolCheatItemViews = _poolService.GetPool().GetViewPoolItems().Where(poolItem => poolItem as CheatItemView);
+
+                        foreach(var poolCheatItemView in poolCheatItemViews)
+                        {
+                          if((poolCheatItemView as CheatItemView).GetCheatText().text == signal.Name)
+                          {
+                                // TODO: set color, anim ,etc
+                          }
+                          else
+                          {
+
+                          }
+                        } 
+
+                        var poolCheatItemDetailViews = _poolService.GetPool().GetViewPoolItems().Where(poolItem => poolItem as CheatItemDetailView);
+
+                        foreach(var poolCheatItemDetailView in poolCheatItemDetailViews)
+                        {
+                          if((poolCheatItemDetailView as CheatItemDetailView).GetCheatDetailText().text == signal.Name)
+                                poolCheatItemDetailView.GetGameObject().SetActive(true);
+                          else
+                                poolCheatItemDetailView.GetGameObject().SetActive(false);
+                        } 
+                    }
+              });
         }
 
         public void ShowView()
@@ -119,21 +152,46 @@ namespace Presenters.Window
 
         private void CreateCheatItems()
         {
-             // TODO:
             _cheatItems = _cheatService.CheatItemControlProcessing();
 
-            if (_cheatItems != null && _cheatItems.Count != 0)
+            if (_cheatItems != null 
+                    && _cheatItems.Count != 0
+                    && !_poolService.GetPoolDatas().Any(data => data.Name == PoolServiceConstants.CheatItemViewPool || data.Name == PoolServiceConstants.CheatItemDetailViewPool))
+               
                 foreach(var cheatItem in _cheatItems)
                 {
-                    _poolService.InitPool(PoolServiceConstants.CheatItemViewPool);
+                    _poolService.InitPool(new PoolData()
+                    {
+                        Id = PoolServiceConstants.CheatItemViewPool,
+
+                        Name = PoolServiceConstants.CheatItemViewPool,
+
+                        InitialSize = _cheatItems.Count(),
+
+                        MaxSize = _cheatItems.Count()
+                    });
 
                     // Create Menu Items. 
-                      var cheatItemView = (CheatItemView)_poolService.Spawn<CheatItemView>(_cheatSettingsView.GetLeftContainer().transform);
+                      var cheatItemView = (CheatItemView)_poolService.Spawn<CheatItemView>(_cheatSettingsView.GetLeftContainer().transform, 
+                                                                                                            PoolServiceConstants.CheatItemViewPool);
                       cheatItemView.GetCheatText().text = cheatItem.Key;
 
-                    _poolService.InitPool(PoolServiceConstants.CheatItemDetailViewPool);
+                    _poolService.InitPool(new PoolData()
+                    {
+                        Id = PoolServiceConstants.CheatItemDetailViewPool,
+
+                        Name = PoolServiceConstants.CheatItemDetailViewPool,
+
+                        InitialSize = _cheatItems.Count(),
+
+                        MaxSize = _cheatItems.Count()
+                    });
+                   
                     // Create details with inside items.
-                    var cheatDetailView = (CheatItemDetailView) _poolService.Spawn<CheatItemDetailView>(_cheatSettingsView.GetRightcontainer().transform);
+                    var cheatDetailView = (CheatItemDetailView) _poolService.Spawn<CheatItemDetailView>(_cheatSettingsView.GetRightcontainer().transform, 
+                                                                                                                            PoolServiceConstants.CheatItemViewPool);
+
+                    cheatDetailView.GetCheatDetailText().text = cheatItem.Key;
 
                      if(cheatItem.Key == "General")
                      {

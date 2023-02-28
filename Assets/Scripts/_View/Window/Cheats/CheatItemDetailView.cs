@@ -1,5 +1,6 @@
 using Services.Window;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace View.Window
@@ -7,6 +8,8 @@ namespace View.Window
     public class CheatItemDetailView : WindowItem
     {
         [SerializeField] protected WindowType Type;
+
+        [SerializeField] protected Text CheatDetailText;
             
         private SignalBus _signalBus;
 
@@ -23,6 +26,11 @@ namespace View.Window
         public void ToggleActive(bool isActive)
         {
             _isActive = isActive;
+        }
+
+         public Text GetCheatDetailText()
+        {
+            return CheatDetailText;
         }
     }
 }

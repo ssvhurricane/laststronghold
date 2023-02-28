@@ -1,4 +1,5 @@
 using Services.Window;
+using Signals;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -23,6 +24,13 @@ namespace View.Window
             _signalBus = signalBus;
 
             WindowType = Type;
+
+            CheatMenubutton.onClick.AddListener(OnActivate);
+        }
+
+        private void OnActivate()
+        {
+            _signalBus.Fire(new CheatServiceSignals.ActivateCheatItemView(CheatText.text));
         }
 
         public Text GetCheatText()

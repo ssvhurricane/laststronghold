@@ -110,7 +110,7 @@ namespace Presenters
             
             foreach(var questSaveData in _questModel.GetPlayerQuestContainer().QuestSaves)
             {
-                var questItemView = (QuestItemView)_poolService.Spawn<QuestItemView>(questContainerView.GetQuestContainer().transform);
+                var questItemView = (QuestItemView)_poolService.Spawn<QuestItemView>(questContainerView.GetQuestContainer().transform, PoolServiceConstants.QuestItemViewPool);
 
                 questItemView.UpdateView(new QuestItemViewArgs()
                 {

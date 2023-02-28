@@ -401,7 +401,8 @@ namespace Services.Input
             for (var item = 0; item < _playerAbilities.Count(); item++) 
             {
                  playerAbilityItemView
-                    = (PlayerAbilityItemView)_poolService.Spawn<PlayerAbilityItemView>(_mainHudView.GetVerticalAbilityPanel().transform);
+                    = (PlayerAbilityItemView)_poolService.Spawn<PlayerAbilityItemView>(_mainHudView.GetVerticalAbilityPanel().transform, 
+                                                                                                PoolServiceConstants.PlayerAbilityItemViewPool);
 
                  playerAbilityItemView._image.sprite = _playerAbilities.ToList()[item].Icon;
 

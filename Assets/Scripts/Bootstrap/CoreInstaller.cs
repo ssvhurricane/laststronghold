@@ -123,6 +123,9 @@ namespace Bootstrap
             Container.DeclareSignal<QuestServiceSignals.OnQuestGetEvent>();
             Container.DeclareSignal<QuestServiceSignals.OnQuestKillEvent>();
             Container.DeclareSignal<QuestServiceSignals.OnQuestUpgradeEvent>();
+
+            // Cheats Signals.
+            Container.DeclareSignal<CheatServiceSignals.ActivateCheatItemView>();
         }
 
        public void InstallModels()
