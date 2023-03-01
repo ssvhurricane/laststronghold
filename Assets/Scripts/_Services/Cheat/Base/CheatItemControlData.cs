@@ -8,11 +8,11 @@ namespace Services.Cheat
        public string Name { get; set; }
 
        public Type CheatItemType { get; set; }
-       public Action<Type> CheatAction {get ; set; }
+       public object CheatAction {get ; set; }
 
        public CheatItemControlData(){}
 
-       public CheatItemControlData(string id, string name, Type cheatItemType, Action<Type> cheatAction)
+       public CheatItemControlData(string id, string name, Type cheatItemType, object cheatAction)
        {
             Id = id;
 

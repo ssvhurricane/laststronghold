@@ -50,7 +50,7 @@ namespace Services.Cheat
                     Id = cheatItemName,
                     Name = cheatItemName,
                     CheatItemType = typeof(TParam),
-                    CheatAction =  null
+                    CheatAction = initer
                 };
 
                 _cheatItems[cheatItemName].Add(data);

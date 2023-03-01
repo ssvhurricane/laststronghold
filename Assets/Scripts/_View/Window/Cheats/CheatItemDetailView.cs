@@ -10,6 +10,8 @@ namespace View.Window
         [SerializeField] protected WindowType Type;
 
         [SerializeField] protected Text CheatDetailText;
+
+        [SerializeField] protected GameObject Container;
             
         private SignalBus _signalBus;
 
@@ -28,9 +30,14 @@ namespace View.Window
             _isActive = isActive;
         }
 
-         public Text GetCheatDetailText()
+        public Text GetCheatDetailText()
         {
             return CheatDetailText;
+        }
+
+        public GameObject GetContainer()
+        {
+            return Container;
         }
     }
 }

@@ -17,6 +17,7 @@ using UnityEngine.UI;
 using View.Window;
 using Zenject;
 using Signals;
+using System;
 
 namespace Presenters.Window
 {
@@ -206,9 +207,20 @@ namespace Presenters.Window
                         cheatDetailView.ToggleActive(false);
                      }
 
-                     foreach(var val in cheatItem.Value)
+                     foreach(var itemData in cheatItem.Value)
                      {
-                        // TODO:
+                        if (itemData.CheatItemType == typeof(CheatButtonControl))
+                        {
+                            var cheatButtonView = _factoryService.Spawn<CheatButtonControl>(cheatDetailView.GetContainer().transform);
+
+                           (itemData.CheatAction as Action<CheatButtonControl>).Invoke(cheatButtonView);
+                        }           
+                        else if(itemData.CheatItemType == typeof(CheatButtonDropdownControl))
+                        {
+                            var cheatButtonDropdownView = _factoryService.Spawn<CheatButtonDropdownControl>(cheatDetailView.GetContainer().transform);
+
+                            (itemData.CheatAction as Action<CheatButtonDropdownControl>).Invoke(cheatButtonDropdownView);
+                        }
                      }
                 }
         }
