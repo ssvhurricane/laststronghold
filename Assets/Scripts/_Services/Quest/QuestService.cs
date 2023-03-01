@@ -9,6 +9,7 @@ using Services.Log;
 using Services.Cheat;
 using static Signals.QuestServiceSignals;
 using Signals;
+using Constants;
 
 namespace Services.Quest
 {
@@ -342,7 +343,7 @@ namespace Services.Quest
                                break;
                            }
                    }
-               }));
+               }), CheatServiceConstants.Quests);
 
             _cheatService.AddCheatItemControl<CheatButtonControl>(button => button
                 .SetButtonName("Win Cur Zone")
@@ -356,7 +357,7 @@ namespace Services.Quest
                     }
                     catch {}
                   
-                }));
+                }), CheatServiceConstants.Quests);
 
             _cheatService.AddCheatItemControl<CheatButtonControl>(button => button
              .SetButtonName("Complete Quests")
@@ -366,7 +367,7 @@ namespace Services.Quest
                 {
                     ForceCompleteQuest(quest);
                 }
-            }));
+            }), CheatServiceConstants.Quests);
           }
     }
 }

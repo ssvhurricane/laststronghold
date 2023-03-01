@@ -20,11 +20,12 @@ namespace Services.Cheat
             _cheatServiceSettings = cheatServiceSettings;
 
             _cheatItems = new Dictionary<string, List<CheatItemControlData>>();
+
+            CheatItemControlProcessing();
         }
 
-        public Dictionary<string, List<CheatItemControlData>> CheatItemControlProcessing()
+        private Dictionary<string, List<CheatItemControlData>> CheatItemControlProcessing()
         {
-            // TODO:
             foreach(var cheatItemData in _cheatServiceSettings.CheatItems)
             {
                 if(_cheatItems.ContainsKey(cheatItemData.Name)) continue;
@@ -34,9 +35,26 @@ namespace Services.Cheat
             return _cheatItems;
         }
 
-        public void AddCheatItemControl<TParam>(Action<TParam> initer) where TParam : CheatItemControl
+        public Dictionary<string, List<CheatItemControlData>> GetCheatItems()
         {
+            return _cheatItems;
+        }
 
+        public void AddCheatItemControl<TParam>(Action<TParam> initer, string cheatItemName) where TParam : CheatItemControl
+        {
+            if(_cheatItems != null && _cheatItems.Count != 0 && _cheatItems.ContainsKey(cheatItemName))
+            {
+                // TODO:
+                var data = new CheatItemControlData()
+                {
+                    Id = cheatItemName,
+                    Name = cheatItemName,
+                    CheatItemType = typeof(TParam),
+                    CheatAction =  null
+                };
+
+                _cheatItems[cheatItemName].Add(data);
+            }
         }
 
         public void AddCheatItemPopUp<TParam>() where TParam : CheatItemControl

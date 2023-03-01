@@ -152,7 +152,7 @@ namespace Presenters.Window
 
         private void CreateCheatItems()
         {
-            _cheatItems = _cheatService.CheatItemControlProcessing();
+            _cheatItems = _cheatService.GetCheatItems();
 
             if (_cheatItems != null 
                     && _cheatItems.Count != 0
@@ -204,6 +204,11 @@ namespace Presenters.Window
                         cheatDetailView.gameObject.SetActive(false);
 
                         cheatDetailView.ToggleActive(false);
+                     }
+
+                     foreach(var val in cheatItem.Value)
+                     {
+                        // TODO:
                      }
                 }
         }
