@@ -1,24 +1,22 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using Services.Project;
-using Services.SaveData;
 using Zenject;
+using System.Linq;
 
 namespace Model
 {
     public class ProjectModel 
     {
         private readonly SignalBus _signalBus;
-        private readonly SaveDataService _saveDataService;
-        
+      
         private List<IModel> _projectModels;
        
         private ProjectSaveData _projectData;
 
-        public ProjectModel(SignalBus signalBus, SaveDataService saveDataService)
+        public ProjectModel(SignalBus signalBus)
         {
             _signalBus = signalBus;
-
-            _saveDataService = saveDataService;
 
             _projectModels = new List<IModel>();
 
@@ -37,28 +35,36 @@ namespace Model
 
         public void AddModel(IModel model)
         {
-            // TODO:
+            if (_projectModels.Any(modelItem => modelItem.Id == model.Id)) return;
+
+            _projectModels.Add(model);
         }
 
         public void RemoveModel(IModel model)
         {
-            // TODO:
+            var modelRemove = _projectModels.FirstOrDefault(modelItem => modelItem.Id == model.Id);
+
+            _projectModels.Remove(modelRemove);
         }
 
         public void RemoveAllModels()
         {
-            // TODO:
+            _projectModels?.Clear();
         }
 
-        public void SerializeProject()
+        public string SerializeProject(ProjectModel projectModel)
         {
-            // TODO:
+            return JsonConvert.SerializeObject(projectModel);
         }
 
-        public void DesirializeProject()
+        public ProjectModel DesirializeProject(string projectModel)
         {
-            // TODO:
+            return JsonConvert.DeserializeObject<ProjectModel>(projectModel);
         }
 
+        public ProjectModel GetCurrentModel()
+        {
+            return this;
+        }
     }
 }

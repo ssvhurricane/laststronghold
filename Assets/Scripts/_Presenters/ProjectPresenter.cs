@@ -147,7 +147,7 @@ namespace Presenters
         public async UniTask InputSystemAsync()
         {
             _inputService.TakePossessionOfObject(_playerPresenter);
-
+           
             await UniTask.Yield();
         }
 

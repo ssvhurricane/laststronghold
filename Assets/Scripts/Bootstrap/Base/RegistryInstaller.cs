@@ -27,6 +27,8 @@ namespace Bootstrap
         [SerializeField] protected AreaServiceSettingsRegistry AreaServiceSettingsRegistry;
 
         [SerializeField] protected QuestServiceSettingsRegistry QuestServiceSettingsRegistry;
+
+         [SerializeField] protected SaveDataServiceSettingsRegistry SaveDataServiceSettingsRegistry;
         [SerializeField] protected QuestsSettingsRegistry QuestsSettingsRegistry;
 
         [SerializeField] protected LocalizationServiceSettingsRegistry LocalizationServiceSettingsRegistry;
@@ -75,6 +77,8 @@ namespace Bootstrap
             InstallRegistry(LocalizationServiceSettingsRegistry);
 
             InstallRegistry(CheatServiceSettingsRegistry);
+
+             InstallRegistry(SaveDataServiceSettingsRegistry);
         }
         private void InstallListSettings()
         {
@@ -130,7 +134,9 @@ namespace Bootstrap
                 .FromInstance(LocalizationServiceSettingsRegistry.GetItems().ToArray())
                 .AsSingle();
 
-             InstallRegistryData<CheatServiceSettings>(CheatServiceSettingsRegistry);
+            InstallRegistryData<CheatServiceSettings>(CheatServiceSettingsRegistry);
+
+            InstallRegistryData<SaveDataServiceSettings>(SaveDataServiceSettingsRegistry);
         }
 
         private void InstallRegistry<TRegistry>(TRegistry registry)

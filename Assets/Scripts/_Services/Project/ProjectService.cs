@@ -1,6 +1,7 @@
 using Data.Settings;
 using Model;
 using Services.Log;
+using Services.SaveData;
 using UnityEngine;
 using Zenject;
 
@@ -15,13 +16,16 @@ namespace Services.Project
         private readonly QuestServiceSettings _questServiceSettings;
         private readonly ProjectServiceSettings _projectServiceSettings;
 
+        private readonly SaveDataService _saveDataService;
+
         private ProjectState _projectState;
         public ProjectService(SignalBus signalBus,
             LogService logService,
             QuestModel questModel,
             ProjectModel projectModel,
             QuestServiceSettings questServiceSettings,
-            ProjectServiceSettings projectServiceSettings)
+            ProjectServiceSettings projectServiceSettings,
+            SaveDataService saveDataService)
         {
             _signalBus = signalBus;
 
@@ -34,12 +38,37 @@ namespace Services.Project
 
             _projectServiceSettings = projectServiceSettings;
 
+            _saveDataService = saveDataService;
+
             _projectState = ProjectState.Stop;
         }
 
         public void Configurate()
         {
            // TODO:
+           //1. Load save data 
+         
+            var projectStringModel = _projectModel.SerializeProject(_projectModel);
+
+           _saveDataService.SaveData(projectStringModel);
+
+            _logService.ShowLog(GetType().Name,
+                                Services.Log.LogType.Message,
+                                "SerializeProject:" + projectStringModel,
+                                LogOutputLocationType.Console);
+
+           if(!string.IsNullOrEmpty(_saveDataService.GetData()))
+           {
+              var projectModel = _projectModel.DesirializeProject(_saveDataService.GetData());
+
+              _logService.ShowLog(GetType().Name,
+                                Services.Log.LogType.Message,
+                                "DesirializeProject:" +  projectModel,
+                                LogOutputLocationType.Console);
+
+           }
+
+           //2. Update Project Model
         }
 
         public ProjectType GetProjectType() 

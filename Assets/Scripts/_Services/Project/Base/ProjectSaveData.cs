@@ -18,6 +18,8 @@ namespace Services.Project
 
          public int QuestFlowId {get; set; }
 
-        public GameSettingsSaveData GameSettingsSaveData { get; set; }
+         public GameSettingsSaveData GameSettingsSaveData { get; set; }
+
+         public ProjectSaveData(){}
     }
 }

@@ -26,6 +26,7 @@ MonoBehaviour:
   LogServiceSettingsRegistry: {fileID: 11400000, guid: c359b8d105152d84b870ccc965627404, type: 2}
   AreaServiceSettingsRegistry: {fileID: 11400000, guid: 169b49b010968448ea43e6461f7e34c8, type: 2}
   QuestServiceSettingsRegistry: {fileID: 11400000, guid: 6af68027ca0cd4a0f8de2e50e82c4f68, type: 2}
+  SaveDataServiceSettingsRegistry: {fileID: 11400000, guid: daa03417a12d6460eb87f04697b33aba, type: 2}
   QuestsSettingsRegistry: {fileID: 11400000, guid: ecf53c15179fe4b56805b97635b505aa, type: 2}
   LocalizationServiceSettingsRegistry: {fileID: 11400000, guid: c8d12105791ba42d1bb04e541818ffcc, type: 2}
   CheatServiceSettingsRegistry: {fileID: 11400000, guid: 40f32659887ad4995ae55133265e1544, type: 2}

@@ -49,7 +49,9 @@ namespace Bootstrap
         void InitExecutionOrder() { }
        
         private void BindServices()
-        {
+        { 
+            Container.InstallElementAsSingle<SaveDataService>();
+
             Container.InstallElementAsSingle<ProjectService>();
 
             Container.Bind<ISceneService>().To<SceneService>().AsSingle();
@@ -71,8 +73,6 @@ namespace Bootstrap
             Container.InstallElementAsSingle<LogService>();
 
             Container.InstallElementAsSingle<LocalizationService>(); 
-            
-            Container.InstallElementAsSingle<SaveDataService>();
 
             Container.InstallElementAsSingle<CheatService>();
         }

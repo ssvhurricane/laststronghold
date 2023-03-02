@@ -44,7 +44,6 @@ namespace Services.Cheat
         {
             if(_cheatItems != null && _cheatItems.Count != 0 && _cheatItems.ContainsKey(cheatItemName))
             {
-                // TODO:
                 var data = new CheatItemControlData()
                 {
                     Id = cheatItemName,
@@ -59,7 +58,7 @@ namespace Services.Cheat
 
         public void AddCheatItemPopUp<TParam>() where TParam : CheatItemControl
         {
-            
+            // TODO:
         }
     }
 }
