@@ -52,7 +52,7 @@ namespace Services.Localization
 
             _translatedTexts =  new Dictionary<string, Text>();
 
-            CurrentLanguage = _projectModel.GetProjectSaveData().GameSettingsSaveData.ChoosenLanguage;
+            CurrentLanguage = _projectModel.GetProjectSaveDataAsReactive().Value.GameSettingsSaveData.ChoosenLanguage;
             
             if (CurrentLanguage == Language.Undefined)
             {

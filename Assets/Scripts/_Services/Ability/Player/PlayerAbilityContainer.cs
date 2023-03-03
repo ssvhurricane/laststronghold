@@ -9,7 +9,5 @@ namespace Services.Ability
         {
             abilities = new List<IAbility>();
         }
-
-       
     }
 }

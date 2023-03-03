@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using Services.Pool;
 using Constants;
 using Services.Project;
+using UniRx;
 
 namespace Presenters
 {
@@ -62,7 +63,7 @@ namespace Presenters
             _questsSettings = questsSettings;
             _questModel = questModel;
 
-            _questModel.GetPlayerQuestContainer().QuestSaves.CollectionChanged += QuestCollectionChanged;
+           // _questModel.GetPlayerQuestContainer().QuestSaves.CollectionChanged += QuestCollectionChanged;
 
             _questItemViews = new List<QuestItemView>();
 
@@ -129,9 +130,9 @@ namespace Presenters
           // questContainerView.AttachView(_questItemViews);
         }
 
-        public void InitializeQuests(ref ProjectSaveData projectSaveData)
+        public void InitializeQuests(ReactiveProperty<ProjectSaveData> projectSaveData)
         {
-            _currentFlow = projectSaveData.QuestFlowId;
+            _currentFlow = projectSaveData.Value.QuestFlowId;
             
             _questService.InitializeFlow(_questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == _currentFlow));
         }

@@ -97,8 +97,6 @@ namespace Presenters
         public void Initialize()
         {
             // Entry point. 
-            _projectService.Configurate();
-
             _inputService?.ClearServiceValues();
 
             _mainMenuPresenter.ShowView(_projectService.GetProjectType());
@@ -116,7 +114,9 @@ namespace Presenters
         private async void CreateGame()
         {
             if (_projectService.GetProjectType() == ProjectType.Offline)
-            { 
+            {  
+                await InitializeGameData();
+
                 await QuestSystemAsync();
 
                 await HUDPresenterAsync();
@@ -133,6 +133,12 @@ namespace Presenters
         public async UniTask HUDPresenterAsync()
         {
             _mainHUDPresenter.ShowView();
+
+            await UniTask.Yield();
+        }
+        public async UniTask InitializeGameData()
+        {
+            _projectService.Initialize();
 
             await UniTask.Yield();
         }
@@ -153,9 +159,9 @@ namespace Presenters
 
         public async UniTask QuestSystemAsync()
         {
-            var data =_projectModel.GetProjectSaveData();
+            var data =_projectModel.GetProjectSaveDataAsReactive();
             
-            _questsPresenter.InitializeQuests(ref data);
+            _questsPresenter.InitializeQuests(data);
 
             _questsPresenter.ShowView();
             

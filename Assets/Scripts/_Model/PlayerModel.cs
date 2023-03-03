@@ -1,38 +1,58 @@
 using Data.Settings;
 using Model.Inventory;
+using Newtonsoft.Json;
 using Services.Ability;
 using Services.Item;
-using Services.Quest;
+using UniRx;
 
 namespace Model
 {
-    // TODO: save and serialize model.
     public class PlayerModel : ILiveModel
     {
-        public string Id => _settings.Id;
-
+        [JsonProperty]
+        public string Id { get; set; } = "PlayerModel";
+        
+        [JsonProperty]
         public ModelType ModelType { get; set; }
+        
+        [JsonProperty]
+        private ReactiveProperty<PlayerAbilityContainer> _playerAbilityContainer;
 
+        [JsonProperty]
+        private ReactiveProperty <PlayerInventoryContainer> _playerInventoryContainer;
+
+        [JsonIgnore]
         private readonly PlayerSettings _settings;
-        private PlayerAbilityContainer _playerAbilityContainer;
-        private PlayerInventoryContainer _playerInventoryContainer;
+       
 
         // Move section.
+        [JsonIgnore]
         private PlayerIdleAbility _playerIdleAbility;
+
+        [JsonIgnore]
         private PlayerMoveAbility _playerMoveAbility;
+
+        [JsonIgnore]
         private PlayerFocusMoveAbility _playerFocusMoveAbility;
+
+        [JsonIgnore]
         private PlayerLookAtAbility _playerLookAtAbility;
 
         // Attack section.
+        [JsonIgnore]
         private PlayerBaseAttackAbility _playerAttackAbility;
         
         // Specific section.
+        [JsonIgnore]
         private PlayerNoneAbility _playerNoneAbility;
 
+        [JsonIgnore]
         private PlayerInteractAbility _playerInteractAbility;
 
+        [JsonIgnore]
         private IAbility _currentAbility;
-      
+
+        [JsonIgnore]
         private SniperRifleItem _sniperRifleItem;
 
         public PlayerModel(PlayerSettings settings,
@@ -62,33 +82,45 @@ namespace Model
             _sniperRifleItem = sniperRifleItem;
 
             // Init Base Ability.
-            _playerAbilityContainer = new PlayerAbilityContainer();
+            _playerAbilityContainer = new ReactiveProperty<PlayerAbilityContainer>();
+            _playerAbilityContainer.Value = new PlayerAbilityContainer();
             
-            _playerAbilityContainer.abilities.Add(_playerIdleAbility);
-            _playerAbilityContainer.abilities.Add(_playerMoveAbility);
-            _playerAbilityContainer.abilities.Add(_playerFocusMoveAbility);
-            _playerAbilityContainer.abilities.Add(_playerLookAtAbility);
+            _playerAbilityContainer.Value.abilities.Add(_playerIdleAbility);
+            _playerAbilityContainer.Value.abilities.Add(_playerMoveAbility);
+            _playerAbilityContainer.Value.abilities.Add(_playerFocusMoveAbility);
+            _playerAbilityContainer.Value.abilities.Add(_playerLookAtAbility);
 
-            _playerAbilityContainer.abilities.Add(_playerAttackAbility);
+            _playerAbilityContainer.Value.abilities.Add(_playerAttackAbility);
             
-            _playerAbilityContainer.abilities.Add(_playerNoneAbility);
+            _playerAbilityContainer.Value.abilities.Add(_playerNoneAbility);
             
-            _playerAbilityContainer.abilities.Add(_playerInteractAbility);
+            _playerAbilityContainer.Value.abilities.Add(_playerInteractAbility);
 
             // Init Inventory.
-            _playerInventoryContainer = new PlayerInventoryContainer();
+            _playerInventoryContainer = new ReactiveProperty<PlayerInventoryContainer>();
+            _playerInventoryContainer.Value = new PlayerInventoryContainer();
            
-            _playerInventoryContainer.Items.Add(_sniperRifleItem);
+            _playerInventoryContainer.Value.Items.Add(_sniperRifleItem);
         }
 
-        public IAbilityContainer GetAbilityContainer()
+        public ReactiveProperty<PlayerAbilityContainer> GetAbilityContainerAsReactive()
         {
             return _playerAbilityContainer;
         }
 
-        public IInventoryContainer GetInventoryContainer()
+        public IAbilityContainer GetAbilityContainer()
+        {
+            return _playerAbilityContainer.Value;
+        }
+
+        public ReactiveProperty<PlayerInventoryContainer> GetInventoryContainerAsReactive()
         {
             return _playerInventoryContainer;
+        }
+
+        public IInventoryContainer GetInventoryContainer()
+        {
+            return _playerInventoryContainer.Value;
         }
 
         public void SetCurrentAbility(IAbility ability) 

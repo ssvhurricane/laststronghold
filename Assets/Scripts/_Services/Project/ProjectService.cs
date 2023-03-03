@@ -43,32 +43,14 @@ namespace Services.Project
             _projectState = ProjectState.Stop;
         }
 
-        public void Configurate()
+        public void Initialize()
         {
-           // TODO:
-           //1. Load save data 
-         
-            var projectStringModel = _projectModel.SerializeProject(_projectModel);
+            // TODO:
+           
+           // var projectModelSer = _projectModel.SerializeProject(_projectModel);
 
-           _saveDataService.SaveData(projectStringModel);
+           //  var projectModelDes = _projectModel.DesirializeProject(projectModelSer);
 
-            _logService.ShowLog(GetType().Name,
-                                Services.Log.LogType.Message,
-                                "SerializeProject:" + projectStringModel,
-                                LogOutputLocationType.Console);
-
-           if(!string.IsNullOrEmpty(_saveDataService.GetData()))
-           {
-              var projectModel = _projectModel.DesirializeProject(_saveDataService.GetData());
-
-              _logService.ShowLog(GetType().Name,
-                                Services.Log.LogType.Message,
-                                "DesirializeProject:" +  projectModel,
-                                LogOutputLocationType.Console);
-
-           }
-
-           //2. Update Project Model
         }
 
         public ProjectType GetProjectType() 

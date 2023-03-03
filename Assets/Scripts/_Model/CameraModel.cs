@@ -1,23 +1,29 @@
 using Data.Settings;
 using Model.Inventory;
+using Newtonsoft.Json;
 using Services.Ability;
-using System.Linq;
+using UniRx;
 
 namespace Model
 {
     public class CameraModel : ILiveModel
     {
-        public string Id => _settings.FirstOrDefault().Id; // TODO:
+        [JsonProperty]
+        public string Id { get; set; } = "CameraModel";
 
+        [JsonProperty]
         public ModelType ModelType { get; set; }
 
+        [JsonProperty]
+        private ReactiveProperty<CameraAbilityContainer> _cameraAbilityContainer;
+
+        [JsonIgnore]
         private readonly CameraServiceSettings[] _settings;
 
-        private CameraAbilityContainer _cameraAbilityContainer;
-
+        [JsonIgnore]
         private CameraRotateAbility _cameraRotateAbility;
-      
 
+        [JsonIgnore]
         private IAbility _currentAbility;
 
         public CameraModel(CameraServiceSettings[] settings,
@@ -29,19 +35,20 @@ namespace Model
             _cameraRotateAbility = cameraRotateAbility;
 
             //Init Base Ability.
-            _cameraAbilityContainer = new CameraAbilityContainer();
+            _cameraAbilityContainer = new ReactiveProperty<CameraAbilityContainer>();
+            _cameraAbilityContainer.Value = new CameraAbilityContainer();
 
-            _cameraAbilityContainer.abilities.Add(_cameraRotateAbility);
+            _cameraAbilityContainer.Value.abilities.Add(_cameraRotateAbility);
         }
-
-        public void Dispose()
+       
+        public ReactiveProperty<CameraAbilityContainer> GetAbilityContainerAsReactive()
         {
-            // TODO:
+            return _cameraAbilityContainer;
         }
 
         public IAbilityContainer GetAbilityContainer()
         {
-            return _cameraAbilityContainer;
+            return _cameraAbilityContainer.Value;
         }
 
         public IAbility GetCurrentAbility()
@@ -57,6 +64,11 @@ namespace Model
         public void SetCurrentAbility(IAbility ability)
         {
             _currentAbility = ability;
+        } 
+        
+        public void Dispose()
+        {
+            // TODO:
         }
     }
 }

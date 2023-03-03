@@ -1,24 +1,35 @@
+using Newtonsoft.Json;
 using Services.Quest;
+using UniRx;
 
 namespace Model
 {
     public class QuestModel : IModel
     {
-        public string Id { get; set; }
+        [JsonProperty]
+        public string Id { get; set; } = "QuestModel";
 
+        [JsonProperty]
         public ModelType ModelType { get; set; }
 
-        private PlayerQuestContainer _playerQuestContainer;
+        [JsonProperty]
+        private ReactiveProperty<PlayerQuestContainer> _playerQuestContainer;
 
         public QuestModel()
         {
              // Init quest Inventory.
-            _playerQuestContainer = new PlayerQuestContainer();
-            _playerQuestContainer.Initialize();
+            _playerQuestContainer = new ReactiveProperty<PlayerQuestContainer>();
+            _playerQuestContainer.Value = new PlayerQuestContainer();
         }
-        public IQuestContainer GetPlayerQuestContainer()
+
+        public  ReactiveProperty<PlayerQuestContainer> GetPlayerQuestContainerAsReactive()
         {
             return _playerQuestContainer;
+        }
+
+        public IQuestContainer GetPlayerQuestContainer()
+        {
+            return _playerQuestContainer.Value;
         }
         
         public void Dispose()
