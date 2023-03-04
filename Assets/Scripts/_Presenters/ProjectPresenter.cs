@@ -8,7 +8,6 @@ using Services.Log;
 using Services.Project;
 using Signals;
 using UnityEngine;
-using View.Camera;
 using Zenject;
 
 namespace Presenters
@@ -100,6 +99,11 @@ namespace Presenters
             _inputService?.ClearServiceValues();
 
             _mainMenuPresenter.ShowView(_projectService.GetProjectType());
+        }
+
+        public ProjectModel GetModel()
+        {
+            return _projectModel;
         }
 
         private void CreateRoom() 

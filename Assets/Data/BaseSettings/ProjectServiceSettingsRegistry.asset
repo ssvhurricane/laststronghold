@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: ProjectServiceSettingsRegistry
   m_EditorClassIdentifier: 
   RegistryData:
-    ProjectName: Underground
+    ProjectName: Last Stronghold
     GameDataVersion:
       Major: 0
       Minor: 0
     ProjectMode: 1
     ProjectType: 0
+    GameSettingsData:
+      LookSensitivity: 1
+      Audio: 1
+      FrameRateCount: 0
+      Shadows: 1
+      ChoosenLanguage: 2
+    QuestStartFlowId: 1

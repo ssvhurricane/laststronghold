@@ -2,9 +2,20 @@ using Config;
 using System;
 using UnityEngine;
 using Services.Project;
+using Services.Localization;
 
 namespace Data.Settings
 {
+    [Serializable]
+    public class GameSettingsData
+    {
+        public float LookSensitivity;
+        public bool Audio;
+        public bool FrameRateCount;
+        public bool Shadows;
+        public Language ChoosenLanguage;
+    }
+
     [Serializable]
     public class ProjectServiceSettings : IRegistryData
     {
@@ -44,5 +55,10 @@ namespace Data.Settings
                 return Major == other.Major && Minor == other.Minor;
             }
         }
+        [SerializeField]
+        public GameSettingsData GameSettingsData;
+
+        [SerializeField]
+        public int QuestStartFlowId; 
     }
 }

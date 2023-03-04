@@ -1,3 +1,4 @@
+using Model;
 using Services.Anchor;
 using Services.Factory;
 using Services.Log;
@@ -6,6 +7,8 @@ using System.Linq;
 using UnityEngine;
 using View.Window;
 using Zenject;
+using UniRx;
+using Signals;
 
 namespace Presenters.Window
 {
@@ -20,11 +23,15 @@ namespace Presenters.Window
 
         private GameSettingsView _gameSettingsView;
 
+       // Not recommended directly model or service, better presenter.
+        private readonly ProjectModel _projectModel;
+
         public GameSettingsPresenter(SignalBus signalBus,
             LogService logService,
             IWindowService windowService,
             FactoryService factoryService,
-            HolderService holderService) 
+            HolderService holderService,
+            ProjectModel projectModel) 
         {
             _signalBus = signalBus;
             _logService = logService;
@@ -33,10 +40,36 @@ namespace Presenters.Window
             _factoryService = factoryService;
             _holderService = holderService;
 
+            _projectModel = projectModel;
+
             _logService.ShowLog(GetType().Name,
                 Services.Log.LogType.Message, 
                 "Call Constructor Method.", 
                 LogOutputLocationType.Console);
+            
+            _projectModel.GetProjectSaveDataAsReactive().Subscribe(item => 
+            {
+                 if( _gameSettingsView != null)
+                    _gameSettingsView.UpdateView(new GameSettingsViewArgs()
+                    {
+                        ProjectData = _projectModel.GetProjectSaveData()
+                    }); 
+            });
+
+            _signalBus.Subscribe<GameSettingsViewSignals.Apply>(signal =>
+            {
+                // Refresh project model(Game settings).
+                var projectModelData = _projectModel.GetProjectSaveData();
+
+                projectModelData.GameSettingsSaveData.Audio = signal.GameSettingsViewArgs.ProjectData.GameSettingsSaveData.Audio;
+                projectModelData.GameSettingsSaveData.FrameRateCount = signal.GameSettingsViewArgs.ProjectData.GameSettingsSaveData.FrameRateCount;
+                projectModelData.GameSettingsSaveData.ChoosenLanguage = signal.GameSettingsViewArgs.ProjectData.GameSettingsSaveData.ChoosenLanguage;
+                projectModelData.GameSettingsSaveData.LookSensitivity = signal.GameSettingsViewArgs.ProjectData.GameSettingsSaveData.LookSensitivity;
+                projectModelData.GameSettingsSaveData.Shadows = signal.GameSettingsViewArgs.ProjectData.GameSettingsSaveData.Shadows;
+
+
+                // TODO: fire events for changed values.
+            });
         }
 
         public void ShowView()
@@ -52,6 +85,12 @@ namespace Presenters.Window
                 if (holderTansform != null)
                     _gameSettingsView = _factoryService.Spawn<GameSettingsView>(holderTansform);
             }
+
+            if( _gameSettingsView != null)
+                _gameSettingsView.UpdateView(new GameSettingsViewArgs()
+                {
+                    ProjectData = _projectModel.GetProjectSaveData()
+                }); 
         }
 
         public IWindow GetView() 

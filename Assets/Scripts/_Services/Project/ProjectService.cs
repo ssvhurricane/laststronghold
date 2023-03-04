@@ -46,10 +46,6 @@ namespace Services.Project
         public void Initialize()
         {
             // TODO:
-           
-           // var projectModelSer = _projectModel.SerializeProject(_projectModel);
-
-           //  var projectModelDes = _projectModel.DesirializeProject(projectModelSer);
 
         }
 

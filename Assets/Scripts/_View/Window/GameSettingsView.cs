@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Services.Localization;
+using Services.Project;
 using Services.Window;
 using Signals;
 using UnityEngine;
@@ -23,16 +26,80 @@ namespace View.Window
 
         [SerializeField] public Button _backButton;
 
+        [SerializeField] public Button _applySettingsButton;
+
         private SignalBus _signalBus;
+        private  LocalizationService _localizationService;
 
         [Inject]
-        public void Constrcut(SignalBus signalBus)
+        public void Constrcut(SignalBus signalBus,
+        LocalizationService localizationService)
         {
             _signalBus = signalBus;
 
+            _localizationService = localizationService;
+
             WindowType = Type;
 
+            LanguageSelectFropDown.options = new List<Dropdown.OptionData>();
+
+            foreach(var option in  _localizationService.IngameLanguages)
+            {
+                 LanguageSelectFropDown.options.Add(new Dropdown.OptionData(option.LanguageName));
+            }
+
             _signalBus.Fire(new WindowServiceSignals.Register(this));
+
+            _applySettingsButton.onClick.AddListener(OnApplyButton);
+
+            LookSensitivitySlider.onValueChanged.AddListener(OnSliderChanged);
+
+        }
+
+        private void OnApplyButton()
+        {
+            var data = new GameSettingsViewArgs();
+            data.ProjectData = new ProjectSaveData();
+            data.ProjectData.Id = -1;
+            data.ProjectData.QuestFlowId = -1;
+            data.ProjectData.GameSettingsSaveData = new GameSettingsSaveData();
+            data.ProjectData.GameSettingsSaveData.LookSensitivity = LookSensitivitySlider.value;
+            data.ProjectData.GameSettingsSaveData.Audio = AudioEnabledToggle.enabled;
+            data.ProjectData.GameSettingsSaveData.FrameRateCount = FramerateCounterEnabledToggle.enabled;
+            data.ProjectData.GameSettingsSaveData.Shadows = ShadowsEnabledToggle.enabled;
+            data.ProjectData.GameSettingsSaveData.ChoosenLanguage = (Language) LanguageSelectFropDown.value;
+           
+            _signalBus.Fire(new GameSettingsViewSignals.Apply(this.GetType().Name, data));
+        }
+
+        private void OnSliderChanged(float value)
+        {
+            // TODO:
+        }
+
+
+        public void UpdateView(GameSettingsViewArgs gameSettingsViewArgs)
+        {
+            // The view should not change the model directly!
+            LookSensitivitySlider.value = gameSettingsViewArgs.ProjectData.GameSettingsSaveData.LookSensitivity;
+
+            AudioEnabledToggle.enabled = gameSettingsViewArgs.ProjectData.GameSettingsSaveData.Audio;
+
+            FramerateCounterEnabledToggle.enabled = gameSettingsViewArgs.ProjectData.GameSettingsSaveData.FrameRateCount;
+
+            ShadowsEnabledToggle.enabled = gameSettingsViewArgs.ProjectData.GameSettingsSaveData.Shadows;
+
+            LanguageSelectFropDown.value = (int) gameSettingsViewArgs.ProjectData.GameSettingsSaveData.ChoosenLanguage;
+        }
+    }
+    public class GameSettingsViewArgs : IWindowArgs
+    {
+        public ProjectSaveData ProjectData { get; set; }
+
+        public GameSettingsViewArgs(){}
+        public GameSettingsViewArgs(ProjectSaveData projectData)
+        {
+            ProjectData = projectData;
         }
     }
 }
