@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ProjectServiceSettingsRegistry
   m_EditorClassIdentifier: 
   RegistryData:
+    Id: 1986
     ProjectName: Last Stronghold
     GameDataVersion:
       Major: 0

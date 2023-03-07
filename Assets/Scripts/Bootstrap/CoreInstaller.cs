@@ -22,14 +22,14 @@ namespace Bootstrap
     public class CoreInstaller : Installer
     {
         public override void InstallBindings()
-        {
+        { 
+            InstallModels();
+
             BindPresenters();
 
             BindServices();
 
             InstallSignals();
-
-            InstallModels();
            
             InstallAnimations();
 

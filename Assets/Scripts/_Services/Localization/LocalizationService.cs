@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using Data.Settings;
 using Model;
 using UnityEngine.UI;
@@ -9,7 +8,7 @@ using Zenject;
 
 namespace Services.Localization
 {
-    public class LocalizationService
+    public class LocalizationService : IInitializable
     {
         private readonly SignalBus _signalBus;
 
@@ -51,13 +50,16 @@ namespace Services.Localization
             _projectModel = projectModel;
 
             _translatedTexts =  new Dictionary<string, Text>();
-
-            CurrentLanguage = _projectModel.GetProjectSaveDataAsReactive().Value.GameSettingsSaveData.ChoosenLanguage;
             
             if (CurrentLanguage == Language.Undefined)
             {
                 ChangeLanguage(GetSystemLanguage());
             }
+        }
+        public void Initialize()
+        {
+             if( _projectModel.GetProjectSaveData() != null)
+                CurrentLanguage = _projectModel.GetProjectSaveData().GameSettingsSaveData.ChoosenLanguage;
         }
 
         public bool HaveKey(string key) => _localizationServiceSettings?.Any(item =>item.localizationItem.Key == key) ?? false;

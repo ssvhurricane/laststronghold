@@ -93,12 +93,14 @@ namespace Presenters
             });
         }
 
-        public void Initialize()
+        public async void Initialize()
         {
             // Entry point. 
             _inputService?.ClearServiceValues();
 
-            _mainMenuPresenter.ShowView(_projectService.GetProjectType());
+             await InitializeGameData();
+
+             await  ShowMenuAsync();
         }
 
         public ProjectModel GetModel()
@@ -119,8 +121,6 @@ namespace Presenters
         {
             if (_projectService.GetProjectType() == ProjectType.Offline)
             {  
-                await InitializeGameData();
-
                 await QuestSystemAsync();
 
                 await HUDPresenterAsync();
@@ -140,13 +140,19 @@ namespace Presenters
 
             await UniTask.Yield();
         }
-        public async UniTask InitializeGameData()
+        private async UniTask InitializeGameData()
         {
-            _projectService.Initialize();
+            _projectService.LoadSaveData();
 
             await UniTask.Yield();
         }
 
+        private async UniTask ShowMenuAsync()
+        {
+            _mainMenuPresenter.ShowView(_projectService.GetProjectType());
+
+            await UniTask.Yield();
+        }
         public async UniTask PlayerPresenterAsync()
         {
             _playerPresenter.ShowView();

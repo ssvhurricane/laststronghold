@@ -3,10 +3,12 @@ using Services.Project;
 using Zenject;
 using UniRx;
 using Data.Settings;
+using UnityEngine;
+using Data;
 
 namespace Model
 {
-    public class ProjectModel : IModel
+    public class ProjectModel : IModel, ISerializableModel
     { 
         [JsonProperty]
         public string Id { get; set; } = "ProjectModel";
@@ -14,39 +16,83 @@ namespace Model
         [JsonProperty]
         public ModelType ModelType { get; set; }
 
+        //Current ModelData.
         [JsonProperty]
-        private ReactiveProperty<ProjectSaveData> _projectData;
+        private ReactiveProperty<ProjectSaveData> _projectData = new ReactiveProperty<ProjectSaveData>();
 
         [JsonIgnore]
         private readonly SignalBus _signalBus;
 
         [JsonIgnore]
         private readonly ProjectServiceSettings _projectServiceSettings;
-        
+    
         public ProjectModel(SignalBus signalBus,
                             ProjectServiceSettings projectServiceSettings)
         {
             _signalBus = signalBus;
 
-            _projectServiceSettings = projectServiceSettings;
-           
-            Initialize(); // TODO:
+            _projectServiceSettings = projectServiceSettings; 
+            
+            if(_projectServiceSettings != null
+                 && string.IsNullOrEmpty(PlayerPrefs.GetString(Id))) InitializeDafaultModelData();
+        } 
+
+        public string SerializeModel(IModel model)
+        {
+            return JsonConvert.SerializeObject(model);
         }
 
-        private void Initialize()
+        public IModel DesirializeModel<TParam>(string model) where TParam : IModel
         {
-             _projectData = new ReactiveProperty<ProjectSaveData>();
-            _projectData.Value = new ProjectSaveData();
+            return JsonConvert.DeserializeObject<TParam>(model);
+        }
 
-            _projectData.Value.Id = 1 ;//int.Parse(_projectServiceSettings.Id);
-            _projectData.Value.QuestFlowId = _projectServiceSettings.QuestStartFlowId;
+        public void InitializeDafaultModelData()
+        { 
+               _projectData.Value = new Services.Project.ProjectSaveData()
+                {
+                    Id = int.Parse(_projectServiceSettings.Id),
+                    
+                    QuestFlowId = _projectServiceSettings.QuestStartFlowId,
 
-            _projectData.Value.GameSettingsSaveData = new GameSettingsSaveData();
-            _projectData.Value.GameSettingsSaveData.ChoosenLanguage = _projectServiceSettings.GameSettingsData.ChoosenLanguage;
-            _projectData.Value.GameSettingsSaveData.Audio = _projectServiceSettings.GameSettingsData.Audio;
-            _projectData.Value.GameSettingsSaveData.LookSensitivity = _projectServiceSettings.GameSettingsData.LookSensitivity;
-            _projectData.Value.GameSettingsSaveData.FrameRateCount = _projectServiceSettings.GameSettingsData.FrameRateCount;
-            _projectData.Value.GameSettingsSaveData.Shadows = _projectServiceSettings.GameSettingsData.Shadows;
+                    GameSettingsSaveData = new Services.Project.GameSettingsSaveData()
+                    {         
+                        Audio = _projectServiceSettings.GameSettingsData.Audio,
+
+                        FrameRateCount = _projectServiceSettings.GameSettingsData.FrameRateCount,
+
+                        ChoosenLanguage = _projectServiceSettings.GameSettingsData.ChoosenLanguage,
+
+                        LookSensitivity = _projectServiceSettings.GameSettingsData.LookSensitivity,
+                        
+                        Shadows = _projectServiceSettings.GameSettingsData.Shadows
+                    }
+                };
+        }
+
+        public void UpdateModelData(ISaveData saveData)
+        { 
+             var innerSaveData = (ProjectSaveData) saveData;
+
+            _projectData.Value = new Services.Project.ProjectSaveData()
+                {
+                    Id =  innerSaveData.Id,
+                    
+                    QuestFlowId =  innerSaveData.QuestFlowId,
+
+                    GameSettingsSaveData = new Services.Project.GameSettingsSaveData()
+                    {         
+                        Audio = innerSaveData.GameSettingsSaveData.Audio,
+
+                        FrameRateCount = innerSaveData.GameSettingsSaveData.FrameRateCount,
+
+                        ChoosenLanguage = innerSaveData.GameSettingsSaveData.ChoosenLanguage,
+
+                        LookSensitivity = innerSaveData.GameSettingsSaveData.LookSensitivity,
+                        
+                        Shadows = innerSaveData.GameSettingsSaveData.Shadows
+                    }
+                };
         }
 
         public ReactiveProperty<ProjectSaveData> GetProjectSaveDataAsReactive()

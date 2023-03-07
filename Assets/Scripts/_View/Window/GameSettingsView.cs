@@ -64,9 +64,9 @@ namespace View.Window
             data.ProjectData.QuestFlowId = -1;
             data.ProjectData.GameSettingsSaveData = new GameSettingsSaveData();
             data.ProjectData.GameSettingsSaveData.LookSensitivity = LookSensitivitySlider.value;
-            data.ProjectData.GameSettingsSaveData.Audio = AudioEnabledToggle.enabled;
-            data.ProjectData.GameSettingsSaveData.FrameRateCount = FramerateCounterEnabledToggle.enabled;
-            data.ProjectData.GameSettingsSaveData.Shadows = ShadowsEnabledToggle.enabled;
+            data.ProjectData.GameSettingsSaveData.Audio = AudioEnabledToggle.isOn;
+            data.ProjectData.GameSettingsSaveData.FrameRateCount = FramerateCounterEnabledToggle.isOn;
+            data.ProjectData.GameSettingsSaveData.Shadows = ShadowsEnabledToggle.isOn;
             data.ProjectData.GameSettingsSaveData.ChoosenLanguage = (Language) LanguageSelectFropDown.value;
            
             _signalBus.Fire(new GameSettingsViewSignals.Apply(this.GetType().Name, data));
@@ -83,11 +83,11 @@ namespace View.Window
             // The view should not change the model directly!
             LookSensitivitySlider.value = gameSettingsViewArgs.ProjectData.GameSettingsSaveData.LookSensitivity;
 
-            AudioEnabledToggle.enabled = gameSettingsViewArgs.ProjectData.GameSettingsSaveData.Audio;
+            AudioEnabledToggle.isOn = gameSettingsViewArgs.ProjectData.GameSettingsSaveData.Audio;
 
-            FramerateCounterEnabledToggle.enabled = gameSettingsViewArgs.ProjectData.GameSettingsSaveData.FrameRateCount;
+            FramerateCounterEnabledToggle.isOn = gameSettingsViewArgs.ProjectData.GameSettingsSaveData.FrameRateCount;
 
-            ShadowsEnabledToggle.enabled = gameSettingsViewArgs.ProjectData.GameSettingsSaveData.Shadows;
+            ShadowsEnabledToggle.isOn = gameSettingsViewArgs.ProjectData.GameSettingsSaveData.Shadows;
 
             LanguageSelectFropDown.value = (int) gameSettingsViewArgs.ProjectData.GameSettingsSaveData.ChoosenLanguage;
         }

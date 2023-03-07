@@ -9,6 +9,7 @@ using View.Window;
 using Zenject;
 using UniRx;
 using Signals;
+using Services.Project;
 
 namespace Presenters.Window
 {
@@ -58,15 +59,12 @@ namespace Presenters.Window
 
             _signalBus.Subscribe<GameSettingsViewSignals.Apply>(signal =>
             {
-                // Refresh project model(Game settings).
-                var projectModelData = _projectModel.GetProjectSaveData();
+                // Refresh project model.
+                ProjectSaveData pModelData = signal.GameSettingsViewArgs.ProjectData;
+                pModelData.Id = _projectModel.GetProjectSaveData().Id;
+                pModelData.QuestFlowId = _projectModel.GetProjectSaveData().QuestFlowId;
 
-                projectModelData.GameSettingsSaveData.Audio = signal.GameSettingsViewArgs.ProjectData.GameSettingsSaveData.Audio;
-                projectModelData.GameSettingsSaveData.FrameRateCount = signal.GameSettingsViewArgs.ProjectData.GameSettingsSaveData.FrameRateCount;
-                projectModelData.GameSettingsSaveData.ChoosenLanguage = signal.GameSettingsViewArgs.ProjectData.GameSettingsSaveData.ChoosenLanguage;
-                projectModelData.GameSettingsSaveData.LookSensitivity = signal.GameSettingsViewArgs.ProjectData.GameSettingsSaveData.LookSensitivity;
-                projectModelData.GameSettingsSaveData.Shadows = signal.GameSettingsViewArgs.ProjectData.GameSettingsSaveData.Shadows;
-
+                _projectModel.UpdateModelData(pModelData);
 
                 // TODO: fire events for changed values.
             });

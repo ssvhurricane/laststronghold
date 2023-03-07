@@ -18,20 +18,12 @@ namespace Data.Settings
 
     [Serializable]
     public class ProjectServiceSettings : IRegistryData
-    {
+    {  
+        [SerializeField] public string Id;
+
         [SerializeField] public string ProjectName;
+
         [SerializeField] public GameVersion GameDataVersion;
-
-        public string Id
-        {
-            get { return ProjectName; }
-        }
-
-        [Serializable]
-        public class StartupSettings 
-        {
-
-        }
 
         [SerializeField]
         public ProjectMode ProjectMode;
@@ -60,5 +52,7 @@ namespace Data.Settings
 
         [SerializeField]
         public int QuestStartFlowId; 
+
+          string IRegistryData.Id => Id;
     }
 }

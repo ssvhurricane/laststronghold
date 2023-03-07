@@ -43,10 +43,16 @@ namespace Services.Project
             _projectState = ProjectState.Stop;
         }
 
-        public void Initialize()
+        public void LoadSaveData()
         {
-            // TODO:
+            var projectSaveModelData = _saveDataService.GetData(_projectModel.Id);
 
+            if(!string.IsNullOrEmpty(projectSaveModelData))
+            {
+               var pModel = (ProjectModel)_projectModel.DesirializeModel<ProjectModel>(projectSaveModelData);
+
+              _projectModel.UpdateModelData(pModel.GetProjectSaveData());
+            }
         }
 
         public ProjectType GetProjectType() 

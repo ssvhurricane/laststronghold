@@ -35,9 +35,12 @@ namespace Services.SaveData
             // ProjectData.
             _projectModel.GetProjectSaveDataAsReactive().Subscribe(item => 
             {
-                var serializeString =  SerializeModel(_projectModel);
+                if(_projectModel.GetProjectSaveData() != null && item != null)
+                {
+                    var serializeString = _projectModel.SerializeModel(_projectModel);
 
-                SaveData(_projectModel.Id, serializeString);
+                    SaveData(_projectModel.Id, serializeString);
+                }
             });
 
             // PlayerData.
@@ -70,16 +73,6 @@ namespace Services.SaveData
 
                // SaveData(_projectModel.Id, serializeString);
             });
-        }
-
-        public string SerializeModel(IModel model)
-        {
-            return JsonConvert.SerializeObject(model);
-        }
-
-        public IModel DesirializeModel<TParam>(string model) where TParam : IModel
-        {
-            return JsonConvert.DeserializeObject<TParam>(model);
         }
 
         public void SaveData(string id, string projectData)
