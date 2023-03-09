@@ -1,5 +1,7 @@
+using Constants;
 using Data.Settings;
 using Model;
+using Services.Cheat;
 using Services.Log;
 using Services.SaveData;
 using UnityEngine;
@@ -11,6 +13,7 @@ namespace Services.Project
     {
         private readonly SignalBus _signalBus;
         private readonly LogService _logService;
+         private readonly CheatService _cheatService;
         private readonly ProjectModel _projectModel;
         private readonly QuestModel _questModel;
         private readonly QuestServiceSettings _questServiceSettings;
@@ -21,6 +24,7 @@ namespace Services.Project
         private ProjectState _projectState;
         public ProjectService(SignalBus signalBus,
             LogService logService,
+            CheatService cheatService,
             QuestModel questModel,
             ProjectModel projectModel,
             QuestServiceSettings questServiceSettings,
@@ -30,6 +34,8 @@ namespace Services.Project
             _signalBus = signalBus;
 
             _logService = logService;
+
+            _cheatService = cheatService;
 
             _questModel = questModel;
             _projectModel = projectModel;
@@ -41,6 +47,8 @@ namespace Services.Project
             _saveDataService = saveDataService;
 
             _projectState = ProjectState.Stop;
+
+            AddCheats();
         }
 
         public void LoadSaveData()
@@ -105,6 +113,22 @@ namespace Services.Project
             {
                 UpdateGameFlow();
             }
+        }
+
+        private void AddCheats()
+        {
+            _cheatService.AddCheatItemControl<CheatButtonControl>(button => button
+             .SetButtonName("Clear All Save Data")
+            .SetButtonCallback(() =>
+            {
+                _saveDataService.ClearAllData();
+
+                _logService.ShowLog(GetType().Name,
+                                Services.Log.LogType.Message,
+                                "Cheat call: Clear All Save Data",
+                                LogOutputLocationType.Console);
+
+            }), CheatServiceConstants.General);
         }
     }
 }
