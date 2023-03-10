@@ -62,7 +62,7 @@ namespace Presenters.Window
                 // Refresh project model.
                 ProjectSaveData pModelData = signal.GameSettingsViewArgs.ProjectData;
                 pModelData.Id = _projectModel.GetProjectSaveData().Id;
-                pModelData.QuestFlowId = _projectModel.GetProjectSaveData().QuestFlowId;
+                pModelData.CurrentQuestFlowId = _projectModel.GetProjectSaveData().CurrentQuestFlowId;
 
                 _projectModel.UpdateModelData(pModelData);
 

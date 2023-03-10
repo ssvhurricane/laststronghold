@@ -4,7 +4,6 @@ namespace Services.Quest
     {
         Active,
         Inactive,
-        InProgress,
         Complete,
         Locked
     }

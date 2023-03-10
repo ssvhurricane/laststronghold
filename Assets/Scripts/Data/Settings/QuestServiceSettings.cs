@@ -1,4 +1,4 @@
-using Config;
+using Services.Quest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,11 @@ namespace Data.Settings
         public int Id;
         public string Description;
         public string Threads;
+
+        public FlowExecutionMode FlowExecutionMode;
+
+        public FlowRewardMode FlowRewardMode;
+
         public IReadOnlyCollection<int> ParseThreads { get; private set; }
 
         public void Parse()

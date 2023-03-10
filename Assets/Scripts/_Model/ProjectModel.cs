@@ -5,6 +5,7 @@ using UniRx;
 using Data.Settings;
 using UnityEngine;
 using Data;
+using System.Collections.Generic;
 
 namespace Model
 {
@@ -25,13 +26,19 @@ namespace Model
 
         [JsonIgnore]
         private readonly ProjectServiceSettings _projectServiceSettings;
-    
+
+        [JsonIgnore]
+        private readonly QuestServiceSettings _questServiceSettings;
+
         public ProjectModel(SignalBus signalBus,
-                            ProjectServiceSettings projectServiceSettings)
+                            ProjectServiceSettings projectServiceSettings,
+                            QuestServiceSettings questServiceSettings)
         {
             _signalBus = signalBus;
 
             _projectServiceSettings = projectServiceSettings; 
+
+            _questServiceSettings = questServiceSettings;
             
             if(_projectServiceSettings != null
                  && string.IsNullOrEmpty(PlayerPrefs.GetString(Id))) InitializeDafaultModelData();
@@ -49,11 +56,18 @@ namespace Model
 
         public void InitializeDafaultModelData()
         { 
+                var prepareQuestFlowsData = new Dictionary<int, bool>();
+
+                foreach(var itemDataSettings in _questServiceSettings.Flows)
+                    prepareQuestFlowsData.Add(itemDataSettings.Id, false);
+
                _projectData.Value = new Services.Project.ProjectSaveData()
                 {
                     Id = int.Parse(_projectServiceSettings.Id),
                     
-                    QuestFlowId = _projectServiceSettings.QuestStartFlowId,
+                    CurrentQuestFlowId = _projectServiceSettings.QuestCurrentFlowId,
+
+                    QuestFlows = prepareQuestFlowsData,
 
                     GameSettingsSaveData = new Services.Project.GameSettingsSaveData()
                     {         
@@ -78,7 +92,9 @@ namespace Model
                 {
                     Id =  innerSaveData.Id,
                     
-                    QuestFlowId =  innerSaveData.QuestFlowId,
+                    CurrentQuestFlowId =  innerSaveData.CurrentQuestFlowId,
+
+                    QuestFlows = innerSaveData.QuestFlows,
 
                     GameSettingsSaveData = new Services.Project.GameSettingsSaveData()
                     {         

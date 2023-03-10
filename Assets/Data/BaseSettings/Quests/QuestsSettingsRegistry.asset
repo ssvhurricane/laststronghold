@@ -23,52 +23,12 @@ MonoBehaviour:
       QuestConditionType: 1
       Param: 
       Value: 
-  - Id: 
+  - Id: 2
     Quest:
-      Id: 0
-      ThreadId: 0
-      Description: 
-      NeedValue: 0
-      Icon: {fileID: 0}
-      QuestConditionType: 0
-      Param: 
-      Value: 
-  - Id: 
-    Quest:
-      Id: 0
-      ThreadId: 0
-      Description: 
-      NeedValue: 0
-      Icon: {fileID: 0}
-      QuestConditionType: 0
-      Param: 
-      Value: 
-  - Id: 
-    Quest:
-      Id: 0
-      ThreadId: 0
-      Description: 
-      NeedValue: 0
-      Icon: {fileID: 0}
-      QuestConditionType: 0
-      Param: 
-      Value: 
-  - Id: 
-    Quest:
-      Id: 0
-      ThreadId: 0
-      Description: 
-      NeedValue: 0
-      Icon: {fileID: 0}
-      QuestConditionType: 0
-      Param: 
-      Value: 
-  - Id: 
-    Quest:
-      Id: 0
-      ThreadId: 0
-      Description: 
-      NeedValue: 0
+      Id: 2
+      ThreadId: 1
+      Description: '[Quest2]'
+      NeedValue: 2
       Icon: {fileID: 0}
       QuestConditionType: 0
       Param: 

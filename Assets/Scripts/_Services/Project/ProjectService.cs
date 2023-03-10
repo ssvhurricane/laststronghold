@@ -53,6 +53,7 @@ namespace Services.Project
 
         public void LoadSaveData()
         {
+            // Set ProjectSaveData.
             var projectSaveModelData = _saveDataService.GetData(_projectModel.Id);
 
             if(!string.IsNullOrEmpty(projectSaveModelData))
@@ -60,6 +61,16 @@ namespace Services.Project
                var pModel = (ProjectModel)_projectModel.DesirializeModel<ProjectModel>(projectSaveModelData);
 
               _projectModel.UpdateModelData(pModel.GetProjectSaveData());
+            }
+
+            // Set QuestSaveData.
+            var questSaveModelData = _saveDataService.GetData(_questModel.Id);
+
+            if(!string.IsNullOrEmpty(questSaveModelData))
+            {
+                var qModel = (QuestModel) _questModel.DesirializeModel<QuestModel>(questSaveModelData);
+
+                _questModel.UpdateModelData(qModel.GetQuestSaveData());
             }
         }
 

@@ -58,7 +58,7 @@ namespace Services.Quest
 
             LoadRegistryData();
 
-              AddCheats(_quests);
+            AddCheats(_quests);
         }
 
         public void InitializeFlow(Flow flow)
@@ -66,11 +66,15 @@ namespace Services.Quest
             _flow = flow;
             _flow.Parse();
 
-            var savedQuests = _questModel.GetPlayerQuestContainer().QuestSaves;
+            var savedQuests = _questModel.GetQuestSaveData().QuestItemDatas;
 
+            
+/*
             // Load saved quests.
             if(savedQuests != null && savedQuests.Count > 0)
-                foreach(var savedQuest in savedQuests) AddQuestToList(GetQuestById(savedQuest.Id)).Load(savedQuest);
+                foreach(var savedQuest in savedQuests)  AddQuestToList(GetQuestById(savedQuest.Id));
+                       
+            
             else
             {
                 // Create new quests.
@@ -89,15 +93,16 @@ namespace Services.Quest
 
                     //new OnQuestInitializeFlowEvent(_quests).Invoke();
                 }
-            }
+            }*/
+
         }
 
         public void ClearActiveQuests()
         {
             if(_quests != null) _quests.Clear();
 
-            if (_questModel.GetPlayerQuestContainer().QuestSaves.Count() > 0)
-                _questModel.GetPlayerQuestContainer().QuestSaves.Clear();
+            if (_questModel.GetQuestSaveData().QuestItemDatas.Count() > 0)
+                _questModel.GetQuestSaveData().QuestItemDatas.Clear();
 
             // new OnAllQuestsInFlowCompleteEvent().Invoke();
         }
@@ -108,11 +113,13 @@ namespace Services.Quest
             {
                 var newQuest = AddQuestToList(GetQuestById(questId));
 
+               /*
                 if (newQuest != null) 
                 { 
-                    if (_questModel.GetPlayerQuestContainer().QuestSaves.Any(data => data.Id != questId))
+                    if (_questModel.GetQuestSaveData().QuestItemDatas.Any(data => data.Id != questId))
                              _questModel.GetPlayerQuestContainer().SaveQuest(newQuest);
                 }
+                */
             }
         }
 
@@ -122,10 +129,10 @@ namespace Services.Quest
 
             _quests.RemoveAll(x => x.Data.Id == questId);
            
-            var savedData = _questModel.GetPlayerQuestContainer().QuestSaves.FirstOrDefault(questData => questData.Id == questId);
+            var savedData = _questModel.GetQuestSaveData().QuestItemDatas.FirstOrDefault(questData => questData.Id == questId);
 
             if (savedData != null)
-                 _questModel.GetPlayerQuestContainer().QuestSaves.Remove(savedData);
+                 _questModel.GetQuestSaveData().QuestItemDatas.Remove(savedData);
         }
 
         public void ActivateQuest(int questId, Action<QuestBase> action)
@@ -156,7 +163,7 @@ namespace Services.Quest
 
                     RemoveQuestById(questToRemove.Data.Id);
 
-                    _questModel.GetPlayerQuestContainer().SaveQuest(nextQuest);
+                   // _questModel.GetPlayerQuestContainer().SaveQuest(nextQuest);
 
                    _logService.ShowLog(GetType().Name,
                                     Services.Log.LogType.Message, $"Replacing quest with ID {questToRemove.Data.Id} by quest {nextQuest.Data.Id}.",
@@ -198,7 +205,7 @@ namespace Services.Quest
 
            if(_quests.Any(qst => qst.Data.Id == quest.Id))
                 _logService.ShowLog(GetType().Name,
-                                    Services.Log.LogType.Message, "Error! Found quests with the same id " + quest.Id.ToString() + " in the flow!",
+                                    Services.Log.LogType.Warning, "Found quests with the same id " + quest.Id.ToString() + " in the flow!",
                                     LogOutputLocationType.Console);
             else
             {
@@ -214,7 +221,11 @@ namespace Services.Quest
        
         private void AddQuestProgress(QuestBase questBase)
         {
-            _questModel.GetPlayerQuestContainer().UpdateQuest(questBase);
+            // TODO:
+            _questModel.UpdateModelData(new QuestSaveData()
+            {
+
+            });
 
             if(questBase.QuestState == QuestState.Complete) CompleteQuest(questBase);
         }

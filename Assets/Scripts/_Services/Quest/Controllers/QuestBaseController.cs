@@ -56,7 +56,8 @@ namespace Services.Quest
 
         public override QuestSaveData GetSaveData()
         {
-             return new QuestCountSaveData { Id = Data.Id, QuestState = QuestState, Count = Data.CurProgress };
+          //  return new QuestCountSaveData { Id = Data.Id, QuestState = QuestState, Count = Data.CurProgress };
+          return null;
         }
 
         public override void Load(QuestSaveData questSaveData)

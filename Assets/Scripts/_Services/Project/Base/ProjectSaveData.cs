@@ -1,4 +1,5 @@
 using Data;
+using System.Collections.Generic;
 using Services.Localization;
 
 namespace Services.Project
@@ -16,8 +17,10 @@ namespace Services.Project
     {
          public int Id { get; set; }
 
-         public int QuestFlowId {get; set; }
+         public int CurrentQuestFlowId {get; set; }
 
+         public Dictionary<int, bool> QuestFlows { get; set; }
+       
          public GameSettingsSaveData GameSettingsSaveData { get; set; }
 
          public ProjectSaveData(){}

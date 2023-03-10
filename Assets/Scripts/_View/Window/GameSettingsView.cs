@@ -61,7 +61,7 @@ namespace View.Window
             var data = new GameSettingsViewArgs();
             data.ProjectData = new ProjectSaveData();
             data.ProjectData.Id = -1;
-            data.ProjectData.QuestFlowId = -1;
+            data.ProjectData.CurrentQuestFlowId = -1;
             data.ProjectData.GameSettingsSaveData = new GameSettingsSaveData();
             data.ProjectData.GameSettingsSaveData.LookSensitivity = LookSensitivitySlider.value;
             data.ProjectData.GameSettingsSaveData.Audio = AudioEnabledToggle.isOn;

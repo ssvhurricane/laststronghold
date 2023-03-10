@@ -51,8 +51,8 @@ namespace Data.Settings
         public GameSettingsData GameSettingsData;
 
         [SerializeField]
-        public int QuestStartFlowId; 
+        public int QuestCurrentFlowId; 
 
-          string IRegistryData.Id => Id;
+        string IRegistryData.Id => Id;
     }
 }

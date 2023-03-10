@@ -109,8 +109,10 @@ namespace Presenters
                 FlowDescriptionText = _questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == _currentFlow).Description
             });
             
-            foreach(var questSaveData in _questModel.GetPlayerQuestContainer().QuestSaves)
+            foreach(var questSaveData in _questModel.GetQuestSaveData().QuestItemDatas)
             {
+              //  if(questSaveData.QuestState != QuestState.Active) continue;
+
                 var questItemView = (QuestItemView)_poolService.Spawn<QuestItemView>(questContainerView.GetQuestContainer().transform, PoolServiceConstants.QuestItemViewPool);
 
                 questItemView.UpdateView(new QuestItemViewArgs()
@@ -132,7 +134,7 @@ namespace Presenters
 
         public void InitializeQuests(ReactiveProperty<ProjectSaveData> projectSaveData)
         {
-            _currentFlow = projectSaveData.Value.QuestFlowId;
+            _currentFlow = projectSaveData.Value.CurrentQuestFlowId;
             
             _questService.InitializeFlow(_questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == _currentFlow));
         }

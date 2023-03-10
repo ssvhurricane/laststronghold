@@ -26,4 +26,4 @@ MonoBehaviour:
       FrameRateCount: 0
       Shadows: 1
       ChoosenLanguage: 2
-    QuestStartFlowId: 1
+    QuestCurrentFlowId: 1
