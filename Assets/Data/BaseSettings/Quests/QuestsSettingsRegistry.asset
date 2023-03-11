@@ -20,7 +20,7 @@ MonoBehaviour:
       Description: '[Quest1]'
       NeedValue: 1
       Icon: {fileID: 0}
-      QuestConditionType: 1
+      QuestConditionType: 0
       Param: 
       Value: 
   - Id: 2
@@ -28,7 +28,17 @@ MonoBehaviour:
       Id: 2
       ThreadId: 1
       Description: '[Quest2]'
-      NeedValue: 2
+      NeedValue: 1
+      Icon: {fileID: 0}
+      QuestConditionType: 0
+      Param: 
+      Value: 
+  - Id: 3
+    Quest:
+      Id: 3
+      ThreadId: 1
+      Description: '[Quest3]'
+      NeedValue: 1
       Icon: {fileID: 0}
       QuestConditionType: 0
       Param: 

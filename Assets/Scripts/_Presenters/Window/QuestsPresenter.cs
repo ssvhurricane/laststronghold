@@ -39,8 +39,9 @@ namespace Presenters
         private readonly QuestModel _questModel;
 
         private List<QuestItemView> _questItemViews;
+       
+        private ReactiveProperty<ProjectSaveData> _projectSaveData;
 
-        private int _currentFlow = 1;
         public QuestsPresenter(SignalBus signalBus, 
                             LogService logService, 
                             IWindowService windowService,
@@ -62,8 +63,6 @@ namespace Presenters
             _questServiceSettings = questServiceSettings;
             _questsSettings = questsSettings;
             _questModel = questModel;
-
-           // _questModel.GetPlayerQuestContainer().QuestSaves.CollectionChanged += QuestCollectionChanged;
 
             _questItemViews = new List<QuestItemView>();
 
@@ -106,27 +105,28 @@ namespace Presenters
 
             questContainerView.UpdateView(new QuestsContainerViewArgs()
             {
-                FlowDescriptionText = _questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == _currentFlow).Description
+                FlowDescriptionText = _questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == _projectSaveData.Value.CurrentQuestFlowId).Description
             });
             
             foreach(var questSaveData in _questModel.GetQuestSaveData().QuestItemDatas)
             {
-              //  if(questSaveData.QuestState != QuestState.Active) continue;
-
-                var questItemView = (QuestItemView)_poolService.Spawn<QuestItemView>(questContainerView.GetQuestContainer().transform, PoolServiceConstants.QuestItemViewPool);
-
-                questItemView.UpdateView(new QuestItemViewArgs()
+                if(questSaveData.QuestState == QuestState.Active || questSaveData.QuestState == QuestState.Complete)
                 {
-                    Id = questSaveData.Id,
+                    var questItemView = (QuestItemView)_poolService.Spawn<QuestItemView>(questContainerView.GetQuestContainer().transform, PoolServiceConstants.QuestItemViewPool);
 
-                    Description = _questsSettings.FirstOrDefault(quest =>quest.Quest.Id == questSaveData.Id).Quest.Description,
+                    questItemView.UpdateView(new QuestItemViewArgs()
+                    {
+                        Id = questSaveData.Id,
 
-                    QuestState = questSaveData.QuestState,
+                        Description = _questsSettings.FirstOrDefault(quest =>quest.Quest.Id == questSaveData.Id).Quest.Description,
 
-                    CurrentValue = questSaveData.CurrentValue,
+                        QuestState = questSaveData.QuestState,
 
-                    NeedValue = _questsSettings.FirstOrDefault(quest =>quest.Quest.Id == questSaveData.Id).Quest.NeedValue
-                });
+                        CurrentValue = questSaveData.CurrentValue,
+
+                        NeedValue = _questsSettings.FirstOrDefault(quest =>quest.Quest.Id == questSaveData.Id).Quest.NeedValue
+                    });
+                }
             }
 
           // questContainerView.AttachView(_questItemViews);
@@ -134,9 +134,9 @@ namespace Presenters
 
         public void InitializeQuests(ReactiveProperty<ProjectSaveData> projectSaveData)
         {
-            _currentFlow = projectSaveData.Value.CurrentQuestFlowId;
+            _projectSaveData = projectSaveData;
             
-            _questService.InitializeFlow(_questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == _currentFlow));
+            _questService.InitializeFlow(_questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == _projectSaveData.Value.CurrentQuestFlowId));
         }
 
         private void QuestCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

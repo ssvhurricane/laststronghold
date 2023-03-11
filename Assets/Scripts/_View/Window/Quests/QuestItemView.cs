@@ -4,6 +4,7 @@ using Services.Window;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Services.Localization;
 
 namespace View.Window
 {
@@ -16,14 +17,19 @@ namespace View.Window
 
         private SignalBus _signalBus;
 
+        private LocalizationService _localizationService;
+
         private Image _image;
 
         private int _questId;
 
         [Inject]
-        public void Constrcut(SignalBus signalBus)
+        public void Constrcut(SignalBus signalBus,
+                                 LocalizationService localizationService)
         {
             _signalBus = signalBus;
+
+            _localizationService = localizationService;
 
             _image = GetComponent<Image>();
 
@@ -36,7 +42,8 @@ namespace View.Window
 
             var countItem = questItemViewArgs.NeedValue != 0 ? " " + questItemViewArgs.CurrentValue.ToString() + "/" + questItemViewArgs.NeedValue:string.Empty; 
 
-            QuestText.text = questItemViewArgs.Description + countItem;
+            if (_localizationService.HaveKey(questItemViewArgs.Description))
+                QuestText.text = _localizationService.Translate(questItemViewArgs.Description) + countItem;
 
             switch(questItemViewArgs.QuestState)
             {

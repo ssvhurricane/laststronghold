@@ -68,6 +68,36 @@ namespace Services.Quest
 
             var savedQuests = _questModel.GetQuestSaveData().QuestItemDatas;
 
+            if (savedQuests == null && savedQuests.Count() == 0) return;
+
+            switch(_flow.FlowExecutionMode)
+            {
+                case FlowExecutionMode.Consistent:
+                {
+                    // TODO:
+                    break;
+                }
+                case FlowExecutionMode.Parallel:
+                {  
+                    foreach(var savedQuest in savedQuests)
+                    {
+                        if(savedQuest.QuestState != QuestState.Active || savedQuest.QuestState != QuestState.Complete)
+                        {
+                           var dataValue = _questModel.GetQuestSaveDataAsReactive().Value;
+
+                           dataValue.QuestItemDatas.Where(itemData => itemData.Id == savedQuest.Id)
+                                                   .ToList()
+                                                   .ForEach(item =>item.QuestState = QuestState.Active);// TODO: dont save...
+                        }
+                    }
+
+                    break;
+                }
+            }
+
+          
+         
+
             
 /*
             // Load saved quests.

@@ -4,6 +4,7 @@ using Signals;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Services.Localization;
 
 namespace View.Window
 {
@@ -14,10 +15,15 @@ namespace View.Window
         [SerializeField] protected Text FlowText;
         private SignalBus _signalBus;
 
+        private  LocalizationService _localizationService;
+
         [Inject]
-        public void Constrcut(SignalBus signalBus)
+        public void Constrcut(SignalBus signalBus,
+                            LocalizationService localizationService)
         {
             _signalBus = signalBus;
+
+            _localizationService = localizationService;
 
              WindowType = Type;
 
@@ -33,7 +39,8 @@ namespace View.Window
 
         public void UpdateView(QuestsContainerViewArgs questsContainerViewArgs)
         {
-            FlowText.text = questsContainerViewArgs.FlowDescriptionText;
+            if(_localizationService.HaveKey(questsContainerViewArgs.FlowDescriptionText))
+                FlowText.text =_localizationService.Translate(questsContainerViewArgs.FlowDescriptionText);
         }
 
         public GameObject GetQuestContainer()
