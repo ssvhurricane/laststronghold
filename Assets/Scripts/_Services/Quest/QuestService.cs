@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using Data.Settings;
-using Services.Scene;
 using Zenject;
 using Model;
 using System.Linq;
@@ -15,26 +13,39 @@ namespace Services.Quest
 {
     public class QuestService
     {
-        private List<QuestBase> _quests;
-        private Flow _flow;
         private readonly SignalBus _signalBus;
         private readonly QuestServiceSettings _questServiceSettings;
         private readonly QuestsSettings[] _questsSettings;
-        private readonly ISceneService _sceneService;
         private readonly LogService _logService; 
         private readonly CheatService _cheatService;
         private readonly QuestModel _questModel;
-        private readonly DiContainer _diContainer; //TODO:ref
+
+        private QuestActivateCondition _questActivateCondition;
+        private QuestAssignConditon _questAssignConditon;
+        private QuestBuildCondition _questBuildCondition;
+        private QuestCollectCondition _questCollectCondition;
+        private QuestDestroyCondition _questDestroyCondition;
+        private QuestGetCondition _questGetCondition;
+        private QuestKillCondition _questKillCondition;
+        private QuestUpgradeCondition _questUpgradeCondition;
+
+        private Flow _flow;
 
         private Dictionary<int, List<Data.Settings.Quest>> _questsThreads;
         public QuestService(SignalBus signalBus, 
                             QuestServiceSettings questServiceSettings,
                             QuestsSettings[] questsSettings,
-                            ISceneService sceneService, 
                             LogService logService,
                             CheatService cheatService,
                             QuestModel questModel,
-                            DiContainer diContainer)
+                            QuestActivateCondition questActivateCondition,
+                            QuestAssignConditon questAssignConditon,
+                            QuestBuildCondition questBuildCondition,
+                            QuestCollectCondition questCollectCondition,
+                            QuestDestroyCondition questDestroyCondition,
+                            QuestGetCondition questGetCondition,
+                            QuestKillCondition questKillCondition,
+                            QuestUpgradeCondition questUpgradeCondition)
         {
             _signalBus = signalBus;
 
@@ -42,23 +53,24 @@ namespace Services.Quest
 
             _questsSettings = questsSettings;
 
-            _sceneService = sceneService;
-
             _logService = logService;
 
             _cheatService = cheatService;
 
             _questModel = questModel;
 
-            _diContainer = diContainer;
-
-            _quests = new List<QuestBase>();
-
+            _questActivateCondition = questActivateCondition;
+            _questAssignConditon = questAssignConditon;
+            _questBuildCondition = questBuildCondition;
+            _questCollectCondition = questCollectCondition;
+            _questDestroyCondition = questDestroyCondition;
+            _questGetCondition = questGetCondition;
+            _questKillCondition = questKillCondition;
+            _questUpgradeCondition = questUpgradeCondition;
+           
             _questsThreads = new Dictionary<int, List<Data.Settings.Quest>>();
 
             LoadRegistryData();
-
-            AddCheats(_quests);
         }
 
         public void InitializeFlow(Flow flow)
@@ -79,26 +91,22 @@ namespace Services.Quest
                 }
                 case FlowExecutionMode.Parallel:
                 {  
+                    // Refresh quest model.
+                    var qModelData = _questModel.GetQuestSaveData();
+
                     foreach(var savedQuest in savedQuests)
                     {
-                        if(savedQuest.QuestState != QuestState.Active || savedQuest.QuestState != QuestState.Complete)
-                        {
-                           var dataValue = _questModel.GetQuestSaveDataAsReactive().Value;
-
-                           dataValue.QuestItemDatas.Where(itemData => itemData.Id == savedQuest.Id)
-                                                   .ToList()
-                                                   .ForEach(item =>item.QuestState = QuestState.Active);// TODO: dont save...
-                        }
+                        if(savedQuest.QuestState == QuestState.Inactive)
+                          qModelData.QuestItemDatas.FirstOrDefault(itemData => itemData.Id == savedQuest.Id).QuestState = QuestState.Active;
                     }
+
+                    _questModel.UpdateModelData(qModelData);
 
                     break;
                 }
             }
 
-          
-         
-
-            
+           //ProcessingQuests(_questModel);
 /*
             // Load saved quests.
             if(savedQuests != null && savedQuests.Count > 0)
@@ -127,54 +135,86 @@ namespace Services.Quest
 
         }
 
-        public void ClearActiveQuests()
+        private void ProcessingQuests(QuestModel questModel)
         {
-            if(_quests != null) _quests.Clear();
+            var savedQuests = _questModel.GetQuestSaveData().QuestItemDatas;
 
-            if (_questModel.GetQuestSaveData().QuestItemDatas.Count() > 0)
-                _questModel.GetQuestSaveData().QuestItemDatas.Clear();
-
-            // new OnAllQuestsInFlowCompleteEvent().Invoke();
-        }
-
-        public void AddQuestById(int questId)
-        {
-            if (_quests.Any(quest => quest.Data.Id != questId)) 
+            foreach(var savedQuest in savedQuests)
             {
-                var newQuest = AddQuestToList(GetQuestById(questId));
+                if(savedQuest.QuestState == QuestState.Active)
+                {
+                    switch(_questsSettings.FirstOrDefault(quest => quest.Quest.Id == savedQuest.Id).Quest.QuestConditionType)
+                    {
+                        case QuestConditionType.Activate:
+                        {
+                            // TODO:
+                            _questActivateCondition.Activate();
+                            break;
+                        }
 
-               /*
-                if (newQuest != null) 
-                { 
-                    if (_questModel.GetQuestSaveData().QuestItemDatas.Any(data => data.Id != questId))
-                             _questModel.GetPlayerQuestContainer().SaveQuest(newQuest);
-                }
-                */
+                        case QuestConditionType.Get: 
+                        {
+                            // TODO:
+                            _questGetCondition.Activate();
+                            break;
+                        }
+
+                        case QuestConditionType.Assign: 
+                        {
+                            // TODO:
+                            _questAssignConditon.Activate();
+                            break;
+                        }
+
+                        case QuestConditionType.Build:
+                        {
+                            // TODO:
+                            _questBuildCondition.Activate();
+                            break;
+                        }
+
+                        case QuestConditionType.Collect:
+                        {
+                            // TODO:
+                            _questCollectCondition.Activate();
+                            break;
+                        }
+
+                        case QuestConditionType.Kill:
+                        {
+                            // TODO:
+                            _questKillCondition.Activate();
+                            break;
+                        }
+
+                        case QuestConditionType.Upgrade:
+                        {
+                            // TODO:
+                            _questUpgradeCondition.Activate();
+                            break;
+                        }
+
+                        case QuestConditionType.Destroy:
+                        {
+                            // TODO:
+                            _questDestroyCondition.Activate();
+                            break;
+                        }
+                    }
+                }        
             }
         }
 
-        public void RemoveQuestById(int questId)
+        private void ActivateQuest(int questId/*, Action<QuestBase> action*/)
         {
-            DeactivateQuest(questId);
-
-            _quests.RemoveAll(x => x.Data.Id == questId);
-           
-            var savedData = _questModel.GetQuestSaveData().QuestItemDatas.FirstOrDefault(questData => questData.Id == questId);
-
-            if (savedData != null)
-                 _questModel.GetQuestSaveData().QuestItemDatas.Remove(savedData);
-        }
-
-        public void ActivateQuest(int questId, Action<QuestBase> action)
-        {
-           _quests.FirstOrDefault(quest => quest.Data.Id == questId).Activate(action);
+           //_quests.FirstOrDefault(quest => quest.Data.Id == questId).Activate(action);
         }
 
         public void DeactivateQuest(int questId)
         {
-           _quests.FirstOrDefault(quest => quest.Data.Id == questId).Deactivate();
+          // _quests.FirstOrDefault(quest => quest.Data.Id == questId).Deactivate();
         }
-
+/*
         public QuestBase ReplaceQuest(QuestBase questToRemove) 
         {
             QuestBase nextQuest = null;
@@ -191,10 +231,7 @@ namespace Services.Quest
                 {
                     questToRemove.Deactivate();
 
-                    RemoveQuestById(questToRemove.Data.Id);
-
-                   // _questModel.GetPlayerQuestContainer().SaveQuest(nextQuest);
-
+                   
                    _logService.ShowLog(GetType().Name,
                                     Services.Log.LogType.Message, $"Replacing quest with ID {questToRemove.Data.Id} by quest {nextQuest.Data.Id}.",
                                     LogOutputLocationType.Console);
@@ -202,25 +239,25 @@ namespace Services.Quest
             }
 
             return nextQuest;
-        }
+        }*/
 
-        public void ForceCompleteQuest(QuestBase quest)
+        public void ForceCompleteQuest(/*QuestBase quest*/)
         {
-             RemoveQuestById(quest.Data.Id); 
+           //  RemoveQuestById(quest.Data.Id); 
 
             //new OnQuestCompleteEvent(quest, true).Invoke();
         }
 
         public void Dispose() 
-        {
+        {/*
             if (_quests.Count == 0) return;
 
-            foreach(var quest in _quests) quest.Dispose();
+            foreach(var quest in _quests) quest.Dispose();*/
         }  
         
-        private void CompleteQuest(QuestBase questBase)
+        private void CompleteQuest(/*QuestBase questBase*/)
         {
-            var nextQuest = ReplaceQuest(questBase);
+          //  var nextQuest = ReplaceQuest(questBase);
 
             //new OnQuestProgressEvent(questBase.Data.Id, true).Invoke();
 
@@ -229,9 +266,11 @@ namespace Services.Quest
            // new OnQuestReplacedEvent(questBase, nextQuest).Invoke();
         }
 
+/*
         private QuestBase AddQuestToList(Data.Settings.Quest quest)
         {
            QuestBase newQuest = null;
+           /*
 
            if(_quests.Any(qst => qst.Data.Id == quest.Id))
                 _logService.ShowLog(GetType().Name,
@@ -248,7 +287,7 @@ namespace Services.Quest
 
            return newQuest;
         }
-       
+      
         private void AddQuestProgress(QuestBase questBase)
         {
             // TODO:
@@ -273,7 +312,7 @@ namespace Services.Quest
         {
             return _questsSettings.FirstOrDefault(quest => quest.Quest.Id == id).Quest;
         }
-
+*/
         private Dictionary<int, List<Data.Settings.Quest>> GetAllQuests()
         {
             return _questsThreads;
@@ -318,7 +357,7 @@ namespace Services.Quest
             }
          }
 
-          private void AddCheats(List<QuestBase> quests)
+          private void AddCheats()
           {
                 _cheatService.AddCheatItemControl<CheatButtonDropdownControl>(button => button
                .SetDropdownOptions(new List<string>() 
@@ -387,27 +426,13 @@ namespace Services.Quest
                }), CheatServiceConstants.Quests);
 
             _cheatService.AddCheatItemControl<CheatButtonControl>(button => button
-                .SetButtonName("Win Cur Zone")
-                .SetButtonCallback(() =>
-                {
-                    try
-                    {
-                        ClearActiveQuests();
-
-                        //new OnAllQuestsInFlowCompleteEvent().Invoke();
-                    }
-                    catch {}
-                  
-                }), CheatServiceConstants.Quests);
-
-            _cheatService.AddCheatItemControl<CheatButtonControl>(button => button
              .SetButtonName("Complete Quests")
             .SetButtonCallback(() =>
-            {
+            {/*
                 foreach (var quest in _quests)
                 {
                     ForceCompleteQuest(quest);
-                }
+                }*/
             }), CheatServiceConstants.Quests);
           }
     }

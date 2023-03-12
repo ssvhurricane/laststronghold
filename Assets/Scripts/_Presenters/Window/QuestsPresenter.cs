@@ -67,26 +67,54 @@ namespace Presenters
             _questItemViews = new List<QuestItemView>();
 
             _poolService.InitPool(PoolServiceConstants.QuestItemViewPool);
-        }
 
-        public IModel GetModel()
-        {
-            return _questModel;
-        }
+            _questModel.GetQuestSaveDataAsReactive().Subscribe(item => 
+            {
+                var data = _poolService.GetPoolDatas();
 
-        public IView GetView()
-        {
-            return _questView;
-        }
+                if (data == null && _poolService == null) return;
 
-        public void HideView()
+                    if(_poolService.GetPoolDatas().Any(data => data.Name == PoolServiceConstants.QuestItemViewPool))
+                    {
+                        var poolQuestItemViews = _poolService.GetPool().GetViewPoolItems().Where(poolItem => poolItem as QuestItemView);
+
+                        /*
+                        // Update views.
+                        foreach(var questSaveData in _questModel.GetQuestSaveData().QuestItemDatas)
+                        {
+                            if(questSaveData.QuestState == QuestState.Active || questSaveData.QuestState == QuestState.Complete)
+                            {
+                                var questItemView = (QuestItemView)_poolService.Spawn<QuestItemView>(questContainerView.GetQuestContainer().transform, PoolServiceConstants.QuestItemViewPool);
+
+                                questItemView.UpdateView(new QuestItemViewArgs()
+                                {
+                                    Id = questSaveData.Id,
+
+                                    Description = _questsSettings.FirstOrDefault(quest =>quest.Quest.Id == questSaveData.Id).Quest.Description,
+
+                                    QuestState = questSaveData.QuestState,
+
+                                    CurrentValue = questSaveData.CurrentValue,
+
+                                    NeedValue = _questsSettings.FirstOrDefault(quest =>quest.Quest.Id == questSaveData.Id).Quest.NeedValue
+                                });
+                            }
+                        }
+                        */
+                    }
+            });
+        } 
+        
+        public void InitializeQuests(ReactiveProperty<ProjectSaveData> projectSaveData)
         {
-            // TODO:
+            _projectSaveData = projectSaveData;
+            
+            _questService.InitializeFlow(_questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == _projectSaveData.Value.CurrentQuestFlowId));
         }
 
         public void ShowView(GameObject prefab = null, Transform hTransform = null)
         {
-             if (_windowService.IsWindowShowing<QuestsContainerView>()) return; 
+            if (_windowService.IsWindowShowing<QuestsContainerView>()) return; 
             
             if (_windowService.GetWindow<QuestsContainerView>() != null)
                 _questView = (QuestsContainerView)_windowService.ShowWindow<QuestsContainerView>();
@@ -108,6 +136,7 @@ namespace Presenters
                 FlowDescriptionText = _questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == _projectSaveData.Value.CurrentQuestFlowId).Description
             });
             
+            // Update views.
             foreach(var questSaveData in _questModel.GetQuestSaveData().QuestItemDatas)
             {
                 if(questSaveData.QuestState == QuestState.Active || questSaveData.QuestState == QuestState.Complete)
@@ -128,64 +157,21 @@ namespace Presenters
                     });
                 }
             }
-
-          // questContainerView.AttachView(_questItemViews);
         }
 
-        public void InitializeQuests(ReactiveProperty<ProjectSaveData> projectSaveData)
+        public IModel GetModel()
         {
-            _projectSaveData = projectSaveData;
-            
-            _questService.InitializeFlow(_questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == _projectSaveData.Value.CurrentQuestFlowId));
+            return _questModel;
         }
 
-        private void QuestCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        { 
-            //List<QuestItemViewArgs>questItemViewArgs = null; TODO:
+        public IView GetView()
+        {
+            return _questView;
+        }
 
-            switch (e.Action)
-           {
-                case NotifyCollectionChangedAction.Add:
-                {
-                    // TODO:
-                    if(_questView != null)
-                    {
-                        _logService.ShowLog(GetType().Name,
-                                    Services.Log.LogType.Message, "Add",
-                                    LogOutputLocationType.Console);
-                   
-                        (_questView as QuestsContainerView).AttachView(_questItemViews);
-                    }
-                    break;
-                }
-                case NotifyCollectionChangedAction.Remove: 
-                { 
-                  
-                    // TODO:
-                    if(_questView != null)
-                    {
-                        _logService.ShowLog(GetType().Name,
-                                    Services.Log.LogType.Message, "Remove",
-                                    LogOutputLocationType.Console);
-
-                        (_questView as QuestsContainerView).AttachView(_questItemViews);
-                    }
-                    break;
-                }
-                case NotifyCollectionChangedAction.Replace: 
-                {
-                    // TODO:
-                    if(_questView != null)
-                    {
-                        _logService.ShowLog(GetType().Name,
-                                    Services.Log.LogType.Message, "Replace",
-                                    LogOutputLocationType.Console);
-                                    
-                        (_questView as QuestsContainerView).AttachView(_questItemViews);
-                    }
-                    break;
-                }
-            }
+        public void HideView()
+        {
+            // TODO:
         }
     }
 }
