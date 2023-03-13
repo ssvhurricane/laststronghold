@@ -42,6 +42,7 @@ namespace Services.Input
 
         private readonly PauseMenuPresenter _pauseMenuPresenter;
         private readonly CheatMenuPresenter _cheatMenuPresenter;
+        private readonly QuestsMenuPresenter _questsMenuPresenter;
         private readonly MainHUDPresenter _mainHUDPresenter;
         private readonly CameraPresenter _cameraPresenter;
 
@@ -77,6 +78,7 @@ namespace Services.Input
             IWindowService windowService,
             PauseMenuPresenter pauseMenuPresenter,
             CheatMenuPresenter cheatMenuPresenter,
+            QuestsMenuPresenter questsMenuPresenter,
             MainHUDPresenter mainHUDPresenter,
             CameraPresenter cameraPresenter,
             PoolService poolService,
@@ -96,6 +98,7 @@ namespace Services.Input
 
             _pauseMenuPresenter = pauseMenuPresenter;
             _cheatMenuPresenter = cheatMenuPresenter;
+            _questsMenuPresenter = questsMenuPresenter;
             _mainHUDPresenter = mainHUDPresenter;
             _cameraPresenter = cameraPresenter;
 
@@ -155,7 +158,11 @@ namespace Services.Input
 
             _topDownGameInput.Player.QuestMenu.performed += value =>
             {
-                // TODO: QuestsView.
+                if (_windowService.IsWindowShowing<PauseMenuView>()) return;
+
+                if (_windowService.IsWindowShowing<GameSettingsView>()) return;
+
+                _questsMenuPresenter.ShowView();
             };
 
             _topDownGameInput.Player.Cheat.performed += value =>

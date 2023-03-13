@@ -42,7 +42,9 @@ namespace Bootstrap
             Container.InstallElementAsSingle<MainHUDPresenter>();
             Container.InstallElementAsSingle<PauseMenuPresenter>();
             Container.InstallElementAsSingle<CheatMenuPresenter>();
+
             Container.InstallElementAsSingle<QuestsPresenter>();
+            Container.InstallElementAsSingle<QuestsMenuPresenter>();
 
             // View Presenters.
             Container.InstallElementAsSingle<PlayerPresenter>();

@@ -3,7 +3,6 @@ using Model;
 using Zenject;
 using UnityEngine;
 using UniRx;
-using Newtonsoft.Json;
 
 namespace Services.SaveData
 {
