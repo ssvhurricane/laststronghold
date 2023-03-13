@@ -19,7 +19,7 @@ MonoBehaviour:
       Description: '[Flow1]'
       Threads: 1
       FlowExecutionMode: 1
-      FlowRewardMode: 2
+      FlowRewardMode: 0
     - Id: 2
       Description: '[Flow2]'
       Threads: 2

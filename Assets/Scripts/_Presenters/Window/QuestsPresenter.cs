@@ -10,7 +10,6 @@ using Services.Anchor;
 using System.Linq;
 using Services.Quest;
 using Data.Settings;
-using System.Collections.Specialized;
 using System.Collections.Generic;
 using Services.Pool;
 using Constants;
@@ -74,34 +73,34 @@ namespace Presenters
 
                 if (data == null && _poolService == null) return;
 
-                    if(_poolService.GetPoolDatas().Any(data => data.Name == PoolServiceConstants.QuestItemViewPool))
+                if(_poolService.GetPoolDatas().Any(data => data.Name == PoolServiceConstants.QuestItemViewPool))
+                {
+                    var poolQuestItemViews = _poolService.GetPool().GetViewPoolItems().Where(poolItem => poolItem as QuestItemView);
+
+                    if(poolQuestItemViews != null && poolQuestItemViews.Count() != 0)
                     {
-                        var poolQuestItemViews = _poolService.GetPool().GetViewPoolItems().Where(poolItem => poolItem as QuestItemView);
+                        var questItemViews = poolQuestItemViews.Where(view => item.QuestItemDatas.Any(item => item.Id == int.Parse(view.Id)));
 
-                        /*
-                        // Update views.
-                        foreach(var questSaveData in _questModel.GetQuestSaveData().QuestItemDatas)
-                        {
-                            if(questSaveData.QuestState == QuestState.Active || questSaveData.QuestState == QuestState.Complete)
-                            {
-                                var questItemView = (QuestItemView)_poolService.Spawn<QuestItemView>(questContainerView.GetQuestContainer().transform, PoolServiceConstants.QuestItemViewPool);
-
-                                questItemView.UpdateView(new QuestItemViewArgs()
+                        if(questItemViews != null &&  questItemViews.Count() != 0)
+                                foreach(QuestItemView questItemView in questItemViews)
                                 {
-                                    Id = questSaveData.Id,
+                                   var itemData = item.QuestItemDatas.FirstOrDefault(data => data.Id == int.Parse(questItemView.Id));
 
-                                    Description = _questsSettings.FirstOrDefault(quest =>quest.Quest.Id == questSaveData.Id).Quest.Description,
+                                   questItemView.UpdateView(new QuestItemViewArgs()
+                                    {
+                                        Id = itemData.Id,
 
-                                    QuestState = questSaveData.QuestState,
+                                        Description = _questsSettings.FirstOrDefault(quest => quest.Quest.Id == itemData.Id).Quest.Description,
 
-                                    CurrentValue = questSaveData.CurrentValue,
+                                        QuestState = itemData.QuestState,
 
-                                    NeedValue = _questsSettings.FirstOrDefault(quest =>quest.Quest.Id == questSaveData.Id).Quest.NeedValue
-                                });
-                            }
-                        }
-                        */
+                                        CurrentValue = itemData.CurrentValue,
+
+                                        NeedValue = _questsSettings.FirstOrDefault(quest => quest.Quest.Id ==itemData.Id).Quest.NeedValue
+                                    });
+                                }
                     }
+                }
             });
         } 
         
@@ -126,7 +125,6 @@ namespace Presenters
                     _questView = _factoryService.Spawn<QuestsContainerView>(holderTansform);
             }
 
-            // TODO:
             var questContainerView  = _questView as QuestsContainerView;
 
             if(questContainerView == null) return;
@@ -135,8 +133,7 @@ namespace Presenters
             {
                 FlowDescriptionText = _questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == _projectSaveData.Value.CurrentQuestFlowId).Description
             });
-            
-            // Update views.
+         
             foreach(var questSaveData in _questModel.GetQuestSaveData().QuestItemDatas)
             {
                 if(questSaveData.QuestState == QuestState.Active || questSaveData.QuestState == QuestState.Complete)

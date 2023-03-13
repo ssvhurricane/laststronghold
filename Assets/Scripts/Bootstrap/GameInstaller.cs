@@ -78,15 +78,6 @@ namespace Bootstrap
             Container.InstallElementAsSingle<NPCService>();
 
             Container.InstallElementAsSingle<QuestService>();
-
-            Container.InstallElementAsTransient<QuestActivateCondition>(); 
-            Container.InstallElementAsTransient<QuestAssignConditon>(); 
-            Container.InstallElementAsTransient<QuestBuildCondition>(); 
-            Container.InstallElementAsTransient<QuestCollectCondition>(); 
-            Container.InstallElementAsTransient<QuestDestroyCondition>(); 
-            Container.InstallElementAsTransient<QuestGetCondition>(); 
-            Container.InstallElementAsTransient<QuestUpgradeCondition>(); 
-            Container.InstallElementAsTransient<QuestKillCondition>(); 
         }
 
         private void InstallAbilities() 

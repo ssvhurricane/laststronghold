@@ -38,6 +38,8 @@ namespace View.Window
 
         public void UpdateView(QuestItemViewArgs questItemViewArgs)
         {  
+             Id = questItemViewArgs.Id.ToString();
+             
             _questId = questItemViewArgs.Id;
 
             var countItem = questItemViewArgs.NeedValue != 0 ? " " + questItemViewArgs.CurrentValue.ToString() + "/" + questItemViewArgs.NeedValue:string.Empty; 

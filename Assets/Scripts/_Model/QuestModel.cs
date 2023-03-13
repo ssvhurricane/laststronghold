@@ -55,6 +55,8 @@ namespace Model
                 {
                     Id = questSettings.Quest.Id,
 
+                    ThreadId = questSettings.Quest.ThreadId,
+
                     CurrentValue = 0,
 
                     QuestState = QuestState.Inactive
@@ -80,6 +82,8 @@ namespace Model
                 prepareQuestSaveData.Add(new QuestItemData()
                 {
                     Id = questItemData.Id,
+
+                    ThreadId = questItemData.ThreadId,
 
                     CurrentValue = questItemData.CurrentValue,
 

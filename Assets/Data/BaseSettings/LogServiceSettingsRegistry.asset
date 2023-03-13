@@ -120,6 +120,10 @@ MonoBehaviour:
       Enable: 1
       Color: {r: 1, g: 0, b: 0, a: 1}
       LogItemType: 2
+    - Name: QuestService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
     - Name: NetworkModel
       Enable: 1
       Color: {r: 0, g: 0.7085581, b: 1, a: 1}

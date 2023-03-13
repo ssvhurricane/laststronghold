@@ -28,7 +28,7 @@ MonoBehaviour:
       Id: 2
       ThreadId: 1
       Description: '[Quest2]'
-      NeedValue: 1
+      NeedValue: 2
       Icon: {fileID: 0}
       QuestConditionType: 0
       Param: 
@@ -38,7 +38,7 @@ MonoBehaviour:
       Id: 3
       ThreadId: 1
       Description: '[Quest3]'
-      NeedValue: 1
+      NeedValue: 3
       Icon: {fileID: 0}
       QuestConditionType: 0
       Param: 

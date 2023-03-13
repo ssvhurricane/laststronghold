@@ -8,6 +8,8 @@ namespace Services.Quest
     public class QuestItemData
     {
         public int Id { get; set; }
+
+        public int ThreadId { get; set; }
         public int CurrentValue { get; set; }
         public QuestState QuestState;
     }
@@ -19,17 +21,5 @@ namespace Services.Quest
        
         public List<QuestItemData> QuestItemDatas;
         public QuestSaveData(){}
-    }
-
-    [Serializable]
-    public class QuestCountSaveData : QuestSaveData
-    {
-        public int Count;
-    }
-
-    [Serializable]
-    public class QuestTimeSaveData : QuestSaveData
-    {
-        public float TimeLeft;
     }
 }
