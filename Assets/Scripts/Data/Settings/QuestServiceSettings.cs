@@ -9,6 +9,8 @@ namespace Data.Settings
     public class Flow
     {
         public int Id;
+
+        public string ChapterName;
         public string Description;
         public string Threads;
 

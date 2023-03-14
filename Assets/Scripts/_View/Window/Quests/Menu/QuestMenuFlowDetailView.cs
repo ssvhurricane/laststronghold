@@ -1,16 +1,15 @@
-using Services.Quest;
 using Services.Window;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace View.Window
 {
-    public class QuestItemDetailView : WindowItem
+    public class QuestMenuFlowDetailView : WindowItem
     {
-        [SerializeField] protected WindowType Type;
-
+       [SerializeField] protected WindowType Type;
         private SignalBus _signalBus;
+
+        private bool _isActive = false;
 
         [Inject]
         public void Constrcut(SignalBus signalBus)
