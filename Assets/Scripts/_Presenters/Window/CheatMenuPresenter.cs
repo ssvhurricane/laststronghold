@@ -157,7 +157,8 @@ namespace Presenters.Window
 
             if (_cheatItems != null 
                     && _cheatItems.Count != 0
-                    && !_poolService.GetPoolDatas().Any(data => data.Name == PoolServiceConstants.CheatItemViewPool || data.Name == PoolServiceConstants.CheatItemDetailViewPool))
+                    && !_poolService.GetPoolDatas()
+                                    .Any(data => data.Name == PoolServiceConstants.CheatItemViewPool || data.Name == PoolServiceConstants.CheatItemDetailViewPool))
                
                 foreach(var cheatItem in _cheatItems)
                 {

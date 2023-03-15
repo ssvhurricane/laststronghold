@@ -17,6 +17,14 @@ namespace Data.Settings
     }
 
     [Serializable]
+    public class ChapterData
+    {
+        public int Id;
+
+        public string ChapterName;
+    }
+
+    [Serializable]
     public class ProjectServiceSettings : IRegistryData
     {  
         [SerializeField] public string Id;
@@ -49,9 +57,12 @@ namespace Data.Settings
         }
         [SerializeField]
         public GameSettingsData GameSettingsData;
+ 
+        [SerializeField]
+        public ChapterData[] ChapterDatas;
 
         [SerializeField]
-        public int QuestCurrentFlowId; 
+        public int QuestCurrentFlowId;
 
         string IRegistryData.Id => Id;
     }

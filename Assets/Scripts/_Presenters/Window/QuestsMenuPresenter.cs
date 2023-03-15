@@ -34,10 +34,13 @@ namespace Presenters
         private readonly ProjectService _projectService;
 
         private readonly QuestServiceSettings _questServiceSettings;
+        private readonly ProjectServiceSettings _projectServiceSettings;
         private readonly QuestsSettings[] _questsSettings;
         private QuestMenuView _questMenuView;
 
         private readonly QuestModel _questModel;
+
+        private readonly ProjectModel _projectModel;
 
         private List<QuestItemView> _questItemViews;
        
@@ -51,9 +54,11 @@ namespace Presenters
                             QuestService questService,
                             PoolService poolService,
                             ProjectService projectService,
+                            ProjectServiceSettings projectServiceSettings,
                             QuestServiceSettings questServiceSettings,
                             QuestsSettings[] questsSettings,
-                            QuestModel questModel)
+                            QuestModel questModel,
+                            ProjectModel projectModel)
         {
             _signalBus = signalBus;
             _logService = logService;
@@ -63,9 +68,11 @@ namespace Presenters
             _questService = questService;
             _poolService = poolService;
             _projectService = projectService;
+            _projectServiceSettings = projectServiceSettings;
             _questServiceSettings = questServiceSettings;
             _questsSettings = questsSettings;
             _questModel = questModel;
+            _projectModel = projectModel;
 
             _questItemViews = new List<QuestItemView>();
 
@@ -147,7 +154,76 @@ namespace Presenters
 
         private void CreateQuestItems()
         {
-            // TODO:
+            var projectChapterDatas = _projectServiceSettings.ChapterDatas;
+
+            if (projectChapterDatas != null 
+                    && !_poolService.GetPoolDatas()
+                                    .Any(data => data.Name == PoolServiceConstants.QuestMenuFlowContainerViewPool))
+            {
+                foreach(var projectChapterData in projectChapterDatas)
+                {
+                                                     
+                   _poolService.InitPool(new PoolData()
+                    {
+                        Id = PoolServiceConstants.QuestMenuFlowContainerViewPool,
+
+                        Name = PoolServiceConstants.QuestMenuFlowContainerViewPool,
+
+                        InitialSize = projectChapterDatas.Count(),
+
+                         MaxSize = projectChapterDatas.Count()
+                    });
+                        
+                    var questMenuFlowContainerView = (QuestMenuFlowContainerView)_poolService.Spawn<QuestMenuFlowContainerView>(_questMenuView.GetLeftContainer().transform, 
+                                                                                                                    PoolServiceConstants.QuestMenuFlowContainerViewPool);
+                    questMenuFlowContainerView.UpdateView(new QuestMenuFlowContainerViewArgs()
+                    {
+                        Id = projectChapterData.Id.ToString(),
+
+                        Name = projectChapterData.ChapterName,
+                    });
+                }
+            }
+
+            var projectModelDataFlows =_projectModel.GetProjectSaveData().QuestFlows;
+
+            if(projectModelDataFlows != null 
+                                    && projectModelDataFlows.Count() != 0
+                                     && !_poolService.GetPoolDatas()
+                                    .Any(data => data.Name == PoolServiceConstants.QuestMenuFlowViewPool))
+            {
+
+                foreach(var projectModelDataFlow in projectModelDataFlows)
+                {
+                    _poolService.InitPool(new PoolData()
+                    {
+                        Id = PoolServiceConstants.QuestMenuFlowViewPool,
+
+                        Name = PoolServiceConstants.QuestMenuFlowViewPool,
+
+                        InitialSize = _questServiceSettings.Flows.Count(),
+
+                        MaxSize = _questServiceSettings.Flows.Count()
+                    });
+
+                   var questMenuFlowContainerView = _poolService
+                        .GetPool()
+                        .GetViewPoolItems()
+                        .FirstOrDefault(item => item is QuestMenuFlowContainerView 
+                                            && item.Id == _questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == projectModelDataFlow.Key).ChapterId.ToString()) as QuestMenuFlowContainerView;
+                       
+                 
+                    var questMenuFlowView = (QuestMenuFlowView)_poolService.Spawn<QuestMenuFlowView>(questMenuFlowContainerView.GetContainer().transform, 
+                                                                                                                    PoolServiceConstants.QuestMenuFlowViewPool);
+                    questMenuFlowView.UpdateView(new QuestMenuFlowViewArgs()
+                    {
+                        Id = projectModelDataFlow.Key.ToString(),
+
+                        Name = _questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == projectModelDataFlow.Key).Description
+                    });
+
+                }
+            }
         }
 
         public IModel GetModel()

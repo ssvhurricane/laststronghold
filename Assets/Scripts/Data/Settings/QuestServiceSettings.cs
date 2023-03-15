@@ -10,7 +10,7 @@ namespace Data.Settings
     {
         public int Id;
 
-        public string ChapterName;
+        public int ChapterId;
         public string Description;
         public string Threads;
 

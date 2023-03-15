@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 9
+  QuestMenuFlowText: {fileID: 4908686193040205503}
 --- !u!1 &4290135635680334512
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +272,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: c9b68a0b03c524d02a8c7a2be1a75026, type: 3}
-    m_FontSize: 14
+    m_FontSize: 21
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10

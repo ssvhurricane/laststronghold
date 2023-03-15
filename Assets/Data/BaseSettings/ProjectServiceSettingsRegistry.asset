@@ -26,4 +26,9 @@ MonoBehaviour:
       FrameRateCount: 0
       Shadows: 1
       ChoosenLanguage: 2
+    ChapterDatas:
+    - Id: 1
+      ChapterName: '[Chapter1]'
+    - Id: 2
+      ChapterName: '[Chapter2]'
     QuestCurrentFlowId: 1

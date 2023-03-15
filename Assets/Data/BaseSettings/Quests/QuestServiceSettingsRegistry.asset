@@ -16,19 +16,19 @@ MonoBehaviour:
     Id: 0
     Flows:
     - Id: 1
-      ChapterName: '[Chapter1]'
+      ChapterId: 1
       Description: '[Flow1]'
       Threads: 1
       FlowExecutionMode: 1
       FlowRewardMode: 0
     - Id: 2
-      ChapterName: '[Chapter1]'
+      ChapterId: 1
       Description: '[Flow2]'
       Threads: 2
       FlowExecutionMode: 0
       FlowRewardMode: 0
     - Id: 3
-      ChapterName: '[Chapter1]'
+      ChapterId: 1
       Description: '[Flow3]'
       Threads: 3,4,5
       FlowExecutionMode: 0

@@ -116,6 +116,18 @@ MonoBehaviour:
       Key: '[QuestMenuPress]'
       RU: "\u041C\u0435\u043D\u044E \u041A\u0432\u0435\u0441\u0442\u043E\u0432"
       EN: Quest Menu
+  - Id: '[Chapter1]'
+    Enable: 0
+    localizationItem:
+      Key: '[Chapter1]'
+      RU: "\u0413\u043B\u0430\u0432\u04301. \u0412 \u043D\u0435\u0431\u0435\u0441\u0430."
+      EN: Chapter 1. To heaven.
+  - Id: '[Chapter2]'
+    Enable: 0
+    localizationItem:
+      Key: '[Chapter2]'
+      RU: "\u0413\u043B\u0430\u0432\u0430 2."
+      EN: Chapter 2.
   - Id: '[Flow1]'
     Enable: 0
     localizationItem:
@@ -123,6 +135,18 @@ MonoBehaviour:
       RU: "\u041E\u0441\u0432\u043E\u0438\u0442\u0441\u044F \u0441 \u0443\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435\u043C
         \u0432\u0435\u0440\u0442\u043E\u043B\u0435\u0442\u043E\u043C"
       EN: Learn to fly a helicopter
+  - Id: '[Flow2]'
+    Enable: 0
+    localizationItem:
+      Key: '[Flow2]'
+      RU: "\u0424\u043B\u043E\u0443 2."
+      EN: Flow 2.
+  - Id: '[Flow3]'
+    Enable: 0
+    localizationItem:
+      Key: '[Flow3]'
+      RU: "\u0424\u043B\u043E\u0443 3."
+      EN: Flow 3.
   - Id: '[Quest1]'
     Enable: 0
     localizationItem:
@@ -142,9 +166,3 @@ MonoBehaviour:
       Key: '[Quest3]'
       RU: "\u0421\u0431\u0440\u043E\u0441 \u0438 \u0432\u043E\u0437\u0432\u0440\u0430\u0442"
       EN: Reset and return
-  - Id: '[Chapter1]'
-    Enable: 0
-    localizationItem:
-      Key: '[Chapter1]'
-      RU: "\u0413\u043B\u0430\u0432\u04301. \u0412 \u043D\u0435\u0431\u0435\u0441\u0430."
-      EN: Chapter 1. To heaven.
