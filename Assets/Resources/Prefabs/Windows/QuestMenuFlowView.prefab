@@ -82,6 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 9
   QuestMenuFlowText: {fileID: 4908686193040205503}
+  QuestMenuButton: {fileID: 8626928517772485260}
 --- !u!1 &4290135635680334512
 GameObject:
   m_ObjectHideFlags: 0

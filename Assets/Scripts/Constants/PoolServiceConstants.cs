@@ -11,8 +11,10 @@ namespace Constants
         public static string QuestMenuFlowContainerViewPool = "QuestMenuFlowContainerViewPool";
         public static string QuestMenuFlowViewPool = "QuestMenuFlowViewPool";
 
+        public static string QuestMenuFlowDetailViewPool = "QuestMenuFlowDetailViewPool";
+
         // Cheats.
-         public static string CheatItemViewPool = "CheatItemViewPool";
+        public static string CheatItemViewPool = "CheatItemViewPool";
         public static string CheatItemDetailViewPool = "CheatItemDetailViewPool";
     }
 }

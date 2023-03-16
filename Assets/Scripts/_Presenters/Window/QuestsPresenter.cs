@@ -144,13 +144,13 @@ namespace Presenters
                     {
                         Id = questSaveData.Id,
 
-                        Description = _questsSettings.FirstOrDefault(quest =>quest.Quest.Id == questSaveData.Id).Quest.Description,
+                        Description = _questsSettings.FirstOrDefault(quest => quest.Quest.Id == questSaveData.Id).Quest.Description,
 
                         QuestState = questSaveData.QuestState,
 
                         CurrentValue = questSaveData.CurrentValue,
 
-                        NeedValue = _questsSettings.FirstOrDefault(quest =>quest.Quest.Id == questSaveData.Id).Quest.NeedValue
+                        NeedValue = _questsSettings.FirstOrDefault(quest => quest.Quest.Id == questSaveData.Id).Quest.NeedValue
                     });
                 }
             }

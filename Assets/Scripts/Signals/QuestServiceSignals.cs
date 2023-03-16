@@ -75,5 +75,14 @@ namespace Signals
                 // TODO:
             }
         }
+   
+        public class ActivateQuestMenuFlowView
+        {
+            public string Name { get; set;}
+            public ActivateQuestMenuFlowView(string name)
+            {
+                Name = name;
+            }
+        }
     }
 }

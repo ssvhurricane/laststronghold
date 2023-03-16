@@ -6,6 +6,7 @@ using Data.Settings;
 using UnityEngine;
 using Data;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Model
 {
@@ -59,8 +60,11 @@ namespace Model
                 var prepareQuestFlowsData = new Dictionary<int, bool>();
 
                 foreach(var itemDataSettings in _questServiceSettings.Flows)
-                    prepareQuestFlowsData.Add(itemDataSettings.Id, false);
-
+                    if(itemDataSettings.Id == _projectServiceSettings.QuestCurrentFlowId)
+                        prepareQuestFlowsData.Add(itemDataSettings.Id, true);
+                    else
+                        prepareQuestFlowsData.Add(itemDataSettings.Id, false);
+           
                _projectData.Value = new Services.Project.ProjectSaveData()
                 {
                     Id = int.Parse(_projectServiceSettings.Id),

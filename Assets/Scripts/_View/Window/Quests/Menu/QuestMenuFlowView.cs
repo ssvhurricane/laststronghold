@@ -3,6 +3,7 @@ using Services.Window;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Signals;
 
 namespace View.Window
 {
@@ -11,6 +12,8 @@ namespace View.Window
         [SerializeField] protected WindowType Type;
 
         [SerializeField] protected Text QuestMenuFlowText;
+
+        [SerializeField] protected Button QuestMenuButton;
 
         private SignalBus _signalBus; 
         private LocalizationService _localizationService;
@@ -25,15 +28,27 @@ namespace View.Window
             _localizationService = localizationService;
 
             WindowType = Type;
+
+            QuestMenuButton.onClick.AddListener(OnActivate);
         }
 
-         public void UpdateView(QuestMenuFlowViewArgs questMenuFlowViewArgs)
-         {
+        private void OnActivate()
+        {
+            _signalBus.Fire(new QuestServiceSignals.ActivateQuestMenuFlowView(QuestMenuFlowText.text));
+        }
+
+        public void UpdateView(QuestMenuFlowViewArgs questMenuFlowViewArgs)
+        {
             Id = questMenuFlowViewArgs.Id;
 
             if (_localizationService.HaveKey(questMenuFlowViewArgs.Name))
                 QuestMenuFlowText.text = _localizationService.Translate(questMenuFlowViewArgs.Name);
-         }
+        }
+
+        public Text GetFlowText()
+        {
+            return QuestMenuFlowText;
+        }
     }
 
     public class QuestMenuFlowViewArgs : IWindowArgs

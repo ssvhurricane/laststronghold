@@ -62,7 +62,7 @@ namespace Data.Settings
         public ChapterData[] ChapterDatas;
 
         [SerializeField]
-        public int QuestCurrentFlowId;
+        public int QuestCurrentFlowId; //This is start flow!
 
         string IRegistryData.Id => Id;
     }

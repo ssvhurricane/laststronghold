@@ -16,6 +16,7 @@ using Constants;
 using Services.Project;
 using UniRx;
 using UnityEngine.UI;
+using Signals;
 
 namespace Presenters
 {
@@ -76,44 +77,38 @@ namespace Presenters
 
             _questItemViews = new List<QuestItemView>();
 
-            //_poolService.InitPool(PoolServiceConstants.QuestItemViewPool);
+            _signalBus.Subscribe<QuestServiceSignals.ActivateQuestMenuFlowView>(signal =>
+              {
+                    var data = _poolService.GetPoolDatas();
+                    if (data == null && _poolService == null) return;
 
-            _questModel.GetQuestSaveDataAsReactive().Subscribe(item => 
-            {
-                /*
-                var data = _poolService.GetPoolDatas();
-
-                if (data == null && _poolService == null) return;
-
-                if(_poolService.GetPoolDatas().Any(data => data.Name == PoolServiceConstants.QuestItemViewPool))
-                {
-                    var poolQuestItemViews = _poolService.GetPool().GetViewPoolItems().Where(poolItem => poolItem as QuestItemView);
-
-                    if(poolQuestItemViews != null && poolQuestItemViews.Count() != 0)
+                    if(_poolService.GetPoolDatas().Any(data => data.Name == PoolServiceConstants.QuestMenuFlowViewPool))
                     {
-                        var questItemViews = poolQuestItemViews.Where(view => item.QuestItemDatas.Any(item => item.Id == int.Parse(view.Id)));
+                        var poolQuestMenuFlowViews = _poolService.GetPool().GetViewPoolItems().Where(poolItem => poolItem as QuestMenuFlowView);
 
-                        if(questItemViews != null &&  questItemViews.Count() != 0)
-                                foreach(QuestItemView questItemView in questItemViews)
-                                {
-                                   var itemData = item.QuestItemDatas.FirstOrDefault(data => data.Id == int.Parse(questItemView.Id));
+                        foreach(var poolQuestMenuFlowView in poolQuestMenuFlowViews)
+                        {
+                          if((poolQuestMenuFlowView as QuestMenuFlowView).GetFlowText().text == signal.Name)
+                          {
+                                // TODO: set color, anim ,etc
+                          }
+                          else
+                          {
 
-                                   questItemView.UpdateView(new QuestItemViewArgs()
-                                    {
-                                        Id = itemData.Id,
+                          }
+                        } 
 
-                                        Description = _questsSettings.FirstOrDefault(quest => quest.Quest.Id == itemData.Id).Quest.Description,
+                        var poolQuestMenuFlowDetailViews = _poolService.GetPool().GetViewPoolItems().Where(poolItem => poolItem as QuestMenuFlowDetailView);
 
-                                        QuestState = itemData.QuestState,
-
-                                        CurrentValue = itemData.CurrentValue,
-
-                                        NeedValue = _questsSettings.FirstOrDefault(quest => quest.Quest.Id ==itemData.Id).Quest.NeedValue
-                                    });
-                                }
+                        foreach(var poolQuestMenuFlowDetailView in poolQuestMenuFlowDetailViews)
+                        {
+                          if((poolQuestMenuFlowDetailView as QuestMenuFlowDetailView).GetFlowDetailText().text == signal.Name)
+                                poolQuestMenuFlowDetailView.GetGameObject().SetActive(true);
+                          else
+                                poolQuestMenuFlowDetailView.GetGameObject().SetActive(false);
+                        } 
                     }
-                }*/
-            });
+              });
         } 
 
         public void ShowView(GameObject prefab = null, Transform hTransform = null)
@@ -192,7 +187,6 @@ namespace Presenters
                                      && !_poolService.GetPoolDatas()
                                     .Any(data => data.Name == PoolServiceConstants.QuestMenuFlowViewPool))
             {
-
                 foreach(var projectModelDataFlow in projectModelDataFlows)
                 {
                     _poolService.InitPool(new PoolData()
@@ -221,7 +215,60 @@ namespace Presenters
 
                         Name = _questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == projectModelDataFlow.Key).Description
                     });
+                    // Dynamic init pool.
+                    _poolService.InitPool(new PoolData()
+                    {
+                        Id = PoolServiceConstants.QuestMenuFlowDetailViewPool,
 
+                        Name = PoolServiceConstants.QuestMenuFlowDetailViewPool,
+
+                        InitialSize = _questServiceSettings.Flows.Count(),
+
+                        MaxSize = _questServiceSettings.Flows.Count()
+                    });
+
+                    var questMenuFlowDetailView = (QuestMenuFlowDetailView)_poolService.Spawn<QuestMenuFlowDetailView>(_questMenuView.GetRightcontainer().transform, 
+                                                                                                                    PoolServiceConstants.QuestMenuFlowDetailViewPool);
+                    
+                   if(_projectModel.GetProjectSaveData().CurrentQuestFlowId == projectModelDataFlow.Key && projectModelDataFlow.Value)
+                    {  
+                        questMenuFlowDetailView.gameObject.SetActive(true);
+
+                        questMenuFlowDetailView.ToggleActive(true);
+                    } 
+                    else
+                    {
+                        questMenuFlowDetailView.gameObject.SetActive(false);
+
+                        questMenuFlowDetailView.ToggleActive(false);
+                    }
+                  
+                    questMenuFlowDetailView.UpdateView(new QuestMenuFlowDetailViewArgs()
+                    {
+                        Id = projectModelDataFlow.Key.ToString(),
+
+                        FlowName = _questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == projectModelDataFlow.Key).Description
+                    });
+                    
+                    var curFlow = _questServiceSettings.Flows.FirstOrDefault(flow => flow.Id == projectModelDataFlow.Key);
+                  
+                    curFlow.Parse();
+
+                    var questItemDatas = _questModel.GetQuestSaveData().QuestItemDatas.Where(data => curFlow.ParseThreads
+                                                                                      .Any(item => item == data.ThreadId));
+
+                    foreach(var questSaveData in questItemDatas)
+                    {
+                        var questItemView = (QuestItemView)_factoryService.Spawn<QuestItemView>(questMenuFlowDetailView.GetContainer().transform);
+
+                        questItemView.UpdateView(new QuestItemViewArgs()
+                        {
+                            Id = questSaveData.Id,
+
+                            Description = _questsSettings.FirstOrDefault(quest => quest.Quest.Id == questSaveData.Id).Quest.Description
+                        });
+                        
+                    }
                 }
             }
         }
