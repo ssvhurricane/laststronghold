@@ -110,12 +110,24 @@ MonoBehaviour:
       Key: '[ApplySettingsButton]'
       RU: "\u041F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C"
       EN: Apply
-  - Id: '[QuestMenuPress] '
+  - Id: '[QuestMenuButton]'
     Enable: 0
     localizationItem:
-      Key: '[QuestMenuPress]'
-      RU: "\u041C\u0435\u043D\u044E \u041A\u0432\u0435\u0441\u0442\u043E\u0432"
-      EN: Quest Menu
+      Key: '[QuestMenuButton]'
+      RU: "\u0417\u0430\u0434\u0430\u043D\u0438\u044F"
+      EN: Quests
+  - Id: '[PeopleMenuButton]'
+    Enable: 0
+    localizationItem:
+      Key: '[PeopleMenuButton]'
+      RU: "\u041D\u0430\u0441\u0435\u043B\u0435\u043D\u0438\u0435"
+      EN: People
+  - Id: '[MessageMenuButton]'
+    Enable: 0
+    localizationItem:
+      Key: '[MessageMenuButton]'
+      RU: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F"
+      EN: Messages
   - Id: '[Chapter1]'
     Enable: 0
     localizationItem:
