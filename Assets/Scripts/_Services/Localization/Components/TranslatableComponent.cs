@@ -12,6 +12,9 @@ namespace Services.Localization
         private LogService _logService;
 
         [SerializeField] private bool _isUpdateOnStart = true;
+
+        [SerializeField] private bool _isFromTextFile = false;
+
         [SerializeField] private string _key;
         private Text _text;
 
@@ -29,7 +32,7 @@ namespace Services.Localization
             _text = GetComponent<Text>();
 
             if(_text != null)
-                 _text.text =_localizationService.Translate(_key);
+                 _text.text =_localizationService.Translate(_key, _isFromTextFile);
             else 
             _logService.ShowLog(GetType().Name, 
                     Log.LogType.Error, 

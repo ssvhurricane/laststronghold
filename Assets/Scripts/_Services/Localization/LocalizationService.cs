@@ -71,24 +71,28 @@ namespace Services.Localization
             return IngameLanguages.FirstOrDefault(info => info.Language == language);
         }
 
-        public string Translate(string key, Text text = null)
+        public string Translate(string key, bool fromTextFile = false)
         {
             string translateText = string.Empty;
-
-            //if(!_translatedTexts.ContainsKey(key)) _translatedTexts.Add(key, text);
             
             switch(CurrentLanguage)
             {
                 case Language.RU:
                 {
-                    translateText = _localizationServiceSettings?.FirstOrDefault(item => item.localizationItem.Key == key).localizationItem.RU;
+                    if(!fromTextFile)
+                        translateText = _localizationServiceSettings?.FirstOrDefault(item => item.localizationItem.Key == key).localizationItem.RU;
+                    else
+                        translateText = _localizationServiceSettings?.FirstOrDefault(item => item.LocalizationItemFromTextFile.Key == key).LocalizationItemFromTextFile.RU.text;
                    
                     break;
                 }
                 case Language.EN:
                 { 
-                    translateText = _localizationServiceSettings?.FirstOrDefault(item => item.localizationItem.Key == key).localizationItem.EN;
-
+                    if(!fromTextFile)
+                        translateText = _localizationServiceSettings?.FirstOrDefault(item => item.localizationItem.Key == key).localizationItem.EN;
+                    else
+                        translateText = _localizationServiceSettings?.FirstOrDefault(item => item.LocalizationItemFromTextFile.Key == key).LocalizationItemFromTextFile.EN.text;
+                
                     break;
                 }
             }

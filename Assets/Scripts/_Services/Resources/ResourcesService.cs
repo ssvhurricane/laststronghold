@@ -69,6 +69,14 @@ namespace Services.Resources
 
                         break;
                     }
+
+                   case TypeResource.Text:
+                    {
+                        element =  UnityEngine.Resources.Load(ResourcesServiceConstants.RESOURCES_FOLDER_TEXTS
+                            + type.Name);
+
+                        break;
+                    }
             }
 
             if (element != null) 

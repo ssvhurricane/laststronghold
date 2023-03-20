@@ -1,5 +1,5 @@
 using System;
-using Config;
+using UnityEngine;
 
 namespace Data.Settings
 {  
@@ -10,7 +10,7 @@ namespace Data.Settings
 
         public string RU;
         public string EN;
-            /*
+        /*
             public string DE;
             public string ES;
             public string FR;
@@ -24,7 +24,16 @@ namespace Data.Settings
             public string JA;
             public string KO;
             public string TW;
-            */
+        */
+    }
+
+    [Serializable]
+    public class LocalizationItemFromTextFile
+    {
+        public string Key;
+
+        public TextAsset RU;
+        public TextAsset EN;
     }
 
     [Serializable]
@@ -35,6 +44,8 @@ namespace Data.Settings
          public bool Enable;
 
          public LocalizationItem localizationItem;
+
+         public LocalizationItemFromTextFile LocalizationItemFromTextFile;
 
          string IRegistryData.Id => Id;
     }

@@ -5,6 +5,7 @@ namespace Services.Resources
         View,
         Window,
         Audio,
-        Sprite
+        Sprite,
+        Text
     }
 }

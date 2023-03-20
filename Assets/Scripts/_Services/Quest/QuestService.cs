@@ -92,7 +92,8 @@ namespace Services.Quest
 
         private void ProcessingQuest(int id)
         {
-            var savedQuest = _questModel.GetQuestSaveData().QuestItemDatas.FirstOrDefault(quest => quest.Id == id);
+            var savedQuest = _questModel.GetQuestSaveData().QuestItemDatas
+                                        .FirstOrDefault(quest => quest.Id == id);
 
             if (savedQuest == null) return;
         
@@ -119,7 +120,8 @@ namespace Services.Quest
             _flow = flow;
             _flow.Parse();
 
-            var savedQuests = _questModel.GetQuestSaveData().QuestItemDatas.Where(quest => _flow.ParseThreads.Any(item => item == quest.ThreadId));
+            var savedQuests = _questModel.GetQuestSaveData().QuestItemDatas
+                                        .Where(quest => _flow.ParseThreads.Any(item => item == quest.ThreadId));
 
             if (savedQuests == null && savedQuests.Count() == 0) return;
 

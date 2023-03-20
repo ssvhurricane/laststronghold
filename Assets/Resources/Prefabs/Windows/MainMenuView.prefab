@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUpdateOnStart: 1
+  _isFromTextFile: 0
   _key: '[QuitButton]'
 --- !u!1 &2391663235871886522
 GameObject:
@@ -433,6 +434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUpdateOnStart: 1
+  _isFromTextFile: 0
   _key: '[SettingsButton]'
 --- !u!1 &5847248086432437224
 GameObject:
@@ -528,6 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUpdateOnStart: 1
+  _isFromTextFile: 0
   _key: '[PlayButton]'
 --- !u!1 &8532496585289942224
 GameObject:
