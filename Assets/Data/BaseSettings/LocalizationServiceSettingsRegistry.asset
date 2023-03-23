@@ -184,12 +184,12 @@ MonoBehaviour:
       Key: 
       RU: {fileID: 0}
       EN: {fileID: 0}
-  - Id: '[PeopleMenuButton]'
+  - Id: '[ColonyMenuButton]'
     Enable: 0
     localizationItem:
-      Key: '[PeopleMenuButton]'
-      RU: "\u041D\u0430\u0441\u0435\u043B\u0435\u043D\u0438\u0435"
-      EN: People
+      Key: '[ColonyMenuButton]'
+      RU: "\u041F\u043E\u0441\u0435\u043B\u0435\u043D\u0438\u0435"
+      EN: Colony
     LocalizationItemFromTextFile:
       Key: 
       RU: {fileID: 0}
