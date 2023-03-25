@@ -28,12 +28,14 @@ namespace Bootstrap
 
         [SerializeField] protected QuestServiceSettingsRegistry QuestServiceSettingsRegistry;
 
-         [SerializeField] protected SaveDataServiceSettingsRegistry SaveDataServiceSettingsRegistry;
+        [SerializeField] protected SaveDataServiceSettingsRegistry SaveDataServiceSettingsRegistry;
         [SerializeField] protected QuestsSettingsRegistry QuestsSettingsRegistry;
+
+        [SerializeField] protected TutorialServiceSettingsRegistry TutorialServiceSettingsRegistry;
 
         [SerializeField] protected LocalizationServiceSettingsRegistry LocalizationServiceSettingsRegistry;
 
-         [SerializeField] protected CheatServiceSettingsRegistry CheatServiceSettingsRegistry;
+        [SerializeField] protected CheatServiceSettingsRegistry CheatServiceSettingsRegistry;
 
         //[Header("GameplaySettings")] TODO:
 
@@ -73,6 +75,8 @@ namespace Bootstrap
 
             InstallRegistry(QuestServiceSettingsRegistry);
             InstallRegistry(QuestsSettingsRegistry);
+
+            InstallRegistry(TutorialServiceSettingsRegistry);
 
             InstallRegistry(LocalizationServiceSettingsRegistry);
 
@@ -128,6 +132,10 @@ namespace Bootstrap
             InstallRegistryData<QuestServiceSettings>(QuestServiceSettingsRegistry);
             Container.Bind<QuestsSettings[]>()
                 .FromInstance(QuestsSettingsRegistry.GetItems().ToArray())
+                .AsSingle();
+
+            Container.Bind<TutorialServiceSettings[]>()
+                .FromInstance(TutorialServiceSettingsRegistry.GetItems().ToArray())
                 .AsSingle();
 
             Container.Bind<LocalizationServiceSettings[]>()

@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUpdateOnStart: 1
+  _isFromTextFile: 0
   _key: '[CheatsMenuLabel]'
 --- !u!1 &1510984832039977605
 GameObject:

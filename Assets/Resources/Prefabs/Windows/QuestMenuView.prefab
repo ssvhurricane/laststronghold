@@ -1033,6 +1033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUpdateOnStart: 1
+  _isFromTextFile: 0
   _key: '[QuestsMenuLabel]'
 --- !u!1 &5428248606869311949
 GameObject:

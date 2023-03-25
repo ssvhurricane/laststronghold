@@ -130,6 +130,10 @@ namespace Bootstrap
 
             // GameSettingsView.
             Container.DeclareSignal<GameSettingsViewSignals.Apply>();
+
+
+            // TutorialView.
+            Container.DeclareSignal<TutorialServiceSignals.Show>();
         }
 
        public void InstallModels()

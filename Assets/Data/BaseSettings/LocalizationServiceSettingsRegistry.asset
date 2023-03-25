@@ -204,6 +204,56 @@ MonoBehaviour:
       Key: 
       RU: {fileID: 0}
       EN: {fileID: 0}
+  - Id: '[TutorialWindowTextLabel]'
+    Enable: 1
+    localizationItem:
+      Key: '[TutorialWindowTextLabel]'
+      RU: "\u0420\u0443\u043A\u043E\u0432\u043E\u0434\u0441\u0442\u0432\u043E"
+      EN: Tutorial
+    LocalizationItemFromTextFile:
+      Key: '[Chapter2]'
+      RU: {fileID: 4900000, guid: 13d23d02296fb455cac12f4bed16a014, type: 3}
+      EN: {fileID: 4900000, guid: 5387f9d8414eb479f91a0f2fddeddb78, type: 3}
+  - Id: '[TutorialButtonOKText]'
+    Enable: 1
+    localizationItem:
+      Key: '[TutorialButtonOKText]'
+      RU: "\u041F\u043E\u043D\u044F\u0442\u043D\u043E"
+      EN: I understand
+    LocalizationItemFromTextFile:
+      Key: '[Chapter2]'
+      RU: {fileID: 4900000, guid: 13d23d02296fb455cac12f4bed16a014, type: 3}
+      EN: {fileID: 4900000, guid: 5387f9d8414eb479f91a0f2fddeddb78, type: 3}
+  - Id: '[Tutor1]'
+    Enable: 1
+    localizationItem:
+      Key: '[Tutor1]'
+      RU: "\u0420\u043A\u0443\u043E\u0432\u043E\u0434\u0441\u0442\u0432\u043E 1"
+      EN: Tutorial 1
+    LocalizationItemFromTextFile:
+      Key: '[Tutor1]'
+      RU: {fileID: 0}
+      EN: {fileID: 0}
+  - Id: '[Tutor2]'
+    Enable: 1
+    localizationItem:
+      Key: '[Tutor2]'
+      RU: "\u0420\u043A\u0443\u043E\u0432\u043E\u0434\u0441\u0442\u0432\u043E 2"
+      EN: Tutorial 2
+    LocalizationItemFromTextFile:
+      Key: '[Tutor2]'
+      RU: {fileID: 0}
+      EN: {fileID: 0}
+  - Id: '[Tutor3]'
+    Enable: 1
+    localizationItem:
+      Key: '[Tutor3]'
+      RU: "\u0420\u043A\u0443\u043E\u0432\u043E\u0434\u0441\u0442\u0432\u043E 3"
+      EN: Tutorial 3
+    LocalizationItemFromTextFile:
+      Key: '[Tutor3]'
+      RU: {fileID: 0}
+      EN: {fileID: 0}
   - Id: '[Chapter1]'
     Enable: 1
     localizationItem:

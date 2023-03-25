@@ -18,11 +18,9 @@ MonoBehaviour:
     CheatItems:
     - Id: 1
       Name: General
-      CheatItemControls:
-      - Id: 0
-        Name: 
     - Id: 2
       Name: Quests
-      CheatItemControls:
-      - Id: 0
-        Name: 
+    - Id: 3
+      Name: Tutorials
+    - Id: 4
+      Name: Messages

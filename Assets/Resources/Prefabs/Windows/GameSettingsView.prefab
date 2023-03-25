@@ -1040,6 +1040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUpdateOnStart: 1
+  _isFromTextFile: 0
   _key: '[ScreenshotButton]'
 --- !u!1 &2485624069981780249
 GameObject:
@@ -1272,6 +1273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUpdateOnStart: 1
+  _isFromTextFile: 0
   _key: '[FramerateCounterLabel]'
 --- !u!1 &2848038811511751045
 GameObject:
@@ -1785,6 +1787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUpdateOnStart: 1
+  _isFromTextFile: 0
   _key: '[SettingsButton]'
 --- !u!1 &3786024192689219932
 GameObject:
@@ -1880,6 +1883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUpdateOnStart: 1
+  _isFromTextFile: 0
   _key: '[LanguageLabel]'
 --- !u!1 &3852393825615461278
 GameObject:
@@ -2097,6 +2101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUpdateOnStart: 1
+  _isFromTextFile: 0
   _key: '[AudioLebel]'
 --- !u!1 &4047092650119785733
 GameObject:
@@ -2605,6 +2610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUpdateOnStart: 1
+  _isFromTextFile: 0
   _key: '[ShadowsLabel]'
 --- !u!1 &5280368731045158465
 GameObject:
@@ -2700,6 +2706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUpdateOnStart: 1
+  _isFromTextFile: 0
   _key: '[BackButton]'
 --- !u!1 &5376116586367522109
 GameObject:
@@ -2974,6 +2981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUpdateOnStart: 1
+  _isFromTextFile: 0
   _key: '[LookSensitivityLabel]'
 --- !u!1 &5896582645579182037
 GameObject:
@@ -3892,6 +3900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUpdateOnStart: 1
+  _isFromTextFile: 0
   _key: '[ApplySettingsButton]'
 --- !u!1 &7325435429071041325
 GameObject:
@@ -4139,6 +4148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUpdateOnStart: 1
+  _isFromTextFile: 0
   _key: '[ControlsButton]'
 --- !u!1 &8601430475966212819
 GameObject:

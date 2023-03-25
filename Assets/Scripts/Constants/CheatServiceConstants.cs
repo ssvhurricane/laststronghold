@@ -5,5 +5,7 @@ namespace Constants
          public static string General = "General";
 
          public static string Quests = "Quests";
+
+        public static string Tutorials = "Tutorials";
     }
 }

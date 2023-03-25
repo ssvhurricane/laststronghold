@@ -18,6 +18,7 @@ using Services.Area;
 using Services.BackLight;
 using Services.NPC;
 using Services.Quest;
+using Services.Message;
 
 namespace Bootstrap
 {
@@ -46,6 +47,8 @@ namespace Bootstrap
             Container.InstallElementAsSingle<QuestsPresenter>();
             Container.InstallElementAsSingle<QuestsMenuPresenter>();
 
+              Container.InstallElementAsSingle<TutorialPresenter>();
+
             // View Presenters.
             Container.InstallElementAsSingle<PlayerPresenter>();
            
@@ -70,6 +73,8 @@ namespace Bootstrap
             Container.InstallElementAsSingle<InputService>(); 
 
             Container.InstallElementAsSingle<TutorialService>();
+            
+            Container.InstallElementAsSingle<MessageService>();
 
             Container.InstallElementAsSingle<RayCastService>();
 
