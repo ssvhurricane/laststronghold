@@ -1,0 +1,7 @@
+Description.
+Here the user is introduced to the system of interaction with buildings and NPCs.
+The user is directed with the help of a tutorial to the water utility, which he must restore. This object consists of several elements that need to be restored.
+
+- the water station itself.
+- an obstacle on the river that interferes with the flow and span of the blades.
+- plumbing system and hoses.

@@ -205,7 +205,7 @@ MonoBehaviour:
       RU: {fileID: 0}
       EN: {fileID: 0}
   - Id: '[Chapter1]'
-    Enable: 0
+    Enable: 1
     localizationItem:
       Key: '[Chapter1]'
       RU: "\u0413\u043B\u0430\u0432\u04301. \u0412 \u043D\u0435\u0431\u0435\u0441\u0430."
@@ -214,49 +214,18 @@ MonoBehaviour:
       Key: '[Chapter1]'
       RU: {fileID: 4900000, guid: a2d19096735584f40b2bd57a33472de9, type: 3}
       EN: {fileID: 4900000, guid: 8d3a952d613c94ccfa548302d6851449, type: 3}
-  - Id: '[Chapter2]'
-    Enable: 0
-    localizationItem:
-      Key: '[Chapter2]'
-      RU: "\u0413\u043B\u0430\u0432\u0430 2."
-      EN: Chapter 2.
-    LocalizationItemFromTextFile:
-      Key: '[Chapter2]'
-      RU: {fileID: 4900000, guid: 13d23d02296fb455cac12f4bed16a014, type: 3}
-      EN: {fileID: 4900000, guid: 5387f9d8414eb479f91a0f2fddeddb78, type: 3}
   - Id: '[Flow1]'
-    Enable: 0
+    Enable: 1
     localizationItem:
       Key: '[Flow1]'
-      RU: "\u041E\u0441\u0432\u043E\u0438\u0442\u0441\u044F \u0441 \u0443\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435\u043C
-        \u0432\u0435\u0440\u0442\u043E\u043B\u0435\u0442\u043E\u043C"
-      EN: Learn to fly a helicopter
+      RU: "\u0412\u0435\u0440\u0442\u043E\u043B\u0435\u0442"
+      EN: Helicopter
     LocalizationItemFromTextFile:
       Key: '[Flow1]'
       RU: {fileID: 4900000, guid: e96f89b47c3bf49328b478acd6538a21, type: 3}
       EN: {fileID: 4900000, guid: 1500daa13e07c4998b522bb3a2766c86, type: 3}
-  - Id: '[Flow2]'
-    Enable: 0
-    localizationItem:
-      Key: '[Flow2]'
-      RU: "\u0424\u043B\u043E\u0443 2."
-      EN: Flow 2.
-    LocalizationItemFromTextFile:
-      Key: '[Flow2]'
-      RU: {fileID: 4900000, guid: f9e197c8ea24d42038aff2771fa563b1, type: 3}
-      EN: {fileID: 4900000, guid: eeb7cd4d337e5429fa5a91c1ba2e9228, type: 3}
-  - Id: '[Flow3]'
-    Enable: 0
-    localizationItem:
-      Key: '[Flow3]'
-      RU: "\u0424\u043B\u043E\u0443 3."
-      EN: Flow 3.
-    LocalizationItemFromTextFile:
-      Key: '[Flow3]'
-      RU: {fileID: 4900000, guid: 3d7690b0ffd794791a148b90ab299914, type: 3}
-      EN: {fileID: 4900000, guid: 22d00131ab26b4f98bffc911866af4b8, type: 3}
   - Id: '[Quest1]'
-    Enable: 0
+    Enable: 1
     localizationItem:
       Key: '[Quest1]'
       RU: "\u0412\u0440\u0430\u0449\u0435\u043D\u0438\u0435 \u0432\u0435\u0440\u0442\u043E\u043B\u0435\u0442\u0430"
@@ -266,7 +235,7 @@ MonoBehaviour:
       RU: {fileID: 4900000, guid: faa1170bcae8446eba87c15bead7ab80, type: 3}
       EN: {fileID: 4900000, guid: 66912c247668d490f8f457c75f7c5612, type: 3}
   - Id: '[Quest2]'
-    Enable: 0
+    Enable: 1
     localizationItem:
       Key: '[Quest2]'
       RU: "\u0424\u043E\u043A\u0443\u0441\u0438\u0440\u043E\u0432\u043A\u0430 \u0438
@@ -277,7 +246,7 @@ MonoBehaviour:
       RU: {fileID: 4900000, guid: 62524952936224383adc3788fe13c800, type: 3}
       EN: {fileID: 4900000, guid: 44b2ef5df7c044492b32000fee78f441, type: 3}
   - Id: '[Quest3]'
-    Enable: 0
+    Enable: 1
     localizationItem:
       Key: '[Quest3]'
       RU: "\u0421\u0431\u0440\u043E\u0441 \u0438 \u0432\u043E\u0437\u0432\u0440\u0430\u0442"
@@ -286,3 +255,174 @@ MonoBehaviour:
       Key: '[Quest3]'
       RU: {fileID: 4900000, guid: ba9a68eb000e9415a8cfd386921b2456, type: 3}
       EN: {fileID: 4900000, guid: 44bf3d67e6cfb4417b25b6307dbe40c4, type: 3}
+  - Id: '[Flow2]'
+    Enable: 1
+    localizationItem:
+      Key: '[Flow2]'
+      RU: "\u0421 \u043D\u043E\u0432\u043E\u0441\u0435\u043B\u044C\u0435\u043C"
+      EN: With housewarming
+    LocalizationItemFromTextFile:
+      Key: '[Flow2]'
+      RU: {fileID: 4900000, guid: f9e197c8ea24d42038aff2771fa563b1, type: 3}
+      EN: {fileID: 4900000, guid: eeb7cd4d337e5429fa5a91c1ba2e9228, type: 3}
+  - Id: '[Quest4]'
+    Enable: 1
+    localizationItem:
+      Key: '[Quest4]'
+      RU: "\u041F\u043E\u0441\u0442\u0440\u043E\u0439\u0442\u0435 \u0436\u0438\u043B\u043E\u0439
+        \u0434\u043E\u043C"
+      EN: Build an apartment building
+    LocalizationItemFromTextFile:
+      Key: '[Quest4]'
+      RU: {fileID: 4900000, guid: 6f66717691ca34096be3f37a7a9c3688, type: 3}
+      EN: {fileID: 4900000, guid: dae6ee32564fa4304924f0362eb00591, type: 3}
+  - Id: '[Quest5]'
+    Enable: 1
+    localizationItem:
+      Key: '[Quest5]'
+      RU: "\u041F\u043E\u0441\u0442\u0440\u043E\u0439\u0442\u0435 \u0436\u0438\u043B\u043E\u0439
+        \u0434\u043E\u043C"
+      EN: Build an apartment building
+    LocalizationItemFromTextFile:
+      Key: '[Quest5]'
+      RU: {fileID: 4900000, guid: b5971511754174824a251495a0429569, type: 3}
+      EN: {fileID: 4900000, guid: 2bcf4d22e592b44478bbeebee9c61af8, type: 3}
+  - Id: '[Flow3]'
+    Enable: 1
+    localizationItem:
+      Key: '[Flow3]'
+      RU: "\u041F\u0435\u0440\u0435\u043A\u0440\u0435\u0441\u0442\u043E\u043A"
+      EN: Crossroads
+    LocalizationItemFromTextFile:
+      Key: '[Flow3]'
+      RU: {fileID: 4900000, guid: 3d7690b0ffd794791a148b90ab299914, type: 3}
+      EN: {fileID: 4900000, guid: 22d00131ab26b4f98bffc911866af4b8, type: 3}
+  - Id: '[Quest6]'
+    Enable: 1
+    localizationItem:
+      Key: '[Quest6]'
+      RU: "\u0414\u043E\u0431\u0435\u0440\u0438\u0442\u0435\u0441\u044C \u0434\u043E
+        \u043F\u0435\u0440\u0435\u043A\u0440\u0435\u0441\u0442\u043A\u0430"
+      EN: Get to the crossroads
+    LocalizationItemFromTextFile:
+      Key: '[Quest6]'
+      RU: {fileID: 4900000, guid: de4784e9fbbc8429db67af1fb761ac9f, type: 3}
+      EN: {fileID: 4900000, guid: 2c548f7bb17a24c8b96ef622a14c447e, type: 3}
+  - Id: '[Quest7]'
+    Enable: 1
+    localizationItem:
+      Key: '[Quest7]'
+      RU: " \u0420\u0430\u0441\u0447\u0438\u0441\u0442\u0438\u0442\u0435 \u0434\u043E\u0440\u043E\u0433\u0443
+        \u043E\u0442 \u0437\u043E\u043C\u0431\u0438"
+      EN: Clear the way for zombies
+    LocalizationItemFromTextFile:
+      Key: '[Quest7]'
+      RU: {fileID: 4900000, guid: 56199daad5fa9428cb93f9975fb40708, type: 3}
+      EN: {fileID: 4900000, guid: 0234f6287275f4e0c8450bbccb454b12, type: 3}
+  - Id: '[Flow4]'
+    Enable: 1
+    localizationItem:
+      Key: '[Flow4]'
+      RU: "\u0411\u0430\u0433\u0440\u043E\u0432\u044B\u0435 \u0440\u0435\u043A\u0438"
+      EN: Crimson Rivers
+    LocalizationItemFromTextFile:
+      Key: '[Quest3]'
+      RU: {fileID: 4900000, guid: c8b3a9fe0a5514814a5e00ecba4252a4, type: 3}
+      EN: {fileID: 4900000, guid: 64df598d27962452f9db6d8bd5551be8, type: 3}
+  - Id: '[Quest8]'
+    Enable: 1
+    localizationItem:
+      Key: '[Quest8]'
+      RU: "\u0414\u043E\u0431\u0435\u0440\u0438\u0442\u0435\u0441\u044C \u0434\u043E
+        \u0441\u0442\u0430\u043D\u0446\u0438\u0438 \u0432\u043E\u0434\u043E\u043F\u0440\u043E\u0432\u043E\u0434\u0430"
+      EN: Get to the water station
+    LocalizationItemFromTextFile:
+      Key: '[Quest8]'
+      RU: {fileID: 4900000, guid: 40f6fc35383c94724a61c2d315acb3a1, type: 3}
+      EN: {fileID: 4900000, guid: 3f3151071f48042b08dae78ce9923654, type: 3}
+  - Id: '[Quest9]'
+    Enable: 1
+    localizationItem:
+      Key: '[Quest9]'
+      RU: "\u0417\u0430\u0447\u0438\u0441\u0442\u043A\u0430 \u0441\u0442\u0430\u043D\u0446\u0438\u0438"
+      EN: Station clearing
+    LocalizationItemFromTextFile:
+      Key: '[Quest9]'
+      RU: {fileID: 4900000, guid: 1137ffca3fdd7404e888ed19531bc54a, type: 3}
+      EN: {fileID: 4900000, guid: 6a0a9d051357f4c65858b7d79fa90b6c, type: 3}
+  - Id: '[Quest10]'
+    Enable: 1
+    localizationItem:
+      Key: '[Quest10]'
+      RU: "\u0423\u0441\u0442\u0440\u0430\u043D\u0438\u0442\u0435 \u043F\u0440\u0435\u043F\u044F\u0442\u0441\u0442\u0432\u0438\u044F
+        \u043D\u0430 \u0440\u0435\u043A\u0435"
+      EN: Remove obstacles on the river
+    LocalizationItemFromTextFile:
+      Key: '[Quest10]'
+      RU: {fileID: 4900000, guid: 1c4a771c66af5486a8222b87c23674f0, type: 3}
+      EN: {fileID: 4900000, guid: 524c63704140943ebab4fa2904a57d67, type: 3}
+  - Id: '[Quest11]'
+    Enable: 1
+    localizationItem:
+      Key: '[Quest11]'
+      RU: "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C
+        \u0440\u0443\u043A\u0430\u0432\u0430 \u0432\u043E\u0434\u043E\u043F\u0440\u043E\u0432\u043E\u0434\u0430"
+      EN: Restore plumbing pipes
+    LocalizationItemFromTextFile:
+      Key: '[Quest11]'
+      RU: {fileID: 4900000, guid: b2a4aadae8ab34ac0a1df4e5d66b0bdd, type: 3}
+      EN: {fileID: 4900000, guid: 7663b511e1c8d4baea158b1e3e660fbc, type: 3}
+  - Id: '[Quest12]'
+    Enable: 1
+    localizationItem:
+      Key: '[Quest12]'
+      RU: "\u0417\u0430\u0449\u0438\u0442\u0438\u0442\u0435 \u0440\u0430\u0431\u043E\u0442\u043D\u0438\u043A\u043E\u0432
+        \u0438 \u0441\u0442\u0440\u043E\u0435\u043D\u0438\u0435 \u043E\u0442 \u043E\u0440\u0434\u044B
+        \u0437\u043E\u043C\u0431\u0438"
+      EN: Protect the workers and building from the horde of zombies
+    LocalizationItemFromTextFile:
+      Key: '[Quest12]'
+      RU: {fileID: 4900000, guid: 3d86a67e967134d2f9a3e71511955bb3, type: 3}
+      EN: {fileID: 4900000, guid: c61b2983f3caa427790879304c4605e2, type: 3}
+  - Id: '[Flow5]'
+    Enable: 1
+    localizationItem:
+      Key: '[Flow5]'
+      RU: "\u0414\u0440\u043E\u0436\u044C \u0437\u0435\u043C\u043B\u0438"
+      EN: Trembling of the earth
+    LocalizationItemFromTextFile:
+      Key: '[Quest3]'
+      RU: {fileID: 4900000, guid: 2f64ad14445464dfbba829a0b003f3e8, type: 3}
+      EN: {fileID: 4900000, guid: d187f138f23894feb96677209ce941b5, type: 3}
+  - Id: '[Quest13]'
+    Enable: 1
+    localizationItem:
+      Key: '[Quest13]'
+      RU: "\u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F \u0432 \u043F\u043E\u0441\u0435\u043B\u0435\u043D\u0438\u0435
+        \u0438 \u0440\u0430\u0437\u0432\u0435\u0434\u0430\u0442\u044C \u043E\u0431\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0443"
+      EN: Return to the settlement and scout the situation
+    LocalizationItemFromTextFile:
+      Key: '[Quest13]'
+      RU: {fileID: 4900000, guid: d0738263d4bb84cfaa35610edded936a, type: 3}
+      EN: {fileID: 4900000, guid: ccdcb2875d7074e2db9e1ac5618b98cb, type: 3}
+  - Id: '[Quest14]'
+    Enable: 1
+    localizationItem:
+      Key: '[Quest14]'
+      RU: "\u041F\u043E\u0447\u0438\u043D\u0438\u0442\u044C \u0440\u0430\u0437\u0440\u0443\u0448\u0435\u043D\u043D\u044B\u0435
+        \u043F\u043E\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
+      EN: Repair destroyed buildings
+    LocalizationItemFromTextFile:
+      Key: '[Quest14]'
+      RU: {fileID: 4900000, guid: d42f5887600cb4ab8b2d5e3ec6d67b79, type: 3}
+      EN: {fileID: 4900000, guid: 43afa4b85a05e45028e9b9066851cd50, type: 3}
+  - Id: '[Chapter2]'
+    Enable: 1
+    localizationItem:
+      Key: '[Chapter2]'
+      RU: "\u0413\u043B\u0430\u0432\u0430 2."
+      EN: Chapter 2.
+    LocalizationItemFromTextFile:
+      Key: '[Chapter2]'
+      RU: {fileID: 4900000, guid: 13d23d02296fb455cac12f4bed16a014, type: 3}
+      EN: {fileID: 4900000, guid: 5387f9d8414eb479f91a0f2fddeddb78, type: 3}

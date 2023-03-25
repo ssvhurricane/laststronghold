@@ -43,3 +43,113 @@ MonoBehaviour:
       QuestConditionType: 0
       Param: 
       Value: 
+  - Id: 4
+    Quest:
+      Id: 4
+      ThreadId: 2
+      Description: '[Quest4]'
+      NeedValue: 1
+      Icon: {fileID: 0}
+      QuestConditionType: 0
+      Param: 
+      Value: 
+  - Id: 5
+    Quest:
+      Id: 5
+      ThreadId: 2
+      Description: '[Quest5]'
+      NeedValue: 1
+      Icon: {fileID: 0}
+      QuestConditionType: 0
+      Param: 
+      Value: 
+  - Id: 6
+    Quest:
+      Id: 6
+      ThreadId: 3
+      Description: '[Quest6]'
+      NeedValue: 1
+      Icon: {fileID: 0}
+      QuestConditionType: 0
+      Param: 
+      Value: 
+  - Id: 7
+    Quest:
+      Id: 7
+      ThreadId: 3
+      Description: '[Quest7]'
+      NeedValue: 1
+      Icon: {fileID: 0}
+      QuestConditionType: 0
+      Param: 
+      Value: 
+  - Id: 8
+    Quest:
+      Id: 8
+      ThreadId: 4
+      Description: '[Quest8]'
+      NeedValue: 1
+      Icon: {fileID: 0}
+      QuestConditionType: 0
+      Param: 
+      Value: 
+  - Id: 9
+    Quest:
+      Id: 9
+      ThreadId: 4
+      Description: '[Quest9]'
+      NeedValue: 1
+      Icon: {fileID: 0}
+      QuestConditionType: 0
+      Param: 
+      Value: 
+  - Id: 10
+    Quest:
+      Id: 10
+      ThreadId: 4
+      Description: '[Quest10]'
+      NeedValue: 1
+      Icon: {fileID: 0}
+      QuestConditionType: 0
+      Param: 
+      Value: 
+  - Id: 11
+    Quest:
+      Id: 11
+      ThreadId: 4
+      Description: '[Quest11]'
+      NeedValue: 3
+      Icon: {fileID: 0}
+      QuestConditionType: 0
+      Param: 
+      Value: 
+  - Id: 12
+    Quest:
+      Id: 12
+      ThreadId: 4
+      Description: '[Quest12]'
+      NeedValue: 1
+      Icon: {fileID: 0}
+      QuestConditionType: 0
+      Param: 
+      Value: 
+  - Id: 13
+    Quest:
+      Id: 13
+      ThreadId: 5
+      Description: '[Quest13]'
+      NeedValue: 1
+      Icon: {fileID: 0}
+      QuestConditionType: 0
+      Param: 
+      Value: 
+  - Id: 14
+    Quest:
+      Id: 14
+      ThreadId: 5
+      Description: '[Quest14]'
+      NeedValue: 7
+      Icon: {fileID: 0}
+      QuestConditionType: 3
+      Param: 
+      Value: 

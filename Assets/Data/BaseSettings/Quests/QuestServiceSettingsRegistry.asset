@@ -30,6 +30,18 @@ MonoBehaviour:
     - Id: 3
       ChapterId: 1
       Description: '[Flow3]'
-      Threads: 3,4,5
+      Threads: 3
+      FlowExecutionMode: 0
+      FlowRewardMode: 0
+    - Id: 4
+      ChapterId: 1
+      Description: '[Flow4]'
+      Threads: 4
+      FlowExecutionMode: 0
+      FlowRewardMode: 0
+    - Id: 5
+      ChapterId: 1
+      Description: '[Flow5]'
+      Threads: 5
       FlowExecutionMode: 0
       FlowRewardMode: 0

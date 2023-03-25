@@ -1,0 +1,2 @@
+Description.
+Here it is proposed to press the keys to the right and left to rotate the helicopter.

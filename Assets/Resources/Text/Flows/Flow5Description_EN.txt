@@ -1,0 +1,5 @@
+Description.
+A new menu item appears here.
+Earthquake timer and tutorial for it.
+
+The timer plays an important role in the gameplay. It signals the player about how strong the earthquake is and whether it is worth repairing the building now or whether it will survive the earthquake.
