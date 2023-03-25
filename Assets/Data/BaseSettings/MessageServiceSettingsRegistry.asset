@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0547d9e132f584a29a2aa48391a41b38, type: 3}
+  m_Name: MessageServiceSettingsRegistry
+  m_EditorClassIdentifier: 
+  RegistryItems:
+  - Id: 1
+    Message:
+      Id: 1
+      Description: '[Message1]'
+      MessageOwnerName: 2
+  - Id: 2
+    Message:
+      Id: 2
+      Description: '[Message2]'
+      MessageOwnerName: 1
+  - Id: 3
+    Message:
+      Id: 3
+      Description: '[Message3'
+      MessageOwnerName: 3

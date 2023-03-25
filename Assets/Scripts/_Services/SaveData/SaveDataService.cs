@@ -13,6 +13,7 @@ namespace Services.SaveData
         private readonly PlayerModel _playerModel;
         private readonly CameraModel _cameraModel;
         private readonly QuestModel _questModel;
+        private readonly MessageModel _messageModel;
 
         private readonly SaveDataServiceSettings _saveDataServiceSettings;
         public SaveDataService(SignalBus signalBus,
@@ -20,6 +21,7 @@ namespace Services.SaveData
                                 PlayerModel playerModel,
                                 CameraModel cameraModel,
                                 QuestModel questModel,
+                                MessageModel messageModel,
                                 SaveDataServiceSettings saveDataServiceSettings) 
         {
             _signalBus = signalBus;
@@ -28,6 +30,7 @@ namespace Services.SaveData
             _playerModel = playerModel;
             _cameraModel  = cameraModel;
             _questModel = questModel;
+            _messageModel = messageModel;
 
             _saveDataServiceSettings = saveDataServiceSettings;
 
@@ -73,6 +76,17 @@ namespace Services.SaveData
                     var serializeString = _questModel.SerializeModel(_questModel);
 
                     SaveData(_questModel.Id, serializeString);
+                }
+            });
+
+            // MessagesData.
+            _messageModel.GetMessageSaveDataAsReactive().Subscribe(item => 
+            {
+                if(_messageModel.GetMessageSaveData() != null && item != null)
+                {
+                    var serializeString = _messageModel.SerializeModel(_messageModel);
+
+                    SaveData(_messageModel.Id, serializeString);
                 }
             });
         }

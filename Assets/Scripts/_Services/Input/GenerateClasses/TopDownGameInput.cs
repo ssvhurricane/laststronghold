@@ -73,6 +73,15 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Message"",
+                    ""type"": ""Button"",
+                    ""id"": ""a8c788be-922a-46b7-b518-0b82b0503dc4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""QuestMenu"",
                     ""type"": ""Button"",
                     ""id"": ""bda8aaf0-a090-4ca0-925d-41f76d5c6332"",
@@ -265,6 +274,17 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""action"": ""Cheat"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c7fe7517-4f5d-4559-b0c8-6b053194de91"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""Message"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -306,6 +326,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         m_Player_Attack1 = m_Player.FindAction("Attack1", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Cheat = m_Player.FindAction("Cheat", throwIfNotFound: true);
+        m_Player_Message = m_Player.FindAction("Message", throwIfNotFound: true);
         m_Player_QuestMenu = m_Player.FindAction("QuestMenu", throwIfNotFound: true);
         m_Player_Focus = m_Player.FindAction("Focus", throwIfNotFound: true);
         m_Player_Reset = m_Player.FindAction("Reset", throwIfNotFound: true);
@@ -373,6 +394,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Attack1;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Cheat;
+    private readonly InputAction m_Player_Message;
     private readonly InputAction m_Player_QuestMenu;
     private readonly InputAction m_Player_Focus;
     private readonly InputAction m_Player_Reset;
@@ -385,6 +407,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         public InputAction @Attack1 => m_Wrapper.m_Player_Attack1;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Cheat => m_Wrapper.m_Player_Cheat;
+        public InputAction @Message => m_Wrapper.m_Player_Message;
         public InputAction @QuestMenu => m_Wrapper.m_Player_QuestMenu;
         public InputAction @Focus => m_Wrapper.m_Player_Focus;
         public InputAction @Reset => m_Wrapper.m_Player_Reset;
@@ -412,6 +435,9 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 @Cheat.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCheat;
                 @Cheat.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCheat;
                 @Cheat.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCheat;
+                @Message.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMessage;
+                @Message.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMessage;
+                @Message.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMessage;
                 @QuestMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuestMenu;
                 @QuestMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuestMenu;
                 @QuestMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuestMenu;
@@ -440,6 +466,9 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 @Cheat.started += instance.OnCheat;
                 @Cheat.performed += instance.OnCheat;
                 @Cheat.canceled += instance.OnCheat;
+                @Message.started += instance.OnMessage;
+                @Message.performed += instance.OnMessage;
+                @Message.canceled += instance.OnMessage;
                 @QuestMenu.started += instance.OnQuestMenu;
                 @QuestMenu.performed += instance.OnQuestMenu;
                 @QuestMenu.canceled += instance.OnQuestMenu;
@@ -478,6 +507,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         void OnAttack1(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnCheat(InputAction.CallbackContext context);
+        void OnMessage(InputAction.CallbackContext context);
         void OnQuestMenu(InputAction.CallbackContext context);
         void OnFocus(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);

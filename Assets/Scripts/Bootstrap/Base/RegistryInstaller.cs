@@ -33,6 +33,8 @@ namespace Bootstrap
 
         [SerializeField] protected TutorialServiceSettingsRegistry TutorialServiceSettingsRegistry;
 
+        [SerializeField] protected MessageServiceSettingsRegistry MessageServiceSettingsRegistry;
+
         [SerializeField] protected LocalizationServiceSettingsRegistry LocalizationServiceSettingsRegistry;
 
         [SerializeField] protected CheatServiceSettingsRegistry CheatServiceSettingsRegistry;
@@ -78,11 +80,13 @@ namespace Bootstrap
 
             InstallRegistry(TutorialServiceSettingsRegistry);
 
+            InstallRegistry(MessageServiceSettingsRegistry);
+
             InstallRegistry(LocalizationServiceSettingsRegistry);
 
             InstallRegistry(CheatServiceSettingsRegistry);
 
-             InstallRegistry(SaveDataServiceSettingsRegistry);
+            InstallRegistry(SaveDataServiceSettingsRegistry);
         }
         private void InstallListSettings()
         {
@@ -136,6 +140,10 @@ namespace Bootstrap
 
             Container.Bind<TutorialServiceSettings[]>()
                 .FromInstance(TutorialServiceSettingsRegistry.GetItems().ToArray())
+                .AsSingle();
+
+            Container.Bind<MessageServiceSettings[]>()
+                .FromInstance(MessageServiceSettingsRegistry.GetItems().ToArray())
                 .AsSingle();
 
             Container.Bind<LocalizationServiceSettings[]>()

@@ -47,7 +47,8 @@ namespace Bootstrap
             Container.InstallElementAsSingle<QuestsPresenter>();
             Container.InstallElementAsSingle<QuestsMenuPresenter>();
 
-              Container.InstallElementAsSingle<TutorialPresenter>();
+            Container.InstallElementAsSingle<TutorialPresenter>();
+            Container.InstallElementAsSingle<MessagePresenter>();
 
             // View Presenters.
             Container.InstallElementAsSingle<PlayerPresenter>();
@@ -117,6 +118,7 @@ namespace Bootstrap
             Container.InstallModel<PlayerModel>();
             Container.InstallModel<CameraModel>();
             Container.InstallModel<QuestModel>();
+            Container.InstallModel<MessageModel>();
         }
 
         private void InstallSignals() 
