@@ -476,3 +476,13 @@ MonoBehaviour:
       Key: '[Chapter2]'
       RU: {fileID: 4900000, guid: 13d23d02296fb455cac12f4bed16a014, type: 3}
       EN: {fileID: 4900000, guid: 5387f9d8414eb479f91a0f2fddeddb78, type: 3}
+  - Id: '[MessageMenuLabel]'
+    Enable: 1
+    localizationItem:
+      Key: '[MessageMenuLabel]'
+      RU: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F"
+      EN: Messages
+    LocalizationItemFromTextFile:
+      Key: '[MessageMenuLabel]'
+      RU: {fileID: 0}
+      EN: {fileID: 0}

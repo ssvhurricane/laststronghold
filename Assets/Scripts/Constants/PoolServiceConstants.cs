@@ -16,5 +16,10 @@ namespace Constants
         // Cheats.
         public static string CheatItemViewPool = "CheatItemViewPool";
         public static string CheatItemDetailViewPool = "CheatItemDetailViewPool";
+
+        // Messages.
+        public static string MessageMenuItemViewPool = "MessageMenuItemViewPool";
+
+        public static string MessageMenuItemDetailViewPool = "MessageMenuItemDetailViewPool";
     }
 }

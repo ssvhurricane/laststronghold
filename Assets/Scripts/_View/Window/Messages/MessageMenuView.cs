@@ -1,18 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
+using Services.Window;
+using Signals;
 using UnityEngine;
+using UnityEngine.UI;
+using Zenject;
 
-public class MessageMenuView : MonoBehaviour
+namespace View.Window
 {
-    // Start is called before the first frame update
-    void Start()
+    [Window("Resources/Prefabs/Windows/MessageMenuView", WindowType.PopUpWindow)]
+    public class MessageMenuView : PopUpWindow
     {
-        
-    }
+        [SerializeField] protected WindowType Type;
 
-    // Update is called once per frame
-    void Update()
-    {
+        [SerializeField] protected CreationMethod Method;
+        [SerializeField] protected GameObject LeftContainer;
+        [SerializeField] protected GameObject RightContainer;
+        [SerializeField] public Button _backToGameButton;
         
+        private SignalBus _signalBus;
+
+        [Inject]
+        public void Constrcut(SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+
+            WindowType = Type;
+
+            CreationMethod = Method;
+
+            _signalBus.Fire(new WindowServiceSignals.Register(this));
+        }
+
+        public GameObject GetLeftContainer()
+        {
+            return LeftContainer;
+        }
+
+        public GameObject GetRightcontainer()
+        {
+            return RightContainer;
+        }
     }
 }
