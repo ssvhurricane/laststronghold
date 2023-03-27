@@ -486,3 +486,43 @@ MonoBehaviour:
       Key: '[MessageMenuLabel]'
       RU: {fileID: 0}
       EN: {fileID: 0}
+  - Id: '[Message1]'
+    Enable: 1
+    localizationItem:
+      Key: '[Message1]'
+      RU: "\u041F\u0440\u0438\u0432\u0435\u0442!"
+      EN: Hello!
+    LocalizationItemFromTextFile:
+      Key: '[Message1]'
+      RU: {fileID: 0}
+      EN: {fileID: 0}
+  - Id: '[Message2]'
+    Enable: 1
+    localizationItem:
+      Key: '[Message2]'
+      RU: "\u041A\u0430\u043A \u0434\u0435\u043B\u0430?"
+      EN: How are you?
+    LocalizationItemFromTextFile:
+      Key: '[Message2]'
+      RU: {fileID: 0}
+      EN: {fileID: 0}
+  - Id: '[Message3]'
+    Enable: 1
+    localizationItem:
+      Key: '[Message3]'
+      RU: "\u041D\u0443\u0436\u043D\u0430 \u043F\u043E\u043C\u043E\u0449\u044C!"
+      EN: Help is needed!
+    LocalizationItemFromTextFile:
+      Key: '[Message3]'
+      RU: {fileID: 0}
+      EN: {fileID: 0}
+  - Id: '[Message4]'
+    Enable: 1
+    localizationItem:
+      Key: '[Message4]'
+      RU: "\u041F\u043E\u0435\u0445\u0430\u043B\u0438!"
+      EN: Go!
+    LocalizationItemFromTextFile:
+      Key: '[Message4]'
+      RU: {fileID: 0}
+      EN: {fileID: 0}

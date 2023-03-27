@@ -1,14 +1,25 @@
+using Services.Message;
+
 namespace Signals
 {
     public class MessageServiceSignals
     {
-        public class ActivateMessageItemView
+        public class NextMessage
+        {
+            public MessageOwnerName MessageOwnerName { get; set; }
+            public NextMessage(MessageOwnerName messageOwnerName)
             {
-                public string Name { get; set;}
-                public ActivateMessageItemView(string name)
-                {
-                    Name = name;
-                }
+                MessageOwnerName = messageOwnerName;
             }
+        }
+
+        public class ActivateMessageItemView
+        {
+            public string Name { get; set;}
+            public ActivateMessageItemView(string name)
+            {
+                Name = name;
+            }
+        }
     }
 }

@@ -128,6 +128,7 @@ namespace Bootstrap
             // Cheats Signals.
             Container.DeclareSignal<CheatServiceSignals.ActivateCheatItemView>();
 
+            Container.DeclareSignal<MessageServiceSignals.NextMessage>();
             Container.DeclareSignal<MessageServiceSignals.ActivateMessageItemView>();
 
             // GameSettingsView.

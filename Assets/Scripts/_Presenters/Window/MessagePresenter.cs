@@ -18,6 +18,8 @@ using View.Window;
 using Zenject;
 using Signals;
 using System;
+using Model;
+using Services.Message;
 
 namespace Presenters.Window
 {
@@ -40,8 +42,11 @@ namespace Presenters.Window
 
         private readonly GameSettingsPresenter _gameSettingsPresenter;
 
+        private readonly MessageModel _messageModel;
+
         private MessageMenuView _messageMenuView;
-        
+        private List<MessageItemData> _messageOwnerItems;
+
         public MessagePresenter(SignalBus signalBus,
             LogService logService,
             ISceneService sceneService,
@@ -54,7 +59,8 @@ namespace Presenters.Window
             HolderService holderService,
             ProjectService projectService,
             CheatService cheatService,
-            GameSettingsPresenter gameSettingsPresenter
+            GameSettingsPresenter gameSettingsPresenter,
+            MessageModel messageModel
             )
         {
             _signalBus = signalBus;
@@ -73,6 +79,8 @@ namespace Presenters.Window
             _cheatService = cheatService;
 
            _gameSettingsPresenter = gameSettingsPresenter;
+
+           _messageModel = messageModel;
           
             _logService.ShowLog(GetType().Name,
                 Services.Log.LogType.Message,
@@ -90,7 +98,7 @@ namespace Presenters.Window
 
                         foreach(var poolMessageItemView in poolMessageItemViews)
                         {
-                          if((poolMessageItemView as MessageMenuItemView).GetMessageMenuText().text == signal.Name)
+                          if((poolMessageItemView as MessageMenuItemView).GetMessageMenuOwmerNameText().text == signal.Name)
                           {
                                 // TODO: set color, anim ,etc
                           }
@@ -151,8 +159,93 @@ namespace Presenters.Window
         }
 
         private void CreateMessageItems()
-        {
-            // TODO:
+        {;
+             _messageOwnerItems = _messageModel.GetMessageSaveData().MessageItemDatas;
+
+            if ( _messageOwnerItems != null 
+                    &&  _messageOwnerItems.Count != 0
+                    && !_poolService.GetPoolDatas()
+                                    .Any(data => data.Name == PoolServiceConstants.MessageMenuItemViewPool || data.Name == PoolServiceConstants.MessageMenuItemDetailViewPool))
+               {
+
+                var owners = Enum.GetNames(typeof(MessageOwnerName));
+
+                foreach(var owner in owners)
+                {
+                    _poolService.InitPool(new PoolData()
+                    {
+                        Id = PoolServiceConstants.MessageMenuItemViewPool,
+
+                        Name = PoolServiceConstants.MessageMenuItemViewPool,
+
+                        InitialSize = owners.Count(),
+
+                        MaxSize = owners.Count()
+                    });
+
+                    // Create Message Owner Items. 
+                     var messageOwnerItemView = (MessageMenuItemView)_poolService.Spawn<MessageMenuItemView>( _messageMenuView.GetLeftContainer().transform, 
+                                                                                                            PoolServiceConstants.MessageMenuItemViewPool);
+                     messageOwnerItemView.GetMessageMenuOwmerNameText().text = owner;
+
+                     messageOwnerItemView.UpdateView(new MessageMenuItemViewArgs
+                     {
+                        // TODO: Owner info
+                        //
+                        //
+
+                     });
+                    
+                    _poolService.InitPool(new PoolData()
+                    {
+                        Id = PoolServiceConstants.MessageMenuItemDetailViewPool,
+
+                        Name = PoolServiceConstants.MessageMenuItemDetailViewPool,
+
+                        InitialSize = owners.Count(),
+
+                         MaxSize = owners.Count()
+                    });
+
+                    // Create details with inside items.
+                    var messageOwnerDetailView = (MessageMenuItemDetailView) _poolService.Spawn<MessageMenuItemDetailView>(_messageMenuView.GetRightcontainer().transform, 
+                                                                                                                                    PoolServiceConstants.MessageMenuItemDetailViewPool);
+
+                    messageOwnerDetailView.GetMessageDetailText().text = owner;
+                    messageOwnerDetailView.UpdateView(new MessageMenuItemDetailViewArgs
+                    {
+                        // TODO:
+                    });
+
+                    if(owner == MessageOwnerName.Jonathan.ToString())
+                    {  
+                        messageOwnerDetailView.gameObject.SetActive(true);
+
+                        messageOwnerDetailView.ToggleActive(true);
+                    } 
+                    else
+                    {
+                        messageOwnerDetailView.gameObject.SetActive(false);
+
+                        messageOwnerDetailView.ToggleActive(false);
+                    }
+
+                    // Messages.
+                     var messageSaveDatas = _messageOwnerItems.Where(ownerName => ownerName.MessageOwnerName.ToString() == owner);
+                    
+                     foreach(var messageData in messageSaveDatas)
+                     {
+                         var messageItemView = _factoryService.Spawn<MessageItemView>(messageOwnerDetailView.GetContainer().transform);
+
+                        messageItemView.UpdateView(new MessageItemViewArgs
+                        {
+                            Description = messageData.Description,
+
+                            Date = messageData.Date
+                        });
+                     }
+                }
+            }
         }
 
         public IWindow GetView() 

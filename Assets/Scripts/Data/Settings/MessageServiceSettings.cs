@@ -10,6 +10,8 @@ namespace Data.Settings
 
         public string Description;
 
+        public string Date;
+
         public MessageOwnerName MessageOwnerName;
     }
 

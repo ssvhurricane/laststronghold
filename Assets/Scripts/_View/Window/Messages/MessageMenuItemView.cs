@@ -10,7 +10,7 @@ namespace View.Window
     {
         [SerializeField] protected WindowType Type;
 
-        [SerializeField] protected Text MessageMenuText;
+        [SerializeField] protected Text MessageMenuOwnerName;
 
         [SerializeField] protected Image OwnerImage;
 
@@ -34,12 +34,12 @@ namespace View.Window
 
         private void OnActivate()
         {
-            _signalBus.Fire(new MessageServiceSignals.ActivateMessageItemView(MessageMenuText.text));
+            _signalBus.Fire(new MessageServiceSignals.ActivateMessageItemView(MessageMenuOwnerName.text));
         }
 
-        public Text GetMessageMenuText()
+        public Text GetMessageMenuOwmerNameText()
         {
-            return MessageMenuText;
+            return  MessageMenuOwnerName;
         }
 
         public Button GetMessageMenuButton()
@@ -51,5 +51,28 @@ namespace View.Window
         {
             _isActive = isActive;
         }
+
+        public void UpdateView(MessageMenuItemViewArgs messageMenuItemViewArgs)
+        {
+            Id = messageMenuItemViewArgs.Id;
+
+            // TODO:
+        }
+    }
+
+    public class MessageMenuItemViewArgs : IWindowArgs
+    {
+        public string Id { get ; set; }
+
+         public string Name { get; set; }
+
+         public MessageMenuItemViewArgs(){}
+
+         public MessageMenuItemViewArgs(string id, string name)
+         {
+            Id = id;
+
+            Name = name;
+         }  
     }
 }

@@ -16,6 +16,7 @@ namespace Services.Project
          private readonly CheatService _cheatService;
         private readonly ProjectModel _projectModel;
         private readonly QuestModel _questModel;
+        private readonly MessageModel _messageModel;
         private readonly QuestServiceSettings _questServiceSettings;
         private readonly ProjectServiceSettings _projectServiceSettings;
 
@@ -27,6 +28,7 @@ namespace Services.Project
             CheatService cheatService,
             QuestModel questModel,
             ProjectModel projectModel,
+            MessageModel messageModel,
             QuestServiceSettings questServiceSettings,
             ProjectServiceSettings projectServiceSettings,
             SaveDataService saveDataService)
@@ -39,6 +41,7 @@ namespace Services.Project
 
             _questModel = questModel;
             _projectModel = projectModel;
+            _messageModel = messageModel;
 
             _questServiceSettings = questServiceSettings;
 
@@ -71,6 +74,16 @@ namespace Services.Project
                 var qModel = (QuestModel) _questModel.DesirializeModel<QuestModel>(questSaveModelData);
 
                 _questModel.UpdateModelData(qModel.GetQuestSaveData());
+            }
+
+            // Set MessageSaveData.
+            var messageSaveModelData = _saveDataService.GetData(_messageModel.Id);
+
+            if(!string.IsNullOrEmpty(messageSaveModelData))
+            {
+                var mModel = (MessageModel) _messageModel.DesirializeModel<MessageModel>(messageSaveModelData);
+
+                _messageModel.UpdateModelData(mModel.GetMessageSaveData());
             }
         }
 

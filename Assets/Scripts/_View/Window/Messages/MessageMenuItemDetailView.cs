@@ -39,5 +39,28 @@ namespace View.Window
         {
             return Container;
         }
+         public void UpdateView(MessageMenuItemDetailViewArgs messageMenuItemDetailViewArgs)
+        {
+            Id = messageMenuItemDetailViewArgs.Id;
+
+            // TODO:
+        }
+    }
+
+     public class MessageMenuItemDetailViewArgs : IWindowArgs
+    {
+        public string Id { get ; set; }
+
+         public string Name { get; set; }
+
+         public MessageMenuItemDetailViewArgs(){}
+
+         public MessageMenuItemDetailViewArgs(string id, string name)
+         {
+            Id = id;
+
+            Name = name;
+         }  
     }
 }
+
