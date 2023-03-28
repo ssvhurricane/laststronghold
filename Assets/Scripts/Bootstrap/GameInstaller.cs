@@ -56,6 +56,8 @@ namespace Bootstrap
             Container.InstallElementAsSingle<CameraPresenter>();
 
             Container.InstallElementAsSingle<NPCPresenter>();
+
+            Container.InstallElementAsSingle<AreaPresenter>();
         }
 
         private void InstallServices() 
@@ -116,9 +118,14 @@ namespace Bootstrap
         private void InstallModels() 
         {
             Container.InstallModel<PlayerModel>();
+
             Container.InstallModel<CameraModel>();
+
             Container.InstallModel<QuestModel>();
+
             Container.InstallModel<MessageModel>();
+
+            Container.InstallModel<AreaModel>();
         }
 
         private void InstallSignals() 

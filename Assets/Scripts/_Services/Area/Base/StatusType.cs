@@ -5,6 +5,7 @@ namespace Services.Area
          None,
          Built,
          InProgress,
-         NoBuilt
+         NoBuilt,
+         Destroy
     }
 }

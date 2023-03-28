@@ -1,12 +1,14 @@
-using Services.Area;
 using System;
-using UnityEngine;
+using System.Collections.Generic;
+using Data;
 
-namespace Data.Settings
+namespace Services.Area
 {
     [Serializable]
-    public class Area
-    {  
+    public class AreaItemData
+    {
+        public int Id { get; set; }
+
         public string Name; 
         public string Description; 
         public int MinLevel;
@@ -20,15 +22,11 @@ namespace Data.Settings
         public AreaType AreaType;
     }
 
-    [Serializable]
-    public class AreaServiceSettings : IRegistryData
+
+    public class AreaSaveData : ISaveData
     {
-        public string Id;
-
-        public Area Area;
-
-        public GameObject[] StagePrefabs;
-        public GameObject[] EnvironmentPrefabs;
-        string IRegistryData.Id => Id;
+         public int Id { get; set; }
+         public List<AreaItemData> AreaItemDatas;
+         public AreaSaveData(){}
     }
 }

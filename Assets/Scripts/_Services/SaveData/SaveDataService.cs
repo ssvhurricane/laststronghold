@@ -14,6 +14,7 @@ namespace Services.SaveData
         private readonly CameraModel _cameraModel;
         private readonly QuestModel _questModel;
         private readonly MessageModel _messageModel;
+        private readonly AreaModel _areaModel;
 
         private readonly SaveDataServiceSettings _saveDataServiceSettings;
         public SaveDataService(SignalBus signalBus,
@@ -22,6 +23,7 @@ namespace Services.SaveData
                                 CameraModel cameraModel,
                                 QuestModel questModel,
                                 MessageModel messageModel,
+                                AreaModel areaModel,
                                 SaveDataServiceSettings saveDataServiceSettings) 
         {
             _signalBus = signalBus;
@@ -31,6 +33,7 @@ namespace Services.SaveData
             _cameraModel  = cameraModel;
             _questModel = questModel;
             _messageModel = messageModel;
+            _areaModel = areaModel;
 
             _saveDataServiceSettings = saveDataServiceSettings;
 
@@ -87,6 +90,17 @@ namespace Services.SaveData
                     var serializeString = _messageModel.SerializeModel(_messageModel);
 
                     SaveData(_messageModel.Id, serializeString);
+                }
+            });
+
+             // AreaData.
+            _areaModel.GetAreaSaveDataAsReactive().Subscribe(item => 
+            {
+                if(_areaModel.GetAreaSaveData() != null && item != null)
+                {
+                    var serializeString = _areaModel.SerializeModel(_areaModel);
+
+                    SaveData(_areaModel.Id, serializeString);
                 }
             });
         }
