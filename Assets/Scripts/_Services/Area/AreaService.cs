@@ -10,8 +10,18 @@ namespace Services.Area
         {
             // TODO:
             _signalBus = signalBus;
+
+            AddCheats();
+        }
+        private void AddCheats()
+        {
+            // TODO:
         }
 
+        public void AreaProcessing()
+        {
+            // TODO:
+        }
         
     }
 }

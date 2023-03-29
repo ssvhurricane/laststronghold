@@ -24,3 +24,5 @@ MonoBehaviour:
       Name: Tutorials
     - Id: 4
       Name: Messages
+    - Id: 5
+      Name: Areas

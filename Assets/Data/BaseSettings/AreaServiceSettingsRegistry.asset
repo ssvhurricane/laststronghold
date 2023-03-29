@@ -14,52 +14,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RegistryItems:
   - Id: 0
-    MinLevel: 1
-    MaxLevel: 5
-    StatusType: 3
-    StageType: 0
-    Name: PoliceStation
-    Description: PoliceStation
-    IsInteractive: 1
-    AreaType: 1
+    Area:
+      Name: 
+      Description: 
+      MinLevel: 0
+      MaxLevel: 0
+      CurHealthPoint: 0
+      MaxHealthPoint: 0
+      IsInteractive: 0
+      StatusType: 0
+      StageType: 0
+      AreaType: 0
     StagePrefabs:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
+    EnvironmentPrefabs: []
   - Id: 1
-    MinLevel: 1
-    MaxLevel: 1
-    StatusType: 0
-    StageType: 0
-    Name: House1Station
-    Description: House1Station
-    IsInteractive: 0
-    AreaType: 1
-    StagePrefabs:
-    - {fileID: 0}
+    Area:
+      Name: PoliceStationView
+      Description: '[PoliceStationView]'
+      MinLevel: 1
+      MaxLevel: 5
+      CurHealthPoint: 0
+      MaxHealthPoint: 100
+      IsInteractive: 1
+      StatusType: 3
+      StageType: 1
+      AreaType: 0
+    StagePrefabs: []
+    EnvironmentPrefabs: []
   - Id: 16
-    MinLevel: 1
-    MaxLevel: 20
-    StatusType: 3
-    StageType: 0
-    Name: SuperMarket
-    Description: SuperMarket
-    IsInteractive: 1
-    AreaType: 0
+    Area:
+      Name: 
+      Description: 
+      MinLevel: 0
+      MaxLevel: 0
+      CurHealthPoint: 0
+      MaxHealthPoint: 0
+      IsInteractive: 0
+      StatusType: 0
+      StageType: 0
+      AreaType: 0
     StagePrefabs:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
+    EnvironmentPrefabs: []
   - Id: 17
-    MinLevel: 1
-    MaxLevel: 20
-    StatusType: 3
-    StageType: 0
-    Name: POI1View
-    Description: Road to house1
-    IsInteractive: 1
-    AreaType: 2
+    Area:
+      Name: 
+      Description: 
+      MinLevel: 0
+      MaxLevel: 0
+      CurHealthPoint: 0
+      MaxHealthPoint: 0
+      IsInteractive: 0
+      StatusType: 0
+      StageType: 0
+      AreaType: 0
     StagePrefabs:
     - {fileID: 0}
+    EnvironmentPrefabs: []
