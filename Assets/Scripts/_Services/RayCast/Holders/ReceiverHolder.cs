@@ -9,7 +9,7 @@ namespace Services.RayCast
         [SerializeField] protected GameObject Parent, ReceiverObject;
         [SerializeField] protected ReceiverType ReceiverType;
 
-        [SerializeField] protected int ObjectId;
+        [SerializeField] protected string ObjectId;
 
         [SerializeField] protected string ObjectName;
 
@@ -36,7 +36,7 @@ namespace Services.RayCast
             return ReceiverType;
         }
         
-        public int GetId()
+        public string GetId()
         {
             return ObjectId;
         }

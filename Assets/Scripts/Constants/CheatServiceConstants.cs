@@ -6,6 +6,10 @@ namespace Constants
 
          public static string Quests = "Quests";
 
-        public static string Tutorials = "Tutorials";
+         public static string Tutorials = "Tutorials";
+
+         public static string Messages = "Messages";
+
+         public static string Areas = "Areas";
     }
 }

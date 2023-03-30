@@ -221,7 +221,7 @@ namespace Services.Input
 
             _topDownGameInput.Player.Reset.performed += value =>
             {
-                 _receiverAnchorArea = _rayCastService._receiverHolders.FirstOrDefault(item => item.GetId() == 1);
+                 _receiverAnchorArea = _rayCastService._receiverHolders.FirstOrDefault(item => item.GetId() == "PoliceStationView");
 
                 if (_receiverAnchorArea)
                 {
