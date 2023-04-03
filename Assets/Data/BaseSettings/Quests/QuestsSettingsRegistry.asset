@@ -18,7 +18,7 @@ MonoBehaviour:
       Id: 1
       ThreadId: 1
       Description: '[Quest1]'
-      NeedValue: 1
+      NeedValue: 2
       Icon: {fileID: 0}
       QuestConditionType: 0
       Param: 
@@ -28,7 +28,7 @@ MonoBehaviour:
       Id: 2
       ThreadId: 1
       Description: '[Quest2]'
-      NeedValue: 2
+      NeedValue: 4
       Icon: {fileID: 0}
       QuestConditionType: 0
       Param: 
@@ -38,7 +38,7 @@ MonoBehaviour:
       Id: 3
       ThreadId: 1
       Description: '[Quest3]'
-      NeedValue: 3
+      NeedValue: 1
       Icon: {fileID: 0}
       QuestConditionType: 0
       Param: 
@@ -48,7 +48,7 @@ MonoBehaviour:
       Id: 4
       ThreadId: 2
       Description: '[Quest4]'
-      NeedValue: 1
+      NeedValue: 4
       Icon: {fileID: 0}
       QuestConditionType: 0
       Param: 
@@ -78,7 +78,7 @@ MonoBehaviour:
       Id: 7
       ThreadId: 3
       Description: '[Quest7]'
-      NeedValue: 1
+      NeedValue: 20
       Icon: {fileID: 0}
       QuestConditionType: 0
       Param: 
@@ -98,7 +98,7 @@ MonoBehaviour:
       Id: 9
       ThreadId: 4
       Description: '[Quest9]'
-      NeedValue: 1
+      NeedValue: 30
       Icon: {fileID: 0}
       QuestConditionType: 0
       Param: 
@@ -128,15 +128,15 @@ MonoBehaviour:
       Id: 12
       ThreadId: 4
       Description: '[Quest12]'
-      NeedValue: 1
+      NeedValue: 200
       Icon: {fileID: 0}
-      QuestConditionType: 0
+      QuestConditionType: 5
       Param: 
       Value: 
   - Id: 13
     Quest:
       Id: 13
-      ThreadId: 5
+      ThreadId: 4
       Description: '[Quest13]'
       NeedValue: 1
       Icon: {fileID: 0}
@@ -148,6 +148,46 @@ MonoBehaviour:
       Id: 14
       ThreadId: 5
       Description: '[Quest14]'
+      NeedValue: 1
+      Icon: {fileID: 0}
+      QuestConditionType: 3
+      Param: 
+      Value: 
+  - Id: 15
+    Quest:
+      Id: 15
+      ThreadId: 5
+      Description: '[Quest15]'
+      NeedValue: 5
+      Icon: {fileID: 0}
+      QuestConditionType: 2
+      Param: 
+      Value: 
+  - Id: 16
+    Quest:
+      Id: 16
+      ThreadId: 5
+      Description: '[Quest16]'
+      NeedValue: 6
+      Icon: {fileID: 0}
+      QuestConditionType: 2
+      Param: 
+      Value: 
+  - Id: 17
+    Quest:
+      Id: 17
+      ThreadId: 5
+      Description: '[Quest17]'
+      NeedValue: 7
+      Icon: {fileID: 0}
+      QuestConditionType: 2
+      Param: 
+      Value: 
+  - Id: 18
+    Quest:
+      Id: 18
+      ThreadId: 5
+      Description: '[Quest18]'
       NeedValue: 7
       Icon: {fileID: 0}
       QuestConditionType: 3

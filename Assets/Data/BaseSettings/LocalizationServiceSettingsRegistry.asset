@@ -434,6 +434,17 @@ MonoBehaviour:
       Key: '[Quest12]'
       RU: {fileID: 4900000, guid: 3d86a67e967134d2f9a3e71511955bb3, type: 3}
       EN: {fileID: 4900000, guid: c61b2983f3caa427790879304c4605e2, type: 3}
+  - Id: '[Quest13]'
+    Enable: 1
+    localizationItem:
+      Key: '[Quest13]'
+      RU: "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C
+        \u0441\u0442\u0430\u043D\u0446\u0438\u044E"
+      EN: Restore station
+    LocalizationItemFromTextFile:
+      Key: '[Quest13]'
+      RU: {fileID: 4900000, guid: e026ed54fcf4241f58ae02a0dd717a49, type: 3}
+      EN: {fileID: 4900000, guid: 4f5846665f4f14d8f92970c2b5deda43, type: 3}
   - Id: '[Flow5]'
     Enable: 1
     localizationItem:
@@ -444,26 +455,58 @@ MonoBehaviour:
       Key: '[Quest3]'
       RU: {fileID: 4900000, guid: 2f64ad14445464dfbba829a0b003f3e8, type: 3}
       EN: {fileID: 4900000, guid: d187f138f23894feb96677209ce941b5, type: 3}
-  - Id: '[Quest13]'
-    Enable: 1
-    localizationItem:
-      Key: '[Quest13]'
-      RU: "\u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F \u0432 \u043F\u043E\u0441\u0435\u043B\u0435\u043D\u0438\u0435
-        \u0438 \u0440\u0430\u0437\u0432\u0435\u0434\u0430\u0442\u044C \u043E\u0431\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0443"
-      EN: Return to the settlement and scout the situation
-    LocalizationItemFromTextFile:
-      Key: '[Quest13]'
-      RU: {fileID: 4900000, guid: d0738263d4bb84cfaa35610edded936a, type: 3}
-      EN: {fileID: 4900000, guid: ccdcb2875d7074e2db9e1ac5618b98cb, type: 3}
   - Id: '[Quest14]'
     Enable: 1
     localizationItem:
       Key: '[Quest14]'
+      RU: "\u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F \u0432 \u043F\u043E\u0441\u0435\u043B\u0435\u043D\u0438\u0435
+        \u0438 \u0440\u0430\u0437\u0432\u0435\u0434\u0430\u0442\u044C \u043E\u0431\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0443"
+      EN: Return to the settlement and scout the situation
+    LocalizationItemFromTextFile:
+      Key: '[Quest14]'
+      RU: {fileID: 4900000, guid: d0738263d4bb84cfaa35610edded936a, type: 3}
+      EN: {fileID: 4900000, guid: ccdcb2875d7074e2db9e1ac5618b98cb, type: 3}
+  - Id: '[Quest15]'
+    Enable: 1
+    localizationItem:
+      Key: '[Quest15]'
+      RU: "\u0414\u043E\u0431\u044B\u0447\u0430 \u0440\u0435\u0441\u0443\u0440\u0441\u043E\u0432.
+        \u0414\u0435\u0440\u0435\u0432\u043E "
+      EN: Mining.Tree
+    LocalizationItemFromTextFile:
+      Key: '[Quest15]'
+      RU: {fileID: 4900000, guid: 7ff5fc2619999435884c325a90bf498c, type: 3}
+      EN: {fileID: 4900000, guid: f18f827fd26f448e1822f987a1823974, type: 3}
+  - Id: '[Quest16]'
+    Enable: 1
+    localizationItem:
+      Key: '[Quest16]'
+      RU: "\u0414\u043E\u0431\u044B\u0447\u0430 \u0440\u0435\u0441\u0443\u0440\u0441\u043E\u0432.
+        \u041A\u0430\u043C\u0435\u043D\u044C"
+      EN: Mining. Stone
+    LocalizationItemFromTextFile:
+      Key: '[Quest16]'
+      RU: {fileID: 4900000, guid: 34b073450bb4948f98c8011f84858765, type: 3}
+      EN: {fileID: 4900000, guid: d412497e7882142b6939ad063b1758f1, type: 3}
+  - Id: '[Quest17]'
+    Enable: 1
+    localizationItem:
+      Key: '[Quest17]'
+      RU: "\u0414\u043E\u0431\u044B\u0447\u0430 \u0440\u0435\u0441\u0443\u0440\u0441\u043E\u0432.\u041C\u0435\u0442\u0430\u043B\u043B"
+      EN: Mining. Metal
+    LocalizationItemFromTextFile:
+      Key: '[Quest17]'
+      RU: {fileID: 4900000, guid: 85ddddd977eb34754ac755c7c722ba7f, type: 3}
+      EN: {fileID: 4900000, guid: 3990cc54b1a86404aa53faba92bc8c4a, type: 3}
+  - Id: '[Quest18]'
+    Enable: 1
+    localizationItem:
+      Key: '[Quest18]'
       RU: "\u041F\u043E\u0447\u0438\u043D\u0438\u0442\u044C \u0440\u0430\u0437\u0440\u0443\u0448\u0435\u043D\u043D\u044B\u0435
         \u043F\u043E\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
       EN: Repair destroyed buildings
     LocalizationItemFromTextFile:
-      Key: '[Quest14]'
+      Key: '[Quest18]'
       RU: {fileID: 4900000, guid: d42f5887600cb4ab8b2d5e3ec6d67b79, type: 3}
       EN: {fileID: 4900000, guid: 43afa4b85a05e45028e9b9066851cd50, type: 3}
   - Id: '[Chapter2]'
