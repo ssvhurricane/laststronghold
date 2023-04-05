@@ -13,31 +13,47 @@ MonoBehaviour:
   m_Name: CameraServiceSettingsRegistry
   m_EditorClassIdentifier: 
   RegistryItems:
-  - Id: FPSCamera
+  - Id: 1
+    IsActive: 1
     Name: FPSCamera
     CameraType: 0
     Position: {x: -2.2, y: 1.2, z: 1.6}
     Rotation: {x: 0, y: 0, z: 0}
     CameraFollowSmoothSpeed: 3
     CameraFollowOffset: {x: 1, y: 1, z: 1}
-  - Id: TPSCamera
+    Abilities:
+    - CameraRotateAbility
+    Items: []
+  - Id: 2
+    IsActive: 0
     Name: TPSCamera
     CameraType: 1
     Position: {x: -1.25, y: 2.2, z: 8.5}
     Rotation: {x: 0, y: 180, z: 0}
     CameraFollowSmoothSpeed: 3
     CameraFollowOffset: {x: 1, y: 1, z: 1}
-  - Id: TopDownCamera
+    Abilities:
+    - CameraRotateAbility
+    Items: []
+  - Id: 3
+    IsActive: 0
     Name: TopDownCamera
     CameraType: 2
     Position: {x: 0, y: 15, z: -12}
     Rotation: {x: 55, y: 0, z: 0}
     CameraFollowSmoothSpeed: 3
     CameraFollowOffset: {x: 1, y: 1, z: 1}
-  - Id: SideScrollerCamera
+    Abilities:
+    - CameraRotateAbility
+    Items: []
+  - Id: 4
+    IsActive: 0
     Name: SideScrollerCamera
     CameraType: 3
     Position: {x: 0, y: 0, z: 0}
     Rotation: {x: 0, y: 0, z: 0}
     CameraFollowSmoothSpeed: 0
     CameraFollowOffset: {x: 0, y: 0, z: 0}
+    Abilities:
+    - CameraRotateAbility
+    Items: []

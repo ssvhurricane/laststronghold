@@ -13,5 +13,15 @@ MonoBehaviour:
   m_Name: PlayerSettingsRegistry
   m_EditorClassIdentifier: 
   RegistryData:
-    Id: Player
+    Id: 1
     Name: John Smith
+    Abilities:
+    - PlayerIdleAbility
+    - PlayerMoveAbility
+    - PlayerFocusMoveAbility
+    - PlayerLookAtAbility
+    - PlayerBaseAttackAbility
+    - PlayerNoneAbility
+    - PlayerInteractAbility
+    Items:
+    - SniperRifleItem

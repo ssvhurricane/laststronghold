@@ -16,9 +16,8 @@ namespace Services.Input
         UltaFire,
 
         // Interact section.
-        BaseInteract,
-        BuildingInteract,
-        PickUpInteract,
-        RepairInteract
+        ExploreInteract,
+        RestoreInteract,
+        PickUpInteract
     }
 }

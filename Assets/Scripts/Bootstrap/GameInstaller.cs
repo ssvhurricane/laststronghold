@@ -19,6 +19,7 @@ using Services.BackLight;
 using Services.NPC;
 using Services.Quest;
 using Services.Message;
+using Services.Shooting;
 
 namespace Bootstrap
 {
@@ -63,6 +64,7 @@ namespace Bootstrap
         private void InstallServices() 
         {
             Container.InstallElementAsTransient<MovementService>(); 
+            Container.InstallElementAsTransient<ShootingService>(); 
             Container.InstallElementAsSingle<AbilityService>();
             Container.InstallElementAsSingle<ItemService>();
            
@@ -101,7 +103,7 @@ namespace Bootstrap
 
             // Attack.
             Container.InstallElementAsSingle<PlayerBaseAttackAbility>();
-            
+         
             // Specific.
             Container.InstallElementAsSingle<PlayerNoneAbility>();
             Container.InstallElementAsSingle<PlayerInteractAbility>();

@@ -89,12 +89,12 @@ namespace Services.Ability
                 // TODO:
                 switch(actionModifier)
                 {
-                    case ActionModifier.BaseInteract:
+                    case ActionModifier.ExploreInteract:
                     {
                         // TODO:
                         break;
                     }
-                    case ActionModifier.BuildingInteract:
+                    case ActionModifier.RestoreInteract:
                     {
                         // TODO:
                         break;
@@ -104,13 +104,8 @@ namespace Services.Ability
                         // TODO:
                         break;
                     }
-                    case ActionModifier.RepairInteract:
-                    {
-                        // TODO:
-                        break;
-                    }
+                  
                 }
-
             }
         }
     }

@@ -1,14 +1,11 @@
-using Model.Inventory;
-using Services.Ability;
+using System.Collections.Generic;
 
 namespace Model
 {
     public interface ILiveModel : IModel
     {
-        public IAbilityContainer GetAbilityContainer();
+        public List<string> GetAbilities();
 
-        public IInventoryContainer GetInventoryContainer();
-        public void SetCurrentAbility(IAbility ability);
-        public IAbility GetCurrentAbility();
+        public List<string> GetItems();
     }
 }

@@ -59,6 +59,19 @@ namespace Presenters.Window
             }
         }
 
+        private void PlayerParams()
+        {
+            // TODO:
+
+            _playerPresenter.GetModel();
+        }
+
+        private void PlayerAbilities()
+        {
+            // TODO:
+            _playerPresenter.GetModel();
+        }
+
         public IWindow GetView() 
         {
            return _mainHUDView;

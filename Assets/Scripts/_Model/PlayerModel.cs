@@ -1,141 +1,107 @@
+using System.Collections.Generic;
+using Data;
 using Data.Settings;
-using Model.Inventory;
 using Newtonsoft.Json;
-using Services.Ability;
-using Services.Item;
 using UniRx;
+using UnityEngine;
 
 namespace Model
 {
-    public class PlayerModel : ILiveModel
+    public class PlayerModel : ILiveModel, ISerializableModel
     {
         [JsonProperty]
         public string Id { get; set; } = "PlayerModel";
         
         [JsonProperty]
         public ModelType ModelType { get; set; }
-        
+     
+         //Current ModelData.
         [JsonProperty]
-        private ReactiveProperty<PlayerAbilityContainer> _playerAbilityContainer;
-
-        [JsonProperty]
-        private ReactiveProperty <PlayerInventoryContainer> _playerInventoryContainer;
+        private ReactiveProperty<PlayerSaveData> _playerSaveData = new ReactiveProperty<PlayerSaveData>();
 
         [JsonIgnore]
         private readonly PlayerSettings _settings;
-       
 
-        // Move section.
-        [JsonIgnore]
-        private PlayerIdleAbility _playerIdleAbility;
-
-        [JsonIgnore]
-        private PlayerMoveAbility _playerMoveAbility;
-
-        [JsonIgnore]
-        private PlayerFocusMoveAbility _playerFocusMoveAbility;
-
-        [JsonIgnore]
-        private PlayerLookAtAbility _playerLookAtAbility;
-
-        // Attack section.
-        [JsonIgnore]
-        private PlayerBaseAttackAbility _playerAttackAbility;
-        
-        // Specific section.
-        [JsonIgnore]
-        private PlayerNoneAbility _playerNoneAbility;
-
-        [JsonIgnore]
-        private PlayerInteractAbility _playerInteractAbility;
-
-        [JsonIgnore]
-        private IAbility _currentAbility;
-
-        [JsonIgnore]
-        private SniperRifleItem _sniperRifleItem;
-
-        public PlayerModel(PlayerSettings settings,
-                PlayerIdleAbility playerIdleAbility,
-                PlayerMoveAbility playerMoveAbility,
-                PlayerFocusMoveAbility playerFocusMoveAbility,
-                PlayerLookAtAbility playerLookAtAbility,
-                PlayerBaseAttackAbility playerAttackAbility,
-                PlayerNoneAbility playerNoneAbility,
-                PlayerInteractAbility playerInteractAbility,
-                SniperRifleItem sniperRifleItem
-            )
+        public PlayerModel(PlayerSettings settings)
         {
             _settings = settings;
 
-            _playerIdleAbility = playerIdleAbility;
-            _playerMoveAbility = playerMoveAbility;
-            _playerFocusMoveAbility = playerFocusMoveAbility;
-            _playerLookAtAbility = playerLookAtAbility;
-
-            _playerAttackAbility = playerAttackAbility;
-            
-            _playerNoneAbility = playerNoneAbility;
-
-            _playerInteractAbility = playerInteractAbility;
-
-            _sniperRifleItem = sniperRifleItem;
-
-            // Init Base Ability.
-            _playerAbilityContainer = new ReactiveProperty<PlayerAbilityContainer>();
-            _playerAbilityContainer.Value = new PlayerAbilityContainer();
-            
-            _playerAbilityContainer.Value.abilities.Add(_playerIdleAbility);
-            _playerAbilityContainer.Value.abilities.Add(_playerMoveAbility);
-            _playerAbilityContainer.Value.abilities.Add(_playerFocusMoveAbility);
-            _playerAbilityContainer.Value.abilities.Add(_playerLookAtAbility);
-
-            _playerAbilityContainer.Value.abilities.Add(_playerAttackAbility);
-            
-            _playerAbilityContainer.Value.abilities.Add(_playerNoneAbility);
-            
-            _playerAbilityContainer.Value.abilities.Add(_playerInteractAbility);
-
-            // Init Inventory.
-            _playerInventoryContainer = new ReactiveProperty<PlayerInventoryContainer>();
-            _playerInventoryContainer.Value = new PlayerInventoryContainer();
-           
-            _playerInventoryContainer.Value.Items.Add(_sniperRifleItem);
+            if(settings != null
+                 && string.IsNullOrEmpty(PlayerPrefs.GetString(Id))) InitializeDafaultModelData();
         }
 
-        public ReactiveProperty<PlayerAbilityContainer> GetAbilityContainerAsReactive()
+         public string SerializeModel(IModel model)
         {
-            return _playerAbilityContainer;
+            return JsonConvert.SerializeObject(model);
         }
 
-        public IAbilityContainer GetAbilityContainer()
+        public IModel DesirializeModel<TParam>(string model) where TParam : IModel
         {
-            return _playerAbilityContainer.Value;
+            return JsonConvert.DeserializeObject<TParam>(model);
         }
 
-        public ReactiveProperty<PlayerInventoryContainer> GetInventoryContainerAsReactive()
-        {
-            return _playerInventoryContainer;
+        public void InitializeDafaultModelData()
+        {     
+           _playerSaveData.Value = new PlayerSaveData
+           {
+                Id = int.Parse(_settings.Id),
+
+                Abilities = _settings.Abilities,
+
+                Items =  _settings.Items
+
+           };
         }
 
-        public IInventoryContainer GetInventoryContainer()
-        {
-            return _playerInventoryContainer.Value;
+        public void UpdateModelData(ISaveData saveData)
+        { 
+             var innerSaveData = (PlayerSaveData) saveData;
+             
+
+             _playerSaveData.Value = new PlayerSaveData
+           {
+                Id = innerSaveData.Id,
+
+                Abilities = innerSaveData.Abilities,
+
+                Items = innerSaveData.Items
+           };
         }
 
-        public void SetCurrentAbility(IAbility ability) 
+        public ReactiveProperty<PlayerSaveData> GetPlayerSaveDataAsReactive()
         {
-            _currentAbility = ability;
+            return _playerSaveData;
+        } 
+
+        public PlayerSaveData GetPlayerSaveData()
+        {
+            return _playerSaveData.Value;
         }
 
-        public IAbility GetCurrentAbility() 
+        public List<string> GetAbilities()
         {
-            return _currentAbility;
+            return _playerSaveData.Value.Abilities;
+        }
+
+        public List<string> GetItems()
+        {
+            return _playerSaveData.Value.Items;
         }
 
         public void Dispose()
         {
-
+            // TODO:
         }
+    }
+
+    public class PlayerSaveData: ISaveData
+    {
+         public int Id { get; set; }
+       
+         public List<string> Abilities;
+
+         public List<string> Items;
+         
+         public PlayerSaveData(){}
     }
 }

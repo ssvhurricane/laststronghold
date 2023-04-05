@@ -13,8 +13,10 @@ namespace Services.Project
     {
         private readonly SignalBus _signalBus;
         private readonly LogService _logService;
-         private readonly CheatService _cheatService;
+        private readonly CheatService _cheatService;
         private readonly ProjectModel _projectModel;
+        private readonly PlayerModel _playerModel;
+        private readonly CameraModel _cameraModel;
         private readonly QuestModel _questModel;
         private readonly MessageModel _messageModel;
         private readonly AreaModel _areaModel;
@@ -29,6 +31,8 @@ namespace Services.Project
             CheatService cheatService,
             QuestModel questModel,
             ProjectModel projectModel,
+            PlayerModel playerModel,
+            CameraModel cameraModel,
             MessageModel messageModel,
             AreaModel areaModel,
             QuestServiceSettings questServiceSettings,
@@ -43,6 +47,8 @@ namespace Services.Project
 
             _questModel = questModel;
             _projectModel = projectModel;
+            _playerModel = playerModel;
+            _cameraModel = cameraModel;
             _messageModel = messageModel;
             _areaModel = areaModel;
 
@@ -64,9 +70,29 @@ namespace Services.Project
 
             if(!string.IsNullOrEmpty(projectSaveModelData))
             {
-               var pModel = (ProjectModel)_projectModel.DesirializeModel<ProjectModel>(projectSaveModelData);
+               var prModel = (ProjectModel)_projectModel.DesirializeModel<ProjectModel>(projectSaveModelData);
 
-              _projectModel.UpdateModelData(pModel.GetProjectSaveData());
+              _projectModel.UpdateModelData(prModel.GetProjectSaveData());
+            }
+
+             // Set PlayerSaveData.
+            var playerSaveModelData = _saveDataService.GetData(_playerModel.Id);
+
+            if(!string.IsNullOrEmpty(playerSaveModelData))
+            {
+               var plModel = (PlayerModel)_playerModel.DesirializeModel<PlayerModel>(playerSaveModelData);
+
+              _playerModel.UpdateModelData(plModel.GetPlayerSaveData());
+            }
+
+             // Set CameraSaveData.
+            var cameraSaveModelData = _saveDataService.GetData(_cameraModel.Id);
+
+            if(!string.IsNullOrEmpty(cameraSaveModelData))
+            {
+               var cModel = (CameraModel)_cameraModel.DesirializeModel<CameraModel>(cameraSaveModelData);
+
+              _cameraModel.UpdateModelData(cModel.GetCameraSaveData());
             }
 
             // Set QuestSaveData.

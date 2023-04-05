@@ -28,7 +28,7 @@ namespace Services.Camera
 
         public void InitializeCamera(string cameraId, IView baseView, IView cameraView)
         {
-           _settings = _cameraServiceSettings.FirstOrDefault(cam => cam.Id == cameraId);
+           _settings = _cameraServiceSettings.FirstOrDefault(cam => cam.Name == cameraId);
 
             if (_settings != null) 
             {

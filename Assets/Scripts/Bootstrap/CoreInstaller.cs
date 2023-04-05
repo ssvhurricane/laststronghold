@@ -142,7 +142,6 @@ namespace Bootstrap
        public void InstallModels()
         {
             Container.InstallModel<ProjectModel>();
-            Container.InstallModel<NetworkModel>();
         }
 
         private void InstallPools()

@@ -13,6 +13,7 @@ using Services.Project;
 using Services.RayCast;
 using Services.Resources;
 using Services.Window;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -145,7 +146,7 @@ namespace Services.Input
 
                         _abilityService.UseAbility((IAbilityWithOutParam)_playerInteractAbility,
                             _playerPresenter,
-                            ActionModifier.BaseInteract);
+                            ActionModifier.ExploreInteract);
                    }
                 }
             };
@@ -390,95 +391,48 @@ namespace Services.Input
             
             _playerView = (PlayerView) _playerPresenter.GetView();
 
-            _cameraPresenter.ShowView<FPSCameraView>(CameraServiceConstants.FPSCamera, _playerView);
+            var cameraTypeName =  (_cameraPresenter.GetModel() as CameraModel).GetCameraSaveData().Name; 
+          
+            if(cameraTypeName == CameraServiceConstants.FPSCamera)
+            {
+                _cameraPresenter.ShowView<FPSCameraView>(cameraTypeName, _playerView);
+            }
+            // TODO:
 
             CachingAbilities();
 
-          //  InitializePlayerAbilityViews();
-
             _topDownGameInput.Enable();
-        }
-
-        //TODO:del,ref.
-        private void InitializePlayerAbilityViews() 
-        {
-            PlayerAbilityItemView playerAbilityItemView;
-
-            _mainHudView = (MainHUDView)_mainHUDPresenter.GetView();
-            _mainHudView.GetVerticalAbilityPanel().gameObject.SetActive(false);
-
-            // Init Player Ability.
-            ((ILiveModel)_playerPresenter.GetModel())
-                .SetCurrentAbility(_playerNoneAbility);
-
-            _mainHudView.GetPlayerAbilityContainer().GetComponent<Image>().sprite = ((ILiveModel) _playerPresenter.GetModel()).GetCurrentAbility().Icon;
-
-            _abilityService.UseAbility((IAbilityWithOutParam)((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility(), _playerPresenter, ActionModifier.None);
-
-            _poolService.InitPool(PoolServiceConstants.PlayerAbilityItemViewPool);
-
-            for (var item = 0; item < _playerAbilities.Count(); item++) 
-            {
-                 playerAbilityItemView
-                    = (PlayerAbilityItemView)_poolService.Spawn<PlayerAbilityItemView>(_mainHudView.GetVerticalAbilityPanel().transform, 
-                                                                                                PoolServiceConstants.PlayerAbilityItemViewPool);
-
-                 playerAbilityItemView._image.sprite = _playerAbilities.ToList()[item].Icon;
-
-                 playerAbilityItemView.Id =_playerAbilities.ToList()[item].Id;
-
-                 _playerAbilityItems.Add(item, playerAbilityItemView);
-            }
         }
 
         private void CachingAbilities()
         {
             // Caching Player Idle Ability.
-            _playerIdleAbility = _abilityService.GetAbilityById(_playerPresenter,
-                AbilityServiceConstants.PlayerIdleAbility);
+            _playerIdleAbility = _abilityService.GetAbilityById(AbilityServiceConstants.PlayerIdleAbility);
             _playerIdleAbility.ActivateAbility = true;
 
             // Caching Player Move Ability.
-            _playerMoveAbility = _abilityService.GetAbilityById(_playerPresenter,
-                AbilityServiceConstants.PlayerMoveAbility);
+            _playerMoveAbility = _abilityService.GetAbilityById(AbilityServiceConstants.PlayerMoveAbility);
             _playerMoveAbility.ActivateAbility = true;
 
-           _playerFocusMoveAbility = _abilityService.GetAbilityById(_playerPresenter,
-               AbilityServiceConstants.PlayerFocusMoveAbility);
+           _playerFocusMoveAbility = _abilityService.GetAbilityById(AbilityServiceConstants.PlayerFocusMoveAbility);
             _playerFocusMoveAbility.ActivateAbility = true;
 
-            _playerLookAtAbility = _abilityService.GetAbilityById(_playerPresenter,
-                AbilityServiceConstants.PlayerLookAtAbility);
+            _playerLookAtAbility = _abilityService.GetAbilityById(AbilityServiceConstants.PlayerLookAtAbility);
+
             _playerLookAtAbility.ActivateAbility = true;
 
             // Caching Player None Ability.
-            _playerNoneAbility = _abilityService.GetAbilityById(_playerPresenter,
-                AbilityServiceConstants.PlayerNoneAbility);
+            _playerNoneAbility = _abilityService.GetAbilityById(AbilityServiceConstants.PlayerNoneAbility);
             _playerNoneAbility.ActivateAbility = true;
 
-/*
-            _playerAbilities = _abilityService.GetAbilitiesyByAbilityType(_playerPresenter,
-                AbilityType.AttackAbility);
-            
-            // Add specific abilities or build abilities
-            _playerAbilities.Concat(_abilityService.GetAbilitiesyByAbilityType(_playerPresenter,
-                AbilityType.SpecificAbility));
-
-            foreach(var playerAbility in _playerAbilities)
-                playerAbility.ActivateAbility = false;
-            */
-
-            _playerBaseAttackAbility = _abilityService.GetAbilityById(_playerPresenter,
-               AbilityServiceConstants.PlayerBaseAttackAbility);
+            _playerBaseAttackAbility = _abilityService.GetAbilityById(AbilityServiceConstants.PlayerBaseAttackAbility);
             _playerBaseAttackAbility.ActivateAbility = true;
 
-            _playerInteractAbility = _abilityService.GetAbilityById(_playerPresenter,
-               AbilityServiceConstants.PlayerInteractAbility);
+            _playerInteractAbility = _abilityService.GetAbilityById(AbilityServiceConstants.PlayerInteractAbility);
             _playerInteractAbility.ActivateAbility = true;
 
             // Caching Camera Rotate Ability.
-            _cameraRotateAbility = _abilityService.GetAbilityById(_cameraPresenter,
-                AbilityServiceConstants.CameraRotateAbility);
+            _cameraRotateAbility = _abilityService.GetAbilityById(AbilityServiceConstants.CameraRotateAbility);
             _cameraRotateAbility.ActivateAbility = true;
         }
     }

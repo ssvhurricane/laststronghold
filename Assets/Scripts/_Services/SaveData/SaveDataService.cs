@@ -49,26 +49,25 @@ namespace Services.SaveData
             });
 
             // PlayerData.
-            _playerModel.GetAbilityContainerAsReactive().Subscribe(item => 
+            _playerModel.GetPlayerSaveDataAsReactive().Subscribe(item => 
             {
-              //  var serializeString =  SerializeModel(_playerModel);
+                 if(_playerModel.GetPlayerSaveData() != null && item != null)
+                {
+                    var serializeString = _playerModel.SerializeModel(_playerModel);
 
-              //  SaveData(_playerModel.Id, serializeString);
-
+                    SaveData(_playerModel.Id, serializeString);
+                }
             });
-             _playerModel.GetInventoryContainerAsReactive().Subscribe(item => 
-            {
-              //   var serializeString =  SerializeModel(_playerModel);
-
-                // SaveData(_playerModel.Id, serializeString);
-            });
-
+          
             // CameraData.
-            _cameraModel.GetAbilityContainerAsReactive().Subscribe(item => 
+            _cameraModel.GetCameraSaveDataAsReactive().Subscribe(item => 
             {
-             //   var serializeString =  SerializeModel(_cameraModel);
+               if(_cameraModel.GetCameraSaveData() != null && item != null)
+                {
+                    var serializeString = _cameraModel.SerializeModel(_cameraModel);
 
-              //  SaveData(_cameraModel.Id, serializeString);
+                    SaveData(_cameraModel.Id, serializeString);
+                }
             });
 
             // QuestsData.

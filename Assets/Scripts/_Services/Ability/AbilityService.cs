@@ -1,7 +1,6 @@
 using Model;
 using Presenters;
 using Services.Input;
-using Services.Item.Weapon;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,9 +11,68 @@ namespace Services.Ability
     public class AbilityService
     {
         private readonly SignalBus _signalBus;
-        public AbilityService(SignalBus signalBus) 
+
+        private List<IAbility> _allAbilities;
+
+        private readonly PlayerIdleAbility _playerIdleAbility;
+        private readonly PlayerMoveAbility _playerMoveAbility;
+        private readonly PlayerFocusMoveAbility _playerFocusMoveAbility;
+        private readonly PlayerLookAtAbility _playerLookAtAbility;
+
+        // Attack.
+        private readonly PlayerBaseAttackAbility _playerBaseAttackAbility;
+
+        //Specific.
+        private readonly PlayerNoneAbility _playerNoneAbility;
+        private readonly PlayerInteractAbility _playerInteractAbility;
+
+        // Camera Abilities.
+        private readonly CameraRotateAbility _cameraRotateAbility;
+
+        public AbilityService(SignalBus signalBus,
+                            PlayerIdleAbility playerIdleAbility,
+                            PlayerMoveAbility playerMoveAbility,
+                            PlayerFocusMoveAbility playerFocusMoveAbility,
+                            PlayerLookAtAbility playerLookAtAbility,
+                            PlayerBaseAttackAbility playerBaseAttackAbility,
+                            PlayerNoneAbility playerNoneAbility,
+                            PlayerInteractAbility playerInteractAbility,
+                            CameraRotateAbility cameraRotateAbility) 
         {
             _signalBus = signalBus;
+
+
+            _playerIdleAbility = playerIdleAbility;
+
+            _playerMoveAbility = playerMoveAbility;
+
+            _playerFocusMoveAbility = playerFocusMoveAbility;
+
+            _playerLookAtAbility = playerLookAtAbility;
+
+            _playerBaseAttackAbility = playerBaseAttackAbility;
+
+            _playerNoneAbility = playerNoneAbility;
+
+             _playerInteractAbility = playerInteractAbility;
+
+             _cameraRotateAbility = cameraRotateAbility;
+
+            _allAbilities  = new List<IAbility>();
+
+             _allAbilities.Add(_playerIdleAbility);
+
+             _allAbilities.Add(_playerMoveAbility);
+
+             _allAbilities.Add(_playerFocusMoveAbility);
+
+             _allAbilities.Add(_playerLookAtAbility);
+             _allAbilities.Add(_playerBaseAttackAbility);
+             _allAbilities.Add(_playerNoneAbility);
+
+             _allAbilities.Add(_playerInteractAbility);
+             _allAbilities.Add(_cameraRotateAbility);
+            
         }
       
         public void UseAbility(IAbilityWithOutParam ability, IPresenter presenter, ActionModifier actionModifier)
@@ -80,26 +138,15 @@ namespace Services.Ability
             }
         }
 
-        public List<IAbility> GetAllAbility(IPresenter presenter)
+        public IEnumerable<IAbility> GetAllAbility()
         {
-            return  ((ILiveModel)presenter.GetModel()).GetAbilityContainer().abilities;
+            return _allAbilities;
         }
 
-        public IAbility GetAbilityById(IPresenter presenter, string abilityId)
+        public IAbility GetAbilityById(string abilityId)
         {
-            return  ((ILiveModel)presenter.GetModel()).GetAbilityContainer().abilities.
-                FirstOrDefault(ability => ability.Id == abilityId);
-        }
-
-        public IEnumerable<IAbility> GetAbilitiesyByAbilityType(IPresenter presenter, AbilityType abilityType)
-        {
-            return ((ILiveModel)presenter.GetModel()).GetAbilityContainer().abilities.Where(ability => ability.AbilityType == abilityType);
-        }
-
-        public IEnumerable<IAbility> GetAbilityByWeaponType(IPresenter presenter, WeaponType weaponType) 
-        {
-            return ((ILiveModel)presenter.GetModel()).GetAbilityContainer().abilities.
-              Where(ability => ability.WeaponType == weaponType);
+            
+            return _allAbilities.FirstOrDefault(ability => ability.Id == abilityId);
         }
     }
 }
