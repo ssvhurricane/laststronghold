@@ -20,7 +20,7 @@ MonoBehaviour:
       IsActive: 1
       ShootRate: 0
       ShootSpeed: 0
-      Icon: {fileID: 0}
+      Icon: {fileID: 21300000, guid: ebb400feb97f44531aafdee86b45c679, type: 3}
   - Id: 2
     ShootingElement:
       Id: 
@@ -28,7 +28,7 @@ MonoBehaviour:
       IsActive: 1
       ShootRate: 0
       ShootSpeed: 0
-      Icon: {fileID: 0}
+      Icon: {fileID: 21300000, guid: 811218c8e291541d19281fe66716c7d8, type: 3}
   - Id: 3
     ShootingElement:
       Id: 
@@ -36,4 +36,4 @@ MonoBehaviour:
       IsActive: 1
       ShootRate: 0
       ShootSpeed: 0
-      Icon: {fileID: 0}
+      Icon: {fileID: 21300000, guid: c6ca4e84f21534eec98d7f939b9652cb, type: 3}
