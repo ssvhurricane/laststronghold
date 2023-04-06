@@ -20,6 +20,7 @@ using Services.NPC;
 using Services.Quest;
 using Services.Message;
 using Services.Shooting;
+using Services.Interaction;
 
 namespace Bootstrap
 {
@@ -67,6 +68,7 @@ namespace Bootstrap
             Container.InstallElementAsTransient<ShootingService>(); 
             Container.InstallElementAsSingle<AbilityService>();
             Container.InstallElementAsSingle<ItemService>();
+            Container.InstallElementAsSingle<InteractionService>();
            
             Container.InstallElementAsSingle<AnimationService>();
             Container.InstallElementAsSingle<SFXService>();

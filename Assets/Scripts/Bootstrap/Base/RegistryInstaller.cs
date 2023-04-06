@@ -31,6 +31,10 @@ namespace Bootstrap
         [SerializeField] protected SaveDataServiceSettingsRegistry SaveDataServiceSettingsRegistry;
         [SerializeField] protected QuestsSettingsRegistry QuestsSettingsRegistry;
 
+        [SerializeField] protected ShootingServiceSettingsRegistry ShootingServiceSettingsRegistry;
+
+        [SerializeField] protected InteractionServiceSettingsRegistry InteractionServiceSettingsRegistry;
+
         [SerializeField] protected TutorialServiceSettingsRegistry TutorialServiceSettingsRegistry;
 
         [SerializeField] protected MessageServiceSettingsRegistry MessageServiceSettingsRegistry;
@@ -77,6 +81,9 @@ namespace Bootstrap
 
             InstallRegistry(QuestServiceSettingsRegistry);
             InstallRegistry(QuestsSettingsRegistry);
+
+            InstallRegistry(ShootingServiceSettingsRegistry);
+            InstallRegistry(InteractionServiceSettingsRegistry);
 
             InstallRegistry(TutorialServiceSettingsRegistry);
 
@@ -136,6 +143,14 @@ namespace Bootstrap
             InstallRegistryData<QuestServiceSettings>(QuestServiceSettingsRegistry);
             Container.Bind<QuestsSettings[]>()
                 .FromInstance(QuestsSettingsRegistry.GetItems().ToArray())
+                .AsSingle();
+
+            Container.Bind<ShootingServiceSettings[]>()
+                .FromInstance(ShootingServiceSettingsRegistry.GetItems().ToArray())
+                .AsSingle();
+
+            Container.Bind<InteractionServiceSettings[]>()
+                .FromInstance(InteractionServiceSettingsRegistry.GetItems().ToArray())
                 .AsSingle();
 
             Container.Bind<TutorialServiceSettings[]>()

@@ -12,6 +12,8 @@ using View;
 using Zenject;
 using Services.Item;
 using Services.Log;
+using Services.RayCast;
+using Services.Shooting;
 
 namespace Services.Ability
 {
@@ -24,6 +26,10 @@ namespace Services.Ability
         private readonly SFXService _sFXService;
         private readonly VFXService _vFXService;
         private readonly ItemService _itemService;
+
+        private readonly RayCastService _rayCastService;
+        private readonly ShootingService _shootingService;
+         
         private LogService _logService;
 
         private AbilitySettings _abilitySettings;
@@ -41,6 +47,8 @@ namespace Services.Ability
              SFXService sFXService,
              VFXService vFXService,
              ItemService itemService,
+             RayCastService rayCastService,
+             ShootingService shootingService,
              LogService logservice,
              AbilitySettings[] abilitiesSettings) 
         { 
@@ -51,6 +59,8 @@ namespace Services.Ability
             _sFXService = sFXService;
             _vFXService = vFXService;
             _itemService = itemService;
+            _rayCastService = rayCastService;
+            _shootingService = shootingService;
             _logService = logservice;
 
             InitAbility(abilitiesSettings); 

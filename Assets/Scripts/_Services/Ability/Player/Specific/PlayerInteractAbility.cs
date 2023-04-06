@@ -14,6 +14,8 @@ using Services.Item;
 using System.Collections.Generic;
 using Services.Pool;
 using Services.Resources;
+using Services.RayCast;
+using Services.Interaction;
 
 namespace Services.Ability
 {
@@ -28,7 +30,8 @@ namespace Services.Ability
         private readonly ItemService _itemService;
         private readonly PoolService _poolService;
         private readonly ResourcesService _resourcesService;
-     
+        private readonly RayCastService _rayCastService;
+        private readonly InteractionService _interactionService;
         private AbilitySettings _abilitySettings;
        
         private IEnumerable<IItem> _playerWeaponItems;
@@ -49,6 +52,8 @@ namespace Services.Ability
            ItemService itemService,
            PoolService poolService,
            ResourcesService resourcesService,
+           RayCastService rayCastService,
+           InteractionService interactionService,
             AbilitySettings[] abilitiesSettings)
         {
             _signalBus = signalBus;
@@ -60,6 +65,8 @@ namespace Services.Ability
             _itemService = itemService;
             _poolService = poolService;
             _resourcesService = resourcesService;
+            _rayCastService = rayCastService;
+            _interactionService = interactionService;
 
             InitAbility(abilitiesSettings);
         }

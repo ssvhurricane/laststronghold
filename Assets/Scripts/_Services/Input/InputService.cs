@@ -323,7 +323,6 @@ namespace Services.Input
                 }
               
                 if (!_playerFocusMoveAbility.ActivateAbility) _playerMoveAbility.ActivateAbility = true;
- 
             }
         }
 
@@ -335,7 +334,7 @@ namespace Services.Input
                  if (_topDownGameInput.Player.Attack1.IsPressed())
                  {
                        if(_playerBaseAttackAbility.ActivateAbility)
-                       { /*
+                       { 
                          _logService.ShowLog(GetType().Name,
                                 Services.Log.LogType.Message,
                                 "Press Attack1.",
@@ -344,7 +343,7 @@ namespace Services.Input
                           if(_playerBaseAttackAbility.ActivateAbility)
                                         _abilityService.UseAbility((IAbilityWithOutParam)_playerBaseAttackAbility,
                                                 _playerPresenter,
-                                                ActionModifier.BurstFire);*/
+                                                ActionModifier.BurstFire);
                        }
                  }
             }
@@ -397,7 +396,18 @@ namespace Services.Input
             {
                 _cameraPresenter.ShowView<FPSCameraView>(cameraTypeName, _playerView);
             }
-            // TODO:
+            else if(cameraTypeName == CameraServiceConstants.SideScrollerCamera)
+            {
+                _cameraPresenter.ShowView<SideScrollerCameraView>(cameraTypeName, _playerView);
+            }
+            else if(cameraTypeName == CameraServiceConstants.TopDownCamera)
+            {
+                _cameraPresenter.ShowView<TopDownCameraView>(cameraTypeName, _playerView);
+            }
+            else if(cameraTypeName == CameraServiceConstants.TPSCamera)
+            {
+                _cameraPresenter.ShowView<TPSCameraView>(cameraTypeName, _playerView);
+            }
 
             CachingAbilities();
 
