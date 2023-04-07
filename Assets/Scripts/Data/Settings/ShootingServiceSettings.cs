@@ -17,6 +17,8 @@ namespace Data.Settings
         public float ShootSpeed;
 
         public Sprite Icon;
+
+         public Sprite DefaultIcon;
     }
 
     [Serializable]

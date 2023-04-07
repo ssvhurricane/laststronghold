@@ -15,6 +15,8 @@ namespace Data.Settings
         public float InteractionTime; // get from cur area.
 
         public Sprite Icon;
+
+        public Sprite DefaultIcon;
     }
 
     [Serializable]

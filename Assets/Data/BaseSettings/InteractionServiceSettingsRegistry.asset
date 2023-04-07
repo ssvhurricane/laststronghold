@@ -20,6 +20,7 @@ MonoBehaviour:
       IsActive: 1
       InteractionTime: 0
       Icon: {fileID: 21300000, guid: abca5f717e8f34aac83f80d1a855f882, type: 3}
+      DefaultIcon: {fileID: 21300000, guid: da1a3aff3ff8b478b833655efa5e49cb, type: 3}
   - Id: 2
     InteractElement:
       Id: 
@@ -27,6 +28,7 @@ MonoBehaviour:
       IsActive: 1
       InteractionTime: 0
       Icon: {fileID: 21300000, guid: faa538db7571a4dcbbed51c885b9c47e, type: 3}
+      DefaultIcon: {fileID: 21300000, guid: da1a3aff3ff8b478b833655efa5e49cb, type: 3}
   - Id: 3
     InteractElement:
       Id: 
@@ -34,3 +36,4 @@ MonoBehaviour:
       IsActive: 1
       InteractionTime: 0
       Icon: {fileID: 21300000, guid: 81691df97fa8e4504b1d5e49280e64bd, type: 3}
+      DefaultIcon: {fileID: 21300000, guid: da1a3aff3ff8b478b833655efa5e49cb, type: 3}

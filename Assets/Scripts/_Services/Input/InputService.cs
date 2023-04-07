@@ -13,11 +13,9 @@ using Services.Project;
 using Services.RayCast;
 using Services.Resources;
 using Services.Window;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 using View;
 using View.Camera;
 using View.Window;
@@ -51,7 +49,8 @@ namespace Services.Input
         private IPresenter _playerPresenter;
        
         private TopDownGameInput _topDownGameInput;
-
+        private MainHUDViewInteractionContainerArgs _interactViewContainer;
+        private MainHUDViewInteractionContainerArgs _shootViewContainer;
         private IAbility _playerNoneAbility,
                             _playerIdleAbility,
                                 _playerLookAtAbility,
@@ -72,7 +71,9 @@ namespace Services.Input
 
         private Dictionary<int, PlayerAbilityItemView> _playerAbilityItems = new Dictionary<int, PlayerAbilityItemView>();
         KeyValuePair<int, PlayerAbilityItemView> _playerAbility;
+        private readonly ShootingServiceSettings[] _shootingServiceSettings;
 
+       private readonly InteractionServiceSettings[] _interactionServiceSettings;
         public InputService(SignalBus signalBus,
             InputServiceSettings[] inputServiceSettings,
             AbilityService abilityService,
@@ -90,7 +91,9 @@ namespace Services.Input
             ProjectService projectService,
             RayCastService rayCastService,
             AnchorService anchorService,
-            BackLightService backLightService
+            BackLightService backLightService,
+            ShootingServiceSettings[] shootingServiceSettings,
+            InteractionServiceSettings[] interactionServiceSettings                
             )
         {
             _signalBus = signalBus;
@@ -118,6 +121,28 @@ namespace Services.Input
             _anchorCenter = new Services.Anchor.Anchor();
 
             _topDownGameInput = new TopDownGameInput();
+
+            _interactionServiceSettings = interactionServiceSettings;
+
+            _interactViewContainer = new MainHUDViewInteractionContainerArgs()
+            {
+                ImageOne = _interactionServiceSettings[0].InteractElement.Icon,
+
+                ImageTwo = _interactionServiceSettings[1].InteractElement.Icon,
+
+                ImageThree = _interactionServiceSettings[2].InteractElement.Icon
+            };
+
+             _shootingServiceSettings = shootingServiceSettings;
+
+            _shootViewContainer = new MainHUDViewInteractionContainerArgs()
+            {
+                ImageOne =  _shootingServiceSettings[0].ShootingElement.Icon,
+
+                ImageTwo =  _shootingServiceSettings[1].ShootingElement.Icon,
+
+                ImageThree =  _shootingServiceSettings[2].ShootingElement.Icon
+            };
            
             _topDownGameInput.Player.Attack1.performed += value =>
             {
@@ -294,6 +319,13 @@ namespace Services.Input
                             _playerBaseAttackAbility.ActivateAbility = false;
                             _playerInteractAbility.ActivateAbility = true;
 
+                            var mainHudView = _mainHUDPresenter.GetView() as MainHUDView;
+                            if(mainHudView != null)
+                            {
+                                _interactViewContainer.IsReadyInteraction = true;
+                                mainHudView.UpdateView(_interactViewContainer);
+                            }  
+
                             break;
                         }
 
@@ -310,6 +342,15 @@ namespace Services.Input
                     _playerInteractAbility.ActivateAbility = false;
 
                     _backLightService.Light(anchorArea, false);
+
+                    var mainHudView = _mainHUDPresenter.GetView() as MainHUDView;
+
+                    if(mainHudView != null)
+                    { 
+                        _shootViewContainer.IsReadyInteraction = false;
+
+                         mainHudView.UpdateView(_shootViewContainer);
+                    }   
                 }
 
                 //---- Focus Move helicopter ----//
