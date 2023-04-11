@@ -134,7 +134,8 @@ namespace Bootstrap
             // GameSettingsView.
             Container.DeclareSignal<GameSettingsViewSignals.Apply>();
 
-
+            Container.DeclareSignal<MainHUDViewSignals.SelectWeaponItem>();
+            
             // TutorialView.
             Container.DeclareSignal<TutorialServiceSignals.Show>();
         }

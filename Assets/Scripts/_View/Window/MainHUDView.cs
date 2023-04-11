@@ -1,6 +1,7 @@
 using Services.Window;
 using Signals;
 using UnityEngine;
+using UnityEngine.InputSystem.OnScreen;
 using UnityEngine.UI;
 using Zenject;
 
@@ -16,7 +17,12 @@ namespace View.Window
         [SerializeField] protected Text TimeNextEarthQuake;
 
         [SerializeField] protected Image ImageMainInteract, ImageMainShoot, ImageOne, ImageTwo, ImageThree, ImageZoom;
+
+        [SerializeField] protected OnScreenButton ButtonImageOne, ButtonImageTwo, ButtonImageThree;
+
         private SignalBus _signalBus;
+
+        private Image _currentSelectItem;
 
         [Inject]
         public void Constrcut(SignalBus signalBus)
@@ -26,6 +32,8 @@ namespace View.Window
             WindowType = Type;
 
             _signalBus.Fire(new WindowServiceSignals.Register(this));
+
+           // ButtonImageOne.
         }
 
         public void UpdateView(MainHUDViewHeliCopterContainerArgs mainHUDViewHeliCopterContainerArgs)
@@ -53,6 +61,21 @@ namespace View.Window
             ImageTwo.sprite = mainHUDViewInteractionContainerArgs.ImageTwo;
 
             ImageThree.sprite = mainHUDViewInteractionContainerArgs.ImageThree;
+/*
+            if(!mainHUDViewInteractionContainerArgs.ImageOneIsActive)
+                ButtonImageOne.interactable = false;
+            else
+                 ButtonImageOne.interactable = true;
+
+            if(!mainHUDViewInteractionContainerArgs.ImageTwoIsActive)
+                ButtonImageTwo.interactable = false;
+            else
+                 ButtonImageTwo.interactable = true;
+
+             if(!mainHUDViewInteractionContainerArgs.ImageThreeIsActive)
+                ButtonImageThree.interactable = false;
+            else
+                 ButtonImageThree.interactable = true;*/
         }
 
         public void UpdateView(MainHUDViewResourcesContainerArgs mainHUDViewResourcesContainerArgs)
@@ -89,10 +112,15 @@ namespace View.Window
 
         public bool IsReadyInteraction { get; set; }
 
+        public bool ImageOneIsActive { get; set; } = true;
+
         public Sprite ImageOne { get; set; }
+
+        public bool ImageTwoIsActive { get; set ; } = true;
 
         public Sprite ImageTwo { get; set; }
 
+        public bool ImageThreeIsActive { get; set ;} = true;
         public Sprite ImageThree { get; set; }
       
         public MainHUDViewInteractionContainerArgs(){}

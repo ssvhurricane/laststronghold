@@ -123,13 +123,11 @@ namespace Presenters
             {  
                 await QuestSystemAsync();
 
-                await HUDPresenterAsync();
-
                 await PlayerPresenterAsync();
             
                 await InputSystemAsync();
-                
-                // Init quests or flows.
+
+                await HUDPresenterAsync();
               
                 await StartGameAsync();
             } 

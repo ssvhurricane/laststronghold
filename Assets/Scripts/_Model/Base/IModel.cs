@@ -1,5 +1,3 @@
-using Model.Inventory;
-using Services.Ability;
 using System;
 
 namespace Model

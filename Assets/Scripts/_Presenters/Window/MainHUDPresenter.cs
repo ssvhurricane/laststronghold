@@ -1,11 +1,15 @@
 using Services.Anchor;
 using Services.Factory;
 using Services.Log;
+using Services.Pool;
 using Services.Window;
 using System.Linq;
 using UnityEngine;
 using View.Window;
 using Zenject;
+using Constants;
+using Services.Item;
+using View.Camera;
 
 namespace Presenters.Window
 {
@@ -18,14 +22,21 @@ namespace Presenters.Window
         private readonly FactoryService _factoryService;
         private readonly HolderService _holderService;
 
+        private readonly CameraPresenter _cameraPresenter;
+      
         private readonly PlayerPresenter _playerPresenter;
         private MainHUDView _mainHUDView;
+
+        private MDItemView _mDItemView;
+        private RPGItemView _rPGItemView;
+        private SniperRifleItemView _sniperRifleItemView;
 
         public MainHUDPresenter(SignalBus signalBus,
             LogService logService,
             IWindowService windowService,
             FactoryService factoryService, 
             HolderService holderService,
+            CameraPresenter cameraPresenter,
             PlayerPresenter playerPresenter
             ) 
         {
@@ -36,6 +47,7 @@ namespace Presenters.Window
             _factoryService = factoryService;
             _holderService = holderService;
 
+            _cameraPresenter = cameraPresenter;
             _playerPresenter = playerPresenter;
 
             _logService.ShowLog(GetType().Name,
@@ -57,6 +69,22 @@ namespace Presenters.Window
                 if (holderTansform != null)
                     _mainHUDView = _factoryService.Spawn<MainHUDView>(holderTansform);
             }
+
+            PlayerItems();
+        }
+
+        private void PlayerItems()
+        {
+            var mCamera = (FPSCameraView)_cameraPresenter.GetView();
+
+            _mDItemView = _factoryService.Spawn<MDItemView>(mCamera.GetMainCamera().transform);
+            _mDItemView.gameObject.SetActive(true);
+
+            _rPGItemView = _factoryService.Spawn<RPGItemView>(mCamera.GetMainCamera().transform);
+            _rPGItemView.gameObject.SetActive(false);
+
+            _sniperRifleItemView = _factoryService.Spawn<SniperRifleItemView>(mCamera.GetMainCamera().transform);
+            _sniperRifleItemView.gameObject.SetActive(false);
         }
 
         private void PlayerParams()

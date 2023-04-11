@@ -13,6 +13,7 @@ using Services.Project;
 using Services.RayCast;
 using Services.Resources;
 using Services.Window;
+using Signals;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -176,6 +177,33 @@ namespace Services.Input
                 }
             };
 
+           _topDownGameInput.Player.Weapon1.performed += value => 
+           {  
+             _logService.ShowLog(GetType().Name,
+                                Services.Log.LogType.Message,
+                                "(1)MDItemView Select .",
+                                LogOutputLocationType.Console);
+                _signalBus.Fire(new MainHUDViewSignals.SelectWeaponItem("MDItemView"));
+           };
+
+            _topDownGameInput.Player.Weapon2.performed += value => 
+           { 
+                _logService.ShowLog(GetType().Name,
+                                Services.Log.LogType.Message,
+                                "(2)RPGItemView Select .",
+                                LogOutputLocationType.Console);
+                _signalBus.Fire(new MainHUDViewSignals.SelectWeaponItem("RPGItemView"));
+           };
+
+            _topDownGameInput.Player.Weapon3.performed += value => 
+           {
+                _logService.ShowLog(GetType().Name,
+                                Services.Log.LogType.Message,
+                                "(3)SniperRifleItemView Select .",
+                                LogOutputLocationType.Console);
+                _signalBus.Fire(new MainHUDViewSignals.SelectWeaponItem("SniperRifleItemView"));
+           };
+         
             _topDownGameInput.Player.Pause.performed += value =>
             {
                 if (_windowService.IsWindowShowing<PauseMenuView>()) return;

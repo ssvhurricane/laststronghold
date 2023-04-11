@@ -24,4 +24,6 @@ MonoBehaviour:
     - PlayerNoneAbility
     - PlayerInteractAbility
     Items:
-    - SniperRifleItem
+    - SniperRifleItemView
+    - MDItemView
+    - RPGItemView

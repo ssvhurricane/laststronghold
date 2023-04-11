@@ -34,7 +34,6 @@ namespace Bootstrap
             InstallServices();
             InstallModels();
             InstallAbilities();
-            InstallItems();
             InstallSignals();
         }
         void InitExecutionOrder() { }
@@ -112,11 +111,6 @@ namespace Bootstrap
 
             // Camera Abilities.
             Container.InstallElementAsSingle<CameraRotateAbility>();
-        }
-
-        public void InstallItems() 
-        {
-            Container.InstallElementAsSingle<SniperRifleItem>();
         }
 
         private void InstallModels() 

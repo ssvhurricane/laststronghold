@@ -13,10 +13,6 @@ MonoBehaviour:
   m_Name: PoolServiceSettingsRegistry
   m_EditorClassIdentifier: 
   RegistryItems:
-  - Id: PlayerAbilityItemViewPool
-    Name: PlayerAbilityItemViewPool
-    InitialSize: 2
-    MaxPoolSize: 2
   - Id: QuestItemViewPool
     Name: QuestItemViewPool
     InitialSize: 4
