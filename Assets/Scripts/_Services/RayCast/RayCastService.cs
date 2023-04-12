@@ -46,5 +46,16 @@ namespace Services.RayCast
          
             return hit;
         }
+
+         public RaycastHit Emit(Transform transform)
+        {
+            RaycastHit hit;
+         
+            if (Physics.Raycast(transform.position,
+                transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+                return hit;
+         
+            return hit;
+        }
     }
 }

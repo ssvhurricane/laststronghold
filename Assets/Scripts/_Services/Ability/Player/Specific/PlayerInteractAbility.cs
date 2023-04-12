@@ -35,7 +35,6 @@ namespace Services.Ability
         private AbilitySettings _abilitySettings;
        
         private IEnumerable<IItem> _playerWeaponItems;
-        private WeaponItemView _playerWeaponItem;
        
         public string Id { get; set; }
         public AbilityType AbilityType { get; set; }

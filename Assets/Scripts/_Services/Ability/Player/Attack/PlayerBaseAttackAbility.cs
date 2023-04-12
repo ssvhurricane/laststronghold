@@ -26,21 +26,19 @@ namespace Services.Ability
         private readonly SFXService _sFXService;
         private readonly VFXService _vFXService;
         private readonly ItemService _itemService;
-
-        private readonly RayCastService _rayCastService;
         private readonly ShootingService _shootingService;
          
         private LogService _logService;
 
         private AbilitySettings _abilitySettings;
-
+     
         public string Id { get ; set; }
         public AbilityType AbilityType { get ; set; }
         public WeaponType WeaponType { get; set; }
         public bool ActivateAbility { get; set; } = true;
         public ActionModifier ActionModifier { get; set; }
         public Sprite Icon { get; set; }
-
+        
         public PlayerBaseAttackAbility(SignalBus signalBus,
              MovementService movementService,
              AnimationService animationService,
@@ -50,6 +48,7 @@ namespace Services.Ability
              RayCastService rayCastService,
              ShootingService shootingService,
              LogService logservice,
+             CameraPresenter cameraPresenter,
              AbilitySettings[] abilitiesSettings) 
         { 
             _signalBus = signalBus;
@@ -59,7 +58,7 @@ namespace Services.Ability
             _sFXService = sFXService;
             _vFXService = vFXService;
             _itemService = itemService;
-            _rayCastService = rayCastService;
+      
             _shootingService = shootingService;
             _logService = logservice;
 
@@ -89,26 +88,7 @@ namespace Services.Ability
                 var view = (PlayerView) presenter.GetView();
 
                 // TODO:
-                switch(actionModifier)
-                {
-                    case ActionModifier.SingleFire:
-                    {
-                        // TODO:
-                        break;
-                    }
-
-                    case ActionModifier.BurstFire:
-                    {
-                        // TODO:
-                        break;
-                    }
-
-                    case ActionModifier.UltaFire:
-                    {
-                        // TODO:
-                        break;
-                    }
-                }
+               _shootingService.RifleShoot(ActionModifier.SingleFire);
             }
         }
     }

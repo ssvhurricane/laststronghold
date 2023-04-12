@@ -76,15 +76,15 @@ namespace Presenters.Window
         private void PlayerItems()
         {
             var mCamera = (FPSCameraView)_cameraPresenter.GetView();
+            
+            _sniperRifleItemView = _factoryService.Spawn<SniperRifleItemView>(mCamera.GetWeaponAnchor().transform);
+            _sniperRifleItemView.gameObject.SetActive(true);
 
-            _mDItemView = _factoryService.Spawn<MDItemView>(mCamera.GetMainCamera().transform);
-            _mDItemView.gameObject.SetActive(true);
+            _mDItemView = _factoryService.Spawn<MDItemView>(mCamera.GetWeaponAnchor().transform);
+            _mDItemView.gameObject.SetActive(false);
 
-            _rPGItemView = _factoryService.Spawn<RPGItemView>(mCamera.GetMainCamera().transform);
+            _rPGItemView = _factoryService.Spawn<RPGItemView>(mCamera.GetWeaponAnchor().transform);
             _rPGItemView.gameObject.SetActive(false);
-
-            _sniperRifleItemView = _factoryService.Spawn<SniperRifleItemView>(mCamera.GetMainCamera().transform);
-            _sniperRifleItemView.gameObject.SetActive(false);
         }
 
         private void PlayerParams()

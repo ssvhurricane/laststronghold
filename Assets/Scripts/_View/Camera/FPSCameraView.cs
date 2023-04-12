@@ -11,6 +11,8 @@ namespace View.Camera
 
         [SerializeField] protected UnityEngine.Camera Camera;
 
+        [SerializeField] protected Transform WeaponAnchor;
+
         private SignalBus _signalBus;
 
         [Inject]
@@ -26,6 +28,11 @@ namespace View.Camera
         public UnityEngine.Camera GetMainCamera() 
         {
             return Camera;
+        }
+
+        public Transform GetWeaponAnchor()
+        {
+            return WeaponAnchor;
         }
     }
 }

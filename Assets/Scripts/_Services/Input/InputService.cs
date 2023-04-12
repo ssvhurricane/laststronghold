@@ -152,11 +152,6 @@ namespace Services.Input
                     // TODO:
                    if(_playerBaseAttackAbility.ActivateAbility)
                    {
-                        _logService.ShowLog(GetType().Name,
-                                Services.Log.LogType.Message,
-                                "AttackAbility Active.",
-                                LogOutputLocationType.Console);
-
                         _abilityService.UseAbility((IAbilityWithOutParam)_playerBaseAttackAbility,
                             _playerPresenter,
                             ActionModifier.SingleFire);
@@ -403,7 +398,7 @@ namespace Services.Input
                  if (_topDownGameInput.Player.Attack1.IsPressed())
                  {
                        if(_playerBaseAttackAbility.ActivateAbility)
-                       { 
+                       { /*
                          _logService.ShowLog(GetType().Name,
                                 Services.Log.LogType.Message,
                                 "Press Attack1.",
@@ -412,7 +407,7 @@ namespace Services.Input
                           if(_playerBaseAttackAbility.ActivateAbility)
                                         _abilityService.UseAbility((IAbilityWithOutParam)_playerBaseAttackAbility,
                                                 _playerPresenter,
-                                                ActionModifier.BurstFire);
+                                                ActionModifier.BurstFire);*/
                        }
                  }
             }
