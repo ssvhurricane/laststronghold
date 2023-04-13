@@ -12,9 +12,11 @@ namespace Data.Settings
 
         public bool IsActive;
 
-        public float ShootRate;
+        public float Rate;
 
-        public float ShootSpeed;
+        public float Speed;
+
+        public float Spread;
 
         public Sprite Icon;
 

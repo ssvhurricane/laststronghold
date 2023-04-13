@@ -17,3 +17,15 @@ MonoBehaviour:
     Name: QuestItemViewPool
     InitialSize: 4
     MaxPoolSize: 6
+  - Id: SingleBulletItemViewPool
+    Name: SingleBulletItemViewPool
+    InitialSize: 1
+    MaxPoolSize: 2
+  - Id: MDBulletItemViewPool
+    Name: MDBulletItemViewPool
+    InitialSize: 10
+    MaxPoolSize: 100
+  - Id: RPGBulletItemViewPool
+    Name: RPGBulletItemViewPool
+    InitialSize: 1
+    MaxPoolSize: 2

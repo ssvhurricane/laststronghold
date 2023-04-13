@@ -5,7 +5,7 @@ using Zenject;
 
 namespace View
 {
-    public class PlayerView : NetworkEssence
+    public class PlayerView : NetworkEssence, ITakingDamage
     {
         [SerializeField] protected EssenceType Layer;
 
@@ -48,6 +48,14 @@ namespace View
             return Animator;
         }
 
-       
+        public void Damage(float damageCount)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool Kill()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

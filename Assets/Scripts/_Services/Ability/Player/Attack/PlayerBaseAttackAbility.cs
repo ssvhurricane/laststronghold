@@ -88,7 +88,7 @@ namespace Services.Ability
                 var view = (PlayerView) presenter.GetView();
 
                 // TODO:
-               _shootingService.RifleShoot(ActionModifier.SingleFire);
+               _shootingService.Shoot(ActionModifier.SingleFire, "1");
             }
         }
     }

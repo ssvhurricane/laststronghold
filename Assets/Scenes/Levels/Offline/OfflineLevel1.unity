@@ -380,7 +380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 217493736}
   ReceiverObject: {fileID: 94315345}
-  ReceiverType: 2
+  ReceiverType: 3
   ObjectId: PoliceStationWall2View
   ObjectName: PoliceStationWall2
 --- !u!64 &94315348
@@ -1006,7 +1006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 18286619}
   ReceiverObject: {fileID: 393897303}
-  ReceiverType: 2
+  ReceiverType: 3
   ObjectId: PoliceStationView
   ObjectName: PoliceStation
 --- !u!1 &403563254
@@ -1063,7 +1063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 1617058936}
   ReceiverObject: {fileID: 403563254}
-  ReceiverType: 2
+  ReceiverType: 3
   ObjectId: House4View
   ObjectName: House4
 --- !u!64 &403563257
@@ -1243,7 +1243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 1273106298}
   ReceiverObject: {fileID: 475451257}
-  ReceiverType: 2
+  ReceiverType: 3
   ObjectId: PoliceStationWall1View
   ObjectName: PoliceStationWall1
 --- !u!1001 &508262324
@@ -1836,7 +1836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 2043464588}
   ReceiverObject: {fileID: 722021729}
-  ReceiverType: 2
+  ReceiverType: 3
   ObjectId: PoliceStationWall4View
   ObjectName: PoliceStationWall4
 --- !u!64 &722021732
@@ -1998,7 +1998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 567636007}
   ReceiverObject: {fileID: 791329137}
-  ReceiverType: 2
+  ReceiverType: 3
   ObjectId: PoliceStationWall3View
   ObjectName: PoliceStationWall3
 --- !u!64 &791329140
@@ -4188,7 +4188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 1570311215}
   ReceiverObject: {fileID: 1503842539}
-  ReceiverType: 2
+  ReceiverType: 3
   ObjectId: House3View
   ObjectName: House3
 --- !u!64 &1503842542
@@ -4261,7 +4261,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-4320
+  m_Name: pb_Mesh30180
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -4934,7 +4934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 1725520164}
   ReceiverObject: {fileID: 1554790815}
-  ReceiverType: 2
+  ReceiverType: 3
   ObjectId: House2View
   ObjectName: House2
 --- !u!64 &1554790818
@@ -5353,7 +5353,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-16304
+  m_Name: pb_Mesh-10724
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -6150,6 +6150,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7709428938302741297, guid: 9034ff6b203a87942a15dc8449af952b, type: 3}
   m_PrefabInstance: {fileID: 1739391978}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1739391980 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2966139121595897165, guid: 9034ff6b203a87942a15dc8449af952b, type: 3}
+  m_PrefabInstance: {fileID: 1739391978}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1739391981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3971279720941264655, guid: 9034ff6b203a87942a15dc8449af952b, type: 3}
+  m_PrefabInstance: {fileID: 1739391978}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1739391982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739391981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c464498e2eab4fc681a0bd4509626c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 1739391980}
+  ReceiverObject: {fileID: 1739391981}
+  ReceiverType: 0
+  ObjectId: PlaneView
+  ObjectName: Pane
 --- !u!1 &1764509031
 GameObject:
   m_ObjectHideFlags: 0
@@ -6590,7 +6617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 1184571113}
   ReceiverObject: {fileID: 1836528098}
-  ReceiverType: 2
+  ReceiverType: 3
   ObjectId: House1View
   ObjectName: House1
 --- !u!64 &1836528101
@@ -7474,12 +7501,76 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 2193
       objectReference: {fileID: 0}
+    - target: {fileID: 3184124927671441503, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3184124927671441503, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3184124927671441503, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3184124927671441503, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914474719917060416, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914474719917060416, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914474719917060416, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914474719917060416, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4065975601487466970, guid: 510b64fa42b7940358529afa1f576939, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4065975601487466970, guid: 510b64fa42b7940358529afa1f576939, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195812715536436606, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195812715536436606, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195812715536436606, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195812715536436606, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583894215188479551, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583894215188479551, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583894215188479551, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583894215188479551, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

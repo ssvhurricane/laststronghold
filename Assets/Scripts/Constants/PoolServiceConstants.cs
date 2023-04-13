@@ -18,5 +18,11 @@ namespace Constants
         public static string MessageMenuItemViewPool = "MessageMenuItemViewPool";
 
         public static string MessageMenuItemDetailViewPool = "MessageMenuItemDetailViewPool";
+
+        // Bullets.
+        public static string SingleBulletItemViewPool = "SingleBulletItemViewPool";
+        public static string MDBulletItemViewPool = "MDBulletItemViewPool";
+
+        public static string RPGBulletItemViewPool = "RPGBulletItemViewPool";
     }
 }

@@ -8,7 +8,7 @@ namespace View
     public class RifleBulletItemView : BaseEssence
     {
         [SerializeField] protected EssenceType Layer;
-        
+       
         private SignalBus _signalBus;
 
         [Inject]
@@ -19,11 +19,6 @@ namespace View
             EssenceType = Layer;
 
             _signalBus.Fire(new EssenceServiceSignals.Register(this));
-        }
-
-        public void Update()
-        {
-            // TODO:
         }
     }
 }

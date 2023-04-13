@@ -27,9 +27,9 @@ namespace Presenters.Window
         private readonly PlayerPresenter _playerPresenter;
         private MainHUDView _mainHUDView;
 
-        private MDItemView _mDItemView;
-        private RPGItemView _rPGItemView;
-        private SniperRifleItemView _sniperRifleItemView;
+        public MDItemView _mDItemView { get; private set; }
+        public RPGItemView _rPGItemView { get; private set; }
+        public SniperRifleItemView _sniperRifleItemView { get; private set ;}
 
         public MainHUDPresenter(SignalBus signalBus,
             LogService logService,

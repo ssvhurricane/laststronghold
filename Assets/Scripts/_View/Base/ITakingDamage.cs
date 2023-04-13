@@ -1,8 +1,9 @@
 namespace View
 {
-
     public interface ITakingDamage 
     {
-         // TODO:
+        public void Damage(float damageCount);
+
+        public bool Kill();
     }
 }

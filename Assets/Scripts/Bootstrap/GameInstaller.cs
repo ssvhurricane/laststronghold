@@ -65,6 +65,7 @@ namespace Bootstrap
         {
             Container.InstallElementAsTransient<MovementService>(); 
             Container.InstallElementAsTransient<ShootingService>(); 
+            
             Container.InstallElementAsSingle<AbilityService>();
             Container.InstallElementAsSingle<ItemService>();
             Container.InstallElementAsSingle<InteractionService>();

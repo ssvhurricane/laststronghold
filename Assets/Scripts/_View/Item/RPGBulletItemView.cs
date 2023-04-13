@@ -20,11 +20,5 @@ namespace View
 
             _signalBus.Fire(new EssenceServiceSignals.Register(this));
         }
-
-        public void Update()
-        {
-            // TODO:
-        }
-
     }
 }
