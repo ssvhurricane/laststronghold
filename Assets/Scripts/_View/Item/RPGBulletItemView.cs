@@ -20,5 +20,10 @@ namespace View
 
             _signalBus.Fire(new EssenceServiceSignals.Register(this));
         }
+
+        void OnCollisionEnter(Collision collision)
+        {
+             _signalBus.Fire(new ShootingServiceSignals.Hit(this, collision));
+        }
     }
 }

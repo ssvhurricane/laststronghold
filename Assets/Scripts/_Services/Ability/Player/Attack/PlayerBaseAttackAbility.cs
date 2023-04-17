@@ -14,10 +14,12 @@ using Services.Item;
 using Services.Log;
 using Services.RayCast;
 using Services.Shooting;
+using Presenters.Window;
+using Constants;
 
 namespace Services.Ability
 {
-    public class PlayerBaseAttackAbility : IAbilityWithOutParam
+    public class PlayerBaseAttackAbility : IAbilityWithOutParam, IAbilityWithBoolParam
     {
         private SignalBus _signalBus; 
         
@@ -27,6 +29,8 @@ namespace Services.Ability
         private readonly VFXService _vFXService;
         private readonly ItemService _itemService;
         private readonly ShootingService _shootingService;
+
+        private readonly MainHUDPresenter _mainHUDPresenter;
          
         private LogService _logService;
 
@@ -48,7 +52,7 @@ namespace Services.Ability
              RayCastService rayCastService,
              ShootingService shootingService,
              LogService logservice,
-             CameraPresenter cameraPresenter,
+             MainHUDPresenter mainHUDPresenter,
              AbilitySettings[] abilitiesSettings) 
         { 
             _signalBus = signalBus;
@@ -61,6 +65,8 @@ namespace Services.Ability
       
             _shootingService = shootingService;
             _logService = logservice;
+
+            _mainHUDPresenter = mainHUDPresenter;
 
             InitAbility(abilitiesSettings); 
         }
@@ -87,9 +93,20 @@ namespace Services.Ability
             {
                 var view = (PlayerView) presenter.GetView();
 
-                // TODO:
-               _shootingService.Shoot(ActionModifier.SingleFire, "1");
+                if(_mainHUDPresenter._sniperRifleItemView.IsActive)
+                    _shootingService.Shoot(ActionModifier.SingleFire, ItemServiceConstants.SniperRifleItemView);
+
+                if(_mainHUDPresenter._rPGItemView.IsActive)
+                    _shootingService.Shoot(ActionModifier.UltaFire,  ItemServiceConstants.RPGItemView);
             }
+        }
+
+        public void StartAbility(IPresenter ownerPresenter, bool param, ActionModifier actionModifier)
+        {  
+            if (!ActivateAbility) return;
+
+            if(_mainHUDPresenter._mDItemView.IsActive)
+                    _shootingService.Shoot(ActionModifier.BurstFire, ItemServiceConstants.MDItemView);
         }
     }
 }

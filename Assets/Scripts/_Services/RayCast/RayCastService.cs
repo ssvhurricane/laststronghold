@@ -57,5 +57,15 @@ namespace Services.RayCast
          
             return hit;
         }
+
+         public RaycastHit Emit(Ray ray)
+        {
+            RaycastHit hit;
+         
+            if (Physics.Raycast(ray, out hit))
+                return hit;
+         
+            return hit;
+        }
     }
 }

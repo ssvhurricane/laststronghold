@@ -1,15 +1,15 @@
 using Services.Anchor;
 using Services.Factory;
 using Services.Log;
-using Services.Pool;
 using Services.Window;
 using System.Linq;
 using UnityEngine;
 using View.Window;
 using Zenject;
-using Constants;
 using Services.Item;
 using View.Camera;
+using Signals;
+using Services.Essence;
 
 namespace Presenters.Window
 {
@@ -29,7 +29,7 @@ namespace Presenters.Window
 
         public MDItemView _mDItemView { get; private set; }
         public RPGItemView _rPGItemView { get; private set; }
-        public SniperRifleItemView _sniperRifleItemView { get; private set ;}
+        public SniperRifleItemView _sniperRifleItemView { get; private set; }
 
         public MainHUDPresenter(SignalBus signalBus,
             LogService logService,
@@ -54,6 +54,67 @@ namespace Presenters.Window
                 Services.Log.LogType.Message,
                 "Call Constructor Method.", 
                 LogOutputLocationType.Console);
+
+             _signalBus.Subscribe<MainHUDViewSignals.SelectWeaponItem>(signal => OnSelectWeaponItem(signal.Essence));
+        }
+
+        private void OnSelectWeaponItem(IEssence essence)
+        {
+            if(essence as SniperRifleItemView)
+            {
+                _sniperRifleItemView.gameObject.SetActive(true);
+                _sniperRifleItemView.IsActive = true;
+
+                _mDItemView.gameObject.SetActive(false);
+                _mDItemView.IsActive = false;
+
+                _rPGItemView.gameObject.SetActive(false);
+                _rPGItemView.IsActive = false;
+
+                _mainHUDView.UpdateView(new MainHUDViewWeaponSelectContainerArgs
+                {
+                    Weapon1Color = new Color(255f, 255f,255f, 1f),
+                    Weapon2Color = new Color(255f, 255f,255f, .3f),
+                    Weapon3Color = new Color(255f, 255f,255f, .3f)
+                });
+
+            }
+            else if(essence as MDItemView)
+            {
+                _sniperRifleItemView.gameObject.SetActive(false);
+                _sniperRifleItemView.IsActive = false;
+
+                _mDItemView.gameObject.SetActive(true);
+                _mDItemView.IsActive = true;
+
+                _rPGItemView.gameObject.SetActive(false);
+                _rPGItemView.IsActive = false;
+
+                 _mainHUDView.UpdateView(new MainHUDViewWeaponSelectContainerArgs
+                {
+                    Weapon2Color = new Color(255f, 255f,255f, 1f),
+                    Weapon1Color = new Color(255f, 255f,255f, .3f),
+                    Weapon3Color = new Color(255f, 255f,255f, .3f)
+                });
+            }
+            else if(essence as RPGItemView)
+            {
+                _sniperRifleItemView.gameObject.SetActive(false);
+                _sniperRifleItemView.IsActive = false;
+
+                _mDItemView.gameObject.SetActive(false);
+                _mDItemView.IsActive = false;
+
+                _rPGItemView.gameObject.SetActive(true);
+                _rPGItemView.IsActive = true;
+
+                 _mainHUDView.UpdateView(new MainHUDViewWeaponSelectContainerArgs
+                {
+                    Weapon3Color = new Color(255f, 255f,255f, 1f),
+                    Weapon2Color = new Color(255f, 255f,255f, .3f),
+                    Weapon1Color = new Color(255f, 255f,255f, .3f)
+                });
+            }
         }
 
         public void ShowView()
@@ -67,7 +128,14 @@ namespace Presenters.Window
                 Transform holderTansform = _holderService._windowTypeHolders.FirstOrDefault(holder => holder.Key == WindowType.BaseWindow).Value;
 
                 if (holderTansform != null)
-                    _mainHUDView = _factoryService.Spawn<MainHUDView>(holderTansform);
+                    _mainHUDView = _factoryService.Spawn<MainHUDView>(holderTansform); 
+                    
+                _mainHUDView.UpdateView(new MainHUDViewWeaponSelectContainerArgs
+                {
+                    Weapon1Color = new Color(255f, 255f,255f, 1f),
+                    Weapon2Color = new Color(255f, 255f,255f, .3f),
+                    Weapon3Color = new Color(255f, 255f,255f, .3f)
+                });
             }
 
             PlayerItems();
@@ -75,30 +143,24 @@ namespace Presenters.Window
 
         private void PlayerItems()
         {
+             // TODO: Get IsActive
+            _playerPresenter.GetModel();
+
             var mCamera = (FPSCameraView)_cameraPresenter.GetView();
             
             _sniperRifleItemView = _factoryService.Spawn<SniperRifleItemView>(mCamera.GetWeaponAnchor().transform);
             _sniperRifleItemView.gameObject.SetActive(true);
+            _sniperRifleItemView.IsActive = true;
 
             _mDItemView = _factoryService.Spawn<MDItemView>(mCamera.GetWeaponAnchor().transform);
             _mDItemView.gameObject.SetActive(false);
+            _mDItemView.IsActive = false;
 
             _rPGItemView = _factoryService.Spawn<RPGItemView>(mCamera.GetWeaponAnchor().transform);
             _rPGItemView.gameObject.SetActive(false);
+            _rPGItemView.IsActive = false;
         }
 
-        private void PlayerParams()
-        {
-            // TODO:
-
-            _playerPresenter.GetModel();
-        }
-
-        private void PlayerAbilities()
-        {
-            // TODO:
-            _playerPresenter.GetModel();
-        }
 
         public IWindow GetView() 
         {

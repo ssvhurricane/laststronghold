@@ -1,7 +1,6 @@
 using Services.Window;
 using Signals;
 using UnityEngine;
-using UnityEngine.InputSystem.OnScreen;
 using UnityEngine.UI;
 using Zenject;
 
@@ -18,8 +17,6 @@ namespace View.Window
 
         [SerializeField] protected Image ImageMainInteract, ImageMainShoot, ImageOne, ImageTwo, ImageThree, ImageZoom;
 
-        [SerializeField] protected OnScreenButton ButtonImageOne, ButtonImageTwo, ButtonImageThree;
-
         private SignalBus _signalBus;
 
         private Image _currentSelectItem;
@@ -33,14 +30,22 @@ namespace View.Window
 
             _signalBus.Fire(new WindowServiceSignals.Register(this));
 
-           // ButtonImageOne.
+           
         }
 
         public void UpdateView(MainHUDViewHeliCopterContainerArgs mainHUDViewHeliCopterContainerArgs)
         {
             // TODO:
         }
+        public void UpdateView(MainHUDViewWeaponSelectContainerArgs mainHUDViewWeaponSelectContainerArgs)
+        {
+            ImageOne.color = mainHUDViewWeaponSelectContainerArgs.Weapon1Color;
 
+            ImageTwo.color =  mainHUDViewWeaponSelectContainerArgs.Weapon2Color;
+
+            ImageThree.color = mainHUDViewWeaponSelectContainerArgs.Weapon3Color;
+        }
+        
         public void UpdateView(MainHUDViewInteractionContainerArgs mainHUDViewInteractionContainerArgs)
         {
            if(!mainHUDViewInteractionContainerArgs.IsReadyInteraction)
@@ -61,21 +66,7 @@ namespace View.Window
             ImageTwo.sprite = mainHUDViewInteractionContainerArgs.ImageTwo;
 
             ImageThree.sprite = mainHUDViewInteractionContainerArgs.ImageThree;
-/*
-            if(!mainHUDViewInteractionContainerArgs.ImageOneIsActive)
-                ButtonImageOne.interactable = false;
-            else
-                 ButtonImageOne.interactable = true;
 
-            if(!mainHUDViewInteractionContainerArgs.ImageTwoIsActive)
-                ButtonImageTwo.interactable = false;
-            else
-                 ButtonImageTwo.interactable = true;
-
-             if(!mainHUDViewInteractionContainerArgs.ImageThreeIsActive)
-                ButtonImageThree.interactable = false;
-            else
-                 ButtonImageThree.interactable = true;*/
         }
 
         public void UpdateView(MainHUDViewResourcesContainerArgs mainHUDViewResourcesContainerArgs)
@@ -105,6 +96,25 @@ namespace View.Window
             HelicopterPetrol  = helicopterPetrol;
         }
     }
+
+     public class MainHUDViewWeaponSelectContainerArgs : IWindowArgs 
+     {
+        public Color Weapon1Color { get; set; }
+
+        public Color Weapon2Color { get; set; }
+
+        public Color Weapon3Color { get; set; }
+        public MainHUDViewWeaponSelectContainerArgs(){}
+
+         public MainHUDViewWeaponSelectContainerArgs(Color weapon1Color, Color weapon2Color, Color weapon3Color)
+         {
+            Weapon1Color = weapon1Color;
+
+            Weapon2Color = weapon2Color;
+
+            Weapon3Color = weapon3Color;
+         }
+     }
 
     public class MainHUDViewInteractionContainerArgs : IWindowArgs 
     {

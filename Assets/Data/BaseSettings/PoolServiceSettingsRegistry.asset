@@ -20,7 +20,7 @@ MonoBehaviour:
   - Id: SingleBulletItemViewPool
     Name: SingleBulletItemViewPool
     InitialSize: 1
-    MaxPoolSize: 2
+    MaxPoolSize: 5
   - Id: MDBulletItemViewPool
     Name: MDBulletItemViewPool
     InitialSize: 10

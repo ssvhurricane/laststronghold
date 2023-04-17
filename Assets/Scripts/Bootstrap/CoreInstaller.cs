@@ -138,6 +138,8 @@ namespace Bootstrap
             
             // TutorialView.
             Container.DeclareSignal<TutorialServiceSignals.Show>();
+  
+            Container.DeclareSignal<ShootingServiceSignals.Hit>();
         }
 
        public void InstallModels()

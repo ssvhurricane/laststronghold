@@ -1,13 +1,15 @@
+using Services.Essence;
+
 namespace Signals
 {
     public class MainHUDViewSignals
     {
         public class SelectWeaponItem 
         {
-            public string Name { get; }
-            public SelectWeaponItem(string name)
+            public IEssence Essence { get; }
+            public SelectWeaponItem(IEssence essence)
             {
-                Name = name;
+                Essence = essence;
             }
         }
     }

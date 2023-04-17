@@ -36,7 +36,10 @@ namespace Utils.Helpers
         {
             container.BindInterfacesAndSelfTo<TElement>().AsTransient();
         }
-
+        public static void InstallElementAsCached<TElement>(this DiContainer container)
+        {
+            container.BindInterfacesAndSelfTo<TElement>().AsCached();
+        }
         public static void InstallSingleModel<TModel>(this DiContainer container)
         {
             container

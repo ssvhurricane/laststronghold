@@ -174,29 +174,44 @@ namespace Services.Input
 
            _topDownGameInput.Player.Weapon1.performed += value => 
            {  
-             _logService.ShowLog(GetType().Name,
+                if(_playerBaseAttackAbility.ActivateAbility)
+                {
+                        
+                    _logService.ShowLog(GetType().Name,
                                 Services.Log.LogType.Message,
                                 "(1)MDItemView Select .",
                                 LogOutputLocationType.Console);
-                _signalBus.Fire(new MainHUDViewSignals.SelectWeaponItem("MDItemView"));
+                                
+                    _signalBus.Fire(new MainHUDViewSignals.SelectWeaponItem(_mainHUDPresenter._sniperRifleItemView));
+                }
            };
 
             _topDownGameInput.Player.Weapon2.performed += value => 
            { 
-                _logService.ShowLog(GetType().Name,
-                                Services.Log.LogType.Message,
-                                "(2)RPGItemView Select .",
-                                LogOutputLocationType.Console);
-                _signalBus.Fire(new MainHUDViewSignals.SelectWeaponItem("RPGItemView"));
+                if(_playerBaseAttackAbility.ActivateAbility)
+                {
+                    
+                    _logService.ShowLog(GetType().Name,
+                                    Services.Log.LogType.Message,
+                                    "(2)RPGItemView Select .",
+                                    LogOutputLocationType.Console);
+
+                    _signalBus.Fire(new MainHUDViewSignals.SelectWeaponItem(_mainHUDPresenter._mDItemView));
+                }
            };
 
             _topDownGameInput.Player.Weapon3.performed += value => 
            {
-                _logService.ShowLog(GetType().Name,
-                                Services.Log.LogType.Message,
-                                "(3)SniperRifleItemView Select .",
-                                LogOutputLocationType.Console);
-                _signalBus.Fire(new MainHUDViewSignals.SelectWeaponItem("SniperRifleItemView"));
+                if(_playerBaseAttackAbility.ActivateAbility)
+                {
+                     
+                    _logService.ShowLog(GetType().Name,
+                                    Services.Log.LogType.Message,
+                                    "(3)SniperRifleItemView Select .",
+                                    LogOutputLocationType.Console);
+                                    
+                    _signalBus.Fire(new MainHUDViewSignals.SelectWeaponItem(_mainHUDPresenter._rPGItemView));
+                }
            };
          
             _topDownGameInput.Player.Pause.performed += value =>
@@ -394,20 +409,13 @@ namespace Services.Input
         {
           if (_projectService.GetProjectState() == ProjectState.Start)
             {
-                // Then button pressed(building, burstfire, repair)
                  if (_topDownGameInput.Player.Attack1.IsPressed())
                  {
-                       if(_playerBaseAttackAbility.ActivateAbility)
-                       { /*
-                         _logService.ShowLog(GetType().Name,
-                                Services.Log.LogType.Message,
-                                "Press Attack1.",
-                                LogOutputLocationType.Console);
-
-                          if(_playerBaseAttackAbility.ActivateAbility)
-                                        _abilityService.UseAbility((IAbilityWithOutParam)_playerBaseAttackAbility,
-                                                _playerPresenter,
-                                                ActionModifier.BurstFire);*/
+                       if(_playerBaseAttackAbility.ActivateAbility && _mainHUDPresenter._mDItemView.IsActive)
+                       {
+                            _abilityService.UseAbility((IAbilityWithBoolParam)_playerBaseAttackAbility,
+                                                _playerPresenter, true,
+                                                ActionModifier.BurstFire);
                        }
                  }
             }

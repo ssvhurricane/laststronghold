@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Layer: 2
-  MeshRigidBody: {fileID: 0}
 --- !u!136 &8484207268645806264
 CapsuleCollider:
   m_ObjectHideFlags: 0
