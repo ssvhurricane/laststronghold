@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970778351004135199}
+  - component: {fileID: 4056864474904799919}
   m_Layer: 8
   m_Name: WeaponAnchor
   m_TagString: Untagged
@@ -31,6 +32,26 @@ Transform:
   m_Father: {fileID: 5895690557060414533}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &4056864474904799919
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700363836814768610}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8fc53f75f2322414482947e857bafd00, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6415491583722096974
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,6 +103,8 @@ MonoBehaviour:
   Layer: 5
   Camera: {fileID: 8881107686480854882}
   WeaponAnchor: {fileID: 3970778351004135199}
+  AnchorAnimator: {fileID: 4056864474904799919}
+  CameraAnimator: {fileID: 5371291064483584899}
 --- !u!114 &4413870758926866318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +164,7 @@ GameObject:
   - component: {fileID: 5895690557060414533}
   - component: {fileID: 8881107686480854882}
   - component: {fileID: 6645587982230144793}
+  - component: {fileID: 5371291064483584899}
   m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
@@ -215,3 +239,23 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8801670364263030228}
   m_Enabled: 1
+--- !u!95 &5371291064483584899
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8801670364263030228}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 849c1f1431057426e8722faf372348e9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

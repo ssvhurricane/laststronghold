@@ -1344,7 +1344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.22014059, g: 0.6935477, b: 0.9150943, a: 0.14117648}
+  m_Color: {r: 0.22014059, g: 0.6935477, b: 0.9150943, a: 0.4745098}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3502,7 +3502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.22014059, g: 0.6935477, b: 0.9150943, a: 0.14117648}
+  m_Color: {r: 0.22014059, g: 0.6935477, b: 0.9150943, a: 0.46666667}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3655,7 +3655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.22014059, g: 0.6935477, b: 0.9150943, a: 0.14117648}
+  m_Color: {r: 0.22014059, g: 0.6935477, b: 0.9150943, a: 0.46666667}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3807,6 +3807,7 @@ MonoBehaviour:
   ImageOneTimer: {fileID: 543723903887741915}
   ImageTwoTimer: {fileID: 3035853946535521356}
   ImageThreeTimer: {fileID: 7926124522952035896}
+  AimImage: {fileID: 2164493110932536149}
 --- !u!1 &9211382943275767578
 GameObject:
   m_ObjectHideFlags: 0

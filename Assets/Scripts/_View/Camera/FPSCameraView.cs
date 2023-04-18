@@ -13,6 +13,8 @@ namespace View.Camera
 
         [SerializeField] protected Transform WeaponAnchor;
 
+        [SerializeField] protected Animator AnchorAnimator, CameraAnimator;
+
         private SignalBus _signalBus;
 
         [Inject]
@@ -33,6 +35,16 @@ namespace View.Camera
         public Transform GetWeaponAnchor()
         {
             return WeaponAnchor;
+        }
+
+        public Animator GetAnimator()
+        {
+            return AnchorAnimator;
+        }
+
+        public Animator GetCameraAnimator()
+        {
+            return CameraAnimator;
         }
     }
 }

@@ -10,10 +10,7 @@ using Services.Item;
 using View.Camera;
 using Signals;
 using Services.Essence;
-using Constants;
-using System.Collections;
 using UniRx;
-using System;
 
 namespace Presenters.Window
 {

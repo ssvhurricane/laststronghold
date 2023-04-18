@@ -178,7 +178,7 @@ namespace Services.Input
                 if (_projectService.GetProjectState() == ProjectState.Start)
                 {
                      _abilityService.UseAbility((IAbilityWithOutParam)_playerZoomAbility,
-                            _playerPresenter, ActionModifier.None);
+                            _cameraPresenter, ActionModifier.None);
                 }
             };
 

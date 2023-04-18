@@ -20,6 +20,8 @@ namespace View.Window
         [SerializeField] protected Image ImageMainInteract, ImageMainShoot, ImageOne, ImageTwo, ImageThree, ImageZoom;
         [SerializeField] protected Image ImageOneTimer, ImageTwoTimer, ImageThreeTimer;
 
+        [SerializeField] protected Image AimImage;
+
         private SignalBus _signalBus;
 
         private Image _currentSelectItem;
@@ -60,7 +62,12 @@ namespace View.Window
 
             _signalBus.Fire(new WindowServiceSignals.Register(this));
         }
-        
+
+        public Image GetAim()
+        {
+            return AimImage;
+        }
+
         public void UpdateTimerUI(string id, float rate)
         {
             _timeLeft = rate;

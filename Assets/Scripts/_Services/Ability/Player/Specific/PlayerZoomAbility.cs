@@ -16,6 +16,9 @@ using Services.Pool;
 using Services.Resources;
 using Services.RayCast;
 using Services.Interaction;
+using View.Camera;
+using Presenters.Window;
+using View.Window;
 
 namespace Services.Ability
 {
@@ -33,6 +36,8 @@ namespace Services.Ability
         private readonly RayCastService _rayCastService;
         private readonly InteractionService _interactionService;
         private AbilitySettings _abilitySettings;
+
+        private readonly MainHUDPresenter _mainHUDPresenter;
        
         private IEnumerable<IItem> _playerWeaponItems;
        
@@ -53,7 +58,8 @@ namespace Services.Ability
            ResourcesService resourcesService,
            RayCastService rayCastService,
            InteractionService interactionService,
-            AbilitySettings[] abilitiesSettings)
+            AbilitySettings[] abilitiesSettings,
+            MainHUDPresenter mainHUDPresenter)
         {
             _signalBus = signalBus;
 
@@ -66,6 +72,8 @@ namespace Services.Ability
             _resourcesService = resourcesService;
             _rayCastService = rayCastService;
             _interactionService = interactionService;
+
+            _mainHUDPresenter = mainHUDPresenter;
 
             InitAbility(abilitiesSettings);
         }
@@ -90,10 +98,24 @@ namespace Services.Ability
 
             if (presenter != null)
             { 
-                var view = (PlayerView) presenter.GetView();
+                var view = (FPSCameraView) presenter.GetView();
 
-               
-                // TODO:
+                if(!_animationService.GetBool(view.GetAnimator(), "Zoom"))
+                {
+                    _animationService.SetBool(view.GetCameraAnimator(), "Zoom", true);
+
+                    _animationService.SetBool(view.GetAnimator(), "Zoom", true);
+
+                    (_mainHUDPresenter.GetView() as MainHUDView).GetAim().gameObject.SetActive(false);
+                }
+                else
+                {
+                    _animationService.SetBool(view.GetCameraAnimator(), "Zoom", false);
+
+                    _animationService.SetBool(view.GetAnimator(), "Zoom", false);
+
+                    (_mainHUDPresenter.GetView() as MainHUDView).GetAim().gameObject.SetActive(true);
+                } 
             }
         }
     }
