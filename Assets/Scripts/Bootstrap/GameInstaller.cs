@@ -109,6 +109,7 @@ namespace Bootstrap
             // Specific.
             Container.InstallElementAsSingle<PlayerNoneAbility>();
             Container.InstallElementAsSingle<PlayerInteractAbility>();
+             Container.InstallElementAsSingle<PlayerZoomAbility>();
 
             // Camera Abilities.
             Container.InstallElementAsSingle<CameraRotateAbility>();

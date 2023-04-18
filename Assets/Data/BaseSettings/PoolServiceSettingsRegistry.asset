@@ -23,8 +23,8 @@ MonoBehaviour:
     MaxPoolSize: 5
   - Id: MDBulletItemViewPool
     Name: MDBulletItemViewPool
-    InitialSize: 10
-    MaxPoolSize: 100
+    InitialSize: 1
+    MaxPoolSize: 300
   - Id: RPGBulletItemViewPool
     Name: RPGBulletItemViewPool
     InitialSize: 1

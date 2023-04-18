@@ -12,5 +12,18 @@ namespace Signals
                 Essence = essence;
             }
         }
+
+        public class StartTimer
+        {
+            public string Id { get; }
+            public float Rate { get; }
+
+            public StartTimer(string id, float rate)
+            {
+                Id = id;
+                
+                Rate = rate;
+            }
+        }
     }
 }

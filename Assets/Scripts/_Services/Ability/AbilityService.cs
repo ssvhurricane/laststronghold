@@ -1,4 +1,3 @@
-using Model;
 using Presenters;
 using Services.Input;
 using System.Collections.Generic;
@@ -26,6 +25,8 @@ namespace Services.Ability
         private readonly PlayerNoneAbility _playerNoneAbility;
         private readonly PlayerInteractAbility _playerInteractAbility;
 
+        private readonly PlayerZoomAbility _playerZoomAbility;
+
         // Camera Abilities.
         private readonly CameraRotateAbility _cameraRotateAbility;
 
@@ -37,6 +38,7 @@ namespace Services.Ability
                             PlayerBaseAttackAbility playerBaseAttackAbility,
                             PlayerNoneAbility playerNoneAbility,
                             PlayerInteractAbility playerInteractAbility,
+                             PlayerZoomAbility playerZoomAbility,
                             CameraRotateAbility cameraRotateAbility) 
         {
             _signalBus = signalBus;
@@ -56,6 +58,8 @@ namespace Services.Ability
 
              _playerInteractAbility = playerInteractAbility;
 
+             _playerZoomAbility = playerZoomAbility;
+
              _cameraRotateAbility = cameraRotateAbility;
 
             _allAbilities  = new List<IAbility>();
@@ -71,6 +75,8 @@ namespace Services.Ability
              _allAbilities.Add(_playerNoneAbility);
 
              _allAbilities.Add(_playerInteractAbility);
+             _allAbilities.Add(_playerZoomAbility);
+
              _allAbilities.Add(_cameraRotateAbility);
             
         }

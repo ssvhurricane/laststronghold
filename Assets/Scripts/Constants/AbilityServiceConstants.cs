@@ -17,6 +17,8 @@ namespace Constants
         public static string PlayerNoneAbility = "PlayerNoneAbility";
         public static string PlayerInteractAbility = "PlayerInteractAbility";
 
+        public static string PlayerZoomAbility = "PlayerZoomAbility";
+
         // Camera Abilities.
         public static string CameraRotateAbility = "CameraRotateAbility";
     }

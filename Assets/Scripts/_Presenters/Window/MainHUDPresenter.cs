@@ -10,6 +10,10 @@ using Services.Item;
 using View.Camera;
 using Signals;
 using Services.Essence;
+using Constants;
+using System.Collections;
+using UniRx;
+using System;
 
 namespace Presenters.Window
 {
@@ -25,11 +29,14 @@ namespace Presenters.Window
         private readonly CameraPresenter _cameraPresenter;
       
         private readonly PlayerPresenter _playerPresenter;
+
+        private readonly CompositeDisposable _disposables;
         private MainHUDView _mainHUDView;
 
         public MDItemView _mDItemView { get; private set; }
         public RPGItemView _rPGItemView { get; private set; }
         public SniperRifleItemView _sniperRifleItemView { get; private set; }
+      
 
         public MainHUDPresenter(SignalBus signalBus,
             LogService logService,
@@ -56,8 +63,14 @@ namespace Presenters.Window
                 LogOutputLocationType.Console);
 
              _signalBus.Subscribe<MainHUDViewSignals.SelectWeaponItem>(signal => OnSelectWeaponItem(signal.Essence));
-        }
 
+             _signalBus.Subscribe<MainHUDViewSignals.StartTimer>(signal => OnStartTimer(signal.Id, signal.Rate));
+        }
+        private void OnStartTimer(string id, float rate)
+        { 
+            if(rate > 0f) _mainHUDView.UpdateTimerUI(id, rate);
+        }
+        
         private void OnSelectWeaponItem(IEssence essence)
         {
             if(essence as SniperRifleItemView)

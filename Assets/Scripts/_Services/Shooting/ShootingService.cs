@@ -70,10 +70,6 @@ namespace Services.Shooting
             
              _disposables = new CompositeDisposable();
 
-             _poolService.InitPool(PoolServiceConstants.SingleBulletItemViewPool);
-             _poolService.InitPool(PoolServiceConstants.MDBulletItemViewPool);
-             _poolService.InitPool(PoolServiceConstants.RPGBulletItemViewPool);
-
              _signalBus.Subscribe<ShootingServiceSignals.Hit>(signal => OnHit(signal.BaseEssence, signal.Collision));
         }
 
@@ -97,27 +93,36 @@ namespace Services.Shooting
            
         }
 
-        public void Shoot(ActionModifier actionModifier, string settingId)
+        public void Initialize(string poolName)
+        { 
+            if (!_poolService.GetPoolDatas()
+                             .Any(data => data.Name == PoolServiceConstants.QuestMenuFlowContainerViewPool))
+            {
+                 _poolService.InitPool(poolName);
+            }
+        }
+
+        public void Shoot(ActionModifier actionModifier, string settingId, string poolName)
         {
               switch(actionModifier)
               {
                 case ActionModifier.SingleFire:
                 {
-                    Proccesing<RifleBulletItemView>(settingId, _mainHUDPresenter._sniperRifleItemView.FirePivot, PoolServiceConstants.SingleBulletItemViewPool);
+                    Proccesing<RifleBulletItemView>(settingId, _mainHUDPresenter._sniperRifleItemView.FirePivot, poolName);
 
                     break;
                 }
 
                 case ActionModifier.BurstFire:
                 {
-                    Proccesing<RifleBulletItemView>(settingId, _mainHUDPresenter._mDItemView.FirePivot, PoolServiceConstants.MDBulletItemViewPool);
+                    Proccesing<RifleBulletItemView>(settingId, _mainHUDPresenter._mDItemView.FirePivot, poolName);
 
                     break;
                 }
 
                 case ActionModifier.UltaFire:
                 {
-                    Proccesing<RPGBulletItemView>(settingId, _mainHUDPresenter._rPGItemView.FirePivot, PoolServiceConstants.RPGBulletItemViewPool);
+                    Proccesing<RPGBulletItemView>(settingId, _mainHUDPresenter._rPGItemView.FirePivot, poolName);
 
                     break;
                 }
@@ -151,23 +156,25 @@ namespace Services.Shooting
 
                     if(!_isComplete) return;
 
-                    TParam rifleBulletItemView = null;
-                    rifleBulletItemView  = _poolService.Spawn<TParam>(pivot, poolName);
+                    TParam bulletItemView = null;
+                    bulletItemView  = _poolService.Spawn<TParam>(pivot, poolName);
 
-                    if(!isPTYR) rifleBulletItemView.gameObject.transform.parent = null;   
+                    if(!isPTYR) bulletItemView.gameObject.transform.parent = null;   
 
-                    Vector3 dirWithoutSpread  = targetPoint - rifleBulletItemView.GetGameObject().transform.position;
+                    Vector3 dirWithoutSpread  = targetPoint - bulletItemView.GetGameObject().transform.position;
 
                     float x = Random.Range(-settings.ShootingElement.Spread, settings.ShootingElement.Spread);
                     float y = Random.Range(-settings.ShootingElement.Spread, settings.ShootingElement.Spread);
 
                     Vector3 dirWithSpread = dirWithoutSpread + new Vector3(x, y, 0);
 
-                    rifleBulletItemView.transform.forward = dirWithSpread.normalized;
+                    bulletItemView.transform.forward = dirWithSpread.normalized;
 
-                    rifleBulletItemView.GetComponent<Rigidbody>().WakeUp();
-                    rifleBulletItemView.GetComponent<Rigidbody>().AddForce(dirWithSpread.normalized * settings.ShootingElement.Speed);
+                    bulletItemView.GetComponent<Rigidbody>().WakeUp();
+                    bulletItemView.GetComponent<Rigidbody>().AddForce(dirWithSpread.normalized * settings.ShootingElement.Speed);
                        
+                    _signalBus.Fire(new MainHUDViewSignals.StartTimer(id, settings.ShootingElement.Rate));
+
                     Timer(settings.ShootingElement.Rate);
                 }
                 else
@@ -183,7 +190,8 @@ namespace Services.Shooting
         private void Timer(float rate)
         {
             _isComplete = false;
-                Observable.Timer (System.TimeSpan.FromSeconds(rate))
+
+            Observable.Timer (System.TimeSpan.FromSeconds(rate))
                 .Subscribe (_ => { 
                         _logService.ShowLog(GetType().Name,
                                     Services.Log.LogType.Message,"TimerComplete!",

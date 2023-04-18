@@ -81,6 +81,12 @@ namespace Services.Ability
            WeaponType = _abilitySettings.WeaponType;
 
            Icon = _abilitySettings.Icon;
+
+           _shootingService.Initialize(PoolServiceConstants.RPGBulletItemViewPool);
+
+           _shootingService.Initialize(PoolServiceConstants.MDBulletItemViewPool);
+
+           _shootingService.Initialize(PoolServiceConstants.RPGBulletItemViewPool);
         }
 
         public void StartAbility(IPresenter ownerPresenter, ActionModifier actionModifier)
@@ -94,10 +100,10 @@ namespace Services.Ability
                 var view = (PlayerView) presenter.GetView();
 
                 if(_mainHUDPresenter._sniperRifleItemView.IsActive)
-                    _shootingService.Shoot(ActionModifier.SingleFire, ItemServiceConstants.SniperRifleItemView);
+                    _shootingService.Shoot(ActionModifier.SingleFire, ItemServiceConstants.SniperRifleItemView, PoolServiceConstants.RPGBulletItemViewPool);
 
                 if(_mainHUDPresenter._rPGItemView.IsActive)
-                    _shootingService.Shoot(ActionModifier.UltaFire,  ItemServiceConstants.RPGItemView);
+                    _shootingService.Shoot(ActionModifier.UltaFire,  ItemServiceConstants.RPGItemView, PoolServiceConstants.RPGBulletItemViewPool);
             }
         }
 
@@ -106,7 +112,7 @@ namespace Services.Ability
             if (!ActivateAbility) return;
 
             if(_mainHUDPresenter._mDItemView.IsActive)
-                    _shootingService.Shoot(ActionModifier.BurstFire, ItemServiceConstants.MDItemView);
+                    _shootingService.Shoot(ActionModifier.BurstFire, ItemServiceConstants.MDItemView, PoolServiceConstants.MDBulletItemViewPool);
         }
     }
 }

@@ -24,7 +24,7 @@ using Zenject;
 
 namespace Services.Input
 {
-    public class InputService :ITickable, IFixedTickable, ILateTickable
+    public class InputService : ITickable, IFixedTickable, ILateTickable
     {
         private readonly SignalBus _signalBus;
 
@@ -59,7 +59,8 @@ namespace Services.Input
                                         _playerFocusMoveAbility,
                                             _playerBaseAttackAbility,
                                                 _playerInteractAbility,
-                                                     _cameraRotateAbility;
+                                                     _playerZoomAbility,
+                                                        _cameraRotateAbility;
        
         private IEnumerable<IAbility> _playerAbilities;
     
@@ -169,6 +170,15 @@ namespace Services.Input
                             _playerPresenter,
                             ActionModifier.ExploreInteract);
                    }
+                }
+            };
+
+             _topDownGameInput.Player.Zoom.performed += value =>
+            {
+                if (_projectService.GetProjectState() == ProjectState.Start)
+                {
+                     _abilityService.UseAbility((IAbilityWithOutParam)_playerZoomAbility,
+                            _playerPresenter, ActionModifier.None);
                 }
             };
 
@@ -512,6 +522,9 @@ namespace Services.Input
 
             _playerInteractAbility = _abilityService.GetAbilityById(AbilityServiceConstants.PlayerInteractAbility);
             _playerInteractAbility.ActivateAbility = true;
+
+             _playerZoomAbility = _abilityService.GetAbilityById(AbilityServiceConstants.PlayerZoomAbility);
+            _playerZoomAbility.ActivateAbility = true;
 
             // Caching Camera Rotate Ability.
             _cameraRotateAbility = _abilityService.GetAbilityById(AbilityServiceConstants.CameraRotateAbility);

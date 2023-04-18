@@ -1,3 +1,5 @@
+using System.Collections;
+using Constants;
 using Services.Window;
 using Signals;
 using UnityEngine;
@@ -16,10 +18,38 @@ namespace View.Window
         [SerializeField] protected Text TimeNextEarthQuake;
 
         [SerializeField] protected Image ImageMainInteract, ImageMainShoot, ImageOne, ImageTwo, ImageThree, ImageZoom;
+        [SerializeField] protected Image ImageOneTimer, ImageTwoTimer, ImageThreeTimer;
 
         private SignalBus _signalBus;
 
         private Image _currentSelectItem;
+
+        private float _timeLeft = 0f;
+ 
+        private IEnumerator StartTimer(string id, float rate)
+        {
+            while (_timeLeft > 0)
+            {
+                _timeLeft -= Time.deltaTime;
+
+                var normalizedValue = Mathf.Clamp(_timeLeft / rate, 0.0f, 1.0f);
+
+                 if(id == ItemServiceConstants.SniperRifleItemView)
+                    {
+                        ImageOneTimer.fillAmount =  Mathf.Clamp(_timeLeft / rate, 0.0f, 1.0f);       
+                    }
+                    else if(id == ItemServiceConstants.MDItemView)
+                    {
+                        ImageTwoTimer.fillAmount =  Mathf.Clamp(_timeLeft / rate, 0.0f, 1.0f);   
+                    }
+                    else if(id == ItemServiceConstants.RPGItemView)
+                    {
+                        ImageThreeTimer.fillAmount =  Mathf.Clamp(_timeLeft / rate, 0.0f, 1.0f);   
+                    }
+              
+                yield return null;
+            }
+        }
 
         [Inject]
         public void Constrcut(SignalBus signalBus)
@@ -29,8 +59,13 @@ namespace View.Window
             WindowType = Type;
 
             _signalBus.Fire(new WindowServiceSignals.Register(this));
-
-           
+        }
+        
+        public void UpdateTimerUI(string id, float rate)
+        {
+            _timeLeft = rate;
+            
+            StartCoroutine(StartTimer(id, rate));
         }
 
         public void UpdateView(MainHUDViewHeliCopterContainerArgs mainHUDViewHeliCopterContainerArgs)
