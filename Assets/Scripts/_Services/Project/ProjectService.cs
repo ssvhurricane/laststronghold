@@ -20,6 +20,7 @@ namespace Services.Project
         private readonly QuestModel _questModel;
         private readonly MessageModel _messageModel;
         private readonly AreaModel _areaModel;
+        private readonly ReceiverModel _receiverModel;
         private readonly QuestServiceSettings _questServiceSettings;
         private readonly ProjectServiceSettings _projectServiceSettings;
 
@@ -35,6 +36,7 @@ namespace Services.Project
             CameraModel cameraModel,
             MessageModel messageModel,
             AreaModel areaModel,
+            ReceiverModel receiverModel,
             QuestServiceSettings questServiceSettings,
             ProjectServiceSettings projectServiceSettings,
             SaveDataService saveDataService)
@@ -51,6 +53,7 @@ namespace Services.Project
             _cameraModel = cameraModel;
             _messageModel = messageModel;
             _areaModel = areaModel;
+            _receiverModel = receiverModel;
 
             _questServiceSettings = questServiceSettings;
 
@@ -123,6 +126,16 @@ namespace Services.Project
                 var aModel = (AreaModel) _areaModel.DesirializeModel<AreaModel>(areaSaveModelData);
 
                 _areaModel.UpdateModelData(aModel.GetAreaSaveData());
+            }
+
+             // Set ReceiverSaveData.
+            var receiverSaveModelData = _saveDataService.GetData(_receiverModel.Id);
+
+            if(!string.IsNullOrEmpty(receiverSaveModelData))
+            {
+                var rModel = (ReceiverModel) _receiverModel.DesirializeModel<ReceiverModel>(receiverSaveModelData);
+
+                _receiverModel.UpdateModelData(rModel.GetReceiverSaveData());
             }
         }
 

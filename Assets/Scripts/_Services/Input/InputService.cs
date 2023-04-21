@@ -158,7 +158,7 @@ namespace Services.Input
                             ActionModifier.SingleFire);
 
                    }
-
+/*
                    if(_playerInteractAbility.ActivateAbility)
                    {
                         _logService.ShowLog(GetType().Name,
@@ -169,7 +169,7 @@ namespace Services.Input
                         _abilityService.UseAbility((IAbilityWithOutParam)_playerInteractAbility,
                             _playerPresenter,
                             ActionModifier.ExploreInteract);
-                   }
+                   }*/
                 }
             };
 
@@ -427,6 +427,13 @@ namespace Services.Input
                                                 _playerPresenter, true,
                                                 ActionModifier.BurstFire);
                        }
+
+                        if(_playerInteractAbility.ActivateAbility)
+                        {
+                                _abilityService.UseAbility((IAbilityWithOutParam)_playerInteractAbility,
+                                    _playerPresenter,
+                                    ActionModifier.ExploreInteract);
+                        }
                  }
             }
         }

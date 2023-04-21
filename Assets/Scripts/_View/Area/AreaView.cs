@@ -23,6 +23,8 @@ namespace View
         [SerializeField] protected Text AreaAreaType;
 
         private SignalBus _signalBus;
+
+        public bool IsActive { get; private set; } = false;
         
         [Inject]
         public void Constrcut(SignalBus signalBus)
@@ -30,6 +32,16 @@ namespace View
             _signalBus = signalBus;
 
             _signalBus.Fire(new EssenceServiceSignals.Register(this));
+        }
+
+        public void StartSimulate()
+        {
+            // TODO:
+        }
+
+        public void StopSimulate()
+        {
+            // TODO:
         }
 
         public void UpdateView(AreaViewArgs areaViewArgs)

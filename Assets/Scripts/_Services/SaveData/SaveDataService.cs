@@ -15,6 +15,7 @@ namespace Services.SaveData
         private readonly QuestModel _questModel;
         private readonly MessageModel _messageModel;
         private readonly AreaModel _areaModel;
+        private readonly ReceiverModel _receiverModel;
 
         private readonly SaveDataServiceSettings _saveDataServiceSettings;
         public SaveDataService(SignalBus signalBus,
@@ -24,6 +25,7 @@ namespace Services.SaveData
                                 QuestModel questModel,
                                 MessageModel messageModel,
                                 AreaModel areaModel,
+                                ReceiverModel receiverModel,
                                 SaveDataServiceSettings saveDataServiceSettings) 
         {
             _signalBus = signalBus;
@@ -34,6 +36,7 @@ namespace Services.SaveData
             _questModel = questModel;
             _messageModel = messageModel;
             _areaModel = areaModel;
+            _receiverModel = receiverModel;
 
             _saveDataServiceSettings = saveDataServiceSettings;
 
@@ -100,6 +103,17 @@ namespace Services.SaveData
                     var serializeString = _areaModel.SerializeModel(_areaModel);
 
                     SaveData(_areaModel.Id, serializeString);
+                }
+            });
+
+            // ReceiverData.
+            _receiverModel.GetReceiverSaveDataAsReactive().Subscribe(item => 
+            {
+                if(_receiverModel.GetReceiverSaveData() != null && item != null)
+                {
+                    var serializeString = _receiverModel.SerializeModel(_receiverModel);
+
+                    SaveData(_receiverModel.Id, serializeString);
                 }
             });
         }

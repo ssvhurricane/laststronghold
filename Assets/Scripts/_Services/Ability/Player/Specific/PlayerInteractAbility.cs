@@ -28,9 +28,8 @@ namespace Services.Ability
         private readonly SFXService _sFXService;
         private readonly VFXService _vFXService;
         private readonly ItemService _itemService;
-        private readonly PoolService _poolService;
         private readonly ResourcesService _resourcesService;
-        private readonly RayCastService _rayCastService;
+       
         private readonly InteractionService _interactionService;
         private AbilitySettings _abilitySettings;
        
@@ -49,9 +48,7 @@ namespace Services.Ability
            SFXService sFXService,
            VFXService vFXService,
            ItemService itemService,
-           PoolService poolService,
            ResourcesService resourcesService,
-           RayCastService rayCastService,
            InteractionService interactionService,
             AbilitySettings[] abilitiesSettings)
         {
@@ -62,9 +59,7 @@ namespace Services.Ability
             _sFXService = sFXService;
             _vFXService = vFXService;
             _itemService = itemService;
-            _poolService = poolService;
             _resourcesService = resourcesService;
-            _rayCastService = rayCastService;
             _interactionService = interactionService;
 
             InitAbility(abilitiesSettings);
@@ -93,25 +88,7 @@ namespace Services.Ability
                 var view = (PlayerView) presenter.GetView();
 
                 // TODO:
-                switch(actionModifier)
-                {
-                    case ActionModifier.ExploreInteract:
-                    {
-                        // TODO:
-                        break;
-                    }
-                    case ActionModifier.RestoreInteract:
-                    {
-                        // TODO:
-                        break;
-                    }
-                    case ActionModifier.PickUpInteract:
-                    {
-                        // TODO:
-                        break;
-                    }
-                  
-                }
+                _interactionService.Proccessing("string interactId");
             }
         }
     }

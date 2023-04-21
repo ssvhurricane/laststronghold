@@ -14,12 +14,21 @@ namespace Services.RayCast
         [SerializeField] protected string ObjectName;
 
         private SignalBus _signalBus;
+
+        public bool IsEnabled { get; private set; } = false;
+
         [Inject]
         public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
 
             _signalBus.Fire(new RayCastServiceSignals.AddReceiver(this));
+        }
+        public void EnableReceiver(bool enabled)
+        {
+            IsEnabled = enabled;
+            
+            gameObject.SetActive(enabled);
         }
 
         public GameObject GetReceiveObject()

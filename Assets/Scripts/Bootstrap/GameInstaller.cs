@@ -126,6 +126,8 @@ namespace Bootstrap
             Container.InstallModel<MessageModel>();
 
             Container.InstallModel<AreaModel>();
+
+            Container.InstallModel<ReceiverModel>();
         }
 
         private void InstallSignals() 
