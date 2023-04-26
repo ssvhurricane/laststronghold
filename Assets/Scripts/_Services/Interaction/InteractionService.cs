@@ -1,6 +1,7 @@
 using Data.Settings;
 using Presenters;
 using Presenters.Window;
+using Services.Area;
 using Services.Log;
 using Services.RayCast;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace Services.Interaction
         private readonly SignalBus _signalBus;
         private readonly LogService _logService;
         private readonly RayCastService _rayCastService;
+        private readonly AreaService _areaService;
         private readonly CameraPresenter _cameraPresenter;
 
         private readonly MainHUDPresenter _mainHUDPresenter;
@@ -26,6 +28,7 @@ namespace Services.Interaction
         public InteractionService( SignalBus signalBus, 
                                     LogService logService,
                                     RayCastService rayCastService,
+                                    AreaService areaService,
                                     CameraPresenter cameraPresenter,
                                     MainHUDPresenter mainHUDPresenter,
                                     InteractionServiceSettings[] interactionServiceSettings)
@@ -35,6 +38,7 @@ namespace Services.Interaction
             _logService = logService;
 
             _rayCastService = rayCastService;
+            _areaService = areaService;
             _cameraPresenter = cameraPresenter;
             _mainHUDPresenter = mainHUDPresenter;
 
@@ -63,6 +67,9 @@ namespace Services.Interaction
                                     Services.Log.LogType.Message, "Receiver Id: " + _receiverAnchorArea.GetId() + " | " +
                                     "Receiver Name: " + _receiverAnchorArea.GetObjectName(),
                                     LogOutputLocationType.Console);
+
+                    // TODO: Get Current Area..
+                    //_areaService.GetAreaByName();
                 }
             }
 

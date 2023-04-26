@@ -88,7 +88,7 @@ namespace Services.Ability
                 var view = (PlayerView) presenter.GetView();
 
                 // TODO:
-                _interactionService.Proccessing("string interactId");
+                _interactionService.Proccessing("ReceiverHolderId");
             }
         }
     }

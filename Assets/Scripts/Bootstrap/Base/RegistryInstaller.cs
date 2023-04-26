@@ -26,6 +26,8 @@ namespace Bootstrap
 
         [SerializeField] protected AreaServiceSettingsRegistry AreaServiceSettingsRegistry;
 
+        [SerializeField] protected ReceiverHolderSettingsRegistry ReceiverHolderSettingsRegistry;
+
         [SerializeField] protected QuestServiceSettingsRegistry QuestServiceSettingsRegistry;
 
         [SerializeField] protected SaveDataServiceSettingsRegistry SaveDataServiceSettingsRegistry;
@@ -78,6 +80,7 @@ namespace Bootstrap
             InstallRegistry(LogServiceSettingsRegistry);
 
             InstallRegistry(AreaServiceSettingsRegistry);
+            InstallRegistry(ReceiverHolderSettingsRegistry);
 
             InstallRegistry(QuestServiceSettingsRegistry);
             InstallRegistry(QuestsSettingsRegistry);
@@ -124,6 +127,10 @@ namespace Bootstrap
 
             Container.Bind<AreaServiceSettings[]>()
                 .FromInstance(AreaServiceSettingsRegistry.GetItems().ToArray())
+                .AsSingle();
+
+            Container.Bind<ReceiverHolderSettings[]>()
+                .FromInstance(ReceiverHolderSettingsRegistry.GetItems().ToArray())
                 .AsSingle();
 
             Container.Bind<AbilitySettings[]>()

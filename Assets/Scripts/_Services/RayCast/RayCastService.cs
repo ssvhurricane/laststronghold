@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using Model;
 using Services.Log;
 using Signals;
 using UnityEngine;
 using Zenject;
+using UniRx;
 
 namespace Services.RayCast
 {
@@ -10,16 +12,20 @@ namespace Services.RayCast
     {
         private readonly SignalBus _signalBus;
         private readonly LogService _logService;
+        
+        private readonly ReceiverModel _receiverModel;
 
-        public List<ReceiverHolder> _receiverHolders { get; private set; }
+        private List<ReceiverHolder> _receiverHolders;
 
-        public List<TransmitterHolder> _transmitterHolders { get; private set; }
+        private List<TransmitterHolder> _transmitterHolders;
 
-        public RayCastService(SignalBus signalBus, LogService logService)
+        public RayCastService(SignalBus signalBus, LogService logService, ReceiverModel receiverModel)
         {
             _signalBus = signalBus;
 
             _logService = logService;
+
+            _receiverModel = receiverModel;
 
             _receiverHolders = new List<ReceiverHolder>();
 
@@ -34,6 +40,25 @@ namespace Services.RayCast
             {
                 _transmitterHolders.Add(signal.TransmitterHolder);
             });
+
+             // ReceiverData.
+            _receiverModel.GetReceiverSaveDataAsReactive().Subscribe(item => 
+            {
+                if(_receiverModel.GetReceiverSaveData() != null && item != null)
+                {
+                    // TODO:
+                }
+            });
+        }
+
+        public List<ReceiverHolder> GetReceiverHolders()
+        {
+            return _receiverHolders;
+        }
+
+        public List<TransmitterHolder> GetTransmitterHolders()
+        {
+            return _transmitterHolders;
         }
 
         public RaycastHit Emit(Transform transform, LayerMask layerMask)

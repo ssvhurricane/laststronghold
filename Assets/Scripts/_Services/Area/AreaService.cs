@@ -3,6 +3,7 @@ using Constants;
 using Model;
 using Services.Cheat;
 using Zenject;
+using UniRx;
 
 namespace Services.Area
 {
@@ -11,11 +12,14 @@ namespace Services.Area
         private readonly SignalBus _signalBus;
 
         private readonly CheatService _cheatService;
+        
         private readonly AreaModel _areaModel;
+        private readonly ReceiverModel _receiverModel;
         
         public AreaService(SignalBus signalBus,
                          CheatService cheatService,
-                         AreaModel areaModel)
+                         AreaModel areaModel,
+                         ReceiverModel receiverModel)
         {
             _signalBus = signalBus;
 
@@ -23,7 +27,18 @@ namespace Services.Area
 
             _areaModel = areaModel;
 
+            _receiverModel = receiverModel;
+
             AddCheats();
+
+            // ReceiverData.
+            _receiverModel.GetReceiverSaveDataAsReactive().Subscribe(item => 
+            {
+                if(_receiverModel.GetReceiverSaveData() != null && item != null)
+                {
+                    // TODO:
+                }
+            });
         }
 
         public void AreaProcessing()

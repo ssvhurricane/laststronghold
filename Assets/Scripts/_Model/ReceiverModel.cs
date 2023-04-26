@@ -2,11 +2,10 @@ using Newtonsoft.Json;
 using UniRx;
 using Zenject;
 using Data;
+using UnityEngine;
+using Services.RayCast;
 using System.Collections.Generic;
 using Data.Settings;
-using UnityEngine;
-using Services.Area;
-using Services.RayCast;
 
 namespace Model
 {
@@ -24,19 +23,18 @@ public class ReceiverModel : IModel, ISerializableModel
 
         [JsonIgnore]
         private readonly SignalBus _signalBus;
-        
-        [JsonIgnore]
-        private readonly RayCastService _rayCastService;
 
-        public ReceiverModel(SignalBus signalBus,
-                         RayCastService rayCastService)
+        [JsonIgnore]
+        private readonly ReceiverHolderSettings[] _receiverHolderSettings;
+
+
+        public ReceiverModel(SignalBus signalBus, ReceiverHolderSettings[] receiverHolderSettings)
         {
             _signalBus = signalBus;
 
-            _rayCastService = rayCastService;
-
-            if( _rayCastService != null
-                 && string.IsNullOrEmpty(PlayerPrefs.GetString(Id))) InitializeDafaultModelData();
+            _receiverHolderSettings = receiverHolderSettings;
+        
+            if( _receiverHolderSettings != null && string.IsNullOrEmpty(PlayerPrefs.GetString(Id))) InitializeDafaultModelData();
         } 
 
         public string SerializeModel(IModel model)
@@ -51,12 +49,26 @@ public class ReceiverModel : IModel, ISerializableModel
 
         public void InitializeDafaultModelData()
         { 
-          
+            // Empty Data.
+            var prepareReceiverSaveData = new List<ReceiverItemData>();
+
+            foreach(var receiverItemData in _receiverHolderSettings)
+            {
+                prepareReceiverSaveData .Add(new ReceiverItemData()
+                {
+                    Id = receiverItemData.Id,
+
+                    Name = receiverItemData.Receiver.Name,
+
+                    IsEnabled = receiverItemData.Receiver.IsEnabled
+                });
+             }
+
             _receiverSaveData.Value = new ReceiverSaveData()
             {
-                Id = 0,
+                Id = 1,
 
-                // TODO:
+                ReceiverItemDatas = prepareReceiverSaveData
             };
         }
 
@@ -64,11 +76,25 @@ public class ReceiverModel : IModel, ISerializableModel
         { 
             var innerSaveData = (ReceiverSaveData) saveData;
 
+            var prepareReceiverSaveData = new List<ReceiverItemData>();
+
+            foreach(var receiverItemData in innerSaveData.ReceiverItemDatas)
+            {
+                prepareReceiverSaveData .Add(new ReceiverItemData()
+                {
+                    Id = receiverItemData.Id,
+
+                    Name = receiverItemData.Name,
+
+                    IsEnabled = receiverItemData.IsEnabled
+                });
+             }
+
             _receiverSaveData.Value = new ReceiverSaveData()
             {
-                Id = 0,
+                Id = innerSaveData.Id,
 
-               // TODO:
+                ReceiverItemDatas =  prepareReceiverSaveData
             };
         }
 

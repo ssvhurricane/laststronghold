@@ -18,6 +18,7 @@ namespace Services.Quest
         private readonly LogService _logService; 
         private readonly CheatService _cheatService;
         private readonly QuestModel _questModel;
+        private readonly ReceiverModel _receiverModel;
 
         private Flow _flow;
 
@@ -27,7 +28,8 @@ namespace Services.Quest
                             QuestsSettings[] questsSettings,
                             LogService logService,
                             CheatService cheatService,
-                            QuestModel questModel)
+                            QuestModel questModel,
+                            ReceiverModel receiverModel)
         {
             _signalBus = signalBus;
 
@@ -40,6 +42,8 @@ namespace Services.Quest
             _cheatService = cheatService;
 
             _questModel = questModel;
+
+            _receiverModel = receiverModel;
            
             _questsThreads = new Dictionary<int, List<Data.Settings.Quest>>();
 

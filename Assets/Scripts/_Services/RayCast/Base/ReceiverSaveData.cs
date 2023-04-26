@@ -18,6 +18,9 @@ namespace Services.RayCast
     {
          public int Id { get; set; }
          public List<ReceiverItemData> ReceiverItemDatas;
-         public ReceiverSaveData(){}
+         public ReceiverSaveData()
+         {
+           
+         }
     }
 }
