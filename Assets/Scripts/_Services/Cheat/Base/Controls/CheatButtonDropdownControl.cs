@@ -10,6 +10,9 @@ namespace Services.Cheat
 
          public int CurIndex => _dropdown.value;
 
+         public string CurItemText => _dropdown.options[_dropdown.value].text;
+       
+
          public CheatButtonDropdownControl SetDropdownOptions(IEnumerable<string> options)
          {
             _dropdown.options = new List<Dropdown.OptionData>();

@@ -13,25 +13,9 @@ MonoBehaviour:
   m_Name: AreaServiceSettingsRegistry
   m_EditorClassIdentifier: 
   RegistryItems:
-  - Id: 0
-    Area:
-      Name: 
-      Description: 
-      MinLevel: 0
-      MaxLevel: 0
-      CurHealthPoint: 0
-      MaxHealthPoint: 0
-      IsInteractive: 0
-      StatusType: 0
-      StageType: 0
-      AreaType: 0
-    StagePrefabs:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    EnvironmentPrefabs: []
   - Id: 1
     Area:
+      Id: PoliceStation
       Name: PoliceStationView
       Description: '[PoliceStationView]'
       MinLevel: 1
@@ -44,37 +28,63 @@ MonoBehaviour:
       AreaType: 0
     StagePrefabs: []
     EnvironmentPrefabs: []
-  - Id: 16
+  - Id: 7
     Area:
-      Name: 
-      Description: 
-      MinLevel: 0
-      MaxLevel: 0
+      Id: House1
+      Name: House1View
+      Description: '[House1View]'
+      MinLevel: 1
+      MaxLevel: 5
       CurHealthPoint: 0
-      MaxHealthPoint: 0
-      IsInteractive: 0
-      StatusType: 0
-      StageType: 0
+      MaxHealthPoint: 100
+      IsInteractive: 1
+      StatusType: 3
+      StageType: 1
       AreaType: 0
-    StagePrefabs:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    StagePrefabs: []
     EnvironmentPrefabs: []
-  - Id: 17
+  - Id: 8
     Area:
-      Name: 
-      Description: 
-      MinLevel: 0
-      MaxLevel: 0
+      Id: House2
+      Name: House2View
+      Description: '[House2View]'
+      MinLevel: 1
+      MaxLevel: 5
       CurHealthPoint: 0
-      MaxHealthPoint: 0
-      IsInteractive: 0
-      StatusType: 0
-      StageType: 0
+      MaxHealthPoint: 100
+      IsInteractive: 1
+      StatusType: 3
+      StageType: 1
       AreaType: 0
-    StagePrefabs:
-    - {fileID: 0}
+    StagePrefabs: []
+    EnvironmentPrefabs: []
+  - Id: 9
+    Area:
+      Id: House3
+      Name: House3View
+      Description: '[House3View]'
+      MinLevel: 1
+      MaxLevel: 5
+      CurHealthPoint: 0
+      MaxHealthPoint: 100
+      IsInteractive: 1
+      StatusType: 3
+      StageType: 1
+      AreaType: 0
+    StagePrefabs: []
+    EnvironmentPrefabs: []
+  - Id: 10
+    Area:
+      Id: House4
+      Name: House4View
+      Description: '[House4View]'
+      MinLevel: 1
+      MaxLevel: 5
+      CurHealthPoint: 0
+      MaxHealthPoint: 100
+      IsInteractive: 1
+      StatusType: 3
+      StageType: 1
+      AreaType: 0
+    StagePrefabs: []
     EnvironmentPrefabs: []

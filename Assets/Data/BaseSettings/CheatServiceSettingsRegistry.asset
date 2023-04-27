@@ -26,3 +26,5 @@ MonoBehaviour:
       Name: Messages
     - Id: 5
       Name: Areas
+    - Id: 6
+      Name: Receivers

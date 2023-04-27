@@ -11,5 +11,7 @@ namespace Constants
          public static string Messages = "Messages";
 
          public static string Areas = "Areas";
+
+         public static string Receivers = "Receivers";
     }
 }

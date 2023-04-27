@@ -13,13 +13,48 @@ MonoBehaviour:
   m_Name: ReceiverHolderSettingsRegistry
   m_EditorClassIdentifier: 
   RegistryItems:
-  - Id: 
+  - Id: PoliceStation
     Receiver:
-      Id: 
-      Name: 
+      Id: PoliceStation
+      Name: PoliceStation
+      IsEnabled: 1
+  - Id: PoliceStationWall1
+    Receiver:
+      Id: PoliceStationWall1
+      Name: PoliceStationWall1
       IsEnabled: 0
-  - Id: 
+  - Id: PoliceStationWall2
     Receiver:
-      Id: 
-      Name: 
+      Id: PoliceStationWall2
+      Name: PoliceStationWall2
+      IsEnabled: 0
+  - Id: PoliceStationWall3
+    Receiver:
+      Id: PoliceStationWall3
+      Name: PoliceStationWall3
+      IsEnabled: 0
+  - Id: PoliceStationWall4
+    Receiver:
+      Id: PoliceStationWall4
+      Name: PoliceStationWall4
+      IsEnabled: 0
+  - Id: House1
+    Receiver:
+      Id: House1
+      Name: House1
+      IsEnabled: 0
+  - Id: House2
+    Receiver:
+      Id: House2
+      Name: House2
+      IsEnabled: 0
+  - Id: House3
+    Receiver:
+      Id: House3
+      Name: House3
+      IsEnabled: 0
+  - Id: House4
+    Receiver:
+      Id: House4
+      Name: House4
       IsEnabled: 0

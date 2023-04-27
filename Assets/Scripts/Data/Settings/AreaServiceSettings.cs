@@ -7,6 +7,7 @@ namespace Data.Settings
     [Serializable]
     public class Area
     {  
+        public string Id;
         public string Name; 
         public string Description; 
         public int MinLevel;
