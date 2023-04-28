@@ -22,13 +22,73 @@ MonoBehaviour:
       MaxLevel: 5
       CurHealthPoint: 0
       MaxHealthPoint: 100
+      IsInteractive: 0
+      StatusType: 3
+      StageType: 1
+      AreaType: 0
+    StagePrefabs: []
+    EnvironmentPrefabs: []
+  - Id: 2
+    Area:
+      Id: PoliceStationWall1
+      Name: PoliceStationWall1View
+      Description: '[PoliceStationWall1View]'
+      MinLevel: 1
+      MaxLevel: 5
+      CurHealthPoint: 0
+      MaxHealthPoint: 100
       IsInteractive: 1
       StatusType: 3
       StageType: 1
       AreaType: 0
     StagePrefabs: []
     EnvironmentPrefabs: []
-  - Id: 7
+  - Id: 3
+    Area:
+      Id: PoliceStationWall2
+      Name: PoliceStationWall2View
+      Description: '[PoliceStationWall2View]'
+      MinLevel: 1
+      MaxLevel: 5
+      CurHealthPoint: 0
+      MaxHealthPoint: 100
+      IsInteractive: 1
+      StatusType: 3
+      StageType: 1
+      AreaType: 0
+    StagePrefabs: []
+    EnvironmentPrefabs: []
+  - Id: 4
+    Area:
+      Id: PoliceStationWall3
+      Name: PoliceStationWall3View
+      Description: '[PoliceStationWall3View]'
+      MinLevel: 1
+      MaxLevel: 5
+      CurHealthPoint: 0
+      MaxHealthPoint: 100
+      IsInteractive: 1
+      StatusType: 3
+      StageType: 1
+      AreaType: 0
+    StagePrefabs: []
+    EnvironmentPrefabs: []
+  - Id: 5
+    Area:
+      Id: PoliceStationWall4
+      Name: PoliceStationWall4View
+      Description: '[PoliceStationWall4View]'
+      MinLevel: 1
+      MaxLevel: 5
+      CurHealthPoint: 0
+      MaxHealthPoint: 100
+      IsInteractive: 1
+      StatusType: 3
+      StageType: 1
+      AreaType: 0
+    StagePrefabs: []
+    EnvironmentPrefabs: []
+  - Id: 6
     Area:
       Id: House1
       Name: House1View
@@ -43,7 +103,7 @@ MonoBehaviour:
       AreaType: 0
     StagePrefabs: []
     EnvironmentPrefabs: []
-  - Id: 8
+  - Id: 7
     Area:
       Id: House2
       Name: House2View
@@ -58,7 +118,7 @@ MonoBehaviour:
       AreaType: 0
     StagePrefabs: []
     EnvironmentPrefabs: []
-  - Id: 9
+  - Id: 8
     Area:
       Id: House3
       Name: House3View
@@ -73,7 +133,7 @@ MonoBehaviour:
       AreaType: 0
     StagePrefabs: []
     EnvironmentPrefabs: []
-  - Id: 10
+  - Id: 9
     Area:
       Id: House4
       Name: House4View

@@ -11,8 +11,6 @@ namespace Services.RayCast
 
         [SerializeField] protected string ObjectId;
 
-        [SerializeField] protected string ObjectName;
-
         private SignalBus _signalBus;
 
         public bool IsEnabled { get; private set; } = false;
@@ -48,11 +46,6 @@ namespace Services.RayCast
         public string GetId()
         {
             return ObjectId;
-        }
-
-        public string GetObjectName()
-        {
-            return ObjectName;
         }
     }
 }

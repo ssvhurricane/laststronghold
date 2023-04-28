@@ -4,6 +4,11 @@ using Model;
 using Services.Cheat;
 using Zenject;
 using UniRx;
+using Data.Settings;
+using System.Linq;
+using Signals;
+using Services.Essence;
+using View;
 
 namespace Services.Area
 {
@@ -12,22 +17,30 @@ namespace Services.Area
         private readonly SignalBus _signalBus;
 
         private readonly CheatService _cheatService;
+
+        private readonly EssenceService _essenceService;
         
         private readonly AreaModel _areaModel;
         private readonly ReceiverModel _receiverModel;
-        
+        private readonly AreaServiceSettings[] _areaServiceSettings;
+
         public AreaService(SignalBus signalBus,
                          CheatService cheatService,
+                         EssenceService essenceService,
                          AreaModel areaModel,
-                         ReceiverModel receiverModel)
+                         ReceiverModel receiverModel,
+                         AreaServiceSettings[] areaServiceSettings)
         {
             _signalBus = signalBus;
 
             _cheatService = cheatService;
+            _essenceService = essenceService;
 
             _areaModel = areaModel;
 
             _receiverModel = receiverModel;
+
+            _areaServiceSettings = areaServiceSettings;
 
             AddCheats();
 
@@ -39,165 +52,109 @@ namespace Services.Area
                     // TODO:
                 }
             });
+
+             // AreaData.
+            _areaModel.GetAreaSaveDataAsReactive().Subscribe(item => 
+            {
+                if(_areaModel.GetAreaSaveData() != null && item != null)
+                {
+                    InitializeAreas();
+                }
+            });
+
+            _signalBus.Subscribe<SceneServiceSignals.SceneLoadingCompleted>(data =>
+            {
+                
+                if (data.Data == SceneServiceConstants.OfflineLevel1)
+                {
+                    InitializeAreas();
+                }
+            });
         }
 
-        public void AreaProcessing()
+        private void InitializeAreas()
         {
-            // TODO:
+            var areaEssences = _essenceService._registeredEssences.Where(essence => essence as AreaView);
+
+            if(areaEssences != null && areaEssences.Count() != 0)
+            {
+                foreach(var modelData in _areaModel.GetAreaSaveData().AreaItemDatas)
+                    AreaProcessing(areaEssences.FirstOrDefault(item => (item as AreaView).GetObjectName() == modelData.Id), modelData.IsInteractive);
+            }
+        }
+
+        public void AreaProcessing(IEssence areaView, bool isInteractive)
+        {
+            if(areaView != null)
+            {
+                var area = areaView as AreaView;
+
+                if(area != null)
+                {
+                     area.InteractiveArea(isInteractive);
+
+                      if(isInteractive) area.StartSimulate();
+                     
+                      else area.StopSimulate();
+                }
+            }
         }
 
         private void AddCheats()
         {
-           //1. Построить Область.
+            var dropDownItems = new List<string>();
 
+            foreach(var areaItemData in _areaServiceSettings) dropDownItems.Add(areaItemData.Area.Id);
+         
             _cheatService.AddCheatItemControl<CheatButtonDropdownControl>(button => button
-               .SetDropdownOptions(new List<string>() 
-               {
-                   "PoliceOffice"
-               })
-               .SetButtonName("Build Selected Area:")
+               .SetDropdownOptions(dropDownItems)
+               .SetButtonName("Interactive Selected Area:")
                .SetButtonCallback(() =>
                {
-                   switch (button.CurIndex) 
-                   {
-                       case 0: 
-                           {
-                           
-                                // TODO:
-                               break;
-                           }
-                   }
+                    var aModelData = _areaModel.GetAreaSaveData();
+
+                    aModelData.AreaItemDatas.FirstOrDefault(data =>data.Id == button.CurItemText).IsInteractive = true;
+
+                    _areaModel.UpdateModelData(aModelData);
+
                }), CheatServiceConstants.Areas);
 
-           //2. Скрыть Область.
+         
            _cheatService.AddCheatItemControl<CheatButtonDropdownControl>(button => button
-               .SetDropdownOptions(new List<string>() 
-               {
-                   "PoliceOffice"
-               })
-               .SetButtonName("Hide Selected Area:")
+               .SetDropdownOptions(dropDownItems)
+               .SetButtonName("None Interactive Selected Area:")
                .SetButtonCallback(() =>
                {
-                   switch (button.CurIndex) 
-                   {
-                       case 0: 
-                           {
-                           
-                                // TODO:
-                               break;
-                           }
-                   }
-               }), CheatServiceConstants.Areas);
+                    var aModelData = _areaModel.GetAreaSaveData();
 
-           //3. Поазать область.
-           _cheatService.AddCheatItemControl<CheatButtonDropdownControl>(button => button
-               .SetDropdownOptions(new List<string>() 
-               {
-                   "PoliceOffice"
-               })
-               .SetButtonName("Show Selected Area:")
-               .SetButtonCallback(() =>
-               {
-                   switch (button.CurIndex) 
-                   {
-                       case 0: 
-                           {
-                           
-                                // TODO:
-                               break;
-                           }
-                   }
-               }), CheatServiceConstants.Areas);
+                    aModelData.AreaItemDatas.FirstOrDefault(data =>data.Id == button.CurItemText).IsInteractive = false;
 
-            //4. Прокачать область.
-            _cheatService.AddCheatItemControl<CheatButtonDropdownControl>(button => button
-               .SetDropdownOptions(new List<string>() 
-               {
-                   "PoliceOffice"
-               })
-               .SetButtonName("LevelUp Selected Area:")
-               .SetButtonCallback(() =>
-               {
-                   switch (button.CurIndex) 
-                   {
-                       case 0: 
-                           {
-                           
-                                // TODO:
-                               break;
-                           }
-                   }
-               }), CheatServiceConstants.Areas);
+                    _areaModel.UpdateModelData(aModelData);
 
-            //5. Разрушить область.
-            _cheatService.AddCheatItemControl<CheatButtonDropdownControl>(button => button
-               .SetDropdownOptions(new List<string>() 
-               {
-                   "PoliceOffice"
-               })
-               .SetButtonName("Destroy Selected Area:")
-               .SetButtonCallback(() =>
-               {
-                   switch (button.CurIndex) 
-                   {
-                       case 0: 
-                           {
-                           
-                                // TODO:
-                               break;
-                           }
-                   }
                }), CheatServiceConstants.Areas);
-
-            //6. Востановить область.
-            _cheatService.AddCheatItemControl<CheatButtonDropdownControl>(button => button
-               .SetDropdownOptions(new List<string>() 
-               {
-                   "PoliceOffice"
-               })
-               .SetButtonName("ReBuild Selected Area:")
-               .SetButtonCallback(() =>
-               {
-                   switch (button.CurIndex) 
-                   {
-                       case 0: 
-                           {
-                           
-                                // TODO:
-                               break;
-                           }
-                   }
-               }), CheatServiceConstants.Areas);
-
-            //7. Получить область как ресурс.
-            _cheatService.AddCheatItemControl<CheatButtonDropdownControl>(button => button
-               .SetDropdownOptions(new List<string>() 
-               {
-                   "PoliceOffice"
-               })
-               .SetButtonName("Get As Resource Selected Area:")
-               .SetButtonCallback(() =>
-               {
-                   switch (button.CurIndex) 
-                   {
-                       case 0: 
-                           {
-                           
-                                // TODO:
-                               break;
-                           }
-                   }
-               }), CheatServiceConstants.Areas);
-
-            //8. Скрыть все области.
+  
             _cheatService.AddCheatItemControl<CheatButtonControl>(button => button
-             .SetButtonName("Hide All Areas")
+             .SetButtonName("Interactive All Areas")
             .SetButtonCallback(() =>
-            {/*
-                foreach (var quest in _quests)
-                {
-                    ForceCompleteQuest(quest);
-                }*/
+            {
+                 var aModelData = _areaModel.GetAreaSaveData();
+
+                 foreach(var data in aModelData.AreaItemDatas) data.IsInteractive = true;
+
+                _areaModel.UpdateModelData(aModelData);
+
+            }), CheatServiceConstants.Areas);
+          
+            _cheatService.AddCheatItemControl<CheatButtonControl>(button => button
+             .SetButtonName("None Interactive All Areas")
+            .SetButtonCallback(() =>
+            {
+                var aModelData = _areaModel.GetAreaSaveData();
+
+                 foreach(var data in aModelData.AreaItemDatas) data.IsInteractive = false;
+
+                _areaModel.UpdateModelData(aModelData);
+
             }), CheatServiceConstants.Areas);
         }
     }

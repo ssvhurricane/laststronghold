@@ -10,7 +10,7 @@ namespace View
     public class AreaView : NetworkEssence
     { 
         [SerializeField] protected EssenceType Layer; 
-        
+        [SerializeField] protected string ObjectName;
         [SerializeField] protected Text AreaName; 
         [SerializeField] protected Text AreaDescription; 
         [SerializeField] protected GameObject AreaPrefab;
@@ -24,7 +24,7 @@ namespace View
 
         private SignalBus _signalBus;
 
-        public bool IsActive { get; private set; } = false;
+        public bool IsInteractive { get; private set; } = false;
         
         [Inject]
         public void Constrcut(SignalBus signalBus)
@@ -34,15 +34,24 @@ namespace View
             _signalBus.Fire(new EssenceServiceSignals.Register(this));
         }
 
+        public void InteractiveArea(bool isInteractive)
+        {
+            IsInteractive = isInteractive;
+        }
+
         public void StartSimulate()
         {
             // TODO:
+            Debug.Log(this.name + "Start Simulate");
         }
 
         public void StopSimulate()
         {
             // TODO:
+             Debug.Log(this.name + "Stop Simulate");
         }
+
+
 
         public void UpdateView(AreaViewArgs areaViewArgs)
         {
@@ -63,6 +72,10 @@ namespace View
             AreaStageType.text = "";
 
             AreaAreaType.text = "";
+        } 
+        public string GetObjectName()
+        {
+            return ObjectName;
         }
     }
 

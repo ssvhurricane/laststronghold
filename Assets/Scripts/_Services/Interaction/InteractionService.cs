@@ -64,8 +64,7 @@ namespace Services.Interaction
                 if (_receiverAnchorArea)
                 {
                     _logService.ShowLog(GetType().Name,
-                                    Services.Log.LogType.Message, "Receiver Id: " + _receiverAnchorArea.GetId() + " | " +
-                                    "Receiver Name: " + _receiverAnchorArea.GetObjectName(),
+                                    Services.Log.LogType.Message, "Receiver Id: " + _receiverAnchorArea.GetId(),
                                     LogOutputLocationType.Console);
 
                     // TODO: Get Current Area..

@@ -83,7 +83,7 @@ namespace Services.RayCast
             if(_receiverHolders != null && _receiverHolders.Count != 0)
             {
               foreach(var modelData in _receiverModel.GetReceiverSaveData().ReceiverItemDatas)
-                    _receiverHolders.FirstOrDefault(item => item.GetObjectName() == modelData.Id).EnableReceiver(modelData.IsEnabled);
+                    _receiverHolders.FirstOrDefault(item => item.GetId() == modelData.Id).EnableReceiver(modelData.IsEnabled);
             }
         }
 

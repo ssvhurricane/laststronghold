@@ -56,7 +56,7 @@ public class AreaModel : IModel, ISerializableModel
             {
                 prepareAreaSaveData.Add(new AreaItemData()
                 {
-                    Id = int.Parse(areaSettings.Id),
+                    Id = areaSettings.Area.Id,
 
                     Description = areaSettings.Area.Description,
 

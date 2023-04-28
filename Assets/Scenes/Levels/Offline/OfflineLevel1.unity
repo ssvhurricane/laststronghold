@@ -220,7 +220,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 25178383}
   ReceiverType: 2
   ObjectId: PoliceStationWall3View
-  ObjectName: PoliceStationWall3
 --- !u!64 &25178386
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -381,8 +380,7 @@ MonoBehaviour:
   Parent: {fileID: 217493736}
   ReceiverObject: {fileID: 94315345}
   ReceiverType: 3
-  ObjectId: PoliceStationWall2View
-  ObjectName: PoliceStationWall2
+  ObjectId: PoliceStationWall2
 --- !u!64 &94315348
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -504,7 +502,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-17830
+  m_Name: pb_Mesh-28894
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -760,7 +758,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 274613206}
   ReceiverType: 2
   ObjectId: PoliceStationWall2View
-  ObjectName: PoliceStationWall2
 --- !u!64 &274613209
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1007,8 +1004,7 @@ MonoBehaviour:
   Parent: {fileID: 18286619}
   ReceiverObject: {fileID: 393897303}
   ReceiverType: 3
-  ObjectId: PoliceStationView
-  ObjectName: PoliceStation
+  ObjectId: PoliceStation
 --- !u!1 &403563254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,8 +1060,7 @@ MonoBehaviour:
   Parent: {fileID: 1617058936}
   ReceiverObject: {fileID: 403563254}
   ReceiverType: 3
-  ObjectId: House4View
-  ObjectName: House4
+  ObjectId: House4
 --- !u!64 &403563257
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1244,8 +1239,7 @@ MonoBehaviour:
   Parent: {fileID: 1273106298}
   ReceiverObject: {fileID: 475451257}
   ReceiverType: 3
-  ObjectId: PoliceStationWall1View
-  ObjectName: PoliceStationWall1
+  ObjectId: PoliceStationWall1
 --- !u!1001 &508262324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1837,8 +1831,7 @@ MonoBehaviour:
   Parent: {fileID: 2043464588}
   ReceiverObject: {fileID: 722021729}
   ReceiverType: 3
-  ObjectId: PoliceStationWall4View
-  ObjectName: PoliceStationWall4
+  ObjectId: PoliceStationWall4
 --- !u!64 &722021732
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1999,8 +1992,7 @@ MonoBehaviour:
   Parent: {fileID: 567636007}
   ReceiverObject: {fileID: 791329137}
   ReceiverType: 3
-  ObjectId: PoliceStationWall3View
-  ObjectName: PoliceStationWall3
+  ObjectId: PoliceStationWall3
 --- !u!64 &791329140
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2116,7 +2108,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 808846754}
   ReceiverType: 2
   ObjectId: PoliceStationWall4View
-  ObjectName: PoliceStationWall4
 --- !u!64 &808846757
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2232,7 +2223,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 814590414}
   ReceiverType: 2
   ObjectId: PoliceStationWall2View
-  ObjectName: PoliceStationWall2
 --- !u!64 &814590417
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2348,7 +2338,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 869384642}
   ReceiverType: 2
   ObjectId: PoliceStationWall4View
-  ObjectName: PoliceStationWall4
 --- !u!64 &869384645
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2464,7 +2453,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 916598684}
   ReceiverType: 2
   ObjectId: PoliceStationWall3View
-  ObjectName: PoliceStationWall3
 --- !u!64 &916598687
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2875,7 +2863,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 1070061083}
   ReceiverType: 2
   ObjectId: PoliceStationWall2View
-  ObjectName: PoliceStationWall2
 --- !u!64 &1070061086
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2991,7 +2978,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 1079959278}
   ReceiverType: 2
   ObjectId: PoliceStationWall1View
-  ObjectName: PoliceStationWall1
 --- !u!64 &1079959281
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3107,7 +3093,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 1080376347}
   ReceiverType: 2
   ObjectId: PoliceStationWall1View
-  ObjectName: PoliceStationWall1
 --- !u!64 &1080376350
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3346,7 +3331,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 1175611892}
   ReceiverType: 2
   ObjectId: PoliceStationWall1View
-  ObjectName: PoliceStationWall1
 --- !u!64 &1175611895
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3796,7 +3780,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-18350
+  m_Name: pb_Mesh-28342
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -4069,7 +4053,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 1492085836}
   ReceiverType: 2
   ObjectId: PoliceStationWall3View
-  ObjectName: PoliceStationWall3
 --- !u!64 &1492085839
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4189,8 +4172,7 @@ MonoBehaviour:
   Parent: {fileID: 1570311215}
   ReceiverObject: {fileID: 1503842539}
   ReceiverType: 3
-  ObjectId: House3View
-  ObjectName: House3
+  ObjectId: House3
 --- !u!64 &1503842542
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4815,7 +4797,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 1523656311}
   ReceiverType: 2
   ObjectId: PoliceStationWall1View
-  ObjectName: PoliceStationWall1
 --- !u!64 &1523656314
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4935,8 +4916,7 @@ MonoBehaviour:
   Parent: {fileID: 1725520164}
   ReceiverObject: {fileID: 1554790815}
   ReceiverType: 3
-  ObjectId: House2View
-  ObjectName: House2
+  ObjectId: House2
 --- !u!64 &1554790818
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5098,7 +5078,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 1567700961}
   ReceiverType: 2
   ObjectId: PoliceStationWall4View
-  ObjectName: PoliceStationWall4
 --- !u!64 &1567700964
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5353,7 +5332,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-10724
+  m_Name: pb_Mesh-37092
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -5563,7 +5542,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 1694665294}
   ReceiverType: 2
   ObjectId: PoliceStationWall2View
-  ObjectName: PoliceStationWall2
 --- !u!64 &1694665297
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6179,7 +6157,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 1739391981}
   ReceiverType: 0
   ObjectId: PlaneView
-  ObjectName: Pane
 --- !u!1 &1764509031
 GameObject:
   m_ObjectHideFlags: 0
@@ -6232,7 +6209,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-19590
+  m_Name: pb_Mesh-28758
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -6501,7 +6478,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 1822758745}
   ReceiverType: 2
   ObjectId: PoliceStationWall4View
-  ObjectName: PoliceStationWall4
 --- !u!64 &1822758748
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6621,8 +6597,7 @@ MonoBehaviour:
   Parent: {fileID: 1184571113}
   ReceiverObject: {fileID: 1836528098}
   ReceiverType: 3
-  ObjectId: House1View
-  ObjectName: House1
+  ObjectId: House1
 --- !u!64 &1836528101
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6801,7 +6776,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 1887603319}
   ReceiverType: 0
   ObjectId: CubeView
-  ObjectName: Cube
 --- !u!1001 &1998128682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7142,6 +7116,171 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnchorType: 5
+--- !u!43 &2103848269
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: pb_Mesh-28486
+  serializedVersion: 11
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 36
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 24
+    localAABB:
+      m_Center: {x: -2.4290333, y: 2.3303232, z: -5.1731253}
+      m_Extent: {x: 6.75, y: 3.25, z: 7.365}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 24
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 40
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 56
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 1536
+    _typelessdata: 52dd12c1f06f6bbfac470c4000000000000000000000803f000080bf0000000000000000000080bf8e49593ea46d353f0000803f0000803f52dd1241f06f6bbf5c458a40f06f6bbfac470c4000000000000000000000803f000080bf0000000000000000000080bf8e49593ea46d353f0000803f0000803f5c458ac0f06f6bbf52dd12c10292b240ac470c4000000000000000000000803f000080bf0000000000000000000080bf8e49593ea46d353f0000803f0000803f52dd12410292b2405c458a400292b240ac470c4000000000000000000000803f000080bf0000000000000000000080bf8e49593ea46d353f0000803f0000803f5c458ac00292b2405c458a40f06f6bbfac470c400000803f000000000000000000000000000000000000803f000080bf8e49593ea46d353f0000803f0000803fac470c40f06f6bbf5c458a40f06f6bbf299c48c10000803f000000000000000000000000000000000000803f000080bf8e49593ea46d353f0000803f0000803f299c48c1f06f6bbf5c458a400292b240ac470c400000803f000000000000000000000000000000000000803f000080bf8e49593ea46d353f0000803f0000803fac470c400292b2405c458a400292b240299c48c10000803f000000000000000000000000000000000000803f000080bf8e49593ea46d353f0000803f0000803f299c48c10292b2405c458a40f06f6bbf299c48c10000000000000000000080bf0000803f0000000000000000000080bf8e49593ea46d353f0000803f0000803f5c458a40f06f6bbf52dd12c1f06f6bbf299c48c10000000000000000000080bf0000803f0000000000000000000080bf8e49593ea46d353f0000803f0000803f52dd12c1f06f6bbf5c458a400292b240299c48c10000000000000000000080bf0000803f0000000000000000000080bf8e49593ea46d353f0000803f0000803f5c458a400292b24052dd12c10292b240299c48c10000000000000000000080bf0000803f0000000000000000000080bf8e49593ea46d353f0000803f0000803f52dd12c10292b24052dd12c1f06f6bbf299c48c1000080bf00000000000000000000000000000000000080bf000080bf8e49593ea46d353f0000803f0000803f299c4841f06f6bbf52dd12c1f06f6bbfac470c40000080bf00000000000000000000000000000000000080bf000080bf8e49593ea46d353f0000803f0000803fac470cc0f06f6bbf52dd12c10292b240299c48c1000080bf00000000000000000000000000000000000080bf000080bf8e49593ea46d353f0000803f0000803f299c48410292b24052dd12c10292b240ac470c40000080bf00000000000000000000000000000000000080bf000080bf8e49593ea46d353f0000803f0000803fac470cc00292b24052dd12c10292b240ac470c40000000000000803f000000000000803f0000000000000000000080bf8e49593ea46d353f0000803f0000803f52dd12c1ac470c405c458a400292b240ac470c40000000000000803f000000000000803f0000000000000000000080bf8e49593ea46d353f0000803f0000803f5c458a40ac470c4052dd12c10292b240299c48c1000000000000803f000000000000803f0000000000000000000080bf8e49593ea46d353f0000803f0000803f52dd12c1299c48c15c458a400292b240299c48c1000000000000803f000000000000803f0000000000000000000080bf8e49593ea46d353f0000803f0000803f5c458a40299c48c152dd12c1f06f6bbf299c48c100000000000080bf00000000000080bf0000000000000000000080bf8e49593ea46d353f0000803f0000803f52dd1241299c48c15c458a40f06f6bbf299c48c100000000000080bf00000000000080bf0000000000000000000080bf8e49593ea46d353f0000803f0000803f5c458ac0299c48c152dd12c1f06f6bbfac470c4000000000000080bf00000000000080bf0000000000000000000080bf8e49593ea46d353f0000803f0000803f52dd1241ac470c405c458a40f06f6bbfac470c4000000000000080bf00000000000080bf0000000000000000000080bf8e49593ea46d353f0000803f0000803f5c458ac0ac470c40
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: -2.4290333, y: 2.3303232, z: -5.1731253}
+    m_Extent: {x: 6.75, y: 3.25, z: 7.365}
+  m_MeshUsageFlags: 0
+  m_CookingOptions: 30
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1 &2128499018
 GameObject:
   m_ObjectHideFlags: 0
@@ -7193,7 +7332,6 @@ MonoBehaviour:
   ReceiverObject: {fileID: 2128499018}
   ReceiverType: 2
   ObjectId: PoliceStationWall3View
-  ObjectName: PoliceStationWall3
 --- !u!64 &2128499021
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7353,7 +7491,7 @@ PrefabInstance:
       objectReference: {fileID: 245918581}
     - target: {fileID: 2069798889461531783, guid: f8a5e152b8bf4423a8f37e789935b6c6, type: 3}
       propertyPath: m_VersionIndex
-      value: 2184
+      value: 2187
       objectReference: {fileID: 0}
     - target: {fileID: 2069798889875237120, guid: f8a5e152b8bf4423a8f37e789935b6c6, type: 3}
       propertyPath: m_RootOrder
@@ -7398,6 +7536,10 @@ PrefabInstance:
     - target: {fileID: 2069798889875237120, guid: f8a5e152b8bf4423a8f37e789935b6c6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2069798889875237121, guid: f8a5e152b8bf4423a8f37e789935b6c6, type: 3}
+      propertyPath: ObjectName
+      value: House2
       objectReference: {fileID: 0}
     - target: {fileID: 2069798889875237135, guid: f8a5e152b8bf4423a8f37e789935b6c6, type: 3}
       propertyPath: m_Name
@@ -7599,6 +7741,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1340470342155112161, guid: 510b64fa42b7940358529afa1f576939, type: 3}
+      propertyPath: ObjectName
+      value: House4
+      objectReference: {fileID: 0}
     - target: {fileID: 1340470342155112175, guid: 510b64fa42b7940358529afa1f576939, type: 3}
       propertyPath: m_Name
       value: House4View
@@ -7617,7 +7763,7 @@ PrefabInstance:
       objectReference: {fileID: 1800274513}
     - target: {fileID: 1340470343919379303, guid: 510b64fa42b7940358529afa1f576939, type: 3}
       propertyPath: m_VersionIndex
-      value: 2193
+      value: 2196
       objectReference: {fileID: 0}
     - target: {fileID: 3184124927671441503, guid: 510b64fa42b7940358529afa1f576939, type: 3}
       propertyPath: m_AnchorMax.y
@@ -7850,6 +7996,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5758295465825661307, guid: 0409bda8d7a0c465fa2023e5af90edf9, type: 3}
+      propertyPath: ObjectName
+      value: PoliceStation
+      objectReference: {fileID: 0}
     - target: {fileID: 5758295466242432249, guid: 0409bda8d7a0c465fa2023e5af90edf9, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -7860,7 +8010,7 @@ PrefabInstance:
       objectReference: {fileID: 1683471808}
     - target: {fileID: 5758295466242432253, guid: 0409bda8d7a0c465fa2023e5af90edf9, type: 3}
       propertyPath: m_VersionIndex
-      value: 2175
+      value: 2178
       objectReference: {fileID: 0}
     - target: {fileID: 5758295466242432255, guid: 0409bda8d7a0c465fa2023e5af90edf9, type: 3}
       propertyPath: m_Mesh
@@ -7997,19 +8147,19 @@ PrefabInstance:
     - target: {fileID: 7396546086429613337, guid: a8fe0168742fc4aa59ae28c40dd502dc, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1683471808}
+      objectReference: {fileID: 2103848269}
     - target: {fileID: 7396546086429613341, guid: a8fe0168742fc4aa59ae28c40dd502dc, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1683471808}
+      objectReference: {fileID: 2103848269}
     - target: {fileID: 7396546086429613341, guid: a8fe0168742fc4aa59ae28c40dd502dc, type: 3}
       propertyPath: m_VersionIndex
-      value: 2178
+      value: 2184
       objectReference: {fileID: 0}
     - target: {fileID: 7396546086429613343, guid: a8fe0168742fc4aa59ae28c40dd502dc, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1683471808}
+      objectReference: {fileID: 2103848269}
     - target: {fileID: 7396546087918104725, guid: a8fe0168742fc4aa59ae28c40dd502dc, type: 3}
       propertyPath: m_Name
       value: House1View
@@ -8057,6 +8207,10 @@ PrefabInstance:
     - target: {fileID: 7396546087918104730, guid: a8fe0168742fc4aa59ae28c40dd502dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396546087918104731, guid: a8fe0168742fc4aa59ae28c40dd502dc, type: 3}
+      propertyPath: ObjectName
+      value: House1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -8151,7 +8305,7 @@ PrefabInstance:
       objectReference: {fileID: 1451054900}
     - target: {fileID: 7372918017319666122, guid: 83551465616b1465e893929e35d8c7d7, type: 3}
       propertyPath: m_VersionIndex
-      value: 2187
+      value: 2190
       objectReference: {fileID: 0}
     - target: {fileID: 7372918017319666126, guid: 83551465616b1465e893929e35d8c7d7, type: 3}
       propertyPath: m_Mesh
@@ -8160,6 +8314,10 @@ PrefabInstance:
     - target: {fileID: 7372918019077581890, guid: 83551465616b1465e893929e35d8c7d7, type: 3}
       propertyPath: m_Name
       value: House3View
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372918019077581900, guid: 83551465616b1465e893929e35d8c7d7, type: 3}
+      propertyPath: ObjectName
+      value: House3
       objectReference: {fileID: 0}
     - target: {fileID: 7372918019077581901, guid: 83551465616b1465e893929e35d8c7d7, type: 3}
       propertyPath: m_RootOrder

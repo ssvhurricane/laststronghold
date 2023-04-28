@@ -280,8 +280,7 @@ namespace Services.Input
                         _anchorCenter = _anchorService.GetActorByName(_receiverAnchorArea.GetParentObject().name).FirstOrDefault();
 
                         _logService.ShowLog(GetType().Name,
-                                    Services.Log.LogType.Message, "Receiver Id: " + _receiverAnchorArea.GetId() + " | " +
-                                    "Receiver Name: " + _receiverAnchorArea.GetObjectName(),
+                                    Services.Log.LogType.Message, "Receiver Id: " + _receiverAnchorArea.GetId(),
                                     LogOutputLocationType.Console);
                     }
 
@@ -295,15 +294,14 @@ namespace Services.Input
 
             _topDownGameInput.Player.Reset.performed += value =>
             {
-                 _receiverAnchorArea = _rayCastService.GetReceiverHolders().FirstOrDefault(item => item.GetId() == "PoliceStationView");
+                 _receiverAnchorArea = _rayCastService.GetReceiverHolders().FirstOrDefault(item => item.GetId() == "PoliceStation");
 
                 if (_receiverAnchorArea)
                 {
                      _anchorCenter = _anchorService.GetActorByName(_receiverAnchorArea.GetParentObject().name).FirstOrDefault();
 
                     _logService.ShowLog(GetType().Name,
-                                Services.Log.LogType.Message, "Receiver(reset) Id: " + _receiverAnchorArea.GetId() + " | " +
-                                "Receiver Name: " + _receiverAnchorArea.GetObjectName(),
+                                Services.Log.LogType.Message, "Receiver(reset) Id: " + _receiverAnchorArea.GetId(),
                                 LogOutputLocationType.Console);
                 }
 

@@ -148,8 +148,7 @@ namespace Services.Shooting
                 if (_receiverAnchorArea)
                 {
                     _logService.ShowLog(GetType().Name,
-                                    Services.Log.LogType.Message, "Receiver Id: " + _receiverAnchorArea.GetId() + " | " +
-                                    "Receiver Name: " + _receiverAnchorArea.GetObjectName(),
+                                    Services.Log.LogType.Message, "Receiver Id: " + _receiverAnchorArea.GetId(),
                                     LogOutputLocationType.Console);
 
                     var settings = _shootingServiceSettings.FirstOrDefault(item => item.Id == id);

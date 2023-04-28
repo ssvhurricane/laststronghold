@@ -7,7 +7,7 @@ namespace Services.Area
     [Serializable]
     public class AreaItemData
     {
-        public int Id { get; set; }
+        public string Id;
 
         public string Name; 
         public string Description; 

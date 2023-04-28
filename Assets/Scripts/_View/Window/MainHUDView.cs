@@ -14,7 +14,6 @@ namespace View.Window
 
         [SerializeField] protected Slider HelicopterHP, HelicopterPetrol;
 
-        [SerializeField] protected Text ResourceMetal, ResourceStone, ResourceTree, ResourcePetrol;
         [SerializeField] protected Text TimeNextEarthQuake;
 
         [SerializeField] protected Image ImageMainInteract, ImageMainShoot, ImageOne, ImageTwo, ImageThree, ImageZoom;

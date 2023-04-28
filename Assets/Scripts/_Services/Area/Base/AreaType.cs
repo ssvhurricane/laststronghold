@@ -4,6 +4,8 @@ namespace Services.Area
     {
         Building,
         Construction,
-        POI
+        POI,
+
+        SpawnPoint
     }
 }
