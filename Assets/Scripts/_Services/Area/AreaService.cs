@@ -9,6 +9,7 @@ using System.Linq;
 using Signals;
 using Services.Essence;
 using View;
+using System;
 
 namespace Services.Area
 {
@@ -145,17 +146,21 @@ namespace Services.Area
 
             }), CheatServiceConstants.Areas);
           
-            _cheatService.AddCheatItemControl<CheatButtonControl>(button => button
-             .SetButtonName("None Interactive All Areas")
+            _cheatService.AddCheatItemControl<CheatButtonDoubleDropdownControl>(button => button  
+             .SetFirstDropdownOptions(dropDownItems)
+             .SetSecondDropdownOptions(Enum.GetNames(typeof(StatusType)).ToList())
+            .SetButtonName("Change status Area:")
             .SetButtonCallback(() =>
-            {
-                var aModelData = _areaModel.GetAreaSaveData();
+               {
+                   var aModelData = _areaModel.GetAreaSaveData();
 
-                 foreach(var data in aModelData.AreaItemDatas) data.IsInteractive = false;
+                   aModelData.AreaItemDatas
+                   .FirstOrDefault(data => data.Id == button.CurFirstItemText).StatusType
+                    = (StatusType)Enum.Parse(typeof(StatusType), button.CurSecondItemText, true);
 
-                _areaModel.UpdateModelData(aModelData);
+                    _areaModel.UpdateModelData(aModelData);
 
-            }), CheatServiceConstants.Areas);
+               }), CheatServiceConstants.Areas);
         }
     }
 }

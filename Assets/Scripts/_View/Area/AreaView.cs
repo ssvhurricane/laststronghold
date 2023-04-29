@@ -7,7 +7,7 @@ using Services.Area;
 
 namespace View
 {
-    public class AreaView : NetworkEssence
+    public class AreaView : NetworkEssence, ITakingDamage
     { 
         [SerializeField] protected EssenceType Layer; 
         [SerializeField] protected string ObjectName;
@@ -42,40 +42,47 @@ namespace View
         public void StartSimulate()
         {
             // TODO:
-            Debug.Log(this.name + "Start Simulate");
         }
 
         public void StopSimulate()
         {
             // TODO:
-             Debug.Log(this.name + "Stop Simulate");
         }
-
 
 
         public void UpdateView(AreaViewArgs areaViewArgs)
         {
             Id = areaViewArgs.Id;
 
-            AreaName.text = ""; 
+            AreaName.text = areaViewArgs.Name; 
 
-            AreaDescription.text = ""; 
+            AreaDescription.text = areaViewArgs.Description;
 
-            AreaPrefab = areaViewArgs.Prefab;
+           // AreaPrefab = areaViewArgs.Prefab;
 
             Level.text = areaViewArgs.CurLevel.ToString();
 
             AreaHealthPoint.value = areaViewArgs.CurHealthPoint;
 
-            AreaStatusType.text = "";
+            AreaStatusType.text = areaViewArgs.StatusType.ToString();
 
-            AreaStageType.text = "";
+            AreaStageType.text = areaViewArgs.StageType.ToString();
 
-            AreaAreaType.text = "";
+            AreaAreaType.text = areaViewArgs.AreaType.ToString();
         } 
         public string GetObjectName()
         {
             return ObjectName;
+        }
+
+        public void Damage(float damageCount)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool Kill()
+        {
+            throw new System.NotImplementedException();
         }
     }
 

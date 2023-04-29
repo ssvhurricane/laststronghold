@@ -222,6 +222,12 @@ namespace Presenters.Window
 
                             (itemData.CheatAction as Action<CheatButtonDropdownControl>).Invoke(cheatButtonDropdownView);
                         }
+                         else if(itemData.CheatItemType == typeof(CheatButtonDoubleDropdownControl))
+                        {
+                            var cheatButtonDoubleDropdownView = _factoryService.Spawn<CheatButtonDoubleDropdownControl>(cheatDetailView.GetContainer().transform);
+
+                            (itemData.CheatAction as Action<CheatButtonDoubleDropdownControl>).Invoke(cheatButtonDoubleDropdownView);
+                        }
                      }
                 }
         }

@@ -5,8 +5,11 @@ using Services.Essence;
 using Services.Anchor;
 using Services.Pool;
 using Services.Factory;
-using System.Collections.Generic;
 using View;
+using UniRx;
+using System.Linq;
+using Signals;
+using Constants;
 
 namespace Presenters
 {
@@ -20,8 +23,7 @@ namespace Presenters
         private readonly PoolService _poolService;
         private readonly FactoryService _factoryService;
         private readonly HolderService _holderService;
-
-        private List<AreaView> _areaViews;
+       
 
         public AreaPresenter(SignalBus signalBus,
                             LogService logService,
@@ -47,11 +49,63 @@ namespace Presenters
             _factoryService = factoryService;
 
             _holderService = holderService;
+
+            _signalBus.Subscribe<SceneServiceSignals.SceneLoadingCompleted>(data =>
+            {
+                
+                if (data.Data == SceneServiceConstants.OfflineLevel1)
+                {
+                    ShowView();
+                }
+            });
+
+              _areaModel.GetAreaSaveDataAsReactive().Subscribe(item => 
+            {
+                if(_areaModel.GetAreaSaveData() != null && item != null)
+                {
+                    ShowView();
+                }
+            });
         }
 
         public void ShowView()
         {
-            // TODO:
+            var areaEssences = _essenceService._registeredEssences.Where(essence => essence as AreaView);
+
+            if(areaEssences != null && areaEssences.Count() != 0)
+            {
+                foreach(var modelData in _areaModel.GetAreaSaveData().AreaItemDatas)
+                {
+                    var areaView = areaEssences.FirstOrDefault(item => (item as AreaView).GetObjectName() == modelData.Id) as AreaView;
+
+                     if(areaView == null) return;
+
+                      areaView.UpdateView(new AreaViewArgs
+                      {
+                            Id = modelData.Id,
+
+                            Name = modelData.Name,
+
+                            Description = modelData.Description,
+
+                            CurLevel  = modelData.MinLevel,
+
+                            CurHealthPoint = modelData.CurHealthPoint,
+
+                            MaxHealthPoint = modelData.MaxHealthPoint,
+
+                            IsInteractive = modelData.IsInteractive,
+
+                            StatusType = modelData.StatusType,
+
+                            StageType  = modelData.StageType,
+
+                             AreaType = modelData.AreaType
+            
+                      });
+                }
+                   
+            }
         } 
     }
 }
